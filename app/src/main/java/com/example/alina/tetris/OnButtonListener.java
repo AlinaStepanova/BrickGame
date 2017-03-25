@@ -6,5 +6,8 @@ package com.example.alina.tetris;
 
 public interface OnButtonListener {
 
-    void onClick(String id);
+    void onRightButtonClick();
+    
+    void onLeftButtonClick();
+    
 }
