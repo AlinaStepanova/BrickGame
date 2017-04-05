@@ -29,51 +29,22 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="14pt"
-                android:id="@+id/tvScoreText"
-                android:text="Score"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:background="#00b0ff"
-                android:textIsSelectable="true" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="10pt"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:layout_weight="1"
                 android:id="@+id/tvScore"
                 android:text="100"
                 android:textStyle="bold"
                 android:textColor="#00b0ff"
                 android:background="#ffffff"
-                android:layout_below="@id/tvScoreText"
                 android:textIsSelectable="true" />
 
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/llMove"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/bLeft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <com.example.alina.tetris.Controller
                 android:layout_weight="1"
-                android:text="L" />
-
-            <Button
-                android:id="@+id/bRight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="R" />
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+            </com.example.alina.tetris.Controller>
 
         </LinearLayout>
 
