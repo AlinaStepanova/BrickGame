@@ -6,12 +6,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/llPole"
+    <com.example.alina.tetris.Pole
+        android:id="@+id/pole"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_weight="1">
+    </com.example.alina.tetris.Pole>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/llControl"
