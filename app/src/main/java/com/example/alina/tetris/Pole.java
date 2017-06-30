@@ -20,6 +20,10 @@ public class Pole extends FrameLayout {
 
     private int squareCount;
 
+    private int screenHeight;
+
+    private int screenWidht;
+
     private Paint paint = new Paint();
 
     public Pole(@NonNull Context context) {
@@ -46,12 +50,19 @@ public class Pole extends FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / 10;
         squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
+        screenHeight = MeasureSpec.getSize(heightMeasureSpec);
+        screenWidht = MeasureSpec.getSize(widthMeasureSpec);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(6f);
-        canvas.drawLine(10, 10, 80, 80, paint);
+        paint.setStrokeWidth(1f);
+        for (int i = 1; i <= 10; i++) {
+            canvas.drawLine(i * widthOfSquareSide, 0, i * widthOfSquareSide, screenHeight, paint);
+        }
+        for (int i = 1; i <= squareCount; i++) {
+            canvas.drawLine(0, i * widthOfSquareSide, screenWidht, i * widthOfSquareSide, paint);
+        }
     }
 }
