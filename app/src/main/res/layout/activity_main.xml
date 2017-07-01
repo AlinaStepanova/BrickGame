@@ -10,6 +10,7 @@
         android:id="@+id/pole"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ffffff"
         android:layout_weight="1">
     </com.example.alina.tetris.Pole>
 
@@ -43,6 +44,7 @@
             <com.example.alina.tetris.Controller
                 android:layout_weight="1"
                 android:layout_width="match_parent"
+                android:background="#ffffff"
                 android:layout_height="0dp">
             </com.example.alina.tetris.Controller>
 
