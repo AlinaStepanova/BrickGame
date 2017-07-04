@@ -18,6 +18,5 @@ public class MainActivity extends AppCompatActivity {
         Pole pole = (Pole) findViewById(R.id.pole);
         LFigure lFigure = new LFigure(this);
         pole.addView(lFigure);
-
     }
 }

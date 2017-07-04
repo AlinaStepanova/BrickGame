@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 
 /**
  * Created by Alina on 02.04.2017.
@@ -16,7 +15,7 @@ public class LFigure extends Figure {
 
     private Paint paint = new Paint();
 
-    private final int SQARE_COUNT = 10;
+    private final int SQUARE_COUNT = 10;
 
     public LFigure(Context context) {
         super(context);
@@ -30,14 +29,19 @@ public class LFigure extends Figure {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQARE_COUNT;
+        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        //super.onDraw(canvas);
         paint.setColor(Color.RED);
         paint.setStrokeWidth(2f);
-        canvas.drawLine(20, 20, 100, 100, paint);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawLine(0, 0, 0, 120, paint);
+        canvas.drawLine(0, 120, 80, 120, paint);
+        canvas.drawLine(80, 120, 80, 80, paint);
+        canvas.drawLine(80, 80, 40, 80, paint);
+        canvas.drawLine(40, 80, 40, 0, paint);
+        canvas.drawLine(40, 0, 0, 0, paint);
     }
 }

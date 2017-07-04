@@ -8,6 +8,7 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -27,7 +28,7 @@ public class Pole extends FrameLayout {
 
     private int screenWidth;
 
-    private final int SQARE_COUNT = 10;
+    private final int SQUARE_COUNT = 10;
 
     private Paint paint = new Paint();
 
@@ -53,7 +54,7 @@ public class Pole extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQARE_COUNT;
+        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT;
         squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
         screenWidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -76,10 +77,11 @@ public class Pole extends FrameLayout {
         if (!(child instanceof Figure)) {
             throw new ClassCastException("Object was not of type Figure!");
         }
-        child.setLayoutParams(new LayoutParams(2 * widthOfSquareSide, 3 * widthOfSquareSide));
-        child.setX(10);
-        child.setY(10);
-        child.setBackgroundColor(Color.CYAN);
+        //does not work next line:
+        //child.setLayoutParams(new LayoutParams(2 * widthOfSquareSide, 3 * widthOfSquareSide));
+        child.setLayoutParams(new LayoutParams(80, 120));
+        child.setX(0);
+        child.setY(0);
         super.addView(child);
     }
 }
