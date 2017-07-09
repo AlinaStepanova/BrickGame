@@ -1,22 +1,24 @@
 package com.example.alina.tetris;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.FrameLayout;
 
-import com.example.alina.tetris.figures.LFigure;
+import com.example.alina.tetris.figures.factory.FigureType;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Pole pole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Pole pole = (Pole) findViewById(R.id.pole);
-        LFigure lFigure = new LFigure(this);
-        pole.addView(lFigure);
+        pole = (Pole) findViewById(R.id.pole);
+    }
+
+    @Override protected void onResume() {
+        super.onResume();
+        pole.addFigure(FigureType.LFIGUER);
     }
 }
