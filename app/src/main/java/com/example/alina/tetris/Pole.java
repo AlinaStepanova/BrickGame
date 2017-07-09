@@ -78,8 +78,9 @@ public class Pole extends FrameLayout {
             throw new ClassCastException("Object was not of type Figure!");
         }
         //does not work next line:
-        //child.setLayoutParams(new LayoutParams(2 * widthOfSquareSide, 3 * widthOfSquareSide));
-        child.setLayoutParams(new LayoutParams(80, 120));
+        int width = getMinimumWidth() / SQUARE_COUNT;
+        child.setLayoutParams(new LayoutParams(2 * width, 3 * width));
+        //child.setLayoutParams(new LayoutParams(80, 120));
         child.setX(0);
         child.setY(0);
         super.addView(child);
