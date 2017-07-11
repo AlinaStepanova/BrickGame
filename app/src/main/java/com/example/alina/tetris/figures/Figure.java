@@ -9,6 +9,22 @@ import android.graphics.Point;
 
 public abstract class Figure {
 
-    public abstract Path getPath(int squareWidth);
+    public int squareWidth;
 
+    public Point point;
+
+    public Figure(int squareWidth, Point point) {
+        this.squareWidth = squareWidth;
+        this.point = point;
+    }
+
+    public abstract Path getPath();
+
+    public abstract void moveLeft();
+
+    public abstract void moveRight();
+
+    public abstract void moveDown();
+
+    public abstract int getColor();
 }

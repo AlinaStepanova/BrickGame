@@ -1,5 +1,7 @@
 package com.example.alina.tetris.figures.factory;
 
+import android.graphics.Point;
+
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.JFigure;
 import com.example.alina.tetris.figures.LFigure;
@@ -11,22 +13,22 @@ import com.example.alina.tetris.figures.ZFigure;
 
 public class FigureFactory {
 
-    public static Figure getFigure(FigureType figureType) {
+    public static Figure getFigure(FigureType figureType, int widthSquare) {
         switch (figureType) {
             case JFIGURE:
-                return new JFigure();
+                return new JFigure(widthSquare, new Point(220, 0));
             case LFIGURE:
-                return new LFigure();
+                return new LFigure(widthSquare, new Point(0, 0));
             case LONG_FIGURE:
-                return new LongFigure();
+                return new LongFigure(widthSquare, new Point(340, 0));
             case SQUARE_FIGURE:
-                return new SquareFigure();
+                return new SquareFigure(widthSquare, new Point(0, 200));
             case SFIGURE:
-                return new SFigure();
+                return new SFigure(widthSquare, new Point(200, 250));
             case ZFIGURE:
-                return new ZFigure();
+                return new ZFigure(widthSquare, new Point(120, 440));
             case TFIGURE:
-                return new TFigure();
+                return new TFigure(widthSquare, new Point(220, 480));
             default:
                 return null;
         }

@@ -78,10 +78,11 @@ public class Pole extends FrameLayout {
         }
 
         for (FigureType figureType : figureTypeList) {
-            Figure figure = FigureFactory.getFigure(figureType);
+            Figure figure = FigureFactory.getFigure(figureType, widthOfSquareSide);
+            figure.squareWidth = widthOfSquareSide;
             assert figure != null;
-            Path path = figure.getPath(widthOfSquareSide);
-            paint.setColor(Color.RED);
+            Path path = figure.getPath();
+            paint.setColor(figure.getColor());
             canvas.drawPath(path, paint);
         }
     }

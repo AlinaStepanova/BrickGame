@@ -1,5 +1,6 @@
 package com.example.alina.tetris.figures;
 
+import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Point;
 
@@ -9,14 +10,12 @@ import android.graphics.Point;
 
 public class TFigure extends Figure {
 
-    private final Point point;
-
-    public TFigure() {
-        point = new Point(220, 480);
+    public TFigure(int widthSquare, Point point) {
+        super(widthSquare, point);
     }
 
     @Override
-    public Path getPath(int squareWidth) {
+    public Path getPath() {
         Path path = new Path();
         path.moveTo(point.x, point.y);
         path.lineTo(point.x + squareWidth * 3, point.y);
@@ -28,5 +27,25 @@ public class TFigure extends Figure {
         path.lineTo(point.x, point.y - squareWidth);
         path.close();
         return path;
+    }
+
+    @Override
+    public void moveLeft() {
+
+    }
+
+    @Override
+    public void moveRight() {
+
+    }
+
+    @Override
+    public void moveDown() {
+
+    }
+
+    @Override
+    public int getColor() {
+        return Color.MAGENTA;
     }
 }

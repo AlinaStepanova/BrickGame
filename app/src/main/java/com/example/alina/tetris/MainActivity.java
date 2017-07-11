@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override protected void onResume() {
         super.onResume();
-        pole.addFigure(FigureType.LFIGURE);
         pole.addFigure(FigureType.JFIGURE);
+        pole.addFigure(FigureType.LFIGURE);
         pole.addFigure(FigureType.LONG_FIGURE);
         pole.addFigure(FigureType.SQUARE_FIGURE);
         pole.addFigure(FigureType.SFIGURE);
