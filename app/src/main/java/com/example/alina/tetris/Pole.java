@@ -4,15 +4,19 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.alina.tetris.figures.Figure;
+import com.example.alina.tetris.figures.factory.FigureFactory;
+import com.example.alina.tetris.figures.factory.FigureType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -29,6 +33,8 @@ public class Pole extends FrameLayout {
     private int screenWidth;
 
     private final int SQUARE_COUNT = 10;
+
+    private final List<FigureType> figureTypeList = new ArrayList<>();
 
     private Paint paint = new Paint();
 
@@ -70,19 +76,18 @@ public class Pole extends FrameLayout {
         for (int i = 1; i <= squareCount; i++) {
             canvas.drawLine(0, i * widthOfSquareSide, screenWidth, i * widthOfSquareSide, paint);
         }
+
+        for (FigureType figureType : figureTypeList) {
+            Figure figure = FigureFactory.getFigure(figureType);
+            assert figure != null;
+            Path path = figure.getPath(widthOfSquareSide);
+            paint.setColor(Color.RED);
+            canvas.drawPath(path, paint);
+        }
     }
 
-    @Override
-    public void addView(View child) {
-        if (!(child instanceof Figure)) {
-            throw new ClassCastException("Object was not of type Figure!");
-        }
-        //does not work next line:
-        int width = getMinimumWidth() / SQUARE_COUNT;
-        child.setLayoutParams(new LayoutParams(2 * width, 3 * width));
-        //child.setLayoutParams(new LayoutParams(80, 120));
-        child.setX(0);
-        child.setY(0);
-        super.addView(child);
+    public void addFigure(FigureType figureType) {
+        figureTypeList.add(figureType);
+        invalidate();
     }
 }
