@@ -20,10 +20,11 @@ public abstract class Figure {
 
     public abstract Path getPath();
 
+    //Remove abstract and add implementation
     public abstract void moveLeft();
-
+    //Remove abstract and add implementation
     public abstract void moveRight();
-
+    //Remove abstract and add implementation
     public abstract void moveDown();
 
     public abstract int getColor();
