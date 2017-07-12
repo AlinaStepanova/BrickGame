@@ -69,8 +69,8 @@ public class Pole extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(1f);
-        for (int i = 1; i <= 10; i++) {
+        paint.setStrokeWidth(1f); //// 1f is Magic number
+        for (int i = 1; i <= 10; i++) { // 10 is Magic number
             canvas.drawLine(i * widthOfSquareSide, 0, i * widthOfSquareSide, screenHeight, paint);
         }
         for (int i = 1; i <= squareCount; i++) {
