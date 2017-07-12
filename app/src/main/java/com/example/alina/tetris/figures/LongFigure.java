@@ -12,7 +12,6 @@ public class LongFigure extends Figure {
 
     public LongFigure(int widthSquare, Point point) {
         super(widthSquare, point);
-        //point = new Point(340, 0);
     }
 
     @Override public Path getPath() {
@@ -23,21 +22,6 @@ public class LongFigure extends Figure {
         path.lineTo(point.x, point.y + squareWidth * 4);
         path.close();
         return path;
-    }
-
-    @Override
-    public void moveLeft() {
-
-    }
-
-    @Override
-    public void moveRight() {
-
-    }
-
-    @Override
-    public void moveDown() {
-
     }
 
     @Override

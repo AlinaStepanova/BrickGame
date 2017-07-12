@@ -38,6 +38,8 @@ public class Pole extends FrameLayout {
 
     private Paint paint = new Paint();
 
+    private float width = 1f;
+
     public Pole(@NonNull Context context) {
         super(context);
         init();
@@ -69,8 +71,8 @@ public class Pole extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(1f);
-        for (int i = 1; i <= 10; i++) {
+        paint.setStrokeWidth(width);
+        for (int i = 1; i <= SQUARE_COUNT; i++) {
             canvas.drawLine(i * widthOfSquareSide, 0, i * widthOfSquareSide, screenHeight, paint);
         }
         for (int i = 1; i <= squareCount; i++) {

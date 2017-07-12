@@ -12,7 +12,6 @@ public class LFigure extends Figure {
 
     public LFigure(int widthSquare, Point point) {
         super(widthSquare, point);
-        //point = new Point(0, 0);
     }
 
     @Override
@@ -26,21 +25,6 @@ public class LFigure extends Figure {
         path.lineTo(point.x + squareWidth, point.y);
         path.close();
         return path;
-    }
-
-    @Override
-    public void moveLeft() {
-
-    }
-
-    @Override
-    public void moveRight() {
-
-    }
-
-    @Override
-    public void moveDown() {
-
     }
 
     @Override

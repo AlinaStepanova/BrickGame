@@ -28,21 +28,6 @@ public class JFigure extends Figure {
     }
 
     @Override
-    public void moveLeft() {
-
-    }
-
-    @Override
-    public void moveRight() {
-
-    }
-
-    @Override
-    public void moveDown() {
-
-    }
-
-    @Override
     public int getColor() {
         return Color.BLUE;
     }

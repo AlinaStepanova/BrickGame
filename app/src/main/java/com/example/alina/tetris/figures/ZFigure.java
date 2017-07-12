@@ -30,21 +30,6 @@ public class ZFigure extends Figure {
     }
 
     @Override
-    public void moveLeft() {
-
-    }
-
-    @Override
-    public void moveRight() {
-
-    }
-
-    @Override
-    public void moveDown() {
-
-    }
-
-    @Override
     public int getColor() {
         return Color.GRAY;
     }

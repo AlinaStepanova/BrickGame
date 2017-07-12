@@ -20,11 +20,17 @@ public abstract class Figure {
 
     public abstract Path getPath();
 
-    public abstract void moveLeft();
+    public void moveLeft() {
+        return;
+    }
 
-    public abstract void moveRight();
+    public void moveRight() {
+        return;
+    }
 
-    public abstract void moveDown();
+    public void moveDown() {
+        return;
+    }
 
     public abstract int getColor();
 }

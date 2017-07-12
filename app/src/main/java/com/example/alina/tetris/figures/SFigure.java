@@ -12,7 +12,6 @@ public class SFigure extends Figure {
 
     public SFigure(int widthSquare, Point point) {
         super(widthSquare, point);
-        //point = new Point(200, 250);
     }
 
     @Override public Path getPath() {
@@ -27,21 +26,6 @@ public class SFigure extends Figure {
         path.lineTo(point.x - squareWidth, point.y);
         path.close();
         return path;
-    }
-
-    @Override
-    public void moveLeft() {
-
-    }
-
-    @Override
-    public void moveRight() {
-
-    }
-
-    @Override
-    public void moveDown() {
-
     }
 
     @Override
