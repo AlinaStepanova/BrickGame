@@ -27,16 +27,17 @@ public class JFigure extends Figure {
         return path;
     }
 
+    //remvo
     @Override
     public void moveLeft() {
 
     }
-
+//remove
     @Override
     public void moveRight() {
 
     }
-
+//remove
     @Override
     public void moveDown() {
 
