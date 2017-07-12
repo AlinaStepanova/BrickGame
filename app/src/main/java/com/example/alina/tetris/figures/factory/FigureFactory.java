@@ -13,6 +13,8 @@ import com.example.alina.tetris.figures.ZFigure;
 
 public class FigureFactory {
 
+    
+    //add point as pram for the following method
     public static Figure getFigure(FigureType figureType, int widthSquare) {
         switch (figureType) {
             case JFIGURE:
