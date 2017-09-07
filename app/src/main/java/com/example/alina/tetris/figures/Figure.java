@@ -3,6 +3,9 @@ package com.example.alina.tetris.figures;
 import android.graphics.Path;
 import android.graphics.Point;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by Alina on 02.04.2017.
  */
@@ -21,15 +24,15 @@ public abstract class Figure {
     public abstract Path getPath();
 
     public void moveLeft() {
-        return;
+        point.set(point.x - squareWidth, point.y);
     }
 
     public void moveRight() {
-        return;
+        point.set(point.x + squareWidth, point.y);
     }
 
     public void moveDown() {
-        return;
+        point.set(point.x, point.y + squareWidth);
     }
 
     public abstract int getColor();

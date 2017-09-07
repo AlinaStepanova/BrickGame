@@ -42,6 +42,7 @@
                 android:textIsSelectable="true" />
 
             <com.example.alina.tetris.Controller
+                android:id="@+id/controller"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:background="#ffffff"

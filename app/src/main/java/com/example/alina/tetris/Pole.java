@@ -1,22 +1,31 @@
 package com.example.alina.tetris;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
+import android.os.CountDownTimer;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.alina.tetris.figures.Figure;
+import com.example.alina.tetris.figures.JFigure;
 import com.example.alina.tetris.figures.factory.FigureFactory;
 import com.example.alina.tetris.figures.factory.FigureType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -38,7 +47,13 @@ public class Pole extends FrameLayout {
 
     private Paint paint = new Paint();
 
+    private Point point;
+
     private float width = 1f;
+
+    private Figure figure;
+
+    //hashmap(pole,figure)
 
     public Pole(@NonNull Context context) {
         super(context);
@@ -66,6 +81,7 @@ public class Pole extends FrameLayout {
         squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
         screenWidth = MeasureSpec.getSize(widthMeasureSpec);
+        point  = new Point(110, 218);
     }
 
     @Override
@@ -79,18 +95,49 @@ public class Pole extends FrameLayout {
             canvas.drawLine(0, i * widthOfSquareSide, screenWidth, i * widthOfSquareSide, paint);
         }
 
-        for (FigureType figureType : figureTypeList) {
-            Figure figure = FigureFactory.getFigure(figureType, widthOfSquareSide);
-            figure.squareWidth = widthOfSquareSide;
-            assert figure != null;
-            Path path = figure.getPath();
-            paint.setColor(figure.getColor());
-            canvas.drawPath(path, paint);
-        }
+        figure = FigureFactory.getFigure(figureTypeList.get(0), widthOfSquareSide, point);
+        figure.squareWidth = widthOfSquareSide;
+        Path path = figure.getPath();
+        paint.setColor(figure.getColor());
+        canvas.drawPath(path, paint);
+        startMoveDown();
     }
 
     public void addFigure(FigureType figureType) {
         figureTypeList.add(figureType);
         invalidate();
+    }
+
+    public void moveLeft() {
+        figure.moveLeft();
+        invalidate();
+    }
+
+    public void moveRight() {
+        figure.moveRight();
+        invalidate();
+    }
+
+    private void startMoveDown() {
+        Timer timer = new Timer();
+        /*timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                figure.moveDown();
+                invalidate();
+            }
+        }, 0, 5000);*/
+
+        new CountDownTimer(2000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+            }
+
+            public void onFinish() {
+                figure.moveDown();
+                invalidate();
+            }
+
+        }.start();
     }
 }
