@@ -1,6 +1,5 @@
 package com.example.alina.tetris;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,19 +12,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.alina.tetris.figures.Figure;
-import com.example.alina.tetris.figures.JFigure;
 import com.example.alina.tetris.figures.factory.FigureFactory;
 import com.example.alina.tetris.figures.factory.FigureType;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -41,7 +36,7 @@ public class Pole extends FrameLayout {
 
     private int screenWidth;
 
-    private final int SQUARE_COUNT = 10;
+    private final int SQUARE_COUNT_VERTICAL = 10;
 
     private final List<FigureType> figureTypeList = new ArrayList<>();
 
@@ -52,6 +47,8 @@ public class Pole extends FrameLayout {
     private float width = 1f;
 
     private Figure figure;
+
+    private double [][]net;
 
     //hashmap(pole,figure)
 
@@ -77,30 +74,62 @@ public class Pole extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT;
+        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_VERTICAL;
         squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
         screenWidth = MeasureSpec.getSize(widthMeasureSpec);
-        point  = new Point(110, 218);
+        point  = new Point(54, 94);
+        initNet();
+        printNet();
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(width);
-        for (int i = 1; i <= SQUARE_COUNT; i++) {
+        for (int i = 1; i <= SQUARE_COUNT_VERTICAL; i++) {
             canvas.drawLine(i * widthOfSquareSide, 0, i * widthOfSquareSide, screenHeight, paint);
         }
-        for (int i = 1; i <= squareCount; i++) {
+        //old version of drawing horizontal lines
+        /*for (int i = 1; i <= squareCount; i++) {
             canvas.drawLine(0, i * widthOfSquareSide, screenWidth, i * widthOfSquareSide, paint);
+        }*/
+        for (int i = 1; i <= squareCount; i++) {
+            canvas.drawLine(0, screenHeight - widthOfSquareSide * i, screenWidth, screenHeight - widthOfSquareSide * i, paint);
         }
 
-        figure = FigureFactory.getFigure(figureTypeList.get(0), widthOfSquareSide, point);
+        figure = FigureFactory.getFigure(figureTypeList.get(1), widthOfSquareSide, point);
         figure.squareWidth = widthOfSquareSide;
         Path path = figure.getPath();
         paint.setColor(figure.getColor());
         canvas.drawPath(path, paint);
         startMoveDown();
+    }
+
+    private void initNet(){
+        net = new double[squareCount][SQUARE_COUNT_VERTICAL];
+        set0Net();
+    }
+
+    private void set0Net() {
+        for (int i = 0; i < squareCount; i++){
+            for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++){
+                net[i][j] = 0;
+            }
+        }
+    }
+
+    private void printNet() {
+        String str = "";
+        for (int i = 0; i < squareCount; i++){
+            for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++){
+                str += net[i][j];
+                str += " ";
+            }
+            str += '\n';
+            Log.d("logNet", str);
+        }
     }
 
     public void addFigure(FigureType figureType) {
@@ -119,25 +148,26 @@ public class Pole extends FrameLayout {
     }
 
     private void startMoveDown() {
-        Timer timer = new Timer();
-        /*timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                figure.moveDown();
-                invalidate();
-            }
-        }, 0, 5000);*/
+        set0Net();
+        int row, column;
+        row = point.y / widthOfSquareSide;
+        column = point.x / widthOfSquareSide;
 
-        new CountDownTimer(2000, 1000) {
+        Log.d("logPoint", "" + row + " " + column);
+        //for L figure
+        net[row][column] = 1;
+        net[row + 1][column] = 1;
+        net[row + 2][column] = 1;
+        net[row + 2][column + 1] = 1;
+        printNet();
 
+        new CountDownTimer(3000, 2000) {
             public void onTick(long millisUntilFinished) {
             }
-
             public void onFinish() {
                 figure.moveDown();
                 invalidate();
             }
-
         }.start();
     }
 }
