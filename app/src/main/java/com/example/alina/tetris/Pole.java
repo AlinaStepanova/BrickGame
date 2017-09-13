@@ -36,19 +36,19 @@ public class Pole extends FrameLayout {
 
     private int screenWidth;
 
+    private float width = 1f;
+
+    private boolean [][]net;
+
     private final int SQUARE_COUNT_VERTICAL = 10;
 
     private final List<FigureType> figureTypeList = new ArrayList<>();
 
-    private Paint paint = new Paint();
-
     private Point point;
-
-    private float width = 1f;
 
     private Figure figure;
 
-    private double [][]net;
+    private Paint paint = new Paint();
 
     //hashmap(pole,figure)
 
@@ -108,14 +108,14 @@ public class Pole extends FrameLayout {
     }
 
     private void initNet(){
-        net = new double[squareCount][SQUARE_COUNT_VERTICAL];
+        net = new boolean[squareCount][SQUARE_COUNT_VERTICAL];
         set0Net();
     }
 
     private void set0Net() {
         for (int i = 0; i < squareCount; i++){
             for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++){
-                net[i][j] = 0;
+                net[i][j] = false;
             }
         }
     }
@@ -155,18 +155,18 @@ public class Pole extends FrameLayout {
 
         Log.d("logPoint", "" + row + " " + column);
         //for L figure
-        net[row][column] = 1;
-        net[row + 1][column] = 1;
-        net[row + 2][column] = 1;
-        net[row + 2][column + 1] = 1;
+        net[row][column] = true;
+        net[row + 1][column] = true;
+        net[row + 2][column] = true;
+        net[row + 2][column + 1] = true;
         printNet();
 
-        new CountDownTimer(3000, 2000) {
+        new CountDownTimer(4000, 2000) {
             public void onTick(long millisUntilFinished) {
-            }
-            public void onFinish() {
                 figure.moveDown();
                 invalidate();
+            }
+            public void onFinish() {
             }
         }.start();
     }
