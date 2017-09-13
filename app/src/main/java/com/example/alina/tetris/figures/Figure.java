@@ -3,9 +3,6 @@ package com.example.alina.tetris.figures;
 import android.graphics.Path;
 import android.graphics.Point;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
  * Created by Alina on 02.04.2017.
  */
@@ -16,22 +13,45 @@ public abstract class Figure {
 
     public Point point;
 
+    public Point coordinateInPole;
+
+    protected boolean[][] figureMask;
+
+    public void initFigureMask() {
+        figureMask = new boolean[getWidthInSquare()][getHeightInSquare()];
+    }
+
+    /**
+     * @return width in squares
+     */
+    public abstract int getWidthInSquare();
+
+    /**
+     * @return height in squares
+     */
+    public abstract int getHeightInSquare();
+
     public Figure(int squareWidth, Point point) {
         this.squareWidth = squareWidth;
         this.point = point;
+        // TODO: 9/13/17 change 0, 0 to default start coordinate.
+        coordinateInPole = new Point(0, 0);
     }
 
     public abstract Path getPath();
 
     public void moveLeft() {
+        // TODO: 9/13/17 add change #coordinateInPole
         point.set(point.x - squareWidth, point.y);
     }
 
     public void moveRight() {
+        // TODO: 9/13/17 add change #coordinateInPole
         point.set(point.x + squareWidth, point.y);
     }
 
     public void moveDown() {
+        // TODO: 9/13/17 add change #coordinateInPole
         point.set(point.x, point.y + squareWidth);
     }
 
