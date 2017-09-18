@@ -20,7 +20,6 @@ import com.example.alina.tetris.figures.factory.FigureType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -96,7 +95,8 @@ public class Pole extends FrameLayout {
             canvas.drawLine(0, i * widthOfSquareSide, screenWidth, i * widthOfSquareSide, paint);
         }*/
         for (int i = 1; i <= squareCount; i++) {
-            canvas.drawLine(0, screenHeight - widthOfSquareSide * i, screenWidth, screenHeight - widthOfSquareSide * i, paint);
+            canvas.drawLine(0, screenHeight - widthOfSquareSide * i, screenWidth,
+                    screenHeight - widthOfSquareSide * i, paint);
         }
 
         figure = FigureFactory.getFigure(figureTypeList.get(1), widthOfSquareSide, point);
@@ -109,10 +109,10 @@ public class Pole extends FrameLayout {
 
     private void initNet(){
         net = new boolean[squareCount][SQUARE_COUNT_VERTICAL];
-        set0Net();
+        setFalseNet();
     }
 
-    private void set0Net() {
+    private void setFalseNet() {
         for (int i = 0; i < squareCount; i++){
             for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++){
                 net[i][j] = false;
@@ -148,10 +148,11 @@ public class Pole extends FrameLayout {
     }
 
     private void startMoveDown() {
-        set0Net();
+        setFalseNet();
         int row, column;
         row = point.y / widthOfSquareSide;
         column = point.x / widthOfSquareSide;
+
 
         Log.d("logPoint", "" + row + " " + column);
         //for L figure

@@ -10,6 +10,25 @@ import android.graphics.Point;
 
 public class LongFigure extends Figure {
 
+    @Override
+    public void initFigureMask() {
+        super.initFigureMask();
+        figureMask[0][0] = true;
+        figureMask[1][0] = true;
+        figureMask[2][0] = true;
+        figureMask[3][0] = true;
+    }
+
+    @Override
+    public int getWidthInSquare() {
+        return 1;
+    }
+
+    @Override
+    public int getHeightInSquare() {
+        return 4;
+    }
+
     public LongFigure(int widthSquare, Point point) {
         super(widthSquare, point);
     }
