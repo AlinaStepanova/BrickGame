@@ -20,6 +20,7 @@ import com.example.alina.tetris.figures.factory.FigureType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -80,7 +81,6 @@ public class Pole extends FrameLayout {
         point  = new Point(54, 94);
         initNet();
         printNet();
-
     }
 
     @Override
@@ -162,10 +162,12 @@ public class Pole extends FrameLayout {
         net[row + 2][column + 1] = true;
         printNet();
 
-        new CountDownTimer(4000, 2000) {
+        new CountDownTimer(120 * 60 * 1000, 1000) {
             public void onTick(long millisUntilFinished) {
-                figure.moveDown();
-                invalidate();
+                if (millisUntilFinished % 10 * 1000 == 0) {
+                    figure.moveDown();
+                    invalidate();
+                }
             }
             public void onFinish() {
             }

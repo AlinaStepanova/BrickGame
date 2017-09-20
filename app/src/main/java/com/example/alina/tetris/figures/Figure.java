@@ -11,6 +11,10 @@ public abstract class Figure {
 
     public int squareWidth;
 
+    private final int StartY = 1;
+
+    private final int startX = 4;
+
     public Point point;
 
     public Point coordinateInPole;
@@ -34,8 +38,7 @@ public abstract class Figure {
     public Figure(int squareWidth, Point point) {
         this.squareWidth = squareWidth;
         this.point = point;
-        // TODO: 9/13/17 change 0, 0 to default start coordinate.
-        coordinateInPole = new Point(0, 0);
+        coordinateInPole = new Point(startX, StartY);
     }
 
     public abstract Path getPath();
@@ -43,16 +46,19 @@ public abstract class Figure {
     public void moveLeft() {
         // TODO: 9/13/17 add change #coordinateInPole
         point.set(point.x - squareWidth, point.y);
+        coordinateInPole.set(coordinateInPole.x - 1, coordinateInPole.y);
     }
 
     public void moveRight() {
         // TODO: 9/13/17 add change #coordinateInPole
         point.set(point.x + squareWidth, point.y);
+        coordinateInPole.set(coordinateInPole.x + 1, coordinateInPole.y);
     }
 
     public void moveDown() {
         // TODO: 9/13/17 add change #coordinateInPole
         point.set(point.x, point.y + squareWidth);
+        coordinateInPole.set(coordinateInPole.x, coordinateInPole.y + 1);
     }
 
     public abstract int getColor();
