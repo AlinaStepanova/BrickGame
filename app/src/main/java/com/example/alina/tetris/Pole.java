@@ -50,8 +50,6 @@ public class Pole extends FrameLayout {
 
     private Paint paint = new Paint();
 
-    //hashmap(pole,figure)
-
     public Pole(@NonNull Context context) {
         super(context);
         init();
@@ -90,10 +88,7 @@ public class Pole extends FrameLayout {
         for (int i = 1; i <= SQUARE_COUNT_VERTICAL; i++) {
             canvas.drawLine(i * widthOfSquareSide, 0, i * widthOfSquareSide, screenHeight, paint);
         }
-        //old version of drawing horizontal lines
-        /*for (int i = 1; i <= squareCount; i++) {
-            canvas.drawLine(0, i * widthOfSquareSide, screenWidth, i * widthOfSquareSide, paint);
-        }*/
+
         for (int i = 1; i <= squareCount; i++) {
             canvas.drawLine(0, screenHeight - widthOfSquareSide * i, screenWidth,
                     screenHeight - widthOfSquareSide * i, paint);
@@ -139,11 +134,13 @@ public class Pole extends FrameLayout {
 
     public void moveLeft() {
         figure.moveLeft();
+        figure.moveLeftInNet();
         invalidate();
     }
 
     public void moveRight() {
         figure.moveRight();
+        figure.moveRightInNet();
         invalidate();
     }
 

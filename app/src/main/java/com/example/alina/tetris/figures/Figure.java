@@ -11,7 +11,7 @@ public abstract class Figure {
 
     public int squareWidth;
 
-    private final int StartY = 1;
+    private final int startY = 1;
 
     private final int startX = 4;
 
@@ -25,38 +25,62 @@ public abstract class Figure {
         figureMask = new boolean[getWidthInSquare()][getHeightInSquare()];
     }
 
-    /**
-     * @return width in squares
-     */
     public abstract int getWidthInSquare();
 
-    /**
-     * @return height in squares
-     */
     public abstract int getHeightInSquare();
 
     public Figure(int squareWidth, Point point) {
         this.squareWidth = squareWidth;
         this.point = point;
-        coordinateInPole = new Point(startX, StartY);
+        coordinateInPole = new Point(startX, startY);
     }
 
     public abstract Path getPath();
 
+    public void moveLeftInNet() {
+        int width = getWidthInSquare();
+        int height = getHeightInSquare();
+        for (int i = coordinateInPole.x; i < coordinateInPole.x + width; i++) {
+            swapFigureCoordinatesInNet(coordinateInPole.y, coordinateInPole.y + height, i - 1, i);
+        }
+    }
+
+    public void moveRightInNet() {
+        int width = getWidthInSquare();
+        int height = getHeightInSquare();
+        for (int i = coordinateInPole.x + width + 1; i > coordinateInPole.x; i--) {
+            swapFigureCoordinatesInNet(coordinateInPole.y, coordinateInPole.y + height, i, i + 1);
+        }
+    }
+
+    public void moveDownInNet() {
+        int width = getWidthInSquare();
+        int height = getHeightInSquare();
+        for (int i = coordinateInPole.y; i < coordinateInPole.y + height; i++) {
+            swapFigureCoordinatesInNet(i - 1, i, coordinateInPole.x, coordinateInPole.x + width);
+        }
+
+    }
+
+    private void swapFigureCoordinatesInNet(int from, int to, int top, int bottom) {
+        /*for (int i = top; i < bottom; i++) {
+            int tmp = net[from][i];
+            net[from][i] = net[to][i];
+            net[to][i] = tmp;
+        }*/
+    }
+
     public void moveLeft() {
-        // TODO: 9/13/17 add change #coordinateInPole
         point.set(point.x - squareWidth, point.y);
         coordinateInPole.set(coordinateInPole.x - 1, coordinateInPole.y);
     }
 
     public void moveRight() {
-        // TODO: 9/13/17 add change #coordinateInPole
         point.set(point.x + squareWidth, point.y);
         coordinateInPole.set(coordinateInPole.x + 1, coordinateInPole.y);
     }
 
     public void moveDown() {
-        // TODO: 9/13/17 add change #coordinateInPole
         point.set(point.x, point.y + squareWidth);
         coordinateInPole.set(coordinateInPole.x, coordinateInPole.y + 1);
     }
