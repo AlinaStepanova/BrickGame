@@ -10,6 +10,10 @@ import android.graphics.Point;
 
 public class LongFigure extends Figure {
 
+    public LongFigure(int widthSquare, Point point) {
+        super(widthSquare, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -29,11 +33,8 @@ public class LongFigure extends Figure {
         return 4;
     }
 
-    public LongFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
-    }
-
-    @Override public Path getPath() {
+    @Override
+    public Path getPath() {
         Path path = new Path();
         path.moveTo(point.x, point.y);
         path.lineTo(point.x + squareWidth, point.y);

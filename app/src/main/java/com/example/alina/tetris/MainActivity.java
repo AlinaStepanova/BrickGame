@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
         controller.setOnControllerListener(this);
     }
 
-    @Override protected void onResume() {
+    @Override
+    protected void onResume() {
         super.onResume();
         pole.addFigure(FigureType.JFIGURE);
         pole.addFigure(FigureType.LFIGURE);

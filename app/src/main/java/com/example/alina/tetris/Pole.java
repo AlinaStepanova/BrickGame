@@ -38,7 +38,7 @@ public class Pole extends FrameLayout {
 
     private float width = 1f;
 
-    private boolean [][]net;
+    private boolean[][] net;
 
     private final int SQUARE_COUNT_VERTICAL = 10;
 
@@ -76,9 +76,8 @@ public class Pole extends FrameLayout {
         squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
         screenWidth = MeasureSpec.getSize(widthMeasureSpec);
-        point  = new Point(54, 94);
+        point = new Point(54, 94);
         initNet();
-        printNet();
     }
 
     @Override
@@ -94,22 +93,20 @@ public class Pole extends FrameLayout {
                     screenHeight - widthOfSquareSide * i, paint);
         }
 
-        figure = FigureFactory.getFigure(figureTypeList.get(1), widthOfSquareSide, point);
-        figure.squareWidth = widthOfSquareSide;
         Path path = figure.getPath();
         paint.setColor(figure.getColor());
         canvas.drawPath(path, paint);
         startMoveDown();
     }
 
-    private void initNet(){
+    private void initNet() {
         net = new boolean[squareCount][SQUARE_COUNT_VERTICAL];
         setFalseNet();
     }
 
     private void setFalseNet() {
-        for (int i = 0; i < squareCount; i++){
-            for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++){
+        for (int i = 0; i < squareCount; i++) {
+            for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++) {
                 net[i][j] = false;
             }
         }
@@ -117,8 +114,8 @@ public class Pole extends FrameLayout {
 
     private void printNet() {
         String str = "";
-        for (int i = 0; i < squareCount; i++){
-            for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++){
+        for (int i = 0; i < squareCount; i++) {
+            for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++) {
                 str += net[i][j];
                 str += " ";
             }
@@ -129,18 +126,24 @@ public class Pole extends FrameLayout {
 
     public void addFigure(FigureType figureType) {
         figureTypeList.add(figureType);
+        figure = FigureFactory.getFigure(figureTypeList.get(1), widthOfSquareSide, point);
+        figure.squareWidth = widthOfSquareSide;
+        /*for (int i = 0; i < figure.figureMask.length; i++) {
+            System.arraycopy(figure.figureMask[i], 0, net[i], 0, figure.figureMask[0].length);
+        }*/
+        // TODO: 28.09.2017 figure add mask copy
         invalidate();
     }
 
     public void moveLeft() {
         figure.moveLeft();
-        figure.moveLeftInNet();
+        moveLeftInNet();
         invalidate();
     }
 
     public void moveRight() {
         figure.moveRight();
-        figure.moveRightInNet();
+        moveRightInNet();
         invalidate();
     }
 
@@ -150,24 +153,60 @@ public class Pole extends FrameLayout {
         row = point.y / widthOfSquareSide;
         column = point.x / widthOfSquareSide;
 
-
         Log.d("logPoint", "" + row + " " + column);
         //for L figure
-        net[row][column] = true;
+       /* net[row][column] = true;
         net[row + 1][column] = true;
         net[row + 2][column] = true;
-        net[row + 2][column + 1] = true;
+        net[row + 2][column + 1] = true;*/
         printNet();
 
         new CountDownTimer(120 * 60 * 1000, 1000) {
             public void onTick(long millisUntilFinished) {
                 if (millisUntilFinished % 10 * 1000 == 0) {
                     figure.moveDown();
+                    moveDownInNet();
                     invalidate();
                 }
             }
+
             public void onFinish() {
             }
         }.start();
+    }
+
+    public void moveLeftInNet() {
+        int width = figure.getWidthInSquare();
+        int height = figure.getHeightInSquare();
+        for (int i = figure.coordinateInPole.x; i < figure.coordinateInPole.x + width; i++) {
+            swapFigureCoordinatesInNet(figure.coordinateInPole.y,
+                    figure.coordinateInPole.y + height, i - 1, i);
+        }
+    }
+
+    public void moveRightInNet() {
+        int width = figure.getWidthInSquare();
+        int height = figure.getHeightInSquare();
+        for (int i = figure.coordinateInPole.x + width + 1; i > figure.coordinateInPole.x; i--) {
+            swapFigureCoordinatesInNet(figure.coordinateInPole.y,
+                    figure.coordinateInPole.y + height, i, i + 1);
+        }
+    }
+
+    public void moveDownInNet() {
+        int width = figure.getWidthInSquare();
+        int height = figure.getHeightInSquare();
+        for (int i = figure.coordinateInPole.y; i < figure.coordinateInPole.y + height; i++) {
+            swapFigureCoordinatesInNet(i - 1, i, figure.coordinateInPole.x,
+                    figure.coordinateInPole.x + width);
+        }
+    }
+
+    private void swapFigureCoordinatesInNet(int from, int to, int top, int bottom) {
+        for (int i = top; i < bottom; i++) {
+            boolean tmp = net[from][i];
+            net[from][i] = net[to][i];
+            net[to][i] = tmp;
+        }
     }
 }

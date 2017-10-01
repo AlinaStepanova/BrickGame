@@ -33,7 +33,8 @@ public class SFigure extends Figure {
         return 2;
     }
 
-    @Override public Path getPath() {
+    @Override
+    public Path getPath() {
         Path path = new Path();
         path.moveTo(point.x, point.y);
         path.lineTo(point.x, point.y - squareWidth);

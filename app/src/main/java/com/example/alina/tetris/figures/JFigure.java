@@ -33,7 +33,8 @@ public class JFigure extends Figure {
         super(widthSquare, point);
     }
 
-    @Override public Path getPath() {
+    @Override
+    public Path getPath() {
         Path path = new Path();
         path.moveTo(point.x, point.y);
         path.lineTo(point.x + squareWidth, point.y);

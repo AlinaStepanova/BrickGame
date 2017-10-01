@@ -7,6 +7,6 @@ package com.example.alina.tetris;
 public interface OnControllerListener {
 
     void onRightButtonClick();
-    
+
     void onLeftButtonClick();
 }
