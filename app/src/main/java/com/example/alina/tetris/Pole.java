@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.FrameLayout;
+import android.view.View;
 
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureFactory;
@@ -20,13 +20,12 @@ import com.example.alina.tetris.figures.factory.FigureType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Alina on 18.03.2017.
  */
 
-public class Pole extends FrameLayout {
+public class Pole extends View {
 
     private int widthOfSquareSide;
 
@@ -38,7 +37,7 @@ public class Pole extends FrameLayout {
 
     private float width = 1f;
 
-    private boolean[][] net;
+    private boolean[][] net = null;
 
     private final int SQUARE_COUNT_VERTICAL = 10;
 
@@ -66,7 +65,7 @@ public class Pole extends FrameLayout {
     }
 
     private void init() {
-        setWillNotDraw(false);
+        point = new Point(54, 94);
     }
 
     @Override
@@ -76,8 +75,12 @@ public class Pole extends FrameLayout {
         squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
         screenWidth = MeasureSpec.getSize(widthMeasureSpec);
-        point = new Point(54, 94);
-        initNet();
+
+        Log.d("DEB", "onMeasure");
+
+        if (net == null) {
+            initNet();
+        }
     }
 
     @Override
@@ -93,10 +96,12 @@ public class Pole extends FrameLayout {
                     screenHeight - widthOfSquareSide * i, paint);
         }
 
-        Path path = figure.getPath();
-        paint.setColor(figure.getColor());
-        canvas.drawPath(path, paint);
-        startMoveDown();
+        if (figure != null) {
+            Path path = figure.getPath();
+            paint.setColor(figure.getColor());
+            canvas.drawPath(path, paint);
+            startMoveDown();
+        }
     }
 
     private void initNet() {
@@ -105,17 +110,20 @@ public class Pole extends FrameLayout {
     }
 
     private void setFalseNet() {
-        for (int i = 0; i < squareCount; i++) {
-            for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++) {
+        for (int i = 0; i < net.length; i++) {
+            for (int j = 0; j < net[0].length; j++) {
                 net[i][j] = false;
             }
         }
     }
 
     private void printNet() {
+        if (net == null) {
+            return;
+        }
         String str = "";
-        for (int i = 0; i < squareCount; i++) {
-            for (int j = 0; j < SQUARE_COUNT_VERTICAL; j++) {
+        for (int i = 0; i < net.length; i++) {
+            for (int j = 0; j < net[0].length; j++) {
                 str += net[i][j];
                 str += " ";
             }
@@ -126,12 +134,14 @@ public class Pole extends FrameLayout {
 
     public void addFigure(FigureType figureType) {
         figureTypeList.add(figureType);
-        figure = FigureFactory.getFigure(figureTypeList.get(1), widthOfSquareSide, point);
+        figure = FigureFactory.getFigure(figureTypeList.get(0), widthOfSquareSide, point);
         figure.squareWidth = widthOfSquareSide;
-        /*for (int i = 0; i < figure.figureMask.length; i++) {
+        figure.initFigureMask();
+        printNet();
+        for (int i = 0; i < figure.figureMask.length; i++) {
             System.arraycopy(figure.figureMask[i], 0, net[i], 0, figure.figureMask[0].length);
-        }*/
-        // TODO: 28.09.2017 figure add mask copy
+        }
+        printNet();
         invalidate();
     }
 
@@ -148,17 +158,10 @@ public class Pole extends FrameLayout {
     }
 
     private void startMoveDown() {
-        setFalseNet();
         int row, column;
         row = point.y / widthOfSquareSide;
         column = point.x / widthOfSquareSide;
 
-        Log.d("logPoint", "" + row + " " + column);
-        //for L figure
-       /* net[row][column] = true;
-        net[row + 1][column] = true;
-        net[row + 2][column] = true;
-        net[row + 2][column + 1] = true;*/
         printNet();
 
         new CountDownTimer(120 * 60 * 1000, 1000) {

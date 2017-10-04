@@ -1,8 +1,8 @@
 package com.example.alina.tetris;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.example.alina.tetris.figures.factory.FigureType;
 
@@ -25,13 +25,19 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
     @Override
     protected void onResume() {
         super.onResume();
-        pole.addFigure(FigureType.JFIGURE);
-        pole.addFigure(FigureType.LFIGURE);
-        pole.addFigure(FigureType.LONG_FIGURE);
-        pole.addFigure(FigureType.SQUARE_FIGURE);
-        pole.addFigure(FigureType.SFIGURE);
-        pole.addFigure(FigureType.ZFIGURE);
-        pole.addFigure(FigureType.TFIGURE);
+        new Handler().postDelayed(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        pole.addFigure(FigureType.SQUARE_FIGURE);
+                    }
+                }, 2000);
+//        pole.addFigure(FigureType.LFIGURE);
+//        pole.addFigure(FigureType.LONG_FIGURE);
+
+//        pole.addFigure(FigureType.SFIGURE);
+//        pole.addFigure(FigureType.ZFIGURE);
+//        pole.addFigure(FigureType.TFIGURE);
     }
 
     @Override
