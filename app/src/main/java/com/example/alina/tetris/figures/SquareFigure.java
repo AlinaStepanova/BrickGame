@@ -3,6 +3,7 @@ package com.example.alina.tetris.figures;
 import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.util.Log;
 
 /**
  * Created by Alina on 02.04.2017.
@@ -13,6 +14,7 @@ public class SquareFigure extends Figure {
     @Override
     public void initFigureMask() {
         super.initFigureMask();
+        Log.d("DEB", "Init figure mask");
         figureMask[0][0] = true;
         figureMask[0][1] = true;
         figureMask[1][0] = true;
