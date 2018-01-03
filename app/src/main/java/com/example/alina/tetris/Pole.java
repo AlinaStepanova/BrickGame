@@ -85,7 +85,8 @@ public class Pole extends FrameLayout {
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(width);
         for (int i = 1; i <= SQUARE_COUNT_VERTICAL; i++) {
-            canvas.drawLine(i * widthOfSquareSide, 0, i * widthOfSquareSide, screenHeight, paint);
+            canvas.drawLine(i * widthOfSquareSide, 0, i * widthOfSquareSide,
+                    screenHeight, paint);
         }
 
         for (int i = 1; i <= squareCount; i++) {
@@ -126,7 +127,7 @@ public class Pole extends FrameLayout {
 
     public void addFigure(FigureType figureType) {
         figureTypeList.add(figureType);
-        figure = FigureFactory.getFigure(figureTypeList.get(1), widthOfSquareSide, point);
+        figure = FigureFactory.getFigure(figureTypeList.get(0), widthOfSquareSide, point);
         figure.squareWidth = widthOfSquareSide;
         /*for (int i = 0; i < figure.figureMask.length; i++) {
             System.arraycopy(figure.figureMask[i], 0, net[i], 0, figure.figureMask[0].length);
