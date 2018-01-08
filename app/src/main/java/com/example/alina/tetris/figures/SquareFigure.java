@@ -11,6 +11,10 @@ import android.util.Log;
 
 public class SquareFigure extends Figure {
 
+    public SquareFigure(int widthSquare, Point point) {
+        super(widthSquare, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -29,10 +33,6 @@ public class SquareFigure extends Figure {
     @Override
     public int getHeightInSquare() {
         return 2;
-    }
-
-    public SquareFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
     }
 
     @Override

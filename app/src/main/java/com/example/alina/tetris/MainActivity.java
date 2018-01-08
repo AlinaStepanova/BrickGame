@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
                 new Runnable() {
                     @Override
                     public void run() {
-                        playingArea.addFigure(FigureType.SQUARE_FIGURE);
+                        playingArea.addFigure(FigureType.L_FIGURE);
                     }
                 }, 2000);
     }

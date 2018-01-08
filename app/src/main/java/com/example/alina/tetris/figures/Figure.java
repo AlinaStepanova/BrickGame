@@ -9,38 +9,38 @@ import android.graphics.Point;
 
 public abstract class Figure {
 
-    private final int startY = 1;
-    private final int startX = 4;
+    private final int startX = 0;
+    private final int startY = 0;
     public int squareWidth;
     public Point point;
 
-    public Point coordinateInPole;
+    public Point coordinatesInPlayingArea;
 
     public boolean[][] figureMask;
 
     public Figure(int squareWidth, Point point) {
         this.squareWidth = squareWidth;
         this.point = point;
-        coordinateInPole = new Point(startX, startY);
+        coordinatesInPlayingArea = new Point(startX, startY);
     }
 
     public void initFigureMask() {
-        figureMask = new boolean[getWidthInSquare()][getHeightInSquare()];
+        figureMask = new boolean[getHeightInSquare()][getWidthInSquare()];
     }
 
     public void moveLeft() {
         point.set(point.x - squareWidth, point.y);
-        coordinateInPole.set(coordinateInPole.x - 1, coordinateInPole.y);
+        coordinatesInPlayingArea.set(coordinatesInPlayingArea.x - 1, coordinatesInPlayingArea.y);
     }
 
     public void moveRight() {
         point.set(point.x + squareWidth, point.y);
-        coordinateInPole.set(coordinateInPole.x + 1, coordinateInPole.y);
+        coordinatesInPlayingArea.set(coordinatesInPlayingArea.x + 1, coordinatesInPlayingArea.y);
     }
 
     public void moveDown() {
         point.set(point.x, point.y + squareWidth);
-        coordinateInPole.set(coordinateInPole.x, coordinateInPole.y + 1);
+        coordinatesInPlayingArea.set(coordinatesInPlayingArea.x, coordinatesInPlayingArea.y + 1);
     }
 
     public abstract int getWidthInSquare();

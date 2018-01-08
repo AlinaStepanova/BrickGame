@@ -10,6 +10,10 @@ import android.graphics.Point;
 
 public class JFigure extends Figure {
 
+    public JFigure(int widthSquare, Point point) {
+        super(widthSquare, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -27,10 +31,6 @@ public class JFigure extends Figure {
     @Override
     public int getHeightInSquare() {
         return 3;
-    }
-
-    public JFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
     }
 
     @Override

@@ -65,10 +65,8 @@ public class PlayingArea extends View {
     }
 
     private void init() {
-        point = new Point(54, 94);
+        point = new Point(0, 0);
         paint = new Paint();
-        paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(LINE_WIDTH);
     }
 
     private void drawHorizontalLines(Canvas canvas) {
@@ -96,8 +94,11 @@ public class PlayingArea extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(LINE_WIDTH);
         drawVerticalLines(canvas);
         drawHorizontalLines(canvas);
+
         if (figure != null) {
             Path path = figure.getPath();
             paint.setColor(figure.getColor());
@@ -109,15 +110,12 @@ public class PlayingArea extends View {
     public void addFigure(FigureType figureType) {
         figureTypeList.add(figureType);
         figure = FigureFactory.getFigure(figureTypeList.get(0), widthOfSquareSide, point);
-        netManager = new NetManager(figure);
-        netManager.initNet(squareCount,  SQUARE_COUNT_VERTICAL);
         figure.squareWidth = widthOfSquareSide;
         figure.initFigureMask();
+        netManager = new NetManager(figure);
+        netManager.initNet(squareCount,  SQUARE_COUNT_VERTICAL);
         netManager.printNet();
-        for (int i = 0; i < figure.figureMask.length; i++) {
-            System.arraycopy(figure.figureMask[i], 0, netManager.getNetElement(i), 0,
-                    figure.figureMask[0].length);
-        }
+        netManager.copyMaskToNet();
         netManager.printNet();
         invalidate();
     }
@@ -125,12 +123,14 @@ public class PlayingArea extends View {
     public void moveLeft() {
         figure.moveLeft();
         netManager.moveLeftInNet();
+        netManager.printNet();
         invalidate();
     }
 
     public void moveRight() {
         figure.moveRight();
         netManager.moveRightInNet();
+        netManager.printNet();
         invalidate();
     }
 

@@ -15,19 +15,19 @@ public class FigureFactory {
 
     public static Figure getFigure(FigureType figureType, int widthSquare, Point point) {
         switch (figureType) {
-            case JFIGURE:
+            case J_FIGURE:
                 return new JFigure(widthSquare, point);
-            case LFIGURE:
+            case L_FIGURE:
                 return new LFigure(widthSquare, point);
             case LONG_FIGURE:
                 return new LongFigure(widthSquare, point);
             case SQUARE_FIGURE:
                 return new SquareFigure(widthSquare, point);
-            case SFIGURE:
+            case S_FIGURE:
                 return new SFigure(widthSquare, point);
-            case ZFIGURE:
+            case Z_FIGURE:
                 return new ZFigure(widthSquare, point);
-            case TFIGURE:
+            case T_FIGURE:
                 return new TFigure(widthSquare, point);
             default:
                 return null;

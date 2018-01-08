@@ -10,6 +10,10 @@ import android.graphics.Point;
 
 public class LFigure extends Figure {
 
+    public LFigure(int widthSquare, Point point) {
+        super(widthSquare, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -27,10 +31,6 @@ public class LFigure extends Figure {
     @Override
     public int getHeightInSquare() {
         return 3;
-    }
-
-    public LFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
     }
 
     @Override

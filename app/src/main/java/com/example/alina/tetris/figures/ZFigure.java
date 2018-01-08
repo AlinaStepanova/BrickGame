@@ -10,6 +10,10 @@ import android.graphics.Point;
 
 public class ZFigure extends Figure {
 
+    public ZFigure(int widthSquare, Point point) {
+        super(widthSquare, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -27,10 +31,6 @@ public class ZFigure extends Figure {
     @Override
     public int getHeightInSquare() {
         return 2;
-    }
-
-    public ZFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
     }
 
     @Override

@@ -10,6 +10,10 @@ import android.graphics.Point;
 
 public class SFigure extends Figure {
 
+    public SFigure(int widthSquare, Point point) {
+        super(widthSquare, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -17,10 +21,6 @@ public class SFigure extends Figure {
         figureMask[0][2] = true;
         figureMask[1][0] = true;
         figureMask[1][1] = true;
-    }
-
-    public SFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
     }
 
     @Override
