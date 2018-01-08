@@ -15,10 +15,6 @@ import com.example.alina.tetris.listeners.OnControllerListener;
 
 public class Controller extends LinearLayout {
 
-    private Button left;
-
-    private Button right;
-
     private OnControllerListener onControllerListener;
 
     public void setOnControllerListener(OnControllerListener onControllerListener) {
@@ -42,8 +38,8 @@ public class Controller extends LinearLayout {
 
     public void setLayout() {
         View inflate = inflate(getContext(), R.layout.controller, this);
-        left = (Button) inflate.findViewById(R.id.bLeft);
-        right = (Button) inflate.findViewById(R.id.bRight);
+        Button left = (Button) inflate.findViewById(R.id.bLeft);
+        Button right = (Button) inflate.findViewById(R.id.bRight);
         left.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
