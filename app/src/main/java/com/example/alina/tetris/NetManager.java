@@ -13,9 +13,12 @@ public class NetManager {
 
     private boolean[][] zeroNet;
 
-    public NetManager(Figure figure) {
-        this.figure = figure;
+    public NetManager() {
         this.net = null;
+    }
+
+    public void initNetsAndFigure(Figure figure) {
+        this.figure = figure;
         this.zeroNet = new boolean[figure.getHeightInSquare()][1];
     }
 

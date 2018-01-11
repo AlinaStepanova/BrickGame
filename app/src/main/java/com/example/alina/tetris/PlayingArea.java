@@ -111,15 +111,21 @@ public class PlayingArea extends View {
 
     public void addFigure(FigureType figureType) {
         figureTypeList.add(figureType);
-        figure = FigureFactory.getFigure(figureTypeList.get(0), widthOfSquareSide, point);
+        figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
+                widthOfSquareSide, point);
         figure.squareWidth = widthOfSquareSide;
         figure.initFigureMask();
-        netManager = new NetManager(figure);
-        netManager.initNet(squareCount,  SQUARE_COUNT_VERTICAL);
-        netManager.printNet();
-        netManager.copyMaskToNet();
-        netManager.printNet();
-        invalidate();
+        if (netManager == null) {
+            netManager = new NetManager();
+            netManager.initNetsAndFigure(figure);
+            netManager.initNet(squareCount,  SQUARE_COUNT_VERTICAL);
+            netManager.copyMaskToNet();
+            invalidate();
+        } else {
+            netManager.initNetsAndFigure(figure);
+            netManager.copyMaskToNet();
+            invalidate();
+        }
     }
 
     public void moveLeft() {
@@ -138,7 +144,7 @@ public class PlayingArea extends View {
 
     private void startMoveDown() {
         netManager.printNet();
-        new CountDownTimer(2000, 1000) {
+        new CountDownTimer(3000, 2000) {
             public void onTick(long millisUntilFinished) {
 
             }

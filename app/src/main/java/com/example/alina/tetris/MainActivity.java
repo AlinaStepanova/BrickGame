@@ -1,6 +1,7 @@
 package com.example.alina.tetris;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
@@ -10,16 +11,28 @@ import com.example.alina.tetris.listeners.OnControllerListener;
 public class MainActivity extends AppCompatActivity implements OnControllerListener {
 
     private PlayingArea playingArea;
-
-    private Controller controller;
+    private FigureCreator figureCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         playingArea = (PlayingArea) findViewById(R.id.pole);
-        controller = (Controller) findViewById(R.id.controller);
+        Controller controller = (Controller) findViewById(R.id.controller);
         controller.setOnControllerListener(this);
+        figureCreator = new FigureCreator();
+    }
+
+    private void createFigureWithInterval() {
+        playingArea.addFigure(figureCreator.selectFigure());
+        new CountDownTimer(7000, 5000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                playingArea.addFigure(figureCreator.selectFigure());
+            }
+        }.start();
     }
 
     @Override
@@ -29,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
                 new Runnable() {
                     @Override
                     public void run() {
-                        playingArea.addFigure(FigureType.L_FIGURE);
+                        createFigureWithInterval();
                     }
                 }, 2000);
     }

@@ -17,10 +17,10 @@ public class TFigure extends Figure {
     @Override
     public void initFigureMask() {
         super.initFigureMask();
-        figureMask[0][0] = true;
-        figureMask[0][1] = true;
-        figureMask[0][2] = true;
+        figureMask[1][0] = true;
         figureMask[1][1] = true;
+        figureMask[1][2] = true;
+        figureMask[0][1] = true;
     }
 
     @Override
