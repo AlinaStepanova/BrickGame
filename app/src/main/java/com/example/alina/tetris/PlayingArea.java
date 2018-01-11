@@ -19,6 +19,8 @@ import com.example.alina.tetris.figures.factory.FigureType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -136,15 +138,14 @@ public class PlayingArea extends View {
 
     private void startMoveDown() {
         netManager.printNet();
-        new CountDownTimer(120 * 60 * 1000, 1000) {
+        new CountDownTimer(2000, 1000) {
             public void onTick(long millisUntilFinished) {
-                if (millisUntilFinished % 10 * 1000 == 0) {
-                    figure.moveDown();
-                    netManager.moveDownInNet();
-                    invalidate();
-                }
+
             }
             public void onFinish() {
+                figure.moveDown();
+                netManager.moveDownInNet();
+                invalidate();
             }
         }.start();
     }
