@@ -5,6 +5,9 @@ import android.util.Log;
 
 import com.example.alina.tetris.figures.Figure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NetManager {
 
     private Figure figure;
@@ -13,13 +16,17 @@ public class NetManager {
 
     private boolean[][] zeroNet;
 
+    private final List<Figure> figureListInNet = new ArrayList<>();
+
     public NetManager() {
         this.net = null;
     }
 
-    public void initNetsAndFigure(Figure figure) {
-        this.figure = figure;
+    public void initFigure(Figure figure) {
+        figureListInNet.add(figure);
+        this.figure = figureListInNet.get(figureListInNet.size() - 1);
         this.zeroNet = new boolean[figure.getHeightInSquare()][1];
+        copyMaskToNet();
     }
 
     public void setNet(boolean[][] net) {
@@ -28,7 +35,7 @@ public class NetManager {
 
     public void copyMaskToNet() {
         copyArrays(figure.figureMask.length, figure.figureMask, 0, net,
-                0, figure.figureMask[0].length);
+                figure.getStartX(), figure.figureMask[0].length);
     }
 
     private void moveFigure() {

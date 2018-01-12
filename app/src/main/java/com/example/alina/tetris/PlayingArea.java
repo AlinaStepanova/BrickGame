@@ -11,6 +11,7 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.example.alina.tetris.figures.Figure;
@@ -19,8 +20,7 @@ import com.example.alina.tetris.figures.factory.FigureType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.Random;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -42,9 +42,9 @@ public class PlayingArea extends View {
 
     private final List<FigureType> figureTypeList = new ArrayList<>();
 
-    private Point point;
+    private final List<Figure> figureList = new ArrayList<>();
 
-    private Figure figure;
+    private Point point;
 
     private Paint paint;
 
@@ -101,42 +101,43 @@ public class PlayingArea extends View {
         drawVerticalLines(canvas);
         drawHorizontalLines(canvas);
 
-        if (figure != null) {
-            Path path = figure.getPath();
-            paint.setColor(figure.getColor());
-            canvas.drawPath(path, paint);
-            startMoveDown();
+        for(Figure figure: figureList) {
+            if (figure != null) {
+                Path path = figure.getPath();
+                paint.setColor(figure.getColor());
+                canvas.drawPath(path, paint);
+                startMoveDown();
+            }
         }
     }
 
     public void addFigure(FigureType figureType) {
         figureTypeList.add(figureType);
-        figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
-                widthOfSquareSide, point);
-        figure.squareWidth = widthOfSquareSide;
-        figure.initFigureMask();
+        Figure figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
+                widthOfSquareSide);
+        figureList.add(figure);
+        if (figure != null) {
+            figure.initFigureMask();
+        }
         if (netManager == null) {
             netManager = new NetManager();
-            netManager.initNetsAndFigure(figure);
             netManager.initNet(squareCount,  SQUARE_COUNT_VERTICAL);
-            netManager.copyMaskToNet();
-            invalidate();
-        } else {
-            netManager.initNetsAndFigure(figure);
-            netManager.copyMaskToNet();
-            invalidate();
         }
+        netManager.initFigure(figure);
+        invalidate();
     }
 
     public void moveLeft() {
-        figure.moveLeft();
+        //figure.moveLeft();
+        figureList.get(figureList.size() - 1).moveLeft();
         netManager.moveLeftInNet();
         netManager.printNet();
         invalidate();
     }
 
     public void moveRight() {
-        figure.moveRight();
+        //figure.moveRight();
+        figureList.get(figureList.size() - 1).moveRight();
         netManager.moveRightInNet();
         netManager.printNet();
         invalidate();
@@ -144,12 +145,13 @@ public class PlayingArea extends View {
 
     private void startMoveDown() {
         netManager.printNet();
-        new CountDownTimer(3000, 2000) {
+        new CountDownTimer(4000, 2000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                figure.moveDown();
+                //figure.moveDown();
+                figureList.get(figureList.size() - 1).moveDown();
                 netManager.moveDownInNet();
                 invalidate();
             }

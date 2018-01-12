@@ -2,6 +2,9 @@ package com.example.alina.tetris.figures;
 
 import android.graphics.Path;
 import android.graphics.Point;
+import android.util.Log;
+
+import java.util.Random;
 
 /**
  * Created by Alina on 02.04.2017.
@@ -9,7 +12,7 @@ import android.graphics.Point;
 
 public abstract class Figure {
 
-    private final int startX = 0;
+    private int startX;
     private final int startY = 0;
     public int squareWidth;
     public Point point;
@@ -18,10 +21,23 @@ public abstract class Figure {
 
     public boolean[][] figureMask;
 
-    public Figure(int squareWidth, Point point) {
+    public Figure(int squareWidth) {
         this.squareWidth = squareWidth;
-        this.point = point;
+        this.point = initPoint();
         coordinatesInPlayingArea = new Point(startX, startY);
+    }
+
+    private Point initPoint() {
+        int [] array = new int[] {2 * squareWidth, 3 * squareWidth, 4 * squareWidth, 5 * squareWidth};
+        int position = new Random().nextInt(array.length);
+        Point point = new Point(array[position], 0);
+        startX = point.x / squareWidth;
+        Log.d("point", point.toString() + " " + startX);
+        return point;
+    }
+
+    public int getStartX() {
+        return startX;
     }
 
     public void initFigureMask() {

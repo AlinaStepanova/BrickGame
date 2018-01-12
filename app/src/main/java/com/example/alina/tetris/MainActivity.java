@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
     }
 
     private void createFigureWithInterval() {
-        playingArea.addFigure(figureCreator.selectFigure());
-        new CountDownTimer(7000, 5000) {
+        new CountDownTimer(5000, 2000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                playingArea.addFigure(figureCreator.selectFigure());
+                //playingArea.addFigure(figureCreator.selectFigure());
+                playingArea.addFigure(FigureType.S_FIGURE);
             }
         }.start();
     }

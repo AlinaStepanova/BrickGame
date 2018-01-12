@@ -10,8 +10,8 @@ import android.graphics.Point;
 
 public class ZFigure extends Figure {
 
-    public ZFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
+    public ZFigure(int widthSquare) {
+        super(widthSquare);
     }
 
     @Override

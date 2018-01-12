@@ -10,8 +10,8 @@ import android.graphics.Point;
 
 public class LongFigure extends Figure {
 
-    public LongFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
+    public LongFigure(int widthSquare) {
+        super(widthSquare);
     }
 
     @Override

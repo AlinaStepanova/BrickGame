@@ -11,14 +11,13 @@ import android.util.Log;
 
 public class SquareFigure extends Figure {
 
-    public SquareFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
+    public SquareFigure(int widthSquare) {
+        super(widthSquare);
     }
 
     @Override
     public void initFigureMask() {
         super.initFigureMask();
-        Log.d("DEB", "Init figure mask");
         figureMask[0][0] = true;
         figureMask[0][1] = true;
         figureMask[1][0] = true;

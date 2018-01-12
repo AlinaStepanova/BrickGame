@@ -10,8 +10,8 @@ import android.graphics.Point;
 
 public class TFigure extends Figure {
 
-    public TFigure(int widthSquare, Point point) {
-        super(widthSquare, point);
+    public TFigure(int widthSquare) {
+        super(widthSquare);
     }
 
     @Override
