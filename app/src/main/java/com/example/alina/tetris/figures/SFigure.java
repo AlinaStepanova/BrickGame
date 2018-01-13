@@ -36,14 +36,14 @@ public class SFigure extends Figure {
     @Override
     public Path getPath() {
         Path path = new Path();
-        path.moveTo(point.x, point.y);
-        path.lineTo(point.x, point.y - squareWidth);
-        path.lineTo(point.x + squareWidth * 2, point.y - squareWidth);
+        path.moveTo(point.x + squareWidth, point.y);
+        path.lineTo(point.x + squareWidth, point.y - squareWidth);
+        path.lineTo(point.x + squareWidth * 3, point.y - squareWidth);
+        path.lineTo(point.x + squareWidth * 3, point.y);
         path.lineTo(point.x + squareWidth * 2, point.y);
-        path.lineTo(point.x + squareWidth, point.y);
-        path.lineTo(point.x + squareWidth, point.y + squareWidth);
-        path.lineTo(point.x - squareWidth, point.y + squareWidth);
-        path.lineTo(point.x - squareWidth, point.y);
+        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth);
+        path.lineTo(point.x, point.y + squareWidth);
+        path.lineTo(point.x, point.y);
         path.close();
         return path;
     }

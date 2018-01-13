@@ -36,13 +36,13 @@ public class JFigure extends Figure {
     @Override
     public Path getPath() {
         Path path = new Path();
-        path.moveTo(point.x, point.y);
-        path.lineTo(point.x + squareWidth, point.y);
-        path.lineTo(point.x + squareWidth, point.y + squareWidth * 3);
-        path.lineTo(point.x - squareWidth, point.y + squareWidth * 3);
-        path.lineTo(point.x - squareWidth, point.y + squareWidth * 2);
+        path.moveTo(point.x + squareWidth, point.y);
+        path.lineTo(point.x + squareWidth * 2, point.y);
+        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth * 3);
+        path.lineTo(point.x, point.y + squareWidth * 3);
         path.lineTo(point.x, point.y + squareWidth * 2);
-        path.lineTo(point.x, point.y);
+        path.lineTo(point.x + squareWidth, point.y + squareWidth * 2);
+        path.lineTo(point.x + squareWidth, point.y);
         path.close();
         return path;
     }

@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
 
             }
             public void onFinish() {
-                //playingArea.addFigure(figureCreator.selectFigure());
-                playingArea.addFigure(FigureType.S_FIGURE);
+                playingArea.addFigure(figureCreator.selectFigure());
             }
         }.start();
     }
