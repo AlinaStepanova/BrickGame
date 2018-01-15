@@ -124,17 +124,21 @@ public class PlayingArea extends View {
     }
 
     public void moveLeft() {
-        figureList.get(figureList.size() - 1).moveLeft();
-        netManager.moveLeftInNet();
-        netManager.printNet();
-        invalidate();
+        if (netManager.isNetFreeToMoveLeft()) {
+            figureList.get(figureList.size() - 1).moveLeft();
+            netManager.moveLeftInNet();
+            netManager.printNet();
+            invalidate();
+        }
     }
 
     public void moveRight() {
-        figureList.get(figureList.size() - 1).moveRight();
-        netManager.moveRightInNet();
-        netManager.printNet();
-        invalidate();
+        if (netManager.isNetFreeToMoveRight()) {
+            figureList.get(figureList.size() - 1).moveRight();
+            netManager.moveRightInNet();
+            netManager.printNet();
+            invalidate();
+        }
     }
 
     public void addFigure(FigureType figureType) {
@@ -150,6 +154,7 @@ public class PlayingArea extends View {
             netManager.initNet(squareCount,  SQUARE_COUNT_VERTICAL);
         }
         netManager.initFigure(figure);
+        netManager.printNet();
         invalidate();
     }
 }

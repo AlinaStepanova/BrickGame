@@ -10,6 +10,10 @@ import java.util.List;
 
 public class NetManager {
 
+    int horizontalSquareCount;
+
+    int verticalSquareCount;
+
     private Figure figure;
 
     private boolean[][] net;
@@ -33,14 +37,6 @@ public class NetManager {
                 figure.getStartX(), figure.figureMask[0].length);
     }
 
-    private void moveFigure() {
-        for (int i = 0; i < figure.figureMask.length; i++) {
-            System.arraycopy(figure.figureMask[i], 0,
-                    net[figure.coordinatesInPlayingArea.y + i],
-                    figure.coordinatesInPlayingArea.x, figure.getWidthInSquare());
-        }
-    }
-
     private void resetNetAfterMoving(int destinationPosition) {
         for (int i = 0; i < zeroNet.length; i++) {
             System.arraycopy(zeroNet[i], 0,
@@ -53,6 +49,22 @@ public class NetManager {
             for (int j = 0; j < net[0].length; j++) {
                 net[i][j] = false;
             }
+        }
+    }
+
+    private void moveFigure() {
+        for (int i = 0; i < figure.figureMask.length; i++) {
+            System.arraycopy(figure.figureMask[i], 0,
+                    net[figure.coordinatesInPlayingArea.y + i],
+                    figure.coordinatesInPlayingArea.x, figure.getWidthInSquare());
+        }
+    }
+
+    private void copyArrays(int size, boolean[][] sourceArray, int sourcePosition,
+                            boolean[][] destinationArray, int destinationPosition, int length) {
+        for (int i = 0; i < size; i++) {
+            System.arraycopy(sourceArray[i], sourcePosition, destinationArray[figure.getStartY() + i],
+                    destinationPosition, length);
         }
     }
 
@@ -76,6 +88,22 @@ public class NetManager {
         resetNetAfterMoving(figure.coordinatesInPlayingArea.x - 1);
     }
 
+    public boolean isNetFreeToMoveLeft() {
+        boolean result = false;
+        if (figure.coordinatesInPlayingArea.x != 0) {
+            result = true;
+        }
+        return result;
+    }
+
+    public boolean isNetFreeToMoveRight() {
+        boolean result = false;
+        if (figure.coordinatesInPlayingArea.x + figure.getWidthInSquare() < verticalSquareCount) {
+            result = true;
+        }
+        return result;
+    }
+
     public void moveDownInNet() {
         boolean[][]zeroNet = new boolean[1][figure.getWidthInSquare()];
         int coordinateY = figure.coordinatesInPlayingArea.y;
@@ -89,14 +117,6 @@ public class NetManager {
             System.arraycopy(zeroNet[i], 0,
                     net[figure.coordinatesInPlayingArea.y - 1],
                     figure.coordinatesInPlayingArea.x, figure.figureMask[i].length);
-        }
-    }
-
-    private void copyArrays(int size, boolean[][] sourceArray, int sourcePosition,
-                           boolean[][] destinationArray, int destinationPosition, int length) {
-        for (int i = 0; i < size; i++) {
-            System.arraycopy(sourceArray[i], sourcePosition, destinationArray[figure.getStartY() + i],
-                    destinationPosition, length);
         }
     }
 
@@ -118,5 +138,7 @@ public class NetManager {
     public void initNet(int horizontalSquareCount, int verticalSquareCount) {
         setNet(new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount]);
         setFalseNet(net);
+        this.horizontalSquareCount = horizontalSquareCount;
+        this.verticalSquareCount = verticalSquareCount;
     }
 }
