@@ -2,7 +2,6 @@ package com.example.alina.tetris.figures;
 
 import android.graphics.Color;
 import android.graphics.Path;
-import android.graphics.Point;
 
 /**
  * Created by Alina on 02.04.2017.
@@ -10,8 +9,11 @@ import android.graphics.Point;
 
 public class LFigure extends Figure {
 
-    public LFigure(int widthSquare) {
-        super(widthSquare);
+    private final int SCALE_HEIGHT = 2 * squareWidth;
+
+    public LFigure(int squareWidth, int scale) {
+        super(squareWidth, scale);
+        this.scale += SCALE_HEIGHT;
     }
 
     @Override
@@ -36,12 +38,12 @@ public class LFigure extends Figure {
     @Override
     public Path getPath() {
         Path path = new Path();
-        path.moveTo(point.x, point.y);
-        path.lineTo(point.x, point.y + squareWidth * 3);
-        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth * 3);
-        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth * 2);
-        path.lineTo(point.x + squareWidth, point.y + squareWidth * 2);
-        path.lineTo(point.x + squareWidth, point.y);
+        path.moveTo(point.x, point.y - scale);
+        path.lineTo(point.x, point.y + squareWidth * 3 - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth * 3 - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth * 2 - scale);
+        path.lineTo(point.x + squareWidth, point.y + squareWidth * 2 - scale);
+        path.lineTo(point.x + squareWidth, point.y - scale);
         path.close();
         return path;
     }

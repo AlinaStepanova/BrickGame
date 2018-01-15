@@ -10,8 +10,8 @@ import android.graphics.Point;
 
 public class SFigure extends Figure {
 
-    public SFigure(int widthSquare) {
-        super(widthSquare);
+    public SFigure(int squareWidth, int scale) {
+        super(squareWidth, scale);
     }
 
     @Override
@@ -36,14 +36,14 @@ public class SFigure extends Figure {
     @Override
     public Path getPath() {
         Path path = new Path();
-        path.moveTo(point.x + squareWidth, point.y);
-        path.lineTo(point.x + squareWidth, point.y - squareWidth);
-        path.lineTo(point.x + squareWidth * 3, point.y - squareWidth);
-        path.lineTo(point.x + squareWidth * 3, point.y);
-        path.lineTo(point.x + squareWidth * 2, point.y);
-        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth);
-        path.lineTo(point.x, point.y + squareWidth);
-        path.lineTo(point.x, point.y);
+        path.moveTo(point.x + squareWidth, point.y - scale);
+        path.lineTo(point.x + squareWidth, point.y - squareWidth - scale);
+        path.lineTo(point.x + squareWidth * 3, point.y - squareWidth - scale);
+        path.lineTo(point.x + squareWidth * 3, point.y - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth - scale);
+        path.lineTo(point.x, point.y + squareWidth - scale);
+        path.lineTo(point.x, point.y - scale);
         path.close();
         return path;
     }

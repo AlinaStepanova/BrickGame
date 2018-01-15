@@ -10,11 +10,10 @@ import android.graphics.Point;
 
 public class TFigure extends Figure {
 
-    public TFigure(int widthSquare) {
-        super(widthSquare);
+    public TFigure(int squareWidth, int scale) {
+        super(squareWidth, scale);
+        this.scale -= squareWidth;
     }
-
-    private final int scale = 2 * squareWidth;
 
     @Override
     public void initFigureMask() {
@@ -38,14 +37,14 @@ public class TFigure extends Figure {
     @Override
     public Path getPath() {
         Path path = new Path();
-        path.moveTo(point.x, point.y + scale);
-        path.lineTo(point.x + squareWidth * 3, point.y + scale);
-        path.lineTo(point.x + squareWidth * 3, point.y - squareWidth + scale);
-        path.lineTo(point.x + squareWidth * 2, point.y - squareWidth + scale);
-        path.lineTo(point.x + squareWidth * 2, point.y - squareWidth * 2 + scale);
-        path.lineTo(point.x + squareWidth, point.y - squareWidth * 2 + scale);
-        path.lineTo(point.x + squareWidth, point.y - squareWidth + scale);
-        path.lineTo(point.x, point.y - squareWidth + scale);
+        path.moveTo(point.x, point.y - scale);
+        path.lineTo(point.x + squareWidth * 3, point.y - scale);
+        path.lineTo(point.x + squareWidth * 3, point.y - squareWidth - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y - squareWidth - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y - squareWidth * 2 - scale);
+        path.lineTo(point.x + squareWidth, point.y - squareWidth * 2 - scale);
+        path.lineTo(point.x + squareWidth, point.y - squareWidth - scale);
+        path.lineTo(point.x, point.y - squareWidth - scale);
         path.close();
         return path;
     }

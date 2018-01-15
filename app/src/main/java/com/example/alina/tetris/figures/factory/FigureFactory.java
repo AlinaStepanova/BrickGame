@@ -13,22 +13,22 @@ import com.example.alina.tetris.figures.ZFigure;
 
 public class FigureFactory {
 
-    public static Figure getFigure(FigureType figureType, int widthSquare) {
+    public static Figure getFigure(FigureType figureType, int widthSquare, int scale) {
         switch (figureType) {
             case J_FIGURE:
-                return new JFigure(widthSquare);
+                return new JFigure(widthSquare, scale);
             case L_FIGURE:
-                return new LFigure(widthSquare);
+                return new LFigure(widthSquare, scale);
             case LONG_FIGURE:
-                return new LongFigure(widthSquare);
+                return new LongFigure(widthSquare, scale);
             case SQUARE_FIGURE:
-                return new SquareFigure(widthSquare);
+                return new SquareFigure(widthSquare, scale);
             case S_FIGURE:
-                return new SFigure(widthSquare);
+                return new SFigure(widthSquare, scale);
             case Z_FIGURE:
-                return new ZFigure(widthSquare);
+                return new ZFigure(widthSquare, scale);
             case T_FIGURE:
-                return new TFigure(widthSquare);
+                return new TFigure(widthSquare, scale);
             default:
                 return null;
         }

@@ -11,8 +11,11 @@ import android.util.Log;
 
 public class SquareFigure extends Figure {
 
-    public SquareFigure(int widthSquare) {
-        super(widthSquare);
+    private final int SCALE_HEIGHT = squareWidth;
+
+    public SquareFigure(int squareWidth, int scale) {
+        super(squareWidth, scale);
+        this.scale += SCALE_HEIGHT;
     }
 
     @Override
@@ -37,10 +40,10 @@ public class SquareFigure extends Figure {
     @Override
     public Path getPath() {
         Path path = new Path();
-        path.moveTo(point.x, point.y);
-        path.lineTo(point.x + squareWidth * 2, point.y);
-        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth * 2);
-        path.lineTo(point.x, point.y + squareWidth * 2);
+        path.moveTo(point.x, point.y - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth * 2 - scale);
+        path.lineTo(point.x, point.y + squareWidth * 2 - scale);
         path.close();
         return path;
     }

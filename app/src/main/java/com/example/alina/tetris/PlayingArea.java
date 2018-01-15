@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
 import android.os.CountDownTimer;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
@@ -20,7 +19,6 @@ import com.example.alina.tetris.figures.factory.FigureType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -36,15 +34,15 @@ public class PlayingArea extends View {
 
     private int screenWidth;
 
-    private final float LINE_WIDTH = 1f;
+    private int scale;
 
     private final int SQUARE_COUNT_VERTICAL = 10;
+
+    private final float LINE_WIDTH = 1f;
 
     private final List<FigureType> figureTypeList = new ArrayList<>();
 
     private final List<Figure> figureList = new ArrayList<>();
-
-    private Point point;
 
     private Paint paint;
 
@@ -52,22 +50,21 @@ public class PlayingArea extends View {
 
     public PlayingArea(@NonNull Context context) {
         super(context);
-        init();
+        initPaint();
     }
 
     public PlayingArea(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
+        initPaint();
     }
 
     public PlayingArea(@NonNull Context context, @Nullable AttributeSet attrs,
                        @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        initPaint();
     }
 
-    private void init() {
-        point = new Point(0, 0);
+    private void initPaint() {
         paint = new Paint();
     }
 
@@ -85,11 +82,26 @@ public class PlayingArea extends View {
         }
     }
 
+    private void startMoveDown() {
+        netManager.printNet();
+        new CountDownTimer(4000, 2000) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                figureList.get(figureList.size() - 1).moveDown();
+                netManager.moveDownInNet();
+                invalidate();
+            }
+        }.start();
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_VERTICAL;
         squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
+        scale = widthOfSquareSide - (MeasureSpec.getSize(heightMeasureSpec) % widthOfSquareSide);
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
         screenWidth = MeasureSpec.getSize(widthMeasureSpec);
     }
@@ -111,10 +123,24 @@ public class PlayingArea extends View {
         }
     }
 
+    public void moveLeft() {
+        figureList.get(figureList.size() - 1).moveLeft();
+        netManager.moveLeftInNet();
+        netManager.printNet();
+        invalidate();
+    }
+
+    public void moveRight() {
+        figureList.get(figureList.size() - 1).moveRight();
+        netManager.moveRightInNet();
+        netManager.printNet();
+        invalidate();
+    }
+
     public void addFigure(FigureType figureType) {
         figureTypeList.add(figureType);
         Figure figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
-                widthOfSquareSide);
+                widthOfSquareSide, scale);
         figureList.add(figure);
         if (figure != null) {
             figure.initFigureMask();
@@ -125,36 +151,5 @@ public class PlayingArea extends View {
         }
         netManager.initFigure(figure);
         invalidate();
-    }
-
-    public void moveLeft() {
-        //figure.moveLeft();
-        figureList.get(figureList.size() - 1).moveLeft();
-        netManager.moveLeftInNet();
-        netManager.printNet();
-        invalidate();
-    }
-
-    public void moveRight() {
-        //figure.moveRight();
-        figureList.get(figureList.size() - 1).moveRight();
-        netManager.moveRightInNet();
-        netManager.printNet();
-        invalidate();
-    }
-
-    private void startMoveDown() {
-        netManager.printNet();
-        new CountDownTimer(4000, 2000) {
-            public void onTick(long millisUntilFinished) {
-
-            }
-            public void onFinish() {
-                //figure.moveDown();
-                figureList.get(figureList.size() - 1).moveDown();
-                netManager.moveDownInNet();
-                invalidate();
-            }
-        }.start();
     }
 }

@@ -18,22 +18,17 @@ public class NetManager {
 
     private final List<Figure> figureListInNet = new ArrayList<>();
 
+    public static final int EXTRA_ROWS = 4;
+
     public NetManager() {
         this.net = null;
     }
 
-    public void initFigure(Figure figure) {
-        figureListInNet.add(figure);
-        this.figure = figureListInNet.get(figureListInNet.size() - 1);
-        this.zeroNet = new boolean[figure.getHeightInSquare()][1];
-        copyMaskToNet();
-    }
-
-    public void setNet(boolean[][] net) {
+    private void setNet(boolean[][] net) {
         this.net = net;
     }
 
-    public void copyMaskToNet() {
+    private void copyMaskToNet() {
         copyArrays(figure.figureMask.length, figure.figureMask, 0, net,
                 figure.getStartX(), figure.figureMask[0].length);
     }
@@ -59,6 +54,13 @@ public class NetManager {
                 net[i][j] = false;
             }
         }
+    }
+
+    public void initFigure(Figure figure) {
+        figureListInNet.add(figure);
+        this.figure = figureListInNet.get(figureListInNet.size() - 1);
+        this.zeroNet = new boolean[figure.getHeightInSquare()][1];
+        copyMaskToNet();
     }
 
     public void moveLeftInNet() {
@@ -93,7 +95,7 @@ public class NetManager {
     private void copyArrays(int size, boolean[][] sourceArray, int sourcePosition,
                            boolean[][] destinationArray, int destinationPosition, int length) {
         for (int i = 0; i < size; i++) {
-            System.arraycopy(sourceArray[i], sourcePosition, destinationArray[i],
+            System.arraycopy(sourceArray[i], sourcePosition, destinationArray[figure.getStartY() + i],
                     destinationPosition, length);
         }
     }
@@ -114,7 +116,7 @@ public class NetManager {
     }
 
     public void initNet(int horizontalSquareCount, int verticalSquareCount) {
-        setNet(new boolean[horizontalSquareCount][verticalSquareCount]);
+        setNet(new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount]);
         setFalseNet(net);
     }
 }
