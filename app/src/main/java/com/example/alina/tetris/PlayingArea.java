@@ -89,9 +89,11 @@ public class PlayingArea extends View {
 
             }
             public void onFinish() {
-                figureList.get(figureList.size() - 1).moveDown();
-                netManager.moveDownInNet();
-                invalidate();
+                if (netManager.isNetFreeToMoveDown()) {
+                    figureList.get(figureList.size() - 1).moveDown();
+                    netManager.moveDownInNet();
+                    invalidate();
+                }
             }
         }.start();
     }

@@ -88,6 +88,14 @@ public class NetManager {
         resetNetAfterMoving(figure.coordinatesInPlayingArea.x - 1);
     }
 
+    public boolean isNetFreeToMoveDown() {
+        boolean result = false;
+        if (figure.coordinatesInPlayingArea.y + figure.getHeightInSquare() != horizontalSquareCount + EXTRA_ROWS) {
+            result = true;
+        }
+        return result;
+    }
+
     public boolean isNetFreeToMoveLeft() {
         boolean result = false;
         if (figure.coordinatesInPlayingArea.x != 0) {
