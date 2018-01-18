@@ -10,10 +10,9 @@ import android.graphics.Point;
 
 public class LongFigure extends Figure {
 
-    private final int SCALE_HEIGHT = 3 * squareWidth;
-
     public LongFigure(int squareWidth, int scale) {
         super(squareWidth, scale);
+        int SCALE_HEIGHT = 3 * squareWidth;
         this.scale += SCALE_HEIGHT;
     }
 

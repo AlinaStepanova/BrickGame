@@ -9,10 +9,9 @@ import android.graphics.Path;
 
 public class JFigure extends Figure {
 
-    private final int SCALE_HEIGHT = 2 * squareWidth;
-
     public JFigure(int squareWidth, int scale) {
         super(squareWidth, scale);
+        int SCALE_HEIGHT = 2 * squareWidth;
         this.scale += SCALE_HEIGHT;
     }
 

@@ -11,11 +11,9 @@ import android.util.Log;
 
 public class SquareFigure extends Figure {
 
-    private final int SCALE_HEIGHT = squareWidth;
-
     public SquareFigure(int squareWidth, int scale) {
         super(squareWidth, scale);
-        this.scale += SCALE_HEIGHT;
+        this.scale += squareWidth;
     }
 
     @Override

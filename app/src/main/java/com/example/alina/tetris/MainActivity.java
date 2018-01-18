@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
     }
 
     private void createFigureWithInterval() {
-        new CountDownTimer(5000, 2000) {
+        new CountDownTimer(2000, 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
