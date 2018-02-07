@@ -68,6 +68,67 @@ public class NetManager {
         }
     }
 
+    private int getEndVerticalPosition(boolean[][] mask, int column) {
+        int trueCount = 0;
+        for (int i = 0; i < mask.length; i++) {
+            if (mask[i][column]) {
+                trueCount += 1;
+            }
+        }
+        return trueCount;
+    }
+
+    private boolean isFigureBelow() {
+        boolean result = false;
+        int coordinateX = figure.coordinatesInPlayingArea.x;
+        for (int i = figure.figureMask.length; i > 0; i--) {
+            int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i - 1]);
+            int endHorizontalPos = getEndHorizontalPosition(figure.figureMask[i - 1]);
+            for (int j = coordinateX + startHorizontalPos;
+                 j < coordinateX + endHorizontalPos + startHorizontalPos; j++) {
+                int startVerticalPos = getStartVerticalPosition(figure.figureMask, j - coordinateX);
+                int endVerticalPos = getEndVerticalPosition(figure.figureMask, j - coordinateX);
+                if (net[figure.coordinatesInPlayingArea.y + startVerticalPos + endVerticalPos][j]) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    private int getStartVerticalPosition(boolean[][] mask, int column) {
+        int position = 0;
+        for (int i = 0; i < mask.length; i++) {
+            if (mask[i][column]) {
+                position = i;
+                break;
+            }
+        }
+        return position;
+    }
+
+    private int getStartHorizontalPosition(boolean [] mask) {
+        int position = 0;
+        for (int i = 0; i < mask.length; i++) {
+            if (mask[i]) {
+                position = i;
+                break;
+            }
+        }
+        return position;
+    }
+
+    private int getEndHorizontalPosition(boolean [] mask) {
+        int trueCount = 0;
+        for (int i = 0; i < mask.length; i++) {
+            if (mask[i]) {
+                trueCount += 1;
+            }
+        }
+        return trueCount;
+    }
+
     public void initFigure(Figure figure) {
         figureListInNet.add(figure);
         this.figure = figureListInNet.get(figureListInNet.size() - 1);
@@ -88,35 +149,6 @@ public class NetManager {
         resetNetAfterMoving(figure.coordinatesInPlayingArea.x - 1);
     }
 
-    private boolean isFigureBelow() {
-        boolean result = false;
-        int coordinateX = figure.coordinatesInPlayingArea.x;
-        if (figure.coordinatesInPlayingArea.y + figure.getHeightInSquare()
-                < horizontalSquareCount + EXTRA_ROWS - 1) {
-            for (int i = coordinateX; i < coordinateX + figure.figureMask[0].length; i++) {
-                if (net[figure.coordinatesInPlayingArea.y + figure.getHeightInSquare()][i]) {
-                    result = true;
-                    break;
-                }
-            }
-
-            //attempt to improve loop above
-
-            /*for (int i = 0; i < figure.figureMask.length; i++) {
-                int startPosition = getStartPosition(figure.figureMask[i]);
-                int endPosition = getEndPosition(figure.figureMask[i]);
-                Log.d("ooo", " s " + startPosition + " e " + endPosition);
-                for (int j = coordinateX + startPosition; j < coordinateX + endPosition; j++) {
-                    if (net[figure.coordinatesInPlayingArea.y + figure.getHeightInSquare()][j]) {
-                        result = true;
-                        break;
-                    }
-                }
-            }*/
-        }
-        return result;
-    }
-
     public boolean isNetFreeToMoveDown() {
         boolean result = false;
         if (figure.coordinatesInPlayingArea.y + figure.getHeightInSquare()
@@ -124,27 +156,6 @@ public class NetManager {
             result = true;
         }
         return result;
-    }
-
-    private int getStartPosition(boolean [] mask) {
-        int position = 0;
-        for (int i = 0; i < mask.length; i++) {
-            if (mask[i]) {
-                position = i;
-                break;
-            }
-        }
-        return position;
-    }
-
-    private int getEndPosition(boolean [] mask) {
-        int trueCount = 0;
-        for (int i = 0; i < mask.length; i++) {
-            if (mask[i]) {
-                trueCount += 1;
-            }
-        }
-        return trueCount;
     }
 
     public boolean isNetFreeToMoveLeft() {
@@ -169,8 +180,8 @@ public class NetManager {
         int coordinateY = figure.coordinatesInPlayingArea.y;
         coordinateY--;
         for (int i = figure.figureMask.length; i > 0; i--) {
-            int startPosition = getStartPosition(figure.figureMask[i - 1]);
-            int endPosition = getEndPosition(figure.figureMask[i - 1]);
+            int startPosition = getStartHorizontalPosition(figure.figureMask[i - 1]);
+            int endPosition = getEndHorizontalPosition(figure.figureMask[i - 1]);
             System.arraycopy(figure.figureMask[i - 1], startPosition, net[coordinateY + i],
                     figure.coordinatesInPlayingArea.x + startPosition, endPosition);
             for (int j = 0; j < zeroNet.length; j++) {
@@ -187,7 +198,7 @@ public class NetManager {
         StringBuilder str = new StringBuilder();
         int i = 0;
         for (boolean[] aNet : net) {
-            str.append(i).append("  ");
+            //str.append(i).append("  ");
             for (int j = 0; j < net[0].length; j++) {
                 str.append(aNet[j] ? 1 : 0);
                 str.append(" ");
