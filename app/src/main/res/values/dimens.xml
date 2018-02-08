@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="maxTextSize">24sp</dimen>
+    <dimen name="midTextSize">20sp</dimen>
+    <dimen name="minTextSize">16sp</dimen>
+    <dimen name="minPadding">4dp</dimen>
+    <dimen name="elevation">10dp</dimen>
+</resources>

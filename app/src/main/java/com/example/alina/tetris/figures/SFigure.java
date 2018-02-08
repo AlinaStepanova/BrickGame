@@ -1,8 +1,11 @@
 package com.example.alina.tetris.figures;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Point;
+
+import com.example.alina.tetris.R;
 
 /**
  * Created by Alina on 02.04.2017.
@@ -10,8 +13,8 @@ import android.graphics.Point;
 
 public class SFigure extends Figure {
 
-    public SFigure(int squareWidth, int scale) {
-        super(squareWidth, scale);
+    public SFigure(int squareWidth, int scale, Context context) {
+        super(squareWidth, scale, context);
     }
 
     @Override
@@ -50,6 +53,6 @@ public class SFigure extends Figure {
 
     @Override
     public int getColor() {
-        return Color.GREEN;
+        return this.context.getResources().getColor(R.color.sFigure);
     }
 }

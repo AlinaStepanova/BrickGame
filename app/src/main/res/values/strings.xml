@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Tetris</string>
+    <string name="left"><![CDATA[<]]></string>
+    <string name="right"><![CDATA[>]]></string>
+    <string name="startScore">0</string>
+    <string name="scoreText">SCORE</string>
+    <string name="menu">MENU</string>
 </resources>

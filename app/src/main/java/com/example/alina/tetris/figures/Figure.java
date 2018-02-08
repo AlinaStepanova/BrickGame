@@ -1,5 +1,6 @@
 package com.example.alina.tetris.figures;
 
+import android.content.Context;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.util.Log;
@@ -19,6 +20,8 @@ public abstract class Figure {
 
     private int startY;
 
+    protected Context context;
+
     public int squareWidth;
 
     public int scale;
@@ -31,11 +34,12 @@ public abstract class Figure {
 
     public Status status;
 
-    public Figure(int squareWidth, int scale) {
+    public Figure(int squareWidth, int scale, Context context) {
         this.squareWidth = squareWidth;
         this.point = initPoint();
         this.scale = scale;
         this.status = Status.MOVING;
+        this.context = context;
         coordinatesInPlayingArea = new Point(startX, startY);
     }
 

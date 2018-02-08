@@ -9,19 +9,13 @@
 
     <Button
         android:id="@+id/bLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:background="@android:color/holo_blue_bright"
-        android:gravity="center"
-        android:text="L" />
+        android:text="@string/left"
+        style="@style/buttonStyle"/>
 
     <Button
         android:id="@+id/bRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        style="@style/buttonStyle"
         android:background="@android:color/holo_blue_light"
-        android:gravity="center"
-        android:text="R" />
+        android:text="@string/right" />
 </LinearLayout>

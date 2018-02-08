@@ -10,7 +10,7 @@
         android:id="@+id/pole"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
+        android:background="@color/white"
         android:layout_weight="1">
     </com.example.alina.tetris.PlayingArea>
 
@@ -25,30 +25,39 @@
             android:id="@+id/llScore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:weightSum="1"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:textSize="10sp"
-                android:layout_weight="1"
+                android:gravity="bottom"
+                android:textSize="@dimen/midTextSize"
+                android:layout_weight="0.1"
+                android:text="@string/scoreText"
+                style="@style/simpleStyle"/>
+
+            <TextView
                 android:id="@+id/tvScore"
-                android:text="100"
+                android:layout_weight="0.2"
+                android:text="@string/startScore"
                 android:textStyle="bold"
-                android:textColor="#00b0ff"
-                android:background="#ffffff"
-                android:textIsSelectable="true" />
+                style="@style/simpleStyle"/>
 
             <com.example.alina.tetris.Controller
                 android:id="@+id/controller"
-                android:layout_weight="1"
+                android:layout_weight="0.6"
                 android:layout_width="match_parent"
-                android:background="#ffffff"
+                android:background="@color/white"
                 android:layout_height="0dp">
             </com.example.alina.tetris.Controller>
 
+            <Button
+                android:id="@+id/bMenu"
+                android:layout_weight="0.1"
+                android:text="@string/menu"
+                android:elevation="@dimen/elevation"
+                android:background="@color/mainColor"
+                android:textColor="@color/white"
+                style="@style/simpleStyle"/>
         </LinearLayout>
 
     </LinearLayout>

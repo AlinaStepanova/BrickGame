@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureFactory;
@@ -40,6 +41,8 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
 
     private final int SQUARE_COUNT_VERTICAL = 10;
 
+    private final int FIGURE_STOPPED_SCORE = 10;
+
     private final float LINE_WIDTH = 1f;
 
     private final List<FigureType> figureTypeList = new ArrayList<>();
@@ -51,6 +54,8 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
     private NetManager netManager;
 
     private FigureCreator figureCreator;
+
+    public TextView score;
 
     public PlayingArea(@NonNull Context context) {
         super(context);
@@ -106,16 +111,6 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_VERTICAL;
-        squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
-        scale = widthOfSquareSide - (MeasureSpec.getSize(heightMeasureSpec) % widthOfSquareSide);
-        screenHeight = MeasureSpec.getSize(heightMeasureSpec);
-        screenWidth = MeasureSpec.getSize(widthMeasureSpec);
-    }
-
-    @Override
     protected void onDraw(Canvas canvas) {
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(LINE_WIDTH);
@@ -131,6 +126,16 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
                 }
             }
         }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_VERTICAL;
+        squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
+        scale = widthOfSquareSide - (MeasureSpec.getSize(heightMeasureSpec) % widthOfSquareSide);
+        screenHeight = MeasureSpec.getSize(heightMeasureSpec);
+        screenWidth = MeasureSpec.getSize(widthMeasureSpec);
     }
 
     public void moveLeft() {
@@ -154,7 +159,7 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
     public void addFigure(FigureType figureType) {
         figureTypeList.add(figureType);
         Figure figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
-                widthOfSquareSide, scale);
+                widthOfSquareSide, scale, getContext());
         figureList.add(figure);
         if (figure != null) {
             figure.initFigureMask();
@@ -171,7 +176,12 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
 
     @Override
     public void onFigureStoppedMove() {
-        Log.d("figure", "figureStopped");
         addFigure(figureCreator.selectFigure());
+    }
+
+    private void setScore(int value) {
+        int scoreValue = Integer.parseInt(score.getText().toString());
+        scoreValue += value;
+        score.setText(scoreValue);
     }
 }

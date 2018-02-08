@@ -1,8 +1,11 @@
 package com.example.alina.tetris.figures;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Point;
+
+import com.example.alina.tetris.R;
 
 /**
  * Created by Alina on 02.04.2017.
@@ -10,8 +13,8 @@ import android.graphics.Point;
 
 public class LongFigure extends Figure {
 
-    public LongFigure(int squareWidth, int scale) {
-        super(squareWidth, scale);
+    public LongFigure(int squareWidth, int scale, Context context) {
+        super(squareWidth, scale, context);
         int SCALE_HEIGHT = 3 * squareWidth;
         this.scale += SCALE_HEIGHT;
     }
@@ -48,6 +51,6 @@ public class LongFigure extends Figure {
 
     @Override
     public int getColor() {
-        return Color.CYAN;
+        return this.context.getResources().getColor(R.color.longFigure);
     }
 }
