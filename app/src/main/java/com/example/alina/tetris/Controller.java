@@ -57,6 +57,4 @@ public class Controller extends LinearLayout {
             }
         });
     }
-
-
 }

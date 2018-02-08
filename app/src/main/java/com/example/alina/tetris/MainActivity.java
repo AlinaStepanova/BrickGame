@@ -21,27 +21,15 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
         Controller controller = (Controller) findViewById(R.id.controller);
         controller.setOnControllerListener(this);
         figureCreator = new FigureCreator();
+        createFigure();
     }
 
-    private void createFigureWithInterval() {
-        new CountDownTimer(2000, 1000) {
-            public void onTick(long millisUntilFinished) {
-
-            }
-            public void onFinish() {
-                playingArea.addFigure(figureCreator.selectFigure());
-            }
-        }.start();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+    private void createFigure() {
         new Handler().postDelayed(
                 new Runnable() {
                     @Override
                     public void run() {
-                        createFigureWithInterval();
+                        playingArea.addFigure(figureCreator.selectFigure());
                     }
                 }, 2000);
     }

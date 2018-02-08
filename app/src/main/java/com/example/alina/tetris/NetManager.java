@@ -4,11 +4,14 @@ package com.example.alina.tetris;
 import android.util.Log;
 
 import com.example.alina.tetris.figures.Figure;
+import com.example.alina.tetris.listeners.OnFigureStoppedListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NetManager {
+
+    private OnFigureStoppedListener onFigureStoppedListener;
 
     private int horizontalSquareCount;
 
@@ -129,11 +132,22 @@ public class NetManager {
         return trueCount;
     }
 
+    public void setOnFigureStoppedListener(OnFigureStoppedListener onFigureStoppedListener) {
+        this.onFigureStoppedListener = onFigureStoppedListener;
+    }
+
     public void initFigure(Figure figure) {
         figureListInNet.add(figure);
         this.figure = figureListInNet.get(figureListInNet.size() - 1);
         this.zeroNet = new boolean[figure.getHeightInSquare()][1];
         copyMaskToNet();
+    }
+
+    public void changeFigureStatus() {
+        if (!isNetFreeToMoveDown()) {
+            figure.status = Status.STOPPED;
+            onFigureStoppedListener.onFigureStoppedMove();
+        }
     }
 
     public void moveLeftInNet() {

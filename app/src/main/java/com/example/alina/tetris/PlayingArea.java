@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.view.View;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureFactory;
 import com.example.alina.tetris.figures.factory.FigureType;
+import com.example.alina.tetris.listeners.OnFigureStoppedListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ import java.util.List;
  * Created by Alina on 18.03.2017.
  */
 
-public class PlayingArea extends View {
+public class PlayingArea extends View implements OnFigureStoppedListener {
 
     private int widthOfSquareSide;
 
@@ -48,24 +50,27 @@ public class PlayingArea extends View {
 
     private NetManager netManager;
 
+    private FigureCreator figureCreator;
+
     public PlayingArea(@NonNull Context context) {
         super(context);
-        initPaint();
+        init();
     }
 
     public PlayingArea(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initPaint();
+        init();
     }
 
     public PlayingArea(@NonNull Context context, @Nullable AttributeSet attrs,
                        @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
+        init();
     }
 
-    private void initPaint() {
+    private void init() {
         paint = new Paint();
+        figureCreator = new FigureCreator();
     }
 
     private void drawHorizontalLines(Canvas canvas) {
@@ -93,6 +98,8 @@ public class PlayingArea extends View {
                     figureList.get(figureList.size() - 1).moveDown();
                     netManager.moveDownInNet();
                     invalidate();
+                } else {
+                    netManager.changeFigureStatus();
                 }
             }
         }.start();
@@ -114,13 +121,14 @@ public class PlayingArea extends View {
         paint.setStrokeWidth(LINE_WIDTH);
         drawVerticalLines(canvas);
         drawHorizontalLines(canvas);
-
         for(Figure figure: figureList) {
             if (figure != null) {
                 Path path = figure.getPath();
                 paint.setColor(figure.getColor());
                 canvas.drawPath(path, paint);
-                startMoveDown();
+                if(figure.status == Status.MOVING) {
+                    startMoveDown();
+                }
             }
         }
     }
@@ -153,10 +161,17 @@ public class PlayingArea extends View {
         }
         if (netManager == null) {
             netManager = new NetManager();
-            netManager.initNet(squareCount,  SQUARE_COUNT_VERTICAL);
+            netManager.initNet(squareCount, SQUARE_COUNT_VERTICAL);
         }
         netManager.initFigure(figure);
+        netManager.setOnFigureStoppedListener(this);
         netManager.printNet();
         invalidate();
+    }
+
+    @Override
+    public void onFigureStoppedMove() {
+        Log.d("figure", "figureStopped");
+        addFigure(figureCreator.selectFigure());
     }
 }

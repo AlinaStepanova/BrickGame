@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.util.Log;
 
 import com.example.alina.tetris.NetManager;
+import com.example.alina.tetris.Status;
 
 import java.util.Random;
 
@@ -28,10 +29,13 @@ public abstract class Figure {
 
     public boolean[][] figureMask;
 
+    public Status status;
+
     public Figure(int squareWidth, int scale) {
         this.squareWidth = squareWidth;
         this.point = initPoint();
         this.scale = scale;
+        this.status = Status.MOVING;
         coordinatesInPlayingArea = new Point(startX, startY);
     }
 
