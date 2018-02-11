@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.alina.tetris.R;
 import com.example.alina.tetris.listeners.OnControllerListener;
 
 /**

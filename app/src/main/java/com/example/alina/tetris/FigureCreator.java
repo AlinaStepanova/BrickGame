@@ -1,7 +1,6 @@
 package com.example.alina.tetris;
-import android.os.CountDownTimer;
 
-import com.example.alina.tetris.figures.factory.FigureType;
+import com.example.alina.tetris.enums.FigureType;
 import java.util.Random;
 
 public class FigureCreator {

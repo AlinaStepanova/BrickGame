@@ -3,15 +3,17 @@ package com.example.alina.tetris;
 
 import android.util.Log;
 
+import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.figures.Figure;
-import com.example.alina.tetris.listeners.OnFigureStoppedListener;
+import com.example.alina.tetris.listeners.OnNetManagerChangedListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NetManager {
+import static com.example.alina.tetris.Values.EXTRA_ROWS;
+import static com.example.alina.tetris.Values.SQUARE_COUNT_VERTICAL;
 
-    private OnFigureStoppedListener onFigureStoppedListener;
+public class NetManager {
 
     private int horizontalSquareCount;
 
@@ -25,7 +27,7 @@ public class NetManager {
 
     private final List<Figure> figureListInNet = new ArrayList<>();
 
-    public static final int EXTRA_ROWS = 4;
+    private OnNetManagerChangedListener onNetManagerChangedListener;
 
     public NetManager() {
         this.net = null;
@@ -35,8 +37,16 @@ public class NetManager {
         this.net = net;
     }
 
+    private void setFalseNet(boolean[][] net) {
+        for (int i = 0; i < net.length; i++) {
+            for (int j = 0; j < net[0].length; j++) {
+                net[i][j] = false;
+            }
+        }
+    }
+
     private void copyMaskToNet() {
-        copyArrays(figure.figureMask.length, figure.figureMask, 0, net,
+        copyArrays(figure.figureMask.length, figure.figureMask, net,
                 figure.getStartX(), figure.figureMask[0].length);
     }
 
@@ -44,14 +54,6 @@ public class NetManager {
         for (int i = 0; i < zeroNet.length; i++) {
             System.arraycopy(zeroNet[i], 0,
                     net[figure.coordinatesInPlayingArea.y + i], destinationPosition, 1);
-        }
-    }
-
-    private void setFalseNet(boolean[][] net) {
-        for (int i = 0; i < net.length; i++) {
-            for (int j = 0; j < net[0].length; j++) {
-                net[i][j] = false;
-            }
         }
     }
 
@@ -63,10 +65,10 @@ public class NetManager {
         }
     }
 
-    private void copyArrays(int size, boolean[][] sourceArray, int sourcePosition,
-                            boolean[][] destinationArray, int destinationPosition, int length) {
+    private void copyArrays(int size, boolean[][] sourceArray, boolean[][] destinationArray,
+                            int destinationPosition, int length) {
         for (int i = 0; i < size; i++) {
-            System.arraycopy(sourceArray[i], sourcePosition, destinationArray[figure.getStartY() + i],
+            System.arraycopy(sourceArray[i], 0, destinationArray[figure.getStartY() + i],
                     destinationPosition, length);
         }
     }
@@ -79,25 +81,6 @@ public class NetManager {
             }
         }
         return trueCount;
-    }
-
-    private boolean isFigureBelow() {
-        boolean result = false;
-        int coordinateX = figure.coordinatesInPlayingArea.x;
-        for (int i = figure.figureMask.length; i > 0; i--) {
-            int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i - 1]);
-            int endHorizontalPos = getEndHorizontalPosition(figure.figureMask[i - 1]);
-            for (int j = coordinateX + startHorizontalPos;
-                 j < coordinateX + endHorizontalPos + startHorizontalPos; j++) {
-                int startVerticalPos = getStartVerticalPosition(figure.figureMask, j - coordinateX);
-                int endVerticalPos = getEndVerticalPosition(figure.figureMask, j - coordinateX);
-                if (net[figure.coordinatesInPlayingArea.y + startVerticalPos + endVerticalPos][j]) {
-                    result = true;
-                    break;
-                }
-            }
-        }
-        return result;
     }
 
     private int getStartVerticalPosition(boolean[][] mask, int column) {
@@ -132,8 +115,27 @@ public class NetManager {
         return trueCount;
     }
 
-    public void setOnFigureStoppedListener(OnFigureStoppedListener onFigureStoppedListener) {
-        this.onFigureStoppedListener = onFigureStoppedListener;
+    private boolean isFigureBelow() {
+        boolean result = false;
+        int coordinateX = figure.coordinatesInPlayingArea.x;
+        for (int i = figure.figureMask.length; i > 0; i--) {
+            int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i - 1]);
+            int endHorizontalPos = getEndHorizontalPosition(figure.figureMask[i - 1]);
+            for (int j = coordinateX + startHorizontalPos;
+                 j < coordinateX + endHorizontalPos + startHorizontalPos; j++) {
+                int startVerticalPos = getStartVerticalPosition(figure.figureMask, j - coordinateX);
+                int endVerticalPos = getEndVerticalPosition(figure.figureMask, j - coordinateX);
+                if (net[figure.coordinatesInPlayingArea.y + startVerticalPos + endVerticalPos][j]) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    public void setOnNetManagerChangedListener(OnNetManagerChangedListener onNetManagerChangedListener) {
+        this.onNetManagerChangedListener = onNetManagerChangedListener;
     }
 
     public void initFigure(Figure figure) {
@@ -143,10 +145,23 @@ public class NetManager {
         copyMaskToNet();
     }
 
-    public void changeFigureStatus() {
+    public void changeFigureState() {
         if (!isNetFreeToMoveDown()) {
-            figure.status = Status.STOPPED;
-            onFigureStoppedListener.onFigureStoppedMove();
+            figure.setState(FigureState.STOPPED);
+            onNetManagerChangedListener.onFigureStoppedMove();
+        }
+    }
+
+    public void checkBottomLine() {
+        // TODO check several rows for combo
+        int j = 0;
+        for (int i = 0; i < verticalSquareCount; i++) {
+            if (net[horizontalSquareCount + EXTRA_ROWS - 1][i]) {
+                j++;
+            }
+        }
+        if (j == SQUARE_COUNT_VERTICAL) {
+            onNetManagerChangedListener.onBottomLineIsTrue();
         }
     }
 

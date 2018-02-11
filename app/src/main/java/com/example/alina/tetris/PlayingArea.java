@@ -6,28 +6,31 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
+import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureFactory;
-import com.example.alina.tetris.figures.factory.FigureType;
-import com.example.alina.tetris.listeners.OnFigureStoppedListener;
+import com.example.alina.tetris.enums.FigureType;
+import com.example.alina.tetris.listeners.OnNetManagerChangedListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
+import static com.example.alina.tetris.Values.LINE_WIDTH;
+import static com.example.alina.tetris.Values.MILLIS_IN_FUTURE;
+import static com.example.alina.tetris.Values.SQUARE_COUNT_VERTICAL;
 
 /**
  * Created by Alina on 18.03.2017.
  */
 
-public class PlayingArea extends View implements OnFigureStoppedListener {
+public class PlayingArea extends View implements OnNetManagerChangedListener {
 
     private int widthOfSquareSide;
 
@@ -39,12 +42,6 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
 
     private int scale;
 
-    private final int SQUARE_COUNT_VERTICAL = 10;
-
-    private final int FIGURE_STOPPED_SCORE = 10;
-
-    private final float LINE_WIDTH = 1f;
-
     private final List<FigureType> figureTypeList = new ArrayList<>();
 
     private final List<Figure> figureList = new ArrayList<>();
@@ -55,7 +52,7 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
 
     private FigureCreator figureCreator;
 
-    public TextView score;
+    private ScoreArea scoreArea;
 
     public PlayingArea(@NonNull Context context) {
         super(context);
@@ -78,6 +75,10 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
         figureCreator = new FigureCreator();
     }
 
+    public void setScoreArea(ScoreArea scoreArea) {
+        this.scoreArea = scoreArea;
+    }
+
     private void drawHorizontalLines(Canvas canvas) {
         for (int i = 1; i <= squareCount; i++) {
             canvas.drawLine(0, screenHeight - widthOfSquareSide * i, screenWidth,
@@ -94,7 +95,8 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
 
     private void startMoveDown() {
         netManager.printNet();
-        new CountDownTimer(4000, 2000) {
+        new CountDownTimer(MILLIS_IN_FUTURE + figureList.size() * 1000,
+                COUNT_DOWN_INTERVAL + figureList.size() * 500) {
             public void onTick(long millisUntilFinished) {
 
             }
@@ -104,38 +106,10 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
                     netManager.moveDownInNet();
                     invalidate();
                 } else {
-                    netManager.changeFigureStatus();
+                    netManager.changeFigureState();
                 }
             }
         }.start();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(LINE_WIDTH);
-        drawVerticalLines(canvas);
-        drawHorizontalLines(canvas);
-        for(Figure figure: figureList) {
-            if (figure != null) {
-                Path path = figure.getPath();
-                paint.setColor(figure.getColor());
-                canvas.drawPath(path, paint);
-                if(figure.status == Status.MOVING) {
-                    startMoveDown();
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_VERTICAL;
-        squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
-        scale = widthOfSquareSide - (MeasureSpec.getSize(heightMeasureSpec) % widthOfSquareSide);
-        screenHeight = MeasureSpec.getSize(heightMeasureSpec);
-        screenWidth = MeasureSpec.getSize(widthMeasureSpec);
     }
 
     public void moveLeft() {
@@ -156,8 +130,8 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
         }
     }
 
-    public void addFigure(FigureType figureType) {
-        figureTypeList.add(figureType);
+    public void createFigure() {
+        figureTypeList.add(figureCreator.selectFigure());
         Figure figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
                 widthOfSquareSide, scale, getContext());
         figureList.add(figure);
@@ -168,20 +142,55 @@ public class PlayingArea extends View implements OnFigureStoppedListener {
             netManager = new NetManager();
             netManager.initNet(squareCount, SQUARE_COUNT_VERTICAL);
         }
+        netManager.setOnNetManagerChangedListener(this);
+        netManager.checkBottomLine();
         netManager.initFigure(figure);
-        netManager.setOnFigureStoppedListener(this);
         netManager.printNet();
         invalidate();
     }
 
     @Override
-    public void onFigureStoppedMove() {
-        addFigure(figureCreator.selectFigure());
+    protected void onDraw(Canvas canvas) {
+        paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(LINE_WIDTH);
+        drawVerticalLines(canvas);
+        drawHorizontalLines(canvas);
+        for(Figure figure: figureList) {
+            if (figure != null) {
+                Path path = figure.getPath();
+                paint.setColor(figure.getColor());
+                canvas.drawPath(path, paint);
+                if(figure.getState() == FigureState.MOVING) {
+                    startMoveDown();
+                }
+            }
+        }
     }
 
-    private void setScore(int value) {
-        int scoreValue = Integer.parseInt(score.getText().toString());
-        scoreValue += value;
-        score.setText(scoreValue);
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_VERTICAL;
+        squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
+        scale = widthOfSquareSide - (MeasureSpec.getSize(heightMeasureSpec) % widthOfSquareSide);
+        screenHeight = MeasureSpec.getSize(heightMeasureSpec);
+        screenWidth = MeasureSpec.getSize(widthMeasureSpec);
+    }
+
+    @Override
+    public void onFigureStoppedMove() {
+        scoreArea.sumScoreWhenFigureStopped();
+        createFigure();
+    }
+
+    @Override
+    public void onBottomLineIsTrue() {
+        scoreArea.sumScoreWhenBottomLineIsTrue();
+        //rewrite canvas
+    }
+
+    @Override
+    public void onTopLineHasTrue() {
+        //end game
     }
 }

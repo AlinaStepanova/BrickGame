@@ -3,12 +3,12 @@ package com.example.alina.tetris.figures;
 import android.content.Context;
 import android.graphics.Path;
 import android.graphics.Point;
-import android.util.Log;
 
-import com.example.alina.tetris.NetManager;
-import com.example.alina.tetris.Status;
+import com.example.alina.tetris.enums.FigureState;
 
 import java.util.Random;
+
+import static com.example.alina.tetris.Values.EXTRA_ROWS;
 
 /**
  * Created by Alina on 02.04.2017.
@@ -19,6 +19,8 @@ public abstract class Figure {
     private int startX;
 
     private int startY;
+
+    private FigureState state;
 
     protected Context context;
 
@@ -32,13 +34,11 @@ public abstract class Figure {
 
     public boolean[][] figureMask;
 
-    public Status status;
-
     public Figure(int squareWidth, int scale, Context context) {
         this.squareWidth = squareWidth;
         this.point = initPoint();
         this.scale = scale;
-        this.status = Status.MOVING;
+        this.state = FigureState.MOVING;
         this.context = context;
         coordinatesInPlayingArea = new Point(startX, startY);
     }
@@ -49,7 +49,7 @@ public abstract class Figure {
         int position = new Random().nextInt(arrayOfPositions.length);
         Point point = new Point(arrayOfPositions[position], 0);
         startX = point.x / squareWidth;
-        startY = NetManager.EXTRA_ROWS - (getHeightInSquare());
+        startY = EXTRA_ROWS - (getHeightInSquare());
         return point;
     }
 
@@ -59,6 +59,14 @@ public abstract class Figure {
 
     public int getStartY() {
         return startY;
+    }
+
+    public FigureState getState() {
+        return state;
+    }
+
+    public void setState(FigureState state) {
+        this.state = state;
     }
 
     public void initFigureMask() {

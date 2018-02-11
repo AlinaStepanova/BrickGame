@@ -1,8 +1,8 @@
 package com.example.alina.tetris.figures.factory;
 
 import android.content.Context;
-import android.graphics.Point;
 
+import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.JFigure;
 import com.example.alina.tetris.figures.LFigure;

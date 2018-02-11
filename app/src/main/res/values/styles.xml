@@ -25,7 +25,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/mainColor</item>
         <item name="android:background">@color/white</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/minTextSize</item>
     </style>
