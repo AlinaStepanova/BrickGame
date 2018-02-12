@@ -214,8 +214,10 @@ public class NetManager {
             System.arraycopy(figure.figureMask[i - 1], startPosition, net[coordinateY + i],
                     figure.coordinatesInPlayingArea.x + startPosition, endPosition);
             for (int j = 0; j < zeroNet.length; j++) {
-                System.arraycopy(zeroNet[j], 0, net[coordinateY + i - 1],
-                        figure.coordinatesInPlayingArea.x, figure.figureMask[j].length);
+                /*System.arraycopy(zeroNet[j], 0, net[coordinateY + i - 1],
+                        figure.coordinatesInPlayingArea.x, figure.figureMask[j].length);*/
+                System.arraycopy(zeroNet[j], startPosition, net[coordinateY + i - 1],
+                        figure.coordinatesInPlayingArea.x + startPosition, endPosition);
             }
         }
     }

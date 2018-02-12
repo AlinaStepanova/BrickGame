@@ -45,7 +45,7 @@ public abstract class Figure {
 
     private Point initPoint() {
         int [] arrayOfPositions = new int[] {2 * squareWidth, 3 * squareWidth, 4 * squareWidth,
-                5 * squareWidth, 6 * squareWidth, 7 * squareWidth};
+                5 * squareWidth, 6 * squareWidth};
         int position = new Random().nextInt(arrayOfPositions.length);
         Point point = new Point(arrayOfPositions[position], 0);
         startX = point.x / squareWidth;

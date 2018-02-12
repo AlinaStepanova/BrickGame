@@ -10,10 +10,12 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.figures.Figure;
+import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.figures.factory.FigureFactory;
 import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.listeners.OnNetManagerChangedListener;
@@ -95,8 +97,8 @@ public class PlayingArea extends View implements OnNetManagerChangedListener {
 
     private void startMoveDown() {
         netManager.printNet();
-        new CountDownTimer(MILLIS_IN_FUTURE + figureList.size() * 1000,
-                COUNT_DOWN_INTERVAL + figureList.size() * 500) {
+        new CountDownTimer(MILLIS_IN_FUTURE + figureList.size() * 1500,
+                COUNT_DOWN_INTERVAL + figureList.size() * 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
