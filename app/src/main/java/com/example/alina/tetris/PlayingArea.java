@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
+import static com.example.alina.tetris.Values.ENUM_LENGTH;
+import static com.example.alina.tetris.Values.INITIAL_FIGURE_TYPE_LIST_LENGTH;
 import static com.example.alina.tetris.Values.LINE_WIDTH;
 import static com.example.alina.tetris.Values.MILLIS_IN_FUTURE;
 import static com.example.alina.tetris.Values.SQUARE_COUNT_VERTICAL;
@@ -133,7 +135,11 @@ public class PlayingArea extends View implements OnNetManagerChangedListener {
     }
 
     public void createFigure() {
-        figureTypeList.add(figureCreator.selectFigure());
+        if(figureTypeList.size() < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
+            figureTypeList.add(figureCreator.selectFigure(ENUM_LENGTH));
+        } else {
+            figureTypeList.add(figureCreator.selectFigure());
+        }
         Figure figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
                 widthOfSquareSide, scale, getContext());
         figureList.add(figure);

@@ -16,7 +16,9 @@ import com.example.alina.tetris.figures.SFigure;
 import com.example.alina.tetris.figures.SSecondFigure;
 import com.example.alina.tetris.figures.SquareFigure;
 import com.example.alina.tetris.figures.TFigure;
+import com.example.alina.tetris.figures.TFourthFigure;
 import com.example.alina.tetris.figures.TSecondFigure;
+import com.example.alina.tetris.figures.TThirdFigure;
 import com.example.alina.tetris.figures.ZFigure;
 import com.example.alina.tetris.figures.ZSecondFigure;
 
@@ -54,6 +56,10 @@ public class FigureFactory {
                 return new ZSecondFigure(widthSquare, scale, context);
             case T_SECOND_FIGURE:
                 return new TSecondFigure(widthSquare, scale, context);
+            case T_THIRD_FIGURE:
+                return new TThirdFigure(widthSquare, scale, context);
+            case T_FOURTH_FIGURE:
+                return new TFourthFigure(widthSquare, scale, context);
             default:
                 return null;
         }
