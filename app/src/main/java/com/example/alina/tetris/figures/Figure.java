@@ -53,6 +53,10 @@ public abstract class Figure {
         return point;
     }
 
+    public void increaseScale(int scale) {
+        this.scale -= scale;
+    }
+
     public int getStartX() {
         return startX;
     }

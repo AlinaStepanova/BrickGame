@@ -1,11 +1,11 @@
 package com.example.alina.tetris.enums;
 
 public enum FigureType {
+    LONG_FIGURE,
+    SQUARE_FIGURE,
     LONG_SECOND_FIGURE,
     L_FIGURE,
     J_FIGURE,
-    LONG_FIGURE,
-    SQUARE_FIGURE,
     T_FIGURE,
     J_SECOND_FIGURE,
     S_FIGURE,

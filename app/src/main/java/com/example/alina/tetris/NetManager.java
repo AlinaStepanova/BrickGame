@@ -25,12 +25,15 @@ public class NetManager {
 
     private boolean[][] zeroNet;
 
+    public static int combo;
+
     private final List<Figure> figureListInNet = new ArrayList<>();
 
     private OnNetManagerChangedListener onNetManagerChangedListener;
 
     public NetManager() {
         this.net = null;
+        combo = 0;
     }
 
     private void setNet(boolean[][] net) {
@@ -46,8 +49,8 @@ public class NetManager {
     }
 
     private void copyMaskToNet() {
-        copyArrays(figure.figureMask.length, figure.figureMask, net,
-                figure.getStartX(), figure.figureMask[0].length);
+        copyArrays(figure.figureMask.length, figure.figureMask, net, figure.getStartX(),
+                figure.figureMask[0].length);
     }
 
     private void resetNetAfterMoving(int destinationPosition) {
@@ -94,7 +97,7 @@ public class NetManager {
         return position;
     }
 
-    private int getStartHorizontalPosition(boolean [] mask) {
+    private int getStartHorizontalPosition(boolean[] mask) {
         int position = 0;
         for (int i = 0; i < mask.length; i++) {
             if (mask[i]) {
@@ -105,7 +108,7 @@ public class NetManager {
         return position;
     }
 
-    private int getEndHorizontalPosition(boolean [] mask) {
+    private int getEndHorizontalPosition(boolean[] mask) {
         int trueCount = 0;
         for (int i = 0; i < mask.length; i++) {
             if (mask[i]) {
@@ -152,16 +155,34 @@ public class NetManager {
         }
     }
 
-    public void checkBottomLine() {
-        // TODO check several rows for combo
+    public int checkBottomLine() {
+        int skippedRows = 0;
         int j = 0;
-        for (int i = 0; i < verticalSquareCount; i++) {
-            if (net[horizontalSquareCount + EXTRA_ROWS - 1][i]) {
-                j++;
+        for (int k = horizontalSquareCount + EXTRA_ROWS - 1; k > 0; k--) {
+            for (int i = 0; i < verticalSquareCount; i++) {
+                if (net[k][i]) {
+                    j++;
+                }
             }
+            if (j == SQUARE_COUNT_VERTICAL) {
+                skippedRows = horizontalSquareCount + EXTRA_ROWS - k;
+            }
+            j = 0;
         }
-        if (j == SQUARE_COUNT_VERTICAL) {
-            onNetManagerChangedListener.onBottomLineIsTrue();
+        levelDownNet(skippedRows);
+        combo = skippedRows;
+        onNetManagerChangedListener.onBottomLineIsTrue();
+        return skippedRows;
+    }
+
+    private void levelDownNet(int level) {
+        boolean[][] tmpNet = new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount];
+        for (int i = 0; i < net.length; i++) {
+            System.arraycopy(net[i], 0, tmpNet[i], 0, net[i].length);
+        }
+        setFalseNet(net);
+        for (int i = 0; i < net.length - level; i++) {
+            System.arraycopy(tmpNet[i], 0, net[i + level], 0, tmpNet[i].length);
         }
     }
 
@@ -205,7 +226,7 @@ public class NetManager {
     }
 
     public void moveDownInNet() {
-        boolean[][]zeroNet = new boolean[1][figure.getWidthInSquare()];
+        boolean[][] zeroNet = new boolean[1][figure.getWidthInSquare()];
         int coordinateY = figure.coordinatesInPlayingArea.y;
         coordinateY--;
         for (int i = figure.figureMask.length; i > 0; i--) {
@@ -227,15 +248,12 @@ public class NetManager {
             return;
         }
         StringBuilder str = new StringBuilder();
-        int i = 0;
         for (boolean[] aNet : net) {
-            //str.append(i).append("  ");
             for (int j = 0; j < net[0].length; j++) {
                 str.append(aNet[j] ? 1 : 0);
                 str.append(" ");
             }
             str.append('\n');
-            i++;
         }
         Log.d("logNet", str.toString());
     }

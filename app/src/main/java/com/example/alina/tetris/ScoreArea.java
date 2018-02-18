@@ -3,6 +3,7 @@ package com.example.alina.tetris;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import static com.example.alina.tetris.Values.EXTRA_SCORE;
 import static com.example.alina.tetris.Values.FIGURE_STOPPED_SCORE;
@@ -37,7 +38,7 @@ public class ScoreArea extends AppCompatTextView {
 
     public void sumScoreWhenBottomLineIsTrue() {
         int scoreValue = getScore();
-        scoreValue += EXTRA_SCORE;
+        scoreValue += EXTRA_SCORE * NetManager.combo;
         setScore(scoreValue);
     }
 }

@@ -116,6 +116,12 @@ public class PlayingArea extends View implements OnNetManagerChangedListener {
         }.start();
     }
 
+    private void resetFiguresScale(int count) {
+        for(int i = 0; i < figureList.size() - 1; i++) {
+            figureList.get(i).increaseScale(count * widthOfSquareSide);
+        }
+    }
+
     public void moveLeft() {
         if (netManager.isNetFreeToMoveLeft()) {
             figureList.get(figureList.size() - 1).moveLeft();
@@ -151,7 +157,7 @@ public class PlayingArea extends View implements OnNetManagerChangedListener {
             netManager.initNet(squareCount, SQUARE_COUNT_VERTICAL);
         }
         netManager.setOnNetManagerChangedListener(this);
-        netManager.checkBottomLine();
+        resetFiguresScale(netManager.checkBottomLine());
         netManager.initFigure(figure);
         netManager.printNet();
         invalidate();

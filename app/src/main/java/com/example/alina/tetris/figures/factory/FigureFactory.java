@@ -30,14 +30,10 @@ public class FigureFactory {
                 return new JFigure(widthSquare, scale, context);
             case L_FIGURE:
                 return new LFigure(widthSquare, scale, context);
-            case LONG_FIGURE:
-                return new LongFigure(widthSquare, scale, context);
             case S_FIGURE:
                 return new SFigure(widthSquare, scale, context);
             case T_FIGURE:
                 return new TFigure(widthSquare, scale, context);
-            case LONG_SECOND_FIGURE:
-                return new LongSecondFigure(widthSquare, scale, context);
             case L_SECOND_FIGURE:
                 return new LSecondFigure(widthSquare, scale, context);
             case Z_FIGURE:
@@ -48,8 +44,6 @@ public class FigureFactory {
                 return new JThirdFigure(widthSquare, scale, context);
             case L_THIRD_FIGURE:
                 return new LThirdFigure(widthSquare, scale, context);
-            case SQUARE_FIGURE:
-                return new SquareFigure(widthSquare, scale, context);
             case S_SECOND_FIGURE:
                 return new SSecondFigure(widthSquare, scale, context);
             case Z_SECOND_FIGURE:
@@ -60,6 +54,12 @@ public class FigureFactory {
                 return new TThirdFigure(widthSquare, scale, context);
             case T_FOURTH_FIGURE:
                 return new TFourthFigure(widthSquare, scale, context);
+            case LONG_SECOND_FIGURE:
+                return new LongSecondFigure(widthSquare, scale, context);
+            case SQUARE_FIGURE:
+                return new SquareFigure(widthSquare, scale, context);
+            case LONG_FIGURE:
+                return new LongFigure(widthSquare, scale, context);
             default:
                 return null;
         }
