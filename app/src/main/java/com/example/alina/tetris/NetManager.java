@@ -137,6 +137,20 @@ public class NetManager {
         return result;
     }
 
+    private boolean isLineTrue(boolean[] booleans) {
+        boolean result = false;
+        int j = 0;
+        for (int i = 0; i < verticalSquareCount; i++) {
+            if (booleans[i]) {
+                j++;
+            }
+        }
+        if (j == SQUARE_COUNT_VERTICAL) {
+            result = true;
+        }
+        return result;
+    }
+
     public void setOnNetManagerChangedListener(OnNetManagerChangedListener onNetManagerChangedListener) {
         this.onNetManagerChangedListener = onNetManagerChangedListener;
     }
@@ -157,17 +171,10 @@ public class NetManager {
 
     public int checkBottomLine() {
         int skippedRows = 0;
-        int j = 0;
         for (int k = horizontalSquareCount + EXTRA_ROWS - 1; k > 0; k--) {
-            for (int i = 0; i < verticalSquareCount; i++) {
-                if (net[k][i]) {
-                    j++;
-                }
-            }
-            if (j == SQUARE_COUNT_VERTICAL) {
+            if (isLineTrue(net[k]) && isLineTrue(net[horizontalSquareCount + EXTRA_ROWS - 1])) {
                 skippedRows = horizontalSquareCount + EXTRA_ROWS - k;
             }
-            j = 0;
         }
         levelDownNet(skippedRows);
         combo = skippedRows;
