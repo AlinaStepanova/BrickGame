@@ -1,4 +1,4 @@
-package com.example.alina.tetris;
+package com.example.alina.tetris.values;
 
 
 public class Values {
@@ -11,5 +11,5 @@ public class Values {
     public static final int MILLIS_IN_FUTURE = 4000;
     public static final float LINE_WIDTH = 1f;
     public static final int ENUM_LENGTH = 6;
-    public static final int INITIAL_FIGURE_TYPE_LIST_LENGTH = 4;
+    public static final int INITIAL_FIGURE_TYPE_LIST_LENGTH = 5;
 }

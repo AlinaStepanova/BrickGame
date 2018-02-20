@@ -18,10 +18,6 @@ public class Controller extends LinearLayout {
 
     private OnControllerListener onControllerListener;
 
-    public void setOnControllerListener(OnControllerListener onControllerListener) {
-        this.onControllerListener = onControllerListener;
-    }
-
     public Controller(Context context) {
         super(context);
         setLayout();
@@ -37,7 +33,11 @@ public class Controller extends LinearLayout {
         setLayout();
     }
 
-    public void setLayout() {
+    public void setOnControllerListener(OnControllerListener onControllerListener) {
+        this.onControllerListener = onControllerListener;
+    }
+
+    private void setLayout() {
         View inflate = inflate(getContext(), R.layout.controller, this);
         Button left = (Button) inflate.findViewById(R.id.bLeft);
         Button right = (Button) inflate.findViewById(R.id.bRight);

@@ -5,13 +5,13 @@ import android.util.Log;
 
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.figures.Figure;
-import com.example.alina.tetris.listeners.OnNetManagerChangedListener;
+import com.example.alina.tetris.listeners.OnNetChangedListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.alina.tetris.Values.EXTRA_ROWS;
-import static com.example.alina.tetris.Values.SQUARE_COUNT_VERTICAL;
+import static com.example.alina.tetris.values.Values.EXTRA_ROWS;
+import static com.example.alina.tetris.values.Values.SQUARE_COUNT_VERTICAL;
 
 public class NetManager {
 
@@ -29,7 +29,7 @@ public class NetManager {
 
     private final List<Figure> figureListInNet = new ArrayList<>();
 
-    private OnNetManagerChangedListener onNetManagerChangedListener;
+    private OnNetChangedListener onNetChangedListener;
 
     public NetManager() {
         this.net = null;
@@ -76,16 +76,6 @@ public class NetManager {
         }
     }
 
-    private int getEndVerticalPosition(boolean[][] mask, int column) {
-        int trueCount = 0;
-        for (int i = 0; i < mask.length; i++) {
-            if (mask[i][column]) {
-                trueCount += 1;
-            }
-        }
-        return trueCount;
-    }
-
     private int getStartVerticalPosition(boolean[][] mask, int column) {
         int position = 0;
         for (int i = 0; i < mask.length; i++) {
@@ -95,6 +85,16 @@ public class NetManager {
             }
         }
         return position;
+    }
+
+    private int getEndVerticalPosition(boolean[][] mask, int column) {
+        int trueCount = 0;
+        for (int i = 0; i < mask.length; i++) {
+            if (mask[i][column]) {
+                trueCount += 1;
+            }
+        }
+        return trueCount;
     }
 
     private int getStartHorizontalPosition(boolean[] mask) {
@@ -151,8 +151,19 @@ public class NetManager {
         return result;
     }
 
-    public void setOnNetManagerChangedListener(OnNetManagerChangedListener onNetManagerChangedListener) {
-        this.onNetManagerChangedListener = onNetManagerChangedListener;
+    private void levelDownNet(int level) {
+        boolean[][] tmpNet = new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount];
+        for (int i = 0; i < net.length; i++) {
+            System.arraycopy(net[i], 0, tmpNet[i], 0, net[i].length);
+        }
+        setFalseNet(net);
+        for (int i = 0; i < net.length - level; i++) {
+            System.arraycopy(tmpNet[i], 0, net[i + level], 0, tmpNet[i].length);
+        }
+    }
+
+    public void setOnNetChangedListener(OnNetChangedListener onNetChangedListener) {
+        this.onNetChangedListener = onNetChangedListener;
     }
 
     public void initFigure(Figure figure) {
@@ -165,7 +176,7 @@ public class NetManager {
     public void changeFigureState() {
         if (!isNetFreeToMoveDown()) {
             figure.setState(FigureState.STOPPED);
-            onNetManagerChangedListener.onFigureStoppedMove();
+            onNetChangedListener.onFigureStoppedMove();
         }
     }
 
@@ -178,32 +189,8 @@ public class NetManager {
         }
         levelDownNet(skippedRows);
         combo = skippedRows;
-        onNetManagerChangedListener.onBottomLineIsTrue();
+        onNetChangedListener.onBottomLineIsTrue();
         return skippedRows;
-    }
-
-    private void levelDownNet(int level) {
-        boolean[][] tmpNet = new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount];
-        for (int i = 0; i < net.length; i++) {
-            System.arraycopy(net[i], 0, tmpNet[i], 0, net[i].length);
-        }
-        setFalseNet(net);
-        for (int i = 0; i < net.length - level; i++) {
-            System.arraycopy(tmpNet[i], 0, net[i + level], 0, tmpNet[i].length);
-        }
-    }
-
-    public void moveLeftInNet() {
-        setFalseNet(zeroNet);
-        moveFigure();
-        resetNetAfterMoving(figure.coordinatesInPlayingArea.x
-                + figure.getWidthInSquare());
-    }
-
-    public void moveRightInNet() {
-        setFalseNet(zeroNet);
-        moveFigure();
-        resetNetAfterMoving(figure.coordinatesInPlayingArea.x - 1);
     }
 
     public boolean isNetFreeToMoveDown() {
@@ -230,6 +217,19 @@ public class NetManager {
             result = true;
         }
         return result;
+    }
+
+    public void moveRightInNet() {
+        setFalseNet(zeroNet);
+        moveFigure();
+        resetNetAfterMoving(figure.coordinatesInPlayingArea.x - 1);
+    }
+
+    public void moveLeftInNet() {
+        setFalseNet(zeroNet);
+        moveFigure();
+        resetNetAfterMoving(figure.coordinatesInPlayingArea.x
+                + figure.getWidthInSquare());
     }
 
     public void moveDownInNet() {

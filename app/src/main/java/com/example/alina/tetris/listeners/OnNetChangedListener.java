@@ -1,7 +1,7 @@
 package com.example.alina.tetris.listeners;
 
 
-public interface OnNetManagerChangedListener {
+public interface OnNetChangedListener {
 
     void onFigureStoppedMove();
 

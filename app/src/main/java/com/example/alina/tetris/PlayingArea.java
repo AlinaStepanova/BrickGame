@@ -10,7 +10,6 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.example.alina.tetris.enums.FigureState;
@@ -18,23 +17,23 @@ import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.figures.factory.FigureFactory;
 import com.example.alina.tetris.enums.FigureType;
-import com.example.alina.tetris.listeners.OnNetManagerChangedListener;
+import com.example.alina.tetris.listeners.OnNetChangedListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
-import static com.example.alina.tetris.Values.ENUM_LENGTH;
-import static com.example.alina.tetris.Values.INITIAL_FIGURE_TYPE_LIST_LENGTH;
-import static com.example.alina.tetris.Values.LINE_WIDTH;
-import static com.example.alina.tetris.Values.MILLIS_IN_FUTURE;
-import static com.example.alina.tetris.Values.SQUARE_COUNT_VERTICAL;
+import static com.example.alina.tetris.values.Values.COUNT_DOWN_INTERVAL;
+import static com.example.alina.tetris.values.Values.ENUM_LENGTH;
+import static com.example.alina.tetris.values.Values.INITIAL_FIGURE_TYPE_LIST_LENGTH;
+import static com.example.alina.tetris.values.Values.LINE_WIDTH;
+import static com.example.alina.tetris.values.Values.MILLIS_IN_FUTURE;
+import static com.example.alina.tetris.values.Values.SQUARE_COUNT_VERTICAL;
 
 /**
  * Created by Alina on 18.03.2017.
  */
 
-public class PlayingArea extends View implements OnNetManagerChangedListener {
+public class PlayingArea extends View implements OnNetChangedListener {
 
     private int widthOfSquareSide;
 
@@ -156,7 +155,7 @@ public class PlayingArea extends View implements OnNetManagerChangedListener {
             netManager = new NetManager();
             netManager.initNet(squareCount, SQUARE_COUNT_VERTICAL);
         }
-        netManager.setOnNetManagerChangedListener(this);
+        netManager.setOnNetChangedListener(this);
         resetFiguresScale(netManager.checkBottomLine());
         netManager.initFigure(figure);
         netManager.printNet();
@@ -200,7 +199,6 @@ public class PlayingArea extends View implements OnNetManagerChangedListener {
     @Override
     public void onBottomLineIsTrue() {
         scoreArea.sumScoreWhenBottomLineIsTrue();
-        //rewrite canvas
     }
 
     @Override
