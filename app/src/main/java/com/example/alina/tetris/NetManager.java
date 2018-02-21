@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.alina.tetris.values.Values.EXTRA_ROWS;
-import static com.example.alina.tetris.values.Values.SQUARE_COUNT_VERTICAL;
+import static com.example.alina.tetris.values.Values.SQUARE_COUNT_HORIZONTAL;
 
 public class NetManager {
 
@@ -63,8 +63,8 @@ public class NetManager {
     private void moveFigure() {
         for (int i = 0; i < figure.figureMask.length; i++) {
             System.arraycopy(figure.figureMask[i], 0,
-                    net[figure.coordinatesInPlayingArea.y + i],
-                    figure.coordinatesInPlayingArea.x, figure.getWidthInSquare());
+                    net[figure.coordinatesInPlayingArea.y + i], figure.coordinatesInPlayingArea.x,
+                    figure.getWidthInSquare());
         }
     }
 
@@ -89,8 +89,8 @@ public class NetManager {
 
     private int getEndVerticalPosition(boolean[][] mask, int column) {
         int trueCount = 0;
-        for (int i = 0; i < mask.length; i++) {
-            if (mask[i][column]) {
+        for (boolean[] aMask : mask) {
+            if (aMask[column]) {
                 trueCount += 1;
             }
         }
@@ -110,8 +110,8 @@ public class NetManager {
 
     private int getEndHorizontalPosition(boolean[] mask) {
         int trueCount = 0;
-        for (int i = 0; i < mask.length; i++) {
-            if (mask[i]) {
+        for (boolean aMask : mask) {
+            if (aMask) {
                 trueCount += 1;
             }
         }
@@ -137,20 +137,6 @@ public class NetManager {
         return result;
     }
 
-    private boolean isLineTrue(boolean[] booleans) {
-        boolean result = false;
-        int j = 0;
-        for (int i = 0; i < verticalSquareCount; i++) {
-            if (booleans[i]) {
-                j++;
-            }
-        }
-        if (j == SQUARE_COUNT_VERTICAL) {
-            result = true;
-        }
-        return result;
-    }
-
     private void levelDownNet(int level) {
         boolean[][] tmpNet = new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount];
         for (int i = 0; i < net.length; i++) {
@@ -160,6 +146,51 @@ public class NetManager {
         for (int i = 0; i < net.length - level; i++) {
             System.arraycopy(tmpNet[i], 0, net[i + level], 0, tmpNet[i].length);
         }
+    }
+
+    private boolean isHorizontalLineTrue(boolean[] booleans) {
+        boolean result = false;
+        int j = 0;
+        for (int i = 0; i < verticalSquareCount; i++) {
+            if (booleans[i]) {
+                j++;
+            }
+        }
+        if (j == SQUARE_COUNT_HORIZONTAL) {
+            result = true;
+        }
+        return result;
+    }
+
+    private int getMaxCountOfTrue(int values[][]) {
+        int max = values[1][0];
+        for (int[] value : values) {
+            if (value[0] > max) {
+                Log.d("val", "value = " + value[0]);
+                max = value[0];
+            }
+        }
+        Log.d("val", "max = " + max);
+        return max;
+    }
+
+    public boolean isVerticalLineTrue() {
+        boolean result = false;
+        int [][] values = new int[verticalSquareCount][1];
+        for (int i = 0; i < verticalSquareCount; i++) {
+            for (int j = EXTRA_ROWS - 1; j < horizontalSquareCount + EXTRA_ROWS; j++) {
+                if (net[j][i]) {
+                    values[i][0] = horizontalSquareCount + EXTRA_ROWS - j;
+                    break;
+                }
+            }
+            if (getMaxCountOfTrue(values) >= horizontalSquareCount + 1) {
+                result = true;
+                onNetChangedListener.onTopLineHasTrue();
+                break;
+            }
+        }
+        return result;
     }
 
     public void setOnNetChangedListener(OnNetChangedListener onNetChangedListener) {
@@ -182,9 +213,10 @@ public class NetManager {
 
     public int checkBottomLine() {
         int skippedRows = 0;
-        for (int k = horizontalSquareCount + EXTRA_ROWS - 1; k > 0; k--) {
-            if (isLineTrue(net[k]) && isLineTrue(net[horizontalSquareCount + EXTRA_ROWS - 1])) {
-                skippedRows = horizontalSquareCount + EXTRA_ROWS - k;
+        for (int i = horizontalSquareCount + EXTRA_ROWS - 1; i > 0; i--) {
+            if (isHorizontalLineTrue(net[i])
+                    && isHorizontalLineTrue(net[horizontalSquareCount + EXTRA_ROWS - 1])) {
+                skippedRows = horizontalSquareCount + EXTRA_ROWS - i;
             }
         }
         levelDownNet(skippedRows);
@@ -242,8 +274,6 @@ public class NetManager {
             System.arraycopy(figure.figureMask[i - 1], startPosition, net[coordinateY + i],
                     figure.coordinatesInPlayingArea.x + startPosition, endPosition);
             for (int j = 0; j < zeroNet.length; j++) {
-                /*System.arraycopy(zeroNet[j], 0, net[coordinateY + i - 1],
-                        figure.coordinatesInPlayingArea.x, figure.figureMask[j].length);*/
                 System.arraycopy(zeroNet[j], startPosition, net[coordinateY + i - 1],
                         figure.coordinatesInPlayingArea.x + startPosition, endPosition);
             }
@@ -268,7 +298,7 @@ public class NetManager {
     public void initNet(int horizontalSquareCount, int verticalSquareCount) {
         setNet(new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount]);
         setFalseNet(net);
-        this.horizontalSquareCount = horizontalSquareCount;
-        this.verticalSquareCount = verticalSquareCount;
+        this.horizontalSquareCount = horizontalSquareCount; //20
+        this.verticalSquareCount = verticalSquareCount; //10
     }
 }

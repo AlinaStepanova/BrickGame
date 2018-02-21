@@ -10,6 +10,7 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.example.alina.tetris.enums.FigureState;
@@ -27,7 +28,7 @@ import static com.example.alina.tetris.values.Values.ENUM_LENGTH;
 import static com.example.alina.tetris.values.Values.INITIAL_FIGURE_TYPE_LIST_LENGTH;
 import static com.example.alina.tetris.values.Values.LINE_WIDTH;
 import static com.example.alina.tetris.values.Values.MILLIS_IN_FUTURE;
-import static com.example.alina.tetris.values.Values.SQUARE_COUNT_VERTICAL;
+import static com.example.alina.tetris.values.Values.SQUARE_COUNT_HORIZONTAL;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -37,7 +38,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     private int widthOfSquareSide;
 
-    private int squareCount;
+    private int verticalSquareCount;
 
     private int screenHeight;
 
@@ -83,14 +84,14 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     private void drawHorizontalLines(Canvas canvas) {
-        for (int i = 1; i <= squareCount; i++) {
+        for (int i = 1; i <= verticalSquareCount; i++) {
             canvas.drawLine(0, screenHeight - widthOfSquareSide * i, screenWidth,
                     screenHeight - widthOfSquareSide * i, paint);
         }
     }
 
     private void drawVerticalLines(Canvas canvas) {
-        for (int i = 1; i <= SQUARE_COUNT_VERTICAL; i++) {
+        for (int i = 1; i <= SQUARE_COUNT_HORIZONTAL; i++) {
             canvas.drawLine(i * widthOfSquareSide, 0, i * widthOfSquareSide,
                     screenHeight, paint);
         }
@@ -153,13 +154,15 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
         if (netManager == null) {
             netManager = new NetManager();
-            netManager.initNet(squareCount, SQUARE_COUNT_VERTICAL);
+            netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL);
         }
-        netManager.setOnNetChangedListener(this);
-        resetFiguresScale(netManager.checkBottomLine());
-        netManager.initFigure(figure);
-        netManager.printNet();
-        invalidate();
+        if (!netManager.isVerticalLineTrue()) {
+            netManager.setOnNetChangedListener(this);
+            resetFiguresScale(netManager.checkBottomLine());
+            netManager.initFigure(figure);
+            netManager.printNet();
+            invalidate();
+        }
     }
 
     @Override
@@ -183,8 +186,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_VERTICAL;
-        squareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
+        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_HORIZONTAL;
+        verticalSquareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
         scale = widthOfSquareSide - (MeasureSpec.getSize(heightMeasureSpec) % widthOfSquareSide);
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
         screenWidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -192,8 +195,10 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     @Override
     public void onFigureStoppedMove() {
-        scoreArea.sumScoreWhenFigureStopped();
-        createFigure();
+        if (!netManager.isVerticalLineTrue()) {
+            scoreArea.sumScoreWhenFigureStopped();
+            createFigure();
+        }
     }
 
     @Override
@@ -203,6 +208,6 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     @Override
     public void onTopLineHasTrue() {
-        //end game
+        //start menu activity
     }
 }
