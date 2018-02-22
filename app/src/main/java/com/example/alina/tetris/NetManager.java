@@ -137,6 +137,35 @@ public class NetManager {
         return result;
     }
 
+    private boolean isFigureLeft() {
+        boolean result = false;
+        int coordinateY = figure.coordinatesInPlayingArea.y;
+        int coordinateX = figure.coordinatesInPlayingArea.x;
+        for (int i = 0; i < figure.getHeightInSquare(); i++) {
+            int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i]);
+            if (net[coordinateY + i][coordinateX + startHorizontalPos - 1]) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    private boolean isFigureRight() {
+        boolean result = false;
+        int coordinateY = figure.coordinatesInPlayingArea.y;
+        int coordinateX = figure.coordinatesInPlayingArea.x;
+        for (int i = 0; i < figure.getHeightInSquare(); i++) {
+            int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i]);
+            int endHorizontalPos = getEndHorizontalPosition(figure.figureMask[i]);
+            if (net[coordinateY + i][coordinateX + startHorizontalPos + endHorizontalPos]) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
     private void levelDownNet(int level) {
         boolean[][] tmpNet = new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount];
         for (int i = 0; i < net.length; i++) {
@@ -166,11 +195,9 @@ public class NetManager {
         int max = values[1][0];
         for (int[] value : values) {
             if (value[0] > max) {
-                Log.d("val", "value = " + value[0]);
                 max = value[0];
             }
         }
-        Log.d("val", "max = " + max);
         return max;
     }
 
@@ -236,7 +263,7 @@ public class NetManager {
 
     public boolean isNetFreeToMoveLeft() {
         boolean result = false;
-        if (figure.coordinatesInPlayingArea.x != 0 && isNetFreeToMoveDown()) {
+        if (figure.coordinatesInPlayingArea.x != 0 && isNetFreeToMoveDown() && !isFigureLeft()) {
             result = true;
         }
         return result;
@@ -245,7 +272,7 @@ public class NetManager {
     public boolean isNetFreeToMoveRight() {
         boolean result = false;
         if (figure.coordinatesInPlayingArea.x + figure.getWidthInSquare() < verticalSquareCount
-                && isNetFreeToMoveDown()) {
+                && isNetFreeToMoveDown() && !isFigureRight()) {
             result = true;
         }
         return result;
