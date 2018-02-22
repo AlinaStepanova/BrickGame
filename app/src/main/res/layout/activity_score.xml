@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/llScores"
+              style="@style/linear_layout_style">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:background="@drawable/scores_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvScoresTitle"
+                android:text="@string/scores"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/mainTextSize"
+                android:textStyle="bold"
+                style="@style/text_view_style"/>
+
+            <TextView
+                android:id="@+id/tvFirstScore"
+                android:text="@string/initial_score"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/midTextSize"
+                style="@style/text_view_style"/>
+
+            <TextView
+                android:id="@+id/tvSecondScore"
+                android:text="@string/initial_score"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/midTextSize"
+                style="@style/text_view_style"/>
+
+            <TextView
+                android:id="@+id/tvThirdScore"
+                android:text="@string/initial_score"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/midTextSize"
+                style="@style/text_view_style"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

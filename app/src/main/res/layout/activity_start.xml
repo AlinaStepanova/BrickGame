@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/llStart"
+              style="@style/linear_layout_style">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvGameTitle"
+                android:text="@string/gameTitle"
+                android:textColor="@color/white"
+                android:textSize="@dimen/mainTextSize"
+                android:textStyle="bold"
+                style="@style/text_view_style"/>
+
+            <Button
+                android:id="@+id/bStartGame"
+                android:text="@string/new_game"
+                android:textStyle="bold"
+                style="@style/main_buttons_style"/>
+
+            <Button
+                android:id="@+id/bScores"
+                android:textStyle="italic"
+                android:text="@string/scores_text"
+                style="@style/main_buttons_style"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

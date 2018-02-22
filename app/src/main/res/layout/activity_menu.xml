@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/llMenu"
+              style="@style/linear_layout_style">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/bRestartGame"
+                android:text="@string/restart_game"
+                android:textStyle="italic"
+                style="@style/main_buttons_style"/>
+
+            <Button
+                android:id="@+id/bStartGameMenu"
+                android:text="@string/new_game"
+                android:textStyle="bold"
+                style="@style/main_buttons_style"/>
+
+            <Button
+                android:id="@+id/bScoresMenu"
+                android:textStyle="italic"
+                style="@style/main_buttons_style"
+                android:text="@string/scores_text"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

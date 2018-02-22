@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="buttonStyle">
+    <style name="main_activity_button_Style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
@@ -28,6 +28,35 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/minTextSize</item>
+    </style>
+
+    <style name="main_buttons_style">
+        <item name="android:layout_marginStart">@dimen/maxMargin</item>
+        <item name="android:layout_marginEnd">@dimen/maxMargin</item>
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/midTextSize</item>
+        <item name="android:layout_marginTop">@dimen/mainMargin</item>
+        <item name="android:layout_marginBottom">@dimen/mainMargin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="linear_layout_style">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/start_activity_shape</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="text_view_style">
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/mainMargin</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>
