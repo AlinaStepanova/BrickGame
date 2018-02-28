@@ -1,11 +1,13 @@
 package com.example.alina.tetris;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +15,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.example.alina.tetris.activities.MainActivity;
+import com.example.alina.tetris.activities.StartActivity;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
@@ -58,6 +62,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     private ScoreArea scoreArea;
 
+    private ScoreCounter scoreCounter;
+
     public PlayingArea(@NonNull Context context) {
         super(context);
         init();
@@ -77,6 +83,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     private void init() {
         paint = new Paint();
         figureCreator = new FigureCreator();
+        scoreCounter = new ScoreCounter(getContext());
     }
 
     public void setScoreArea(ScoreArea scoreArea) {
@@ -162,6 +169,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
             netManager.initFigure(figure);
             netManager.printNet();
             invalidate();
+        } else {
+            Log.d("pref", "in createFigure");
         }
     }
 
@@ -198,6 +207,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
         if (!netManager.isVerticalLineTrue()) {
             scoreArea.sumScoreWhenFigureStopped();
             createFigure();
+        } else {
+            Log.d("pref", "in onFigureStoppedMove");
         }
     }
 
@@ -208,6 +219,6 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     @Override
     public void onTopLineHasTrue() {
-        //start menu activity
+        scoreCounter.putNewScore(scoreArea.getScore());
     }
 }

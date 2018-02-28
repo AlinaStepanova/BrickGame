@@ -12,4 +12,9 @@ public class Values {
     public static final float LINE_WIDTH = 1f;
     public static final int ENUM_LENGTH = 6;
     public static final int INITIAL_FIGURE_TYPE_LIST_LENGTH = 5;
+    public static final int DEFAULT_VALUE = 0;
+    public static final String PREFERENCES_KEY = "com.example.alina.tetris.PREFERENCE_KEY";
+    public static final String FIRST_VALUE_KEY = "first value";
+    public static final String SECOND_VALUE_KEY = "second value";
+    public static final String THIRD_VALUE_KEY = "third value";
 }

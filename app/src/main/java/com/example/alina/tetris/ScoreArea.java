@@ -4,8 +4,10 @@ import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.alina.tetris.values.Values.EXTRA_SCORE;
 import static com.example.alina.tetris.values.Values.FIGURE_STOPPED_SCORE;
+import static com.example.alina.tetris.values.Values.PREFERENCES_KEY;
 
 public class ScoreArea extends AppCompatTextView {
 
@@ -21,7 +23,7 @@ public class ScoreArea extends AppCompatTextView {
         super(context, attrs, defStyleAttr);
     }
 
-    private int getScore() {
+    public int getScore() {
         return Integer.parseInt(getText().toString());
     }
 

@@ -17,7 +17,7 @@
             <TextView
                 android:id="@+id/tvScoresTitle"
                 android:text="@string/scores"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/mainColor"
                 android:textSize="@dimen/mainTextSize"
                 android:textStyle="bold"
                 style="@style/text_view_style"/>
@@ -32,14 +32,14 @@
             <TextView
                 android:id="@+id/tvSecondScore"
                 android:text="@string/initial_score"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/mainColor"
                 android:textSize="@dimen/midTextSize"
                 style="@style/text_view_style"/>
 
             <TextView
                 android:id="@+id/tvThirdScore"
                 android:text="@string/initial_score"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/mainColor"
                 android:textSize="@dimen/midTextSize"
                 style="@style/text_view_style"/>
 

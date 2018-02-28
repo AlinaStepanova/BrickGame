@@ -28,7 +28,7 @@
                 style="@style/main_buttons_style"/>
 
             <Button
-                android:id="@+id/bScores"
+                android:id="@+id/bOpenScores"
                 android:textStyle="italic"
                 android:text="@string/scores_text"
                 style="@style/main_buttons_style"/>
