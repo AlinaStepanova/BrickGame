@@ -23,17 +23,7 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
         playingArea.setScoreArea(scoreArea);
         Controller controller = (Controller) findViewById(R.id.controller);
         controller.setOnControllerListener(this);
-        createFigure();
-    }
-
-    private void createFigure() {
-        new Handler().postDelayed(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        playingArea.createFigure();
-                    }
-                }, 2000);
+        playingArea.createFigureWithDelay();
     }
 
     @Override

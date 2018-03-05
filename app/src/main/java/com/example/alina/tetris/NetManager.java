@@ -213,6 +213,7 @@ public class NetManager {
             }
             if (getMaxCountOfTrue(values) >= horizontalSquareCount + 1) {
                 result = true;
+                figure.setState(FigureState.STOPPED);
                 onNetChangedListener.onTopLineHasTrue();
                 break;
             }

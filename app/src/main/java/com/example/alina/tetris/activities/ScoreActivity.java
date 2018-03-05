@@ -26,7 +26,6 @@ public class ScoreActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("pref", "in onResume fs");
         firstScore.setText(scoreCounter.getFirstValue());
         secondScore.setText(scoreCounter.getSecondValue());
         thirdScore.setText(scoreCounter.getThirdValue());

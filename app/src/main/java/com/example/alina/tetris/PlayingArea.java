@@ -1,7 +1,7 @@
 package com.example.alina.tetris;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,14 +14,13 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
-import com.example.alina.tetris.activities.MainActivity;
-import com.example.alina.tetris.activities.StartActivity;
 import com.example.alina.tetris.enums.FigureState;
+import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.figures.factory.FigureFactory;
-import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.listeners.OnNetChangedListener;
 
 import java.util.ArrayList;
@@ -29,6 +28,7 @@ import java.util.List;
 
 import static com.example.alina.tetris.values.Values.COUNT_DOWN_INTERVAL;
 import static com.example.alina.tetris.values.Values.ENUM_LENGTH;
+import static com.example.alina.tetris.values.Values.GAME_OVER_TEXT;
 import static com.example.alina.tetris.values.Values.INITIAL_FIGURE_TYPE_LIST_LENGTH;
 import static com.example.alina.tetris.values.Values.LINE_WIDTH;
 import static com.example.alina.tetris.values.Values.MILLIS_IN_FUTURE;
@@ -64,26 +64,29 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     private ScoreCounter scoreCounter;
 
+    private Context context;
+
     public PlayingArea(@NonNull Context context) {
         super(context);
-        init();
+        init(context);
     }
 
     public PlayingArea(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context);
     }
 
     public PlayingArea(@NonNull Context context, @Nullable AttributeSet attrs,
                        @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context);
     }
 
-    private void init() {
+    private void init(Context context) {
         paint = new Paint();
         figureCreator = new FigureCreator();
         scoreCounter = new ScoreCounter(getContext());
+        this.context = context;
     }
 
     public void setScoreArea(ScoreArea scoreArea) {
@@ -106,26 +109,57 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     private void startMoveDown() {
         netManager.printNet();
-        new CountDownTimer(MILLIS_IN_FUTURE + figureList.size() * 1500,
+        CountDownTimer timer =
+                new CountDownTimer(MILLIS_IN_FUTURE + figureList.size() * 1500,
                 COUNT_DOWN_INTERVAL + figureList.size() * 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
             public void onFinish() {
-                if (netManager.isNetFreeToMoveDown()) {
+                if(figureList.get(figureList.size() - 1).getState() == FigureState.MOVING) {
                     figureList.get(figureList.size() - 1).moveDown();
                     netManager.moveDownInNet();
                     invalidate();
-                } else {
-                    netManager.changeFigureState();
                 }
             }
-        }.start();
+        };
+        if (!netManager.isNetFreeToMoveDown()) {
+            netManager.changeFigureState();
+            timer.cancel();
+        } else {
+            timer.start();
+        }
     }
 
     private void resetFiguresScale(int count) {
         for(int i = 0; i < figureList.size() - 1; i++) {
             figureList.get(i).increaseScale(count * widthOfSquareSide);
+        }
+    }
+
+    private void createFigure() {
+        if(figureTypeList.size() < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
+            figureTypeList.add(figureCreator.selectFigure(ENUM_LENGTH));
+        } else {
+            figureTypeList.add(figureCreator.selectFigure());
+        }
+        Figure figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
+                widthOfSquareSide, scale, getContext());
+        Log.d("pref", figureTypeList.get(figureTypeList.size() - 1).toString());
+        figureList.add(figure);
+        if (figure != null) {
+            figure.initFigureMask();
+        }
+        if (netManager == null) {
+            netManager = new NetManager();
+            netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL);
+        }
+        if (!netManager.isVerticalLineTrue()) {
+            netManager.setOnNetChangedListener(this);
+            resetFiguresScale(netManager.checkBottomLine());
+            netManager.initFigure(figure);
+            netManager.printNet();
+            invalidate();
         }
     }
 
@@ -147,31 +181,13 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
     }
 
-    public void createFigure() {
-        if(figureTypeList.size() < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
-            figureTypeList.add(figureCreator.selectFigure(ENUM_LENGTH));
-        } else {
-            figureTypeList.add(figureCreator.selectFigure());
-        }
-        Figure figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
-                widthOfSquareSide, scale, getContext());
-        figureList.add(figure);
-        if (figure != null) {
-            figure.initFigureMask();
-        }
-        if (netManager == null) {
-            netManager = new NetManager();
-            netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL);
-        }
-        if (!netManager.isVerticalLineTrue()) {
-            netManager.setOnNetChangedListener(this);
-            resetFiguresScale(netManager.checkBottomLine());
-            netManager.initFigure(figure);
-            netManager.printNet();
-            invalidate();
-        } else {
-            Log.d("pref", "in createFigure");
-        }
+    public void createFigureWithDelay() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                createFigure();
+            }
+        }, 1500);
     }
 
     @Override
@@ -207,8 +223,6 @@ public class PlayingArea extends View implements OnNetChangedListener {
         if (!netManager.isVerticalLineTrue()) {
             scoreArea.sumScoreWhenFigureStopped();
             createFigure();
-        } else {
-            Log.d("pref", "in onFigureStoppedMove");
         }
     }
 
@@ -220,5 +234,12 @@ public class PlayingArea extends View implements OnNetChangedListener {
     @Override
     public void onTopLineHasTrue() {
         scoreCounter.putNewScore(scoreArea.getScore());
+        Toast.makeText(context, GAME_OVER_TEXT, Toast.LENGTH_LONG).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((Activity)context).finish();
+            }
+        }, 4000);
     }
 }

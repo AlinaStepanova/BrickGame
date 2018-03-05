@@ -17,4 +17,5 @@ public class Values {
     public static final String FIRST_VALUE_KEY = "first value";
     public static final String SECOND_VALUE_KEY = "second value";
     public static final String THIRD_VALUE_KEY = "third value";
+    public static final String GAME_OVER_TEXT = "GAME OVER";
 }
