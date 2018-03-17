@@ -8,33 +8,25 @@ import android.widget.Button;
 
 import com.example.alina.tetris.R;
 
-public class StartActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        initButtons();
+        ButterKnife.bind(this);
     }
 
-    private void initButtons() {
-        Button openMainActivityButton = (Button) findViewById(R.id.bStartGame);
-        openMainActivityButton.setOnClickListener(this);
-        Button openScoreActivityButton = (Button) findViewById(R.id.bOpenScores);
-        openScoreActivityButton.setOnClickListener(this);
+    @OnClick (R.id.bStartGame)
+    void startGame() {
+        this.startActivity(new Intent(this, MainActivity.class));
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.bStartGame:
-                this.startActivity(new Intent(this, MainActivity.class));
-                break;
-            case R.id.bOpenScores:
-                this.startActivity(new Intent(this, ScoreActivity.class));
-                break;
-            default:
-                break;
-        }
+    @OnClick (R.id.bOpenScores)
+    void openScores() {
+        this.startActivity(new Intent(this, ScoreActivity.class));
     }
 }

@@ -5,14 +5,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.alina.tetris.PlayingArea;
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.ScoreCounter;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ScoreActivity extends AppCompatActivity {
 
-    private TextView firstScore;
-    private TextView secondScore;
-    private TextView thirdScore;
+    @BindView(R.id.tvFirstScore)
+    TextView firstScore;
+    @BindView(R.id.tvSecondScore)
+    TextView secondScore;
+    @BindView(R.id.tvThirdScore)
+    TextView thirdScore;
     private ScoreCounter scoreCounter;
 
     @Override
@@ -20,7 +27,7 @@ public class ScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
         scoreCounter = new ScoreCounter(getApplicationContext());
-        initDefaultValues();
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -29,11 +36,5 @@ public class ScoreActivity extends AppCompatActivity {
         firstScore.setText(scoreCounter.getFirstValue());
         secondScore.setText(scoreCounter.getSecondValue());
         thirdScore.setText(scoreCounter.getThirdValue());
-    }
-
-    private void initDefaultValues() {
-        firstScore = (TextView) findViewById(R.id.tvFirstScore);
-        secondScore = (TextView) findViewById(R.id.tvSecondScore);
-        thirdScore = (TextView) findViewById(R.id.tvThirdScore);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.alina.tetris.activities;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.alina.tetris.Controller;
@@ -10,18 +9,25 @@ import com.example.alina.tetris.R;
 import com.example.alina.tetris.ScoreArea;
 import com.example.alina.tetris.listeners.OnControllerListener;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+
 public class MainActivity extends AppCompatActivity implements OnControllerListener {
 
-    private PlayingArea playingArea;
+    @BindView(R.id.pole)
+    PlayingArea playingArea;
+    @BindView(R.id.tvScore)
+    ScoreArea scoreArea;
+    @BindView(R.id.controller)
+    Controller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        playingArea = (PlayingArea) findViewById(R.id.pole);
-        ScoreArea scoreArea = (ScoreArea) findViewById(R.id.tvScore);
+        ButterKnife.bind(this);
         playingArea.setScoreArea(scoreArea);
-        Controller controller = (Controller) findViewById(R.id.controller);
         controller.setOnControllerListener(this);
         playingArea.createFigureWithDelay();
     }
