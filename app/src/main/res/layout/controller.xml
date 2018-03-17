@@ -11,11 +11,13 @@
         android:id="@+id/bLeft"
         android:background="@android:color/holo_blue_bright"
         android:text="@string/left"
+        android:minHeight="75dip"
         style="@style/main_activity_button_Style"/>
 
     <Button
         android:id="@+id/bRight"
         style="@style/main_activity_button_Style"
         android:background="@android:color/holo_blue_light"
+        android:minHeight="75dip"
         android:text="@string/right" />
 </LinearLayout>

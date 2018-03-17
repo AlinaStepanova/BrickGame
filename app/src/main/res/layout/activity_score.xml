@@ -42,7 +42,6 @@
                 android:textColor="@color/mainColor"
                 android:textSize="@dimen/midTextSize"
                 style="@style/text_view_style"/>
-
         </LinearLayout>
 
     </RelativeLayout>

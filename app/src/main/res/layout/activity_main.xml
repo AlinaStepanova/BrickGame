@@ -31,7 +31,7 @@
             <TextView
                 android:gravity="bottom"
                 android:textSize="@dimen/midTextSize"
-                android:layout_weight="0.1"
+                android:layout_weight="0.2"
                 android:text="@string/scoreText"
                 style="@style/simpleStyle"/>
 
@@ -50,16 +50,8 @@
                 android:background="@color/white"
                 android:layout_height="0dp">
             </com.example.alina.tetris.Controller>
-
-            <Button
-                android:id="@+id/bMenu"
-                android:layout_weight="0.1"
-                android:text="@string/menu"
-                android:elevation="@dimen/elevation"
-                android:background="@color/mainColor"
-                android:textColor="@color/white"
-                style="@style/simpleStyle"/>
         </LinearLayout>
 
     </LinearLayout>
+
 </LinearLayout>

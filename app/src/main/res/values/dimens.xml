@@ -8,7 +8,7 @@
     <dimen name="midPadding">20dp</dimen>
     <dimen name="elevation">10dp</dimen>
     <dimen name="mainMargin">10dp</dimen>
-    <dimen name="maxMargin">25dp</dimen>
+    <dimen name="maxMargin">30dp</dimen>
     <dimen name="maxRadius">30dp</dimen>
     <dimen name="minRadius">2dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
