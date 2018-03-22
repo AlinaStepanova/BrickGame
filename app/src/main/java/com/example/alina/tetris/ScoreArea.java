@@ -3,11 +3,11 @@ package com.example.alina.tetris;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
-import static android.content.Context.MODE_PRIVATE;
 import static com.example.alina.tetris.values.Values.EXTRA_SCORE;
 import static com.example.alina.tetris.values.Values.FIGURE_STOPPED_SCORE;
-import static com.example.alina.tetris.values.Values.PREFERENCES_KEY;
 
 public class ScoreArea extends AppCompatTextView {
 
