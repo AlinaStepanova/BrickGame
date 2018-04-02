@@ -2,22 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llController"
     android:orientation="horizontal"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:gravity="center"
     android:layout_weight="1"
-    android:layout_height="fill_parent">
+    android:layout_height="match_parent">
 
-    <Button
+    <ImageButton
         android:id="@+id/bLeft"
         android:background="@android:color/holo_blue_bright"
-        android:text="@string/left"
-        android:minHeight="75dip"
+        android:src="@drawable/ic_left_white_24dp"
         style="@style/main_activity_button_Style"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/bRight"
-        style="@style/main_activity_button_Style"
         android:background="@android:color/holo_blue_light"
-        android:minHeight="75dip"
-        android:text="@string/right" />
+        android:src="@drawable/ic_right_white_24dp"
+        style="@style/main_activity_button_Style"/>
 </LinearLayout>
