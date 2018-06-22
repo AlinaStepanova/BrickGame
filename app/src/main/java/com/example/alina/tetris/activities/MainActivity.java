@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.alina.tetris.Controller;
-import com.example.alina.tetris.PlayingArea;
+import com.example.alina.tetris.views.PlayingArea;
 import com.example.alina.tetris.R;
-import com.example.alina.tetris.ScoreArea;
+import com.example.alina.tetris.views.ScoreArea;
 import com.example.alina.tetris.listeners.OnControllerListener;
 
 import butterknife.BindView;
@@ -17,8 +17,10 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
 
     @BindView(R.id.pole)
     PlayingArea playingArea;
+
     @BindView(R.id.tvScore)
     ScoreArea scoreArea;
+
     @BindView(R.id.controller)
     Controller controller;
 

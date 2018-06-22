@@ -1,4 +1,4 @@
-package com.example.alina.tetris;
+package com.example.alina.tetris.views;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.alina.tetris.NetManager;
 import com.example.alina.tetris.data.ScoreCounter;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.enums.FigureType;

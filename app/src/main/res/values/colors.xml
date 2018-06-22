@@ -14,4 +14,6 @@
 
     <color name="white">#ffffff</color>
     <color name="mainColor">#00b0ff</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

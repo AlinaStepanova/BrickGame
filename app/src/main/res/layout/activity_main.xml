@@ -1,57 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:id="@+id/llBase"
-    android:gravity="center_horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+              android:id="@+id/llBase"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="horizontal">
 
-    <com.example.alina.tetris.PlayingArea
-        android:id="@+id/pole"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:layout_weight="1">
-    </com.example.alina.tetris.PlayingArea>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/llControl"
+        <com.example.alina.tetris.views.PlayingArea
+            android:id="@+id/pole"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+        </com.example.alina.tetris.views.PlayingArea>
+
+        <com.example.alina.tetris.Controller
+            android:id="@+id/controller"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent">
+        </com.example.alina.tetris.Controller>
+
+    </FrameLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/llScore"
         android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/llScore"
+        <TextView
+            style="@style/simpleStyle"
+            android:layout_weight="0.2"
+            android:gravity="bottom"
+            android:text="@string/scoreText"
+            android:textSize="@dimen/midTextSize"/>
+
+        <com.example.alina.tetris.views.ScoreArea
+            android:id="@+id/tvScore"
+            style="@style/simpleStyle"
+            android:layout_weight="0.2"
+            android:text="@string/startScore"
+            android:textStyle="bold">
+        </com.example.alina.tetris.views.ScoreArea>
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:gravity="bottom"
-                android:textSize="@dimen/midTextSize"
-                android:layout_weight="0.2"
-                android:text="@string/scoreText"
-                style="@style/simpleStyle"/>
-
-            <com.example.alina.tetris.ScoreArea
-                android:id="@+id/tvScore"
-                android:layout_weight="0.2"
-                android:text="@string/startScore"
-                android:textStyle="bold"
-                style="@style/simpleStyle">
-            </com.example.alina.tetris.ScoreArea>
-
-            <com.example.alina.tetris.Controller
-                android:id="@+id/controller"
-                android:layout_weight="0.6"
-                android:layout_width="match_parent"
-                android:background="@color/white"
-                android:layout_height="0dp">
-            </com.example.alina.tetris.Controller>
-        </LinearLayout>
-
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:background="@color/white"/>
     </LinearLayout>
 
 </LinearLayout>

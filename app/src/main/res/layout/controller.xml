@@ -9,13 +9,11 @@
 
     <ImageButton
         android:id="@+id/bLeft"
-        android:background="@android:color/holo_blue_bright"
-        android:src="@drawable/ic_left_white_24dp"
+        android:background="@color/transparent"
         style="@style/main_activity_button_Style"/>
 
     <ImageButton
         android:id="@+id/bRight"
-        android:background="@android:color/holo_blue_light"
-        android:src="@drawable/ic_right_white_24dp"
+        android:background="@color/transparent"
         style="@style/main_activity_button_Style"/>
 </LinearLayout>
