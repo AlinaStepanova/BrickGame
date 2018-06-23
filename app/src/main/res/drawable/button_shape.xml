@@ -2,29 +2,20 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:state_pressed="true" >
         <shape android:shape="rectangle"  >
-            <corners android:bottomRightRadius="@dimen/minRadius"
+            <corners android:bottomRightRadius="@dimen/maxRadius"
                      android:bottomLeftRadius="@dimen/maxRadius"
-                     android:topLeftRadius="2dp" android:topRightRadius="@dimen/maxRadius"/>
+                     android:topLeftRadius="@dimen/maxRadius"
+                     android:topRightRadius="@dimen/maxRadius"/>
             <stroke android:width="1dip" android:color="@color/colorPrimary" />
             <gradient android:angle="-90" android:startColor="@color/white"
-                      android:endColor="@color/white"  />
-        </shape>
-    </item>
-    <item android:state_focused="true">
-        <shape android:shape="rectangle"  >
-            <corners android:bottomRightRadius="@dimen/minRadius"
-                     android:bottomLeftRadius="@dimen/maxRadius"
-                     android:topLeftRadius="@dimen/minRadius"
-                     android:topRightRadius="@dimen/maxRadius"/>
-            <stroke android:width="1dip" android:color="@color/white" />
-            <solid android:color="@color/colorPrimary"/>
+                      android:endColor="@color/colorPrimary"  />
         </shape>
     </item>
     <item >
         <shape android:shape="rectangle"  >
-            <corners android:bottomRightRadius="@dimen/minRadius"
+            <corners android:bottomRightRadius="@dimen/maxRadius"
                      android:bottomLeftRadius="@dimen/maxRadius"
-                     android:topLeftRadius="@dimen/minRadius"
+                     android:topLeftRadius="@dimen/maxRadius"
                      android:topRightRadius="@dimen/maxRadius"/>
             <stroke android:width="1dip" android:color="@color/white" />
             <gradient android:angle="-90" android:startColor="@color/white"

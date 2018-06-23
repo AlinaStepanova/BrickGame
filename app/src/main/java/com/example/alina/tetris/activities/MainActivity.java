@@ -43,4 +43,10 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
     public void onLeftButtonClick() {
         playingArea.moveLeft();
     }
+
+    @Override
+    protected void onDestroy() {
+        playingArea.cancelTimer();
+        super.onDestroy();
+    }
 }

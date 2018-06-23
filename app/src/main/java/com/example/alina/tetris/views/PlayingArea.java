@@ -68,6 +68,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     private Context context;
 
+    private CountDownTimer timer;
+
     public PlayingArea(@NonNull Context context) {
         super(context);
         init(context);
@@ -111,14 +113,14 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     private void startMoveDown() {
         netManager.printNet();
-        CountDownTimer timer =
-                new CountDownTimer(MILLIS_IN_FUTURE + figureList.size() * 1500,
+        timer = new CountDownTimer(MILLIS_IN_FUTURE + figureList.size() * 1500,
                 COUNT_DOWN_INTERVAL + figureList.size() * 1000) {
             public void onTick(long millisUntilFinished) {
 
             }
+
             public void onFinish() {
-                if(figureList.get(figureList.size() - 1).getState() == FigureState.MOVING) {
+                if (figureList.get(figureList.size() - 1).getState() == FigureState.MOVING) {
                     figureList.get(figureList.size() - 1).moveDown();
                     netManager.moveDownInNet();
                     invalidate();
@@ -133,21 +135,25 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
     }
 
+    public void cancelTimer() {
+        timer.cancel();
+        figureList.get(figureList.size() - 1).setState(FigureState.STOPPED);
+    }
+
     private void resetFiguresScale(int count) {
-        for(int i = 0; i < figureList.size() - 1; i++) {
+        for (int i = 0; i < figureList.size() - 1; i++) {
             figureList.get(i).increaseScale(count * widthOfSquareSide);
         }
     }
 
     private void createFigure() {
-        if(figureTypeList.size() < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
+        if (figureTypeList.size() < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
             figureTypeList.add(figureCreator.selectFigure(ENUM_LENGTH));
         } else {
             figureTypeList.add(figureCreator.selectFigure());
         }
         Figure figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
                 widthOfSquareSide, scale, getContext());
-        Log.d("pref", figureTypeList.get(figureTypeList.size() - 1).toString());
         figureList.add(figure);
         if (figure != null) {
             figure.initFigureMask();
@@ -198,12 +204,12 @@ public class PlayingArea extends View implements OnNetChangedListener {
         paint.setStrokeWidth(LINE_WIDTH);
         drawVerticalLines(canvas);
         drawHorizontalLines(canvas);
-        for(Figure figure: figureList) {
+        for (Figure figure : figureList) {
             if (figure != null) {
                 Path path = figure.getPath();
                 paint.setColor(figure.getColor());
                 canvas.drawPath(path, paint);
-                if(figure.getState() == FigureState.MOVING) {
+                if (figure.getState() == FigureState.MOVING) {
                     startMoveDown();
                 }
             }
@@ -240,7 +246,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ((Activity)context).finish();
+                ((Activity) context).finish();
             }
         }, 4000);
     }
