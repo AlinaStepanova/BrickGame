@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.listeners.OnNetChangedListener;
+import com.example.alina.tetris.utils.CustomArrayList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class NetManager {
 
     public static int combo;
 
-    private final List<Figure> figureListInNet = new ArrayList<>();
+    private final CustomArrayList<Figure> figureListInNet = new CustomArrayList<>();
 
     private OnNetChangedListener onNetChangedListener;
 
@@ -227,7 +228,7 @@ public class NetManager {
 
     public void initFigure(Figure figure) {
         figureListInNet.add(figure);
-        this.figure = figureListInNet.get(figureListInNet.size() - 1);
+        this.figure = figureListInNet.getLast();
         this.zeroNet = new boolean[figure.getHeightInSquare()][1];
         copyMaskToNet();
     }

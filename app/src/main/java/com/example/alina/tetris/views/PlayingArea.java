@@ -12,7 +12,6 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,9 +23,7 @@ import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.figures.factory.FigureFactory;
 import com.example.alina.tetris.listeners.OnNetChangedListener;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.alina.tetris.utils.CustomArrayList;
 
 import static com.example.alina.tetris.values.Values.COUNT_DOWN_INTERVAL;
 import static com.example.alina.tetris.values.Values.ENUM_LENGTH;
@@ -43,32 +40,24 @@ import static com.example.alina.tetris.values.Values.SQUARE_COUNT_HORIZONTAL;
 public class PlayingArea extends View implements OnNetChangedListener {
 
     private int widthOfSquareSide;
-
     private int verticalSquareCount;
-
     private int screenHeight;
-
     private int screenWidth;
-
     private int scale;
 
-    private final List<FigureType> figureTypeList = new ArrayList<>();
+    private final CustomArrayList<FigureType> figureTypeList = new CustomArrayList<>();
+    private final CustomArrayList<Figure> figureList = new CustomArrayList<>();
 
-    private final List<Figure> figureList = new ArrayList<>();
+    private NetManager netManager;
+    private FigureCreator figureCreator;
+    private ScoreArea scoreArea;
+    private ScoreCounter scoreCounter;
 
     private Paint paint;
 
-    private NetManager netManager;
-
-    private FigureCreator figureCreator;
-
-    private ScoreArea scoreArea;
-
-    private ScoreCounter scoreCounter;
+    private CountDownTimer timer;
 
     private Context context;
-
-    private CountDownTimer timer;
 
     public PlayingArea(@NonNull Context context) {
         super(context);
@@ -115,13 +104,11 @@ public class PlayingArea extends View implements OnNetChangedListener {
         netManager.printNet();
         timer = new CountDownTimer(MILLIS_IN_FUTURE + figureList.size() * 1500,
                 COUNT_DOWN_INTERVAL + figureList.size() * 1000) {
-            public void onTick(long millisUntilFinished) {
-
-            }
+            public void onTick(long millisUntilFinished) {}
 
             public void onFinish() {
-                if (figureList.get(figureList.size() - 1).getState() == FigureState.MOVING) {
-                    figureList.get(figureList.size() - 1).moveDown();
+                if (figureList.getLast().getState() == FigureState.MOVING) {
+                    figureList.getLast().moveDown();
                     netManager.moveDownInNet();
                     invalidate();
                 }
@@ -137,7 +124,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     public void cancelTimer() {
         timer.cancel();
-        figureList.get(figureList.size() - 1).setState(FigureState.STOPPED);
+        figureList.getLast().setState(FigureState.STOPPED);
     }
 
     private void resetFiguresScale(int count) {
@@ -152,8 +139,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
         } else {
             figureTypeList.add(figureCreator.selectFigure());
         }
-        Figure figure = FigureFactory.getFigure(figureTypeList.get(figureTypeList.size() - 1),
-                widthOfSquareSide, scale, getContext());
+        Figure figure = FigureFactory.getFigure(figureTypeList.getLast(), widthOfSquareSide,
+                scale, context);
         figureList.add(figure);
         if (figure != null) {
             figure.initFigureMask();
@@ -173,7 +160,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     public void moveLeft() {
         if (netManager.isNetFreeToMoveLeft()) {
-            figureList.get(figureList.size() - 1).moveLeft();
+            figureList.getLast().moveLeft();
             netManager.moveLeftInNet();
             netManager.printNet();
             invalidate();
@@ -182,7 +169,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     public void moveRight() {
         if (netManager.isNetFreeToMoveRight()) {
-            figureList.get(figureList.size() - 1).moveRight();
+            figureList.getLast().moveRight();
             netManager.moveRightInNet();
             netManager.printNet();
             invalidate();

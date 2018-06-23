@@ -1,13 +1,12 @@
 package com.example.alina.tetris.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.utils.AnimationUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,26 +26,23 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         ButterKnife.bind(this);
-        setTextAnimation();
+        setTitleAnimation();
         setButtonAnimation();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setTextAnimation();
+        setTitleAnimation();
     }
 
-    private void setTextAnimation() {
-        Animation slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down);
-        gameTitle.startAnimation(slideDown);
+    private void setTitleAnimation() {
+        gameTitle.startAnimation(AnimationUtil.getZoomIn(this));
     }
 
     private void setButtonAnimation() {
-        Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_in_left);
-        startGameButton.startAnimation(slideLeft);
-        Animation slideRight = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
-        openScoresButton.startAnimation(slideRight);
+        startGameButton.startAnimation(AnimationUtil.getSlideInLeft(this));
+        openScoresButton.startAnimation(AnimationUtil.getSlideInRight(this));
     }
 
     @OnClick (R.id.bStartGame)
