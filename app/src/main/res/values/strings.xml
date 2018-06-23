@@ -11,4 +11,5 @@
     <string name="restart_game">RESTART GAME</string>
     <string name="scores">SCORES</string>
     <string name="initial_score">0</string>
+    <string name="next">NEXT</string>
 </resources>

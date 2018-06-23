@@ -4,7 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:gravity="center_horizontal"
-              android:orientation="horizontal">
+              android:orientation="horizontal"
+              android:baselineAligned="false">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -38,7 +39,7 @@
 
         <TextView
             style="@style/simpleStyle"
-            android:layout_weight="0.2"
+            android:layout_weight="0.15"
             android:gravity="bottom"
             android:text="@string/scoreText"
             android:textSize="@dimen/midTextSize"/>
@@ -46,16 +47,37 @@
         <com.example.alina.tetris.views.ScoreArea
             android:id="@+id/tvScore"
             style="@style/simpleStyle"
-            android:layout_weight="0.2"
+            android:layout_weight="0.1"
             android:text="@string/startScore"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold">
         </com.example.alina.tetris.views.ScoreArea>
 
+        <TextView
+            style="@style/simpleStyle"
+            android:layout_weight="0.1"
+            android:gravity="bottom"
+            android:text="@string/next"
+            android:textSize="@dimen/minTextSize"/>
+
         <View
+            android:id="@+id/vNextFigure"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.6"
+            android:layout_weight="0.35"
             android:background="@color/white"/>
+
+        <ImageView
+            android:id="@+id/ivRotate"
+            android:padding="25dp"
+            android:src="@drawable/ic_rotate"
+            style="@style/ImageViewStyle"/>
+
+        <ImageView
+            android:id="@+id/ivMoveDown"
+            android:src="@drawable/ic_down"
+            android:padding="10dp"
+            style="@style/ImageViewStyle"/>
     </LinearLayout>
 
 </LinearLayout>
