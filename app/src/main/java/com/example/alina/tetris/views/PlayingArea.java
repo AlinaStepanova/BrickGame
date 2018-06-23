@@ -26,9 +26,7 @@ import com.example.alina.tetris.listeners.OnNetChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
 import static com.example.alina.tetris.values.Values.COUNT_DOWN_INTERVAL;
-import static com.example.alina.tetris.values.Values.ENUM_LENGTH;
 import static com.example.alina.tetris.values.Values.GAME_OVER_TEXT;
-import static com.example.alina.tetris.values.Values.INITIAL_FIGURE_TYPE_LIST_LENGTH;
 import static com.example.alina.tetris.values.Values.LINE_WIDTH;
 import static com.example.alina.tetris.values.Values.MILLIS_IN_FUTURE;
 import static com.example.alina.tetris.values.Values.SQUARE_COUNT_HORIZONTAL;
@@ -58,6 +56,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
     private CountDownTimer timer;
 
     private Context context;
+
+    public static int FIGURE_TYPE_LIST_SIZE = 0;
 
     public PlayingArea(@NonNull Context context) {
         super(context);
@@ -123,7 +123,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     public void cancelTimer() {
-        timer.cancel();
+        if (timer != null) {timer.cancel();}
         figureList.getLast().setState(FigureState.STOPPED);
     }
 
@@ -134,11 +134,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     private void createFigure() {
-        if (figureTypeList.size() < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
-            figureTypeList.add(figureCreator.selectFigure(ENUM_LENGTH));
-        } else {
-            figureTypeList.add(figureCreator.selectFigure());
-        }
+        figureTypeList.add(figureCreator.selectFigure());
+        FIGURE_TYPE_LIST_SIZE = figureTypeList.size();
         Figure figure = FigureFactory.getFigure(figureTypeList.getLast(), widthOfSquareSide,
                 scale, context);
         figureList.add(figure);
