@@ -7,13 +7,13 @@ import com.example.alina.tetris.Controller;
 import com.example.alina.tetris.views.PlayingArea;
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.views.ScoreArea;
-import com.example.alina.tetris.listeners.OnControllerListener;
+import com.example.alina.tetris.listeners.OnPlayingAreaClick;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity implements OnControllerListener {
+public class MainActivity extends AppCompatActivity implements OnPlayingAreaClick {
 
     @BindView(R.id.pole)
     PlayingArea playingArea;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements OnControllerListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         playingArea.setScoreArea(scoreArea);
-        controller.setOnControllerListener(this);
+        controller.setOnPlayingAreaClick(this);
         playingArea.createFigureWithDelay();
     }
 

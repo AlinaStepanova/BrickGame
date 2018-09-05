@@ -4,7 +4,7 @@ package com.example.alina.tetris.listeners;
  * Created by Alina on 18.03.2017.
  */
 
-public interface OnControllerListener {
+public interface OnPlayingAreaClick {
 
     void onRightButtonClick();
 

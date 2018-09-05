@@ -1,17 +1,13 @@
 package com.example.alina.tetris;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.alina.tetris.R;
-import com.example.alina.tetris.listeners.OnControllerListener;
+import com.example.alina.tetris.listeners.OnPlayingAreaClick;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -21,7 +17,7 @@ import butterknife.OnClick;
 
 public class Controller extends LinearLayout {
 
-    private OnControllerListener onControllerListener;
+    private OnPlayingAreaClick onPlayingAreaClick;
 
     public Controller(Context context) {
         super(context);
@@ -39,25 +35,25 @@ public class Controller extends LinearLayout {
     }
 
     private void setLayout() {
-        View view = inflate(getContext(), R.layout.controller, this);
+        View view = inflate(getContext(), R.layout.left_right_controls, this);
         ButterKnife.bind(this, view);
     }
 
-    public void setOnControllerListener(OnControllerListener onControllerListener) {
-        this.onControllerListener = onControllerListener;
+    public void setOnPlayingAreaClick(OnPlayingAreaClick onPlayingAreaClick) {
+        this.onPlayingAreaClick = onPlayingAreaClick;
     }
 
     @OnClick(R.id.bLeft)
     void moveLeft() {
-        if (onControllerListener != null) {
-            onControllerListener.onLeftButtonClick();
+        if (onPlayingAreaClick != null) {
+            onPlayingAreaClick.onLeftButtonClick();
         }
     }
 
     @OnClick (R.id.bRight)
     void moveRight() {
-        if (onControllerListener != null) {
-            onControllerListener.onRightButtonClick();
+        if (onPlayingAreaClick != null) {
+            onPlayingAreaClick.onRightButtonClick();
         }
     }
 }
