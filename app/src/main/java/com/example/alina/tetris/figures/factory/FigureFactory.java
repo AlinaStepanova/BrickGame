@@ -69,39 +69,39 @@ public class FigureFactory {
     public static Figure getFigure(FigureType figureType, int widthSquare, Context context) {
         switch (figureType) {
             case J_FIGURE:
-                return new JFigure(widthSquare, context, new Point(1,2));
+                return new JFigure(widthSquare, context, new Point(20,10));
             case L_FIGURE:
-                return new LFigure(widthSquare, context, new Point(2, 2));
+                return new LFigure(widthSquare, context, new Point(20, 20));
             case S_FIGURE:
-                return new SFigure(widthSquare, context, new Point(3, 2));
+                return new SFigure(widthSquare, context, new Point(30, 20));
             case T_FIGURE:
-                return new TFigure(widthSquare, context, new Point(3, 2));
+                return new TFigure(widthSquare, context, new Point(30, 20));
             case L_SECOND_FIGURE:
-                return new LSecondFigure(widthSquare, context, new Point(3, 2));
+                return new LSecondFigure(widthSquare, context, new Point(30, 20));
             case Z_FIGURE:
-                return new ZFigure(widthSquare, context, new Point(3, 2));
+                return new ZFigure(widthSquare, context, new Point(30, 20));
             case J_SECOND_FIGURE:
-                return new JSecondFigure(widthSquare, context, new Point(3, 2));
+                return new JSecondFigure(widthSquare, context, new Point(30, 20));
             case J_THIRD_FIGURE:
-                return new JThirdFigure(widthSquare, context, new Point(3, 2));
+                return new JThirdFigure(widthSquare, context, new Point(30, 20));
             case L_THIRD_FIGURE:
-                return new LThirdFigure(widthSquare, context, new Point(3, 3));
+                return new LThirdFigure(widthSquare, context, new Point(30, 30));
             case S_SECOND_FIGURE:
-                return new SSecondFigure(widthSquare, context, new Point(3, 2));
+                return new SSecondFigure(widthSquare, context, new Point(30, 20));
             case Z_SECOND_FIGURE:
-                return new ZSecondFigure(widthSquare, context, new Point(3, 2));
+                return new ZSecondFigure(widthSquare, context, new Point(30, 20));
             case T_SECOND_FIGURE:
-                return new TSecondFigure(widthSquare, context, new Point(2, 3));
+                return new TSecondFigure(widthSquare, context, new Point(20, 30));
             case T_THIRD_FIGURE:
-                return new TThirdFigure(widthSquare, context, new Point(2, 2));
+                return new TThirdFigure(widthSquare, context, new Point(20, 20));
             case T_FOURTH_FIGURE:
-                return new TFourthFigure(widthSquare, context, new Point(2, 3));
+                return new TFourthFigure(widthSquare, context, new Point(20, 30));
             case LONG_SECOND_FIGURE:
-                return new LongSecondFigure(widthSquare, context, new Point(2, 3));
+                return new LongSecondFigure(widthSquare, context, new Point(20, 30));
             case SQUARE_FIGURE:
-                return new SquareFigure(widthSquare, context, new Point(2, 3));
+                return new SquareFigure(widthSquare, context, new Point(50, 50));
             case LONG_FIGURE:
-                return new LongFigure(widthSquare, context, new Point(2, 3));
+                return new LongFigure(widthSquare, context, new Point(20, 30));
             default:
                 return null;
         }

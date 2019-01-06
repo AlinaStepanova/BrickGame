@@ -10,21 +10,23 @@ import static com.example.alina.tetris.values.Values.INITIAL_FIGURE_TYPE_LIST_LE
 
 public class FigureCreator {
 
-    private Random random = new Random();
-    private FigureType currentFigureType = null;
+    private Random random;
+    private FigureType currentFigureType;
     private FigureType nextFigureType;
 
     public FigureCreator() {
+        random = new Random();
+        currentFigureType = null;
         nextFigureType = selectFigure();
-    }
-
-    private FigureType selectFigure(int length) {
-        return FigureType.values()[random.nextInt(length)];
     }
 
     private void initFigures() {
         currentFigureType = nextFigureType;
         nextFigureType = selectFigure();
+    }
+
+    private FigureType selectFigure(int length) {
+        return FigureType.values()[random.nextInt(length)];
     }
 
     private FigureType selectFigure() {
@@ -46,7 +48,11 @@ public class FigureCreator {
     }
 
     public FigureType getNextFigureType() {
-        initFigures();
         return nextFigureType;
+    }
+
+    public FigureType createNextFigure() {
+        initFigures();
+        return getNextFigureType();
     }
 }
