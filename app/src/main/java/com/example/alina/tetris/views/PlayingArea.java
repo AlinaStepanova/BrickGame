@@ -49,6 +49,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     private NetManager netManager;
     private FigureCreator figureCreator;
     private ScoreArea scoreArea;
+    private PreviewArea previewArea;
     private ScoreCounter scoreCounter;
 
     private Paint paint;
@@ -84,6 +85,10 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     public void setScoreArea(ScoreArea scoreArea) {
         this.scoreArea = scoreArea;
+    }
+
+    public void setPreviewArea(PreviewArea previewArea) {
+        this.previewArea = previewArea;
     }
 
     private void drawHorizontalLines(Canvas canvas) {
@@ -134,7 +139,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     private void createFigure() {
-        figureTypeList.add(figureCreator.selectFigure());
+        figureTypeList.add(figureCreator.getCurrentFigureType());
         FIGURE_TYPE_LIST_SIZE = figureTypeList.size();
         Figure figure = FigureFactory.getFigure(figureTypeList.getLast(), widthOfSquareSide,
                 scale, context);
@@ -214,6 +219,9 @@ public class PlayingArea extends View implements OnNetChangedListener {
     public void onFigureStoppedMove() {
         if (!netManager.isVerticalLineTrue()) {
             scoreArea.sumScoreWhenFigureStopped();
+            Figure figure = FigureFactory.getFigure(figureCreator.getNextFigureType(),
+                    widthOfSquareSide, context);
+            previewArea.drawNextFigure(figure);
             createFigure();
         }
     }

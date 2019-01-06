@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.alina.tetris.Controller;
 import com.example.alina.tetris.views.PlayingArea;
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.views.PreviewArea;
 import com.example.alina.tetris.views.ScoreArea;
 import com.example.alina.tetris.listeners.OnPlayingAreaClick;
 
@@ -24,12 +25,16 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
     @BindView(R.id.controller)
     Controller controller;
 
+    @BindView(R.id.vNextFigure)
+    PreviewArea previewArea;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         playingArea.setScoreArea(scoreArea);
+        playingArea.setPreviewArea(previewArea);
         controller.setOnPlayingAreaClick(this);
         playingArea.createFigureWithDelay();
     }

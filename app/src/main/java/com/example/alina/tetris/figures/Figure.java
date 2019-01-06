@@ -43,6 +43,16 @@ public abstract class Figure {
         coordinatesInPlayingArea = new Point(startX, startY);
     }
 
+    public Figure(int widthSquare, Context context, Point point) {
+        this.squareWidth = widthSquare / 2;
+        this.point = new Point(point.x, point.y);
+        this.scale = 0;
+        this.state = FigureState.MOVING;
+        this.context = context;
+        coordinatesInPlayingArea = new Point(point.x, point.y);
+
+    }
+
     private Point initPoint() {
         int [] arrayOfPositions = new int[] {2 * squareWidth, 3 * squareWidth, 4 * squareWidth,
                 5 * squareWidth, 6 * squareWidth};

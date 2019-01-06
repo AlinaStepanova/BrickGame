@@ -17,6 +17,10 @@ public class SFigure extends Figure {
         super(squareWidth, scale, context);
     }
 
+    public SFigure(int widthSquare, Context context, Point point) {
+        super(widthSquare, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();

@@ -19,6 +19,10 @@ public class LongFigure extends Figure {
         this.scale += SCALE_HEIGHT;
     }
 
+    public LongFigure(int widthSquare, Context context, Point point) {
+        super(widthSquare, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();

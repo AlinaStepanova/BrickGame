@@ -18,6 +18,10 @@ public class TFigure extends Figure {
         this.scale -= squareWidth;
     }
 
+    public TFigure(int widthSquare, Context context, Point point) {
+        super(widthSquare, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();

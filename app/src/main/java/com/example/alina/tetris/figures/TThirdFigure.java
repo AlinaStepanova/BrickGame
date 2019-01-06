@@ -3,6 +3,7 @@ package com.example.alina.tetris.figures;
 
 import android.content.Context;
 import android.graphics.Path;
+import android.graphics.Point;
 
 import com.example.alina.tetris.R;
 
@@ -12,6 +13,10 @@ public class TThirdFigure extends Figure {
         super(squareWidth, scale, context);
         int SCALE_HEIGHT = 2 * squareWidth;
         this.scale += SCALE_HEIGHT;
+    }
+
+    public TThirdFigure(int widthSquare, Context context, Point point) {
+        super(widthSquare, context, point);
     }
 
     @Override

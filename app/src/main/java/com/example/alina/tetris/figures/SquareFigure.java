@@ -19,6 +19,10 @@ public class SquareFigure extends Figure {
         this.scale += squareWidth;
     }
 
+    public SquareFigure(int widthSquare, Context context, Point point) {
+        super(widthSquare, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();

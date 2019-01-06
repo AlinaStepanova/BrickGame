@@ -1,6 +1,7 @@
 package com.example.alina.tetris.figures.factory;
 
 import android.content.Context;
+import android.graphics.Point;
 
 import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.figures.Figure;
@@ -60,6 +61,47 @@ public class FigureFactory {
                 return new SquareFigure(widthSquare, scale, context);
             case LONG_FIGURE:
                 return new LongFigure(widthSquare, scale, context);
+            default:
+                return null;
+        }
+    }
+
+    public static Figure getFigure(FigureType figureType, int widthSquare, Context context) {
+        switch (figureType) {
+            case J_FIGURE:
+                return new JFigure(widthSquare, context, new Point(1,2));
+            case L_FIGURE:
+                return new LFigure(widthSquare, context, new Point(2, 2));
+            case S_FIGURE:
+                return new SFigure(widthSquare, context, new Point(3, 2));
+            case T_FIGURE:
+                return new TFigure(widthSquare, context, new Point(3, 2));
+            case L_SECOND_FIGURE:
+                return new LSecondFigure(widthSquare, context, new Point(3, 2));
+            case Z_FIGURE:
+                return new ZFigure(widthSquare, context, new Point(3, 2));
+            case J_SECOND_FIGURE:
+                return new JSecondFigure(widthSquare, context, new Point(3, 2));
+            case J_THIRD_FIGURE:
+                return new JThirdFigure(widthSquare, context, new Point(3, 2));
+            case L_THIRD_FIGURE:
+                return new LThirdFigure(widthSquare, context, new Point(3, 3));
+            case S_SECOND_FIGURE:
+                return new SSecondFigure(widthSquare, context, new Point(3, 2));
+            case Z_SECOND_FIGURE:
+                return new ZSecondFigure(widthSquare, context, new Point(3, 2));
+            case T_SECOND_FIGURE:
+                return new TSecondFigure(widthSquare, context, new Point(2, 3));
+            case T_THIRD_FIGURE:
+                return new TThirdFigure(widthSquare, context, new Point(2, 2));
+            case T_FOURTH_FIGURE:
+                return new TFourthFigure(widthSquare, context, new Point(2, 3));
+            case LONG_SECOND_FIGURE:
+                return new LongSecondFigure(widthSquare, context, new Point(2, 3));
+            case SQUARE_FIGURE:
+                return new SquareFigure(widthSquare, context, new Point(2, 3));
+            case LONG_FIGURE:
+                return new LongFigure(widthSquare, context, new Point(2, 3));
             default:
                 return null;
         }

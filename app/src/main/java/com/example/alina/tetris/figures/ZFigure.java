@@ -18,6 +18,10 @@ public class ZFigure extends Figure {
         this.scale += squareWidth;
     }
 
+    public ZFigure(int widthSquare, Context context, Point point) {
+        super(widthSquare, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();

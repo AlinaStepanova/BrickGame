@@ -3,6 +3,7 @@ package com.example.alina.tetris.figures;
 
 import android.content.Context;
 import android.graphics.Path;
+import android.graphics.Point;
 
 import com.example.alina.tetris.R;
 
@@ -10,6 +11,10 @@ public class LongSecondFigure extends Figure {
 
     public LongSecondFigure(int squareWidth, int scale, Context context) {
         super(squareWidth, scale, context);
+    }
+
+    public LongSecondFigure(int widthSquare, Context context, Point point) {
+        super(widthSquare, context, point);
     }
 
     @Override
