@@ -23,6 +23,8 @@ import com.example.alina.tetris.figures.TThirdFigure;
 import com.example.alina.tetris.figures.ZFigure;
 import com.example.alina.tetris.figures.ZSecondFigure;
 
+import static com.example.alina.tetris.views.PreviewArea.PREVIEW_AREA_WIDTH;
+
 public class FigureFactory {
 
     public static Figure getFigure(FigureType figureType, int widthSquare, int scale, Context context) {
@@ -31,16 +33,16 @@ public class FigureFactory {
                 return new JFigure(widthSquare, scale, context);
             case L_FIGURE:
                 return new LFigure(widthSquare, scale, context);
-            case S_FIGURE:
-                return new SFigure(widthSquare, scale, context);
             case T_FIGURE:
                 return new TFigure(widthSquare, scale, context);
+            case S_FIGURE:
+                return new SFigure(widthSquare, scale, context);
+            case J_SECOND_FIGURE:
+                return new JSecondFigure(widthSquare, scale, context);
             case L_SECOND_FIGURE:
                 return new LSecondFigure(widthSquare, scale, context);
             case Z_FIGURE:
                 return new ZFigure(widthSquare, scale, context);
-            case J_SECOND_FIGURE:
-                return new JSecondFigure(widthSquare, scale, context);
             case J_THIRD_FIGURE:
                 return new JThirdFigure(widthSquare, scale, context);
             case L_THIRD_FIGURE:
@@ -66,45 +68,46 @@ public class FigureFactory {
         }
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     public static Figure getFigure(FigureType figureType, int widthSquare, Context context) {
+        int center = PREVIEW_AREA_WIDTH / 2;
         switch (figureType) {
             case J_FIGURE:
-                return new JFigure(widthSquare, context, new Point(20,10));
+                return new JFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare));
             case L_FIGURE:
-                return new LFigure(widthSquare, context, new Point(20, 20));
-            case S_FIGURE:
-                return new SFigure(widthSquare, context, new Point(30, 20));
+                return new LFigure(widthSquare, context, new Point(center - widthSquare / 4, widthSquare));
             case T_FIGURE:
-                return new TFigure(widthSquare, context, new Point(30, 20));
-            case L_SECOND_FIGURE:
-                return new LSecondFigure(widthSquare, context, new Point(30, 20));
-            case Z_FIGURE:
-                return new ZFigure(widthSquare, context, new Point(30, 20));
+                return new TFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare * 2));
+            case S_FIGURE:
+                return new SFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare + (widthSquare / 2)));
             case J_SECOND_FIGURE:
-                return new JSecondFigure(widthSquare, context, new Point(30, 20));
+                return new JSecondFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare));
+            case L_SECOND_FIGURE:
+                return new LSecondFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare + (widthSquare / 2)));
+            case Z_FIGURE:
+                return new ZFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare));
             case J_THIRD_FIGURE:
-                return new JThirdFigure(widthSquare, context, new Point(30, 20));
+                return new JThirdFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare));
             case L_THIRD_FIGURE:
-                return new LThirdFigure(widthSquare, context, new Point(30, 30));
+                return new LThirdFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare));
             case S_SECOND_FIGURE:
-                return new SSecondFigure(widthSquare, context, new Point(30, 20));
+                return new SSecondFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare + (widthSquare / 2)));
             case Z_SECOND_FIGURE:
-                return new ZSecondFigure(widthSquare, context, new Point(30, 20));
+                return new ZSecondFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare));
             case T_SECOND_FIGURE:
-                return new TSecondFigure(widthSquare, context, new Point(20, 30));
+                return new TSecondFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare));
             case T_THIRD_FIGURE:
-                return new TThirdFigure(widthSquare, context, new Point(20, 20));
+                return new TThirdFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare));
             case T_FOURTH_FIGURE:
-                return new TFourthFigure(widthSquare, context, new Point(20, 30));
+                return new TFourthFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare + (widthSquare / 2)));
             case LONG_SECOND_FIGURE:
-                return new LongSecondFigure(widthSquare, context, new Point(20, 30));
+                return new LongSecondFigure(widthSquare, context, new Point(center - widthSquare, widthSquare));
             case SQUARE_FIGURE:
-                return new SquareFigure(widthSquare, context, new Point(50, 50));
+                return new SquareFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare));
             case LONG_FIGURE:
-                return new LongFigure(widthSquare, context, new Point(20, 30));
+                return new LongFigure(widthSquare, context, new Point(center - widthSquare / 4, widthSquare));
             default:
                 return null;
         }
     }
-
 }

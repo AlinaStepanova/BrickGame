@@ -182,9 +182,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Figure figure = FigureFactory.getFigure(figureCreator.getNextFigureType(),
-                        widthOfSquareSide, context);
-                previewArea.drawNextFigure(figure);
+                previewArea.drawNextFigure(FigureFactory.getFigure(figureCreator.getNextFigureType(),
+                        widthOfSquareSide, context));
                 createFigure();
             }
         }, 1500);
@@ -222,9 +221,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
     public void onFigureStoppedMove() {
         if (!netManager.isVerticalLineTrue()) {
             scoreArea.sumScoreWhenFigureStopped();
-            Figure figure = FigureFactory.getFigure(figureCreator.createNextFigure(),
-                    widthOfSquareSide, context);
-            previewArea.drawNextFigure(figure);
+            previewArea.drawNextFigure(FigureFactory.getFigure(figureCreator.createNextFigure(),
+                    widthOfSquareSide, context));
             createFigure();
         }
     }
