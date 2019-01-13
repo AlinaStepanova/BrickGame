@@ -76,6 +76,14 @@ public class PlayingArea extends View implements OnNetChangedListener {
         init(context);
     }
 
+    public void cleanup() {
+        scoreCounter.putNewScore(scoreArea.getScore());
+        cancelTimer();
+        netManager = null;
+        figureList.clear();
+        figureTypeList.clear();
+    }
+
     private void init(Context context) {
         paint = new Paint();
         figureCreator = new FigureCreator();
@@ -107,8 +115,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     private void startMoveDown() {
         netManager.printNet();
-        timer = new CountDownTimer(MILLIS_IN_FUTURE + figureList.size() * 1500,
-                COUNT_DOWN_INTERVAL + figureList.size() * 1000) {
+        cancelTimer();
+        timer = new CountDownTimer(MILLIS_IN_FUTURE, COUNT_DOWN_INTERVAL) {
             public void onTick(long millisUntilFinished) {}
 
             public void onFinish() {
@@ -121,15 +129,16 @@ public class PlayingArea extends View implements OnNetChangedListener {
         };
         if (!netManager.isNetFreeToMoveDown()) {
             netManager.changeFigureState();
-            timer.cancel();
+            cancelTimer();
         } else {
             timer.start();
         }
     }
 
     public void cancelTimer() {
-        if (timer != null) {timer.cancel();}
-        figureList.getLast().setState(FigureState.STOPPED);
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     private void resetFiguresScale(int count) {
@@ -234,7 +243,6 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     @Override
     public void onTopLineHasTrue() {
-        scoreCounter.putNewScore(scoreArea.getScore());
         Toast.makeText(context, GAME_OVER_TEXT, Toast.LENGTH_LONG).show();
         new Handler().postDelayed(new Runnable() {
             @Override

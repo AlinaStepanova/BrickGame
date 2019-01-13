@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
     }
 
     @Override
-    protected void onDestroy() {
-        playingArea.cancelTimer();
-        super.onDestroy();
+    protected void onStop() {
+        playingArea.cleanup();
+        super.onStop();
     }
 }
