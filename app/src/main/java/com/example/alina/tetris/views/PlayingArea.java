@@ -76,19 +76,19 @@ public class PlayingArea extends View implements OnNetChangedListener {
         init(context);
     }
 
+    private void init(Context context) {
+        paint = new Paint();
+        figureCreator = new FigureCreator();
+        scoreCounter = new ScoreCounter(getContext());
+        this.context = context;
+    }
+
     public void cleanup() {
         scoreCounter.putNewScore(scoreArea.getScore());
         cancelTimer();
         netManager = null;
         figureList.clear();
         figureTypeList.clear();
-    }
-
-    private void init(Context context) {
-        paint = new Paint();
-        figureCreator = new FigureCreator();
-        scoreCounter = new ScoreCounter(getContext());
-        this.context = context;
     }
 
     public void setScoreArea(ScoreArea scoreArea) {

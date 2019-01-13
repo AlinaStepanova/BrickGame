@@ -18,4 +18,6 @@ public class Values {
     public static final String SECOND_VALUE_KEY = "second value";
     public static final String THIRD_VALUE_KEY = "third value";
     public static final String GAME_OVER_TEXT = "GAME OVER";
+    public static final String CHANNEL_ID = "score_notification_channel";
+    public static final int NOTIFICATION_ID = 123;
 }
