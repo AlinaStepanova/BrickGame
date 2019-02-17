@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
         playingArea.setScoreArea(scoreArea);
         playingArea.setPreviewArea(previewArea);
         controller.setOnPlayingAreaClick(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         playingArea.createFigureWithDelay();
     }
 

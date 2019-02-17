@@ -170,7 +170,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     public void moveLeft() {
-        if (netManager.isNetFreeToMoveLeft()) {
+        if (netManager != null && netManager.isNetFreeToMoveLeft()) {
             figureList.getLast().moveLeft();
             netManager.moveLeftInNet();
             netManager.printNet();
@@ -179,8 +179,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     public void moveRight() {
-        //todo check if not null
-        if (netManager.isNetFreeToMoveRight()) {
+        if (netManager != null && netManager.isNetFreeToMoveRight()) {
             figureList.getLast().moveRight();
             netManager.moveRightInNet();
             netManager.printNet();
