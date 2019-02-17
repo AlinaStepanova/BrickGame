@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="mainTextSize">32sp</dimen>
+    <dimen name="textSize30sp">30sp</dimen>
     <dimen name="maxTextSize">24sp</dimen>
     <dimen name="midTextSize">20sp</dimen>
     <dimen name="minTextSize">16sp</dimen>

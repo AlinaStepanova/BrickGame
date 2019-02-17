@@ -13,6 +13,6 @@
     <string name="initial_score">0</string>
     <string name="next">NEXT</string>
     <string name="new_score_notification_title">New score</string>
-    <string name="congrats_sub_title">Congrats! You have reached a new score</string>
+    <string name="congrats_sub_title">Congrats! You\'ve reached a new score</string>
     <string name="points_notification_text">points!</string>
 </resources>

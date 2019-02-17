@@ -15,25 +15,28 @@
                 android:id="@+id/tvScoresTitle"
                 android:text="@string/scores"
                 android:textColor="@color/mainColor"
-                android:textSize="@dimen/mainTextSize"
-                android:textStyle="bold"
+                android:textSize="@dimen/textSize30sp"
+                android:fontFamily="sans-serif-condensed-medium"
                 style="@style/text_view_style"/>
             <TextView
                 android:id="@+id/tvFirstScore"
                 android:text="@string/initial_score"
                 android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed-light"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/midTextSize"
                 style="@style/text_view_style"/>
             <TextView
                 android:id="@+id/tvSecondScore"
                 android:text="@string/initial_score"
+                android:fontFamily="sans-serif-condensed-light"
                 android:textColor="@color/mainColor"
                 android:textSize="@dimen/midTextSize"
                 style="@style/text_view_style"/>
             <TextView
                 android:id="@+id/tvThirdScore"
                 android:text="@string/initial_score"
+                android:fontFamily="sans-serif-condensed-light"
                 android:textColor="@color/mainColor"
                 android:textSize="@dimen/midTextSize"
                 style="@style/text_view_style"/>

@@ -179,6 +179,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     public void moveRight() {
+        //todo check if not null
         if (netManager.isNetFreeToMoveRight()) {
             figureList.getLast().moveRight();
             netManager.moveRightInNet();
