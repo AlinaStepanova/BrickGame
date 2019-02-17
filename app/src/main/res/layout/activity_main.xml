@@ -3,9 +3,9 @@
               android:id="@+id/llBase"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:baselineAligned="false"
               android:gravity="center_horizontal"
-              android:orientation="horizontal"
-              android:baselineAligned="false">
+              android:orientation="horizontal">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -31,17 +31,18 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/llScore"
-        android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@color/white"
         android:orientation="vertical"
         android:weightSum="1">
 
         <TextView
             style="@style/simpleStyle"
             android:layout_weight="0.15"
-            android:gravity="bottom"
             android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="bottom"
             android:text="@string/scoreText"
             android:textSize="@dimen/midTextSize"/>
 
@@ -49,17 +50,16 @@
             android:id="@+id/tvScore"
             style="@style/simpleStyle"
             android:layout_weight="0.1"
-            android:text="@string/startScore"
             android:fontFamily="sans-serif-condensed-medium"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold">
+            android:text="@string/startScore"
+            android:textColor="@color/colorAccent">
         </com.example.alina.tetris.views.ScoreArea>
 
         <TextView
             style="@style/simpleStyle"
             android:layout_weight="0.1"
-            android:gravity="bottom"
             android:fontFamily="sans-serif-condensed-light"
+            android:gravity="bottom"
             android:text="@string/next"
             android:textSize="@dimen/minTextSize"/>
 
@@ -73,15 +73,15 @@
 
         <ImageView
             android:id="@+id/ivRotate"
-            android:padding="25dp"
-            android:src="@drawable/ic_rotate"
-            style="@style/ImageViewStyle"/>
+            style="@style/ImageViewStyle"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_rotate"/>
 
         <ImageView
             android:id="@+id/ivMoveDown"
-            android:src="@drawable/ic_down"
-            android:padding="10dp"
-            style="@style/ImageViewStyle"/>
+            style="@style/ImageViewStyle"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_down"/>
     </LinearLayout>
 
 </LinearLayout>
