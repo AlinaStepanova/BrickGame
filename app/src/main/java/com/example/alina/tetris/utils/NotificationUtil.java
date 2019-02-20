@@ -34,7 +34,7 @@ public class NotificationUtil {
         return new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_star)
                 .setContentTitle(context.getString(R.string.new_score_notification_title))
-                .setContentText(context.getString(R.string.congrats_sub_title) + " - " + score
+                .setContentText(context.getString(R.string.congrats_sub_title) + " - " + score + " "
                         + context.getString(R.string.points_notification_text))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)

@@ -102,6 +102,11 @@ public abstract class Figure {
         coordinatesInPlayingArea.set(coordinatesInPlayingArea.x, coordinatesInPlayingArea.y + 1);
     }
 
+    public void fastMoveDown(int steps) {
+        point.set(point.x, point.y + steps * squareWidth);
+        coordinatesInPlayingArea.set(coordinatesInPlayingArea.x, coordinatesInPlayingArea.y + steps);
+    }
+
     public abstract int getWidthInSquare();
 
     public abstract int getHeightInSquare();

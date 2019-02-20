@@ -135,6 +135,19 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
     }
 
+    public void fastMoveDown() {
+        cancelTimer();
+        while (figureList.getLast().getState() == FigureState.MOVING) {
+            if (!netManager.isNetFreeToMoveDown()) {
+                netManager.changeFigureState();
+                break;
+            }
+            figureList.getLast().moveDown();
+            netManager.moveDownInNet();
+        }
+        invalidate();
+    }
+
     public void cancelTimer() {
         if (timer != null) {
             timer.cancel();

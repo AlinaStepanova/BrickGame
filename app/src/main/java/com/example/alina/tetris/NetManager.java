@@ -8,9 +8,6 @@ import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.listeners.OnNetChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.example.alina.tetris.values.Values.EXTRA_ROWS;
 import static com.example.alina.tetris.values.Values.SQUARE_COUNT_HORIZONTAL;
 
@@ -35,6 +32,17 @@ public class NetManager {
     public NetManager() {
         this.net = null;
         combo = 0;
+    }
+
+    public int fastMoveDownInNet() {
+        int steps = 0;
+        while (isNetFreeToMoveDown()) {
+            moveDownInNet();
+            steps++;
+            Log.d("jjj", "steps = " + steps);
+        }
+        Log.d("jjj", "final step = " + steps);
+        return steps;
     }
 
     private void setNet(boolean[][] net) {

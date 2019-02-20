@@ -12,7 +12,7 @@ import com.example.alina.tetris.listeners.OnPlayingAreaClick;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements OnPlayingAreaClick {
 
@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
         playingArea.setScoreArea(scoreArea);
         playingArea.setPreviewArea(previewArea);
         controller.setOnPlayingAreaClick(this);
+    }
+
+    @OnClick(R.id.ivMoveDown)
+    void moveDown() {
+        playingArea.fastMoveDown();
     }
 
     @Override
