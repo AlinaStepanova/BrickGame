@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#00b0ff</color>
-    <color name="colorPrimaryDark">#0091ea</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDark">#00b0ff</color>
+    <color name="colorAccent">#14DFDF</color>
 
     <color name="lFigure">#b4536dfe</color>
     <color name="jFigure">#b526c6da</color>
@@ -14,7 +14,7 @@
 
     <color name="white">#ffffff</color>
     <color name="mainColor">#00b0ff</color>
-    <color name="gradient">#3CCDFC</color>
+    <color name="gradient">#236EF1</color>
 
     <color name="transparent">#00000000</color>
 </resources>

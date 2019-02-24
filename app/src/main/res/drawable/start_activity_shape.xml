@@ -6,10 +6,10 @@
         android:color="@color/white"/>
 
     <gradient
-        android:angle="225"
-        android:startColor="@color/gradient"
-        android:centerColor="@color/mainColor"
-        android:endColor="@color/colorPrimaryDark"/>
+        android:angle="315"
+        android:startColor="@color/colorAccent"
+        android:centerColor="@color/colorPrimary"
+        android:endColor="@color/gradient"/>
 
     <corners android:radius="@dimen/maxRadius"/>
     <corners
