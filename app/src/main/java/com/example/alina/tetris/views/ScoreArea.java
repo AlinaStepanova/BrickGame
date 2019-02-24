@@ -3,8 +3,6 @@ package com.example.alina.tetris.views;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.example.alina.tetris.NetManager;
 
@@ -31,6 +29,10 @@ public class ScoreArea extends AppCompatTextView {
 
     private void setScore(int score) {
         this.setText(String.valueOf(score));
+    }
+
+    public void setStartValue() {
+        setScore(0);
     }
 
     public void sumScoreWhenFigureStopped() {

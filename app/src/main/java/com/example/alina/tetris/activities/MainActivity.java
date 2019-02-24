@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.alina.tetris.Controller;
-import com.example.alina.tetris.views.PlayingArea;
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.listeners.OnPlayingAreaClick;
+import com.example.alina.tetris.views.PlayingArea;
 import com.example.alina.tetris.views.PreviewArea;
 import com.example.alina.tetris.views.ScoreArea;
-import com.example.alina.tetris.listeners.OnPlayingAreaClick;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,17 +36,31 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
         playingArea.setScoreArea(scoreArea);
         playingArea.setPreviewArea(previewArea);
         controller.setOnPlayingAreaClick(this);
-    }
-
-    @OnClick(R.id.ivMoveDown)
-    void moveDown() {
-        playingArea.fastMoveDown();
+        playingArea.cleanup();
+        playingArea.createFigureWithDelay();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        playingArea.createFigureWithDelay();
+        playingArea.startTimer();
+    }
+
+    @Override
+    protected void onStop() {
+        playingArea.cancelTimer();
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        playingArea.cleanup();
+        super.onDestroy();
+    }
+
+    @OnClick(R.id.ivMoveDown)
+    void moveDown() {
+        playingArea.fastMoveDown();
     }
 
     @Override
@@ -57,11 +71,5 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
     @Override
     public void onLeftButtonClick() {
         playingArea.moveLeft();
-    }
-
-    @Override
-    protected void onStop() {
-        playingArea.cleanup();
-        super.onStop();
     }
 }

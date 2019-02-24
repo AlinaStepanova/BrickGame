@@ -86,6 +86,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     public void cleanup() {
         scoreCounter.putNewScore(scoreArea.getScore());
         cancelTimer();
+        scoreArea.setStartValue();
         netManager = null;
         figureList.clear();
         figureTypeList.clear();
@@ -113,11 +114,18 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
     }
 
+    public void startTimer() {
+        if (timer != null) {
+            timer.start();
+        }
+    }
+
     private void startMoveDown() {
         netManager.printNet();
         cancelTimer();
         timer = new CountDownTimer(MILLIS_IN_FUTURE, COUNT_DOWN_INTERVAL) {
-            public void onTick(long millisUntilFinished) {}
+            public void onTick(long millisUntilFinished) {
+            }
 
             public void onFinish() {
                 if (figureList.getLast().getState() == FigureState.MOVING) {
