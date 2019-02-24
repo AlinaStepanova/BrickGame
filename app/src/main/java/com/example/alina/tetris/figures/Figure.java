@@ -5,6 +5,7 @@ import android.graphics.Path;
 import android.graphics.Point;
 
 import com.example.alina.tetris.enums.FigureState;
+import com.example.alina.tetris.enums.FigureType;
 
 import java.util.Random;
 
@@ -43,6 +44,15 @@ public abstract class Figure {
         coordinatesInPlayingArea = new Point(startX, startY);
     }
 
+    public Figure(int squareWidth, int scale, Context context, Point point) {
+        this.squareWidth = squareWidth;
+        this.point = point;
+        this.scale = scale;
+        this.state = FigureState.MOVING;
+        this.context = context;
+        coordinatesInPlayingArea = new Point(point.x, point.y);
+    }
+
     public Figure(int widthSquare, Context context, Point point) {
         this.squareWidth = widthSquare / 2;
         this.point = new Point(point.x, point.y);
@@ -50,11 +60,10 @@ public abstract class Figure {
         this.state = FigureState.MOVING;
         this.context = context;
         coordinatesInPlayingArea = new Point(point.x, point.y);
-
     }
 
     private Point initPoint() {
-        int [] arrayOfPositions = new int[] {2 * squareWidth, 3 * squareWidth, 4 * squareWidth,
+        int[] arrayOfPositions = new int[]{2 * squareWidth, 3 * squareWidth, 4 * squareWidth,
                 5 * squareWidth, 6 * squareWidth};
         int position = new Random().nextInt(arrayOfPositions.length);
         Point point = new Point(arrayOfPositions[position], 0);
@@ -102,10 +111,7 @@ public abstract class Figure {
         coordinatesInPlayingArea.set(coordinatesInPlayingArea.x, coordinatesInPlayingArea.y + 1);
     }
 
-    public void fastMoveDown(int steps) {
-        point.set(point.x, point.y + steps * squareWidth);
-        coordinatesInPlayingArea.set(coordinatesInPlayingArea.x, coordinatesInPlayingArea.y + steps);
-    }
+    public abstract FigureType getRotatedFigure();
 
     public abstract int getWidthInSquare();
 

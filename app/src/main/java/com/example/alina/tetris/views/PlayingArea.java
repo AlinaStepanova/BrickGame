@@ -143,6 +143,12 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
     }
 
+    public void cancelTimer() {
+        if (timer != null) {
+            timer.cancel();
+        }
+    }
+
     public void fastMoveDown() {
         cancelTimer();
         while (figureList.getLast().getState() == FigureState.MOVING) {
@@ -156,9 +162,16 @@ public class PlayingArea extends View implements OnNetChangedListener {
         invalidate();
     }
 
-    public void cancelTimer() {
-        if (timer != null) {
-            timer.cancel();
+    public void rotate() {
+        if (figureList.getLast().getState() == FigureState.MOVING) {
+            Figure figure = FigureFactory.getFigure(figureList.getLast().getRotatedFigure(),
+                    widthOfSquareSide, scale, context, figureList.getLast().point);
+            figureList.set(figureList.size() - 1, figure);
+            if (figure != null) {
+                figure.initFigureMask();
+            }
+            //todo set new figure in net manager
+            invalidate();
         }
     }
 

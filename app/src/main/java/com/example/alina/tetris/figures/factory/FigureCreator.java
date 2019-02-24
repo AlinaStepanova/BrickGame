@@ -31,11 +31,12 @@ public class FigureCreator {
 
     private FigureType selectFigure() {
         FigureType figureType;
-        if (PlayingArea.FIGURE_TYPE_LIST_SIZE < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
+        /*if (PlayingArea.FIGURE_TYPE_LIST_SIZE < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
             figureType = selectFigure(ENUM_LENGTH);
         } else {
             figureType = FigureType.values()[random.nextInt(FigureType.values().length)];
-        }
+        }*/
+        figureType = FigureType.values()[random.nextInt(FigureType.values().length)];
         return figureType;
     }
 

@@ -6,6 +6,7 @@ import android.graphics.Path;
 import android.graphics.Point;
 
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.enums.FigureType;
 
 public class LSecondFigure extends Figure {
 
@@ -24,6 +25,11 @@ public class LSecondFigure extends Figure {
         figureMask[1][0] = true;
         figureMask[1][1] = true;
         figureMask[1][2] = true;
+    }
+
+    @Override
+    public FigureType getRotatedFigure() {
+        return null;
     }
 
     @Override

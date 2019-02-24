@@ -63,6 +63,11 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
         playingArea.fastMoveDown();
     }
 
+    @OnClick(R.id.ivRotate)
+    void rotate() {
+        playingArea.rotate();
+    }
+
     @Override
     public void onRightButtonClick() {
         playingArea.moveRight();

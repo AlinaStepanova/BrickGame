@@ -7,6 +7,7 @@ import android.graphics.Point;
 import android.util.Log;
 
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.enums.FigureType;
 
 /**
  * Created by Alina on 02.04.2017.
@@ -30,6 +31,11 @@ public class SquareFigure extends Figure {
         figureMask[0][1] = true;
         figureMask[1][0] = true;
         figureMask[1][1] = true;
+    }
+
+    @Override
+    public FigureType getRotatedFigure() {
+        return null;
     }
 
     @Override

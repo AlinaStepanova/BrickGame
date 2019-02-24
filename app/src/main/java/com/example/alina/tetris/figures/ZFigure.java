@@ -6,6 +6,7 @@ import android.graphics.Path;
 import android.graphics.Point;
 
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.enums.FigureType;
 
 /**
  * Created by Alina on 02.04.2017.
@@ -29,6 +30,11 @@ public class ZFigure extends Figure {
         figureMask[0][1] = true;
         figureMask[1][1] = true;
         figureMask[1][2] = true;
+    }
+
+    @Override
+    public FigureType getRotatedFigure() {
+        return null;
     }
 
     @Override

@@ -2,8 +2,8 @@ package com.example.alina.tetris.enums;
 
 public enum FigureType {
     LONG_FIGURE,
+    LONG_SECOND_FIGURE/*,
     SQUARE_FIGURE,
-    LONG_SECOND_FIGURE,
     L_FIGURE,
     J_FIGURE,
     T_FIGURE,
@@ -17,5 +17,5 @@ public enum FigureType {
     Z_SECOND_FIGURE,
     T_SECOND_FIGURE,
     T_THIRD_FIGURE,
-    T_FOURTH_FIGURE
+    T_FOURTH_FIGURE*/
 }
