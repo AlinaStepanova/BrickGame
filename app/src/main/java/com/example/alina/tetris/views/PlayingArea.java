@@ -150,20 +150,22 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     public void fastMoveDown() {
-        cancelTimer();
-        while (figureList.getLast().getState() == FigureState.MOVING) {
-            if (!netManager.isNetFreeToMoveDown()) {
-                netManager.changeFigureState();
-                break;
+        if (figureList.size() > 0) {
+            cancelTimer();
+            while (figureList.getLast().getState() == FigureState.MOVING) {
+                if (!netManager.isNetFreeToMoveDown()) {
+                    netManager.changeFigureState();
+                    break;
+                }
+                figureList.getLast().moveDown();
+                netManager.moveDownInNet();
             }
-            figureList.getLast().moveDown();
-            netManager.moveDownInNet();
+            invalidate();
         }
-        invalidate();
     }
 
     public void rotate() {
-        if (figureList.getLast().getState() == FigureState.MOVING) {
+        if (figureList.size() > 0 && figureList.getLast().getState() == FigureState.MOVING) {
             Figure figure = FigureFactory.getFigure(figureList.getLast().getRotatedFigure(),
                     widthOfSquareSide, scale, context, figureList.getLast().point);
             figureList.set(figureList.size() - 1, figure);
