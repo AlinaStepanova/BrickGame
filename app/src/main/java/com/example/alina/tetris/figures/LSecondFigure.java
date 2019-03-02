@@ -18,6 +18,10 @@ public class LSecondFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public LSecondFigure(int widthSquare, int scale, Context context, Point point) {
+        super(widthSquare, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -29,7 +33,7 @@ public class LSecondFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.L_FIGURE;
     }
 
     @Override

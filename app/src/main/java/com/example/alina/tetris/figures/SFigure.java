@@ -22,6 +22,10 @@ public class SFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public SFigure(int squareWidth, int scale, Context context, Point point) {
+        super(squareWidth, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -33,7 +37,7 @@ public class SFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.S_SECOND_FIGURE;
     }
 
     @Override

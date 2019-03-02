@@ -24,6 +24,10 @@ public class LFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public LFigure(int widthSquare, int scale, Context context, Point point) {
+        super(widthSquare, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -35,7 +39,7 @@ public class LFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.L_SECOND_FIGURE;
     }
 
     @Override

@@ -23,6 +23,10 @@ public class ZFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public ZFigure(int squareWidth, int scale, Context context, Point point) {
+        super(squareWidth, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -34,7 +38,7 @@ public class ZFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.Z_SECOND_FIGURE;
     }
 
     @Override

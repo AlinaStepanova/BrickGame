@@ -20,6 +20,10 @@ public class TThirdFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public TThirdFigure(int squareWidth, int scale, Context context, Point point) {
+        super(squareWidth, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -31,7 +35,7 @@ public class TThirdFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.T_SECOND_FIGURE;
     }
 
     @Override

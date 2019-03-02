@@ -20,6 +20,10 @@ public class LThirdFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public LThirdFigure(int widthSquare, int scale, Context context, Point point) {
+        super(widthSquare, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -31,7 +35,7 @@ public class LThirdFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.L_SECOND_FIGURE;
     }
 
     @Override

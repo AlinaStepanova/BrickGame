@@ -24,6 +24,10 @@ public class JFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public JFigure(int squareWidth, int scale, Context context, Point point) {
+        super(squareWidth, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -35,7 +39,7 @@ public class JFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.J_SECOND_FIGURE;
     }
 
     @Override

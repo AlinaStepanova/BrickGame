@@ -19,6 +19,10 @@ public class TSecondFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public TSecondFigure(int squareWidth, int scale, Context context, Point point) {
+        super(squareWidth, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -30,7 +34,7 @@ public class TSecondFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.T_FOURTH_FIGURE;
     }
 
     @Override

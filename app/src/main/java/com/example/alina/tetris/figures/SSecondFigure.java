@@ -19,6 +19,10 @@ public class SSecondFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public SSecondFigure(int squareWidth, int scale, Context context, Point point) {
+        super(squareWidth, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -30,7 +34,7 @@ public class SSecondFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.Z_FIGURE;
     }
 
     @Override

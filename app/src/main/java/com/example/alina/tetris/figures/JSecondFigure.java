@@ -19,6 +19,10 @@ public class JSecondFigure extends Figure {
         super(widthSquare, context, point);
     }
 
+    public JSecondFigure(int squareWidth, int scale, Context context, Point point) {
+        super(squareWidth, scale, context, point);
+    }
+
     @Override
     public void initFigureMask() {
         super.initFigureMask();
@@ -30,7 +34,7 @@ public class JSecondFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return null;
+        return FigureType.J_THIRD_FIGURE;
     }
 
     @Override
