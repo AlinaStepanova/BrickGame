@@ -17,10 +17,6 @@ import static com.example.alina.tetris.values.Values.EXTRA_ROWS;
 
 public abstract class Figure {
 
-    private int startX;
-
-    private int startY;
-
     private FigureState state;
 
     protected Context context;
@@ -31,7 +27,7 @@ public abstract class Figure {
 
     public Point point;
 
-    public Point coordinatesInPlayingArea;
+    public Point coordinatesInNet;
 
     public boolean[][] figureMask;
 
@@ -41,7 +37,7 @@ public abstract class Figure {
         this.scale = scale;
         this.state = FigureState.MOVING;
         this.context = context;
-        coordinatesInPlayingArea = new Point(startX, startY);
+        coordinatesInNet = new Point(getCoordinateInNet(squareWidth, point.x), EXTRA_ROWS - (getHeightInSquare()));
     }
 
     public Figure(int squareWidth, int scale, Context context, Point point) {
@@ -50,7 +46,7 @@ public abstract class Figure {
         this.scale = scale;
         this.state = FigureState.MOVING;
         this.context = context;
-        coordinatesInPlayingArea = new Point(point.x / squareWidth, point.y / squareWidth);
+        coordinatesInNet = new Point(getCoordinateInNet(squareWidth, point.x), getCoordinateInNet(squareWidth, point.y));
     }
 
     public Figure(int widthSquare, Context context, Point point) {
@@ -59,17 +55,18 @@ public abstract class Figure {
         this.scale = 0;
         this.state = FigureState.MOVING;
         this.context = context;
-        coordinatesInPlayingArea = new Point(point.x, point.y);
+        coordinatesInNet = new Point(point.x, point.y);
     }
 
     private Point initPoint() {
         int[] arrayOfPositions = new int[]{2 * squareWidth, 3 * squareWidth, 4 * squareWidth,
                 5 * squareWidth, 6 * squareWidth};
         int position = new Random().nextInt(arrayOfPositions.length);
-        Point point = new Point(arrayOfPositions[position], 0);
-        startX = point.x / squareWidth;
-        startY = EXTRA_ROWS - (getHeightInSquare());
-        return point;
+        return new Point(arrayOfPositions[position], 0);
+    }
+
+    private int getCoordinateInNet(int squareWidth, int coordinate) {
+        return coordinate / squareWidth;
     }
 
     public void increaseScale(int scale) {
@@ -77,11 +74,11 @@ public abstract class Figure {
     }
 
     public int getCurrentX() {
-        return coordinatesInPlayingArea.x;
+        return coordinatesInNet.x;
     }
 
     public int getCurrentY() {
-        return coordinatesInPlayingArea.y;
+        return coordinatesInNet.y;
     }
 
     public FigureState getState() {
@@ -106,17 +103,17 @@ public abstract class Figure {
 
     public void moveLeft() {
         point.set(point.x - squareWidth, point.y);
-        coordinatesInPlayingArea.set(coordinatesInPlayingArea.x - 1, coordinatesInPlayingArea.y);
+        coordinatesInNet.set(coordinatesInNet.x - 1, coordinatesInNet.y);
     }
 
     public void moveRight() {
         point.set(point.x + squareWidth, point.y);
-        coordinatesInPlayingArea.set(coordinatesInPlayingArea.x + 1, coordinatesInPlayingArea.y);
+        coordinatesInNet.set(coordinatesInNet.x + 1, coordinatesInNet.y);
     }
 
     public void moveDown() {
         point.set(point.x, point.y + squareWidth);
-        coordinatesInPlayingArea.set(coordinatesInPlayingArea.x, coordinatesInPlayingArea.y + 1);
+        coordinatesInNet.set(coordinatesInNet.x, coordinatesInNet.y + 1);
     }
 
     public abstract FigureType getRotatedFigure();
