@@ -164,6 +164,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
     }
 
+    //todo think about the restrictions
     public void rotate() {
         if (figureList.size() > 0 && figureList.getLast().getState() == FigureState.MOVING
                 && figureList.getLast().getRotatedFigure() != null) {
@@ -173,8 +174,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
             if (figure != null) {
                 figure.initFigureMask();
             }
-            //todo set new figure in net manager
-            invalidate();
+            resetFiguresScale(netManager.checkBottomLine());
+            netManager.initRotatedFigure(figure);
         }
     }
 

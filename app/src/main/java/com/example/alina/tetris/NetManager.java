@@ -34,17 +34,6 @@ public class NetManager {
         combo = 0;
     }
 
-    public int fastMoveDownInNet() {
-        int steps = 0;
-        while (isNetFreeToMoveDown()) {
-            moveDownInNet();
-            steps++;
-            Log.d("jjj", "steps = " + steps);
-        }
-        Log.d("jjj", "final step = " + steps);
-        return steps;
-    }
-
     private void setNet(boolean[][] net) {
         this.net = net;
     }
@@ -58,7 +47,7 @@ public class NetManager {
     }
 
     private void copyMaskToNet() {
-        copyArrays(figure.figureMask.length, figure.figureMask, net, figure.getStartX(),
+        copyArrays(figure.figureMask.length, figure.figureMask, net, figure.getCurrentX(),
                 figure.figureMask[0].length);
     }
 
@@ -80,7 +69,7 @@ public class NetManager {
     private void copyArrays(int size, boolean[][] sourceArray, boolean[][] destinationArray,
                             int destinationPosition, int length) {
         for (int i = 0; i < size; i++) {
-            System.arraycopy(sourceArray[i], 0, destinationArray[figure.getStartY() + i],
+            System.arraycopy(sourceArray[i], 0, destinationArray[figure.getCurrentY() + i],
                     destinationPosition, length);
         }
     }
@@ -212,7 +201,7 @@ public class NetManager {
 
     public boolean isVerticalLineTrue() {
         boolean result = false;
-        int [][] values = new int[verticalSquareCount][1];
+        int[][] values = new int[verticalSquareCount][1];
         for (int i = 0; i < verticalSquareCount; i++) {
             for (int j = EXTRA_ROWS - 1; j < horizontalSquareCount + EXTRA_ROWS; j++) {
                 if (net[j][i]) {
@@ -234,8 +223,19 @@ public class NetManager {
         this.onNetChangedListener = onNetChangedListener;
     }
 
+    public void initRotatedFigure(Figure figure) {
+        this.figure.initMaskWithFalse();
+        copyMaskToNet();
+        figureListInNet.set(figureListInNet.size() - 1, figure);
+        initCurrentFigureInNet(figure);
+    }
+
     public void initFigure(Figure figure) {
         figureListInNet.add(figure);
+        initCurrentFigureInNet(figure);
+    }
+
+    private void initCurrentFigureInNet(Figure figure) {
         this.figure = figureListInNet.getLast();
         this.zeroNet = new boolean[figure.getHeightInSquare()][1];
         copyMaskToNet();

@@ -50,7 +50,7 @@ public abstract class Figure {
         this.scale = scale;
         this.state = FigureState.MOVING;
         this.context = context;
-        coordinatesInPlayingArea = new Point(point.x, point.y);
+        coordinatesInPlayingArea = new Point(point.x / squareWidth, point.y / squareWidth);
     }
 
     public Figure(int widthSquare, Context context, Point point) {
@@ -76,12 +76,12 @@ public abstract class Figure {
         this.scale -= scale;
     }
 
-    public int getStartX() {
-        return startX;
+    public int getCurrentX() {
+        return coordinatesInPlayingArea.x;
     }
 
-    public int getStartY() {
-        return startY;
+    public int getCurrentY() {
+        return coordinatesInPlayingArea.y;
     }
 
     public FigureState getState() {
@@ -94,6 +94,14 @@ public abstract class Figure {
 
     public void initFigureMask() {
         figureMask = new boolean[getHeightInSquare()][getWidthInSquare()];
+    }
+
+    public void initMaskWithFalse() {
+        for (int i = 0; i < getHeightInSquare(); i++) {
+            for (int j = 0; j < getWidthInSquare(); j++) {
+                figureMask[i][j] = false;
+            }
+        }
     }
 
     public void moveLeft() {
