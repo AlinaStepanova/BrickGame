@@ -33,7 +33,7 @@ public class LSecondFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return FigureType.L_FIGURE;
+        return FigureType.L_THIRD_FIGURE;
     }
 
     @Override

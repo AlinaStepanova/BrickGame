@@ -35,7 +35,7 @@ public class LThirdFigure extends Figure {
 
     @Override
     public FigureType getRotatedFigure() {
-        return FigureType.L_SECOND_FIGURE;
+        return FigureType.L_FIGURE;
     }
 
     @Override
