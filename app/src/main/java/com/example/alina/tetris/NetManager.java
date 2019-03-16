@@ -34,6 +34,15 @@ public class NetManager {
         combo = 0;
     }
 
+    public boolean canRotate(Figure rotatedFigure) {
+        boolean result = false;
+        if (rotatedFigure.coordinatesInNet.x + rotatedFigure.getWidthInSquare() <= verticalSquareCount
+                && isNetFreeToMoveDown()) {
+            result = true;
+        }
+        return result;
+    }
+
     private void setNet(boolean[][] net) {
         this.net = net;
     }
@@ -116,6 +125,7 @@ public class NetManager {
         return trueCount;
     }
 
+    //todo think of rotated figure
     private boolean isFigureBelow() {
         boolean result = false;
         int coordinateX = figure.coordinatesInNet.x;
@@ -310,8 +320,8 @@ public class NetManager {
             int endPosition = getEndHorizontalPosition(figure.figureMask[i - 1]);
             System.arraycopy(figure.figureMask[i - 1], startPosition, net[coordinateY + i],
                     figure.coordinatesInNet.x + startPosition, endPosition);
-            for (int j = 0; j < zeroNet.length; j++) {
-                System.arraycopy(zeroNet[j], startPosition, net[coordinateY + i - 1],
+            for (boolean[] zero : zeroNet) {
+                System.arraycopy(zero, startPosition, net[coordinateY + i - 1],
                         figure.coordinatesInNet.x + startPosition, endPosition);
             }
         }

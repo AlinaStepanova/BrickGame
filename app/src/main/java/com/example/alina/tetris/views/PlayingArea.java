@@ -170,12 +170,14 @@ public class PlayingArea extends View implements OnNetChangedListener {
                 && figureList.getLast().getRotatedFigure() != null) {
             Figure figure = FigureFactory.getFigure(figureList.getLast().getRotatedFigure(),
                     widthOfSquareSide, scale, context, figureList.getLast().point);
-            figureList.set(figureList.size() - 1, figure);
             if (figure != null) {
                 figure.initFigureMask();
             }
-            resetFiguresScale(netManager.checkBottomLine());
-            netManager.initRotatedFigure(figure);
+            if (netManager.canRotate(figure)) {
+                figureList.set(figureList.size() - 1, figure);
+                resetFiguresScale(netManager.checkBottomLine());
+                netManager.initRotatedFigure(figure);
+            }
         }
     }
 
