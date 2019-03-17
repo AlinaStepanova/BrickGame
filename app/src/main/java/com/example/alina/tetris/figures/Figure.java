@@ -9,7 +9,7 @@ import com.example.alina.tetris.enums.FigureType;
 
 import java.util.Random;
 
-import static com.example.alina.tetris.values.Values.EXTRA_ROWS;
+import static com.example.alina.tetris.Values.EXTRA_ROWS;
 
 /**
  * Created by Alina on 02.04.2017.

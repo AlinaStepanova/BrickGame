@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
     @BindView(R.id.controller)
     Controller controller;
 
-    @BindView(R.id.vNextFigure)
+    @BindView(R.id.tvNextFigure)
     PreviewArea previewArea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
         ButterKnife.bind(this);
         playingArea.setScoreArea(scoreArea);
         playingArea.setPreviewArea(previewArea);

@@ -25,11 +25,11 @@ import com.example.alina.tetris.figures.factory.FigureFactory;
 import com.example.alina.tetris.listeners.OnNetChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
-import static com.example.alina.tetris.values.Values.COUNT_DOWN_INTERVAL;
-import static com.example.alina.tetris.values.Values.GAME_OVER_TEXT;
-import static com.example.alina.tetris.values.Values.LINE_WIDTH;
-import static com.example.alina.tetris.values.Values.MILLIS_IN_FUTURE;
-import static com.example.alina.tetris.values.Values.SQUARE_COUNT_HORIZONTAL;
+import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
+import static com.example.alina.tetris.Values.GAME_OVER_TEXT;
+import static com.example.alina.tetris.Values.LINE_WIDTH;
+import static com.example.alina.tetris.Values.MILLIS_IN_FUTURE;
+import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
 
 /**
  * Created by Alina on 18.03.2017.

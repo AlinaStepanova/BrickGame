@@ -8,8 +8,8 @@ import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.listeners.OnNetChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
-import static com.example.alina.tetris.values.Values.EXTRA_ROWS;
-import static com.example.alina.tetris.values.Values.SQUARE_COUNT_HORIZONTAL;
+import static com.example.alina.tetris.Values.EXTRA_ROWS;
+import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
 
 public class NetManager {
 

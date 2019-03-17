@@ -9,8 +9,8 @@ import android.support.v4.app.NotificationManagerCompat;
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.activities.ScoreActivity;
 
-import static com.example.alina.tetris.values.Values.CHANNEL_ID;
-import static com.example.alina.tetris.values.Values.NOTIFICATION_ID;
+import static com.example.alina.tetris.Values.CHANNEL_ID;
+import static com.example.alina.tetris.Values.NOTIFICATION_ID;
 
 public class NotificationUtil {
 

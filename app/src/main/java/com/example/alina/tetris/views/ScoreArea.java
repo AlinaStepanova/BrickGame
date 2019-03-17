@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 
 import com.example.alina.tetris.NetManager;
 
-import static com.example.alina.tetris.values.Values.EXTRA_SCORE;
-import static com.example.alina.tetris.values.Values.FIGURE_STOPPED_SCORE;
+import static com.example.alina.tetris.Values.EXTRA_SCORE;
+import static com.example.alina.tetris.Values.FIGURE_STOPPED_SCORE;
 
 public class ScoreArea extends AppCompatTextView {
 

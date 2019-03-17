@@ -1,4 +1,4 @@
-package com.example.alina.tetris.values;
+package com.example.alina.tetris;
 
 
 public class Values {

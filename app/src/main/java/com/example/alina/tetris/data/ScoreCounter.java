@@ -7,11 +7,11 @@ import android.content.SharedPreferences;
 import com.example.alina.tetris.utils.NotificationUtil;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.alina.tetris.values.Values.DEFAULT_VALUE;
-import static com.example.alina.tetris.values.Values.FIRST_VALUE_KEY;
-import static com.example.alina.tetris.values.Values.PREFERENCES_KEY;
-import static com.example.alina.tetris.values.Values.SECOND_VALUE_KEY;
-import static com.example.alina.tetris.values.Values.THIRD_VALUE_KEY;
+import static com.example.alina.tetris.Values.DEFAULT_VALUE;
+import static com.example.alina.tetris.Values.FIRST_VALUE_KEY;
+import static com.example.alina.tetris.Values.PREFERENCES_KEY;
+import static com.example.alina.tetris.Values.SECOND_VALUE_KEY;
+import static com.example.alina.tetris.Values.THIRD_VALUE_KEY;
 
 public class ScoreCounter {
 

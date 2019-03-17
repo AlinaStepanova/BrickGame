@@ -5,8 +5,8 @@ import com.example.alina.tetris.views.PlayingArea;
 
 import java.util.Random;
 
-import static com.example.alina.tetris.values.Values.ENUM_LENGTH;
-import static com.example.alina.tetris.values.Values.INITIAL_FIGURE_TYPE_LIST_LENGTH;
+import static com.example.alina.tetris.Values.ENUM_LENGTH;
+import static com.example.alina.tetris.Values.INITIAL_FIGURE_TYPE_LIST_LENGTH;
 
 public class FigureCreator {
 
