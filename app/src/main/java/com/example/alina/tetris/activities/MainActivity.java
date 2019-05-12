@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         playingArea.setScoreArea(scoreArea);
         playingArea.setPreviewArea(previewArea);
