@@ -5,12 +5,20 @@
     <dimen name="maxTextSize">24sp</dimen>
     <dimen name="midTextSize">20sp</dimen>
     <dimen name="minTextSize">16sp</dimen>
+    <dimen name="textSize12">12sp</dimen>
+    <dimen name="textSize18">18sp</dimen>
+
     <dimen name="minPadding">4dp</dimen>
     <dimen name="midPadding">20dp</dimen>
-    <dimen name="elevation">10dp</dimen>
+
     <dimen name="mainMargin">10dp</dimen>
+    <dimen name="smallMargin">16dp</dimen>
     <dimen name="maxMargin">40dp</dimen>
+    <dimen name="midMargin">36dp</dimen>
+
     <dimen name="maxRadius">30dp</dimen>
     <dimen name="minRadius">2dp</dimen>
+
+    <dimen name="elevation">10dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
 </resources>
