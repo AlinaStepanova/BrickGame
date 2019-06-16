@@ -5,23 +5,24 @@ import android.graphics.Point;
 
 import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.figures.Figure;
-import com.example.alina.tetris.figures.JFigure;
-import com.example.alina.tetris.figures.JSecondFigure;
-import com.example.alina.tetris.figures.JThirdFigure;
-import com.example.alina.tetris.figures.LFigure;
-import com.example.alina.tetris.figures.LSecondFigure;
-import com.example.alina.tetris.figures.LThirdFigure;
-import com.example.alina.tetris.figures.LongFigure;
-import com.example.alina.tetris.figures.LongSecondFigure;
-import com.example.alina.tetris.figures.SFigure;
-import com.example.alina.tetris.figures.SSecondFigure;
+import com.example.alina.tetris.figures.figure_j.JFigure;
+import com.example.alina.tetris.figures.figure_j.JSecondFigure;
+import com.example.alina.tetris.figures.figure_j.JThirdFigure;
+import com.example.alina.tetris.figures.figure_l.LFigure;
+import com.example.alina.tetris.figures.figure_l.LFourthFigure;
+import com.example.alina.tetris.figures.figure_l.LSecondFigure;
+import com.example.alina.tetris.figures.figure_l.LThirdFigure;
+import com.example.alina.tetris.figures.figure_long.LongFigure;
+import com.example.alina.tetris.figures.figure_long.LongSecondFigure;
+import com.example.alina.tetris.figures.figure_s.SFigure;
+import com.example.alina.tetris.figures.figure_s.SSecondFigure;
 import com.example.alina.tetris.figures.SquareFigure;
-import com.example.alina.tetris.figures.TFigure;
-import com.example.alina.tetris.figures.TFourthFigure;
-import com.example.alina.tetris.figures.TSecondFigure;
-import com.example.alina.tetris.figures.TThirdFigure;
-import com.example.alina.tetris.figures.ZFigure;
-import com.example.alina.tetris.figures.ZSecondFigure;
+import com.example.alina.tetris.figures.figure_t.TFigure;
+import com.example.alina.tetris.figures.figure_t.TFourthFigure;
+import com.example.alina.tetris.figures.figure_t.TSecondFigure;
+import com.example.alina.tetris.figures.figure_t.TThirdFigure;
+import com.example.alina.tetris.figures.figure_z.ZFigure;
+import com.example.alina.tetris.figures.figure_z.ZSecondFigure;
 
 import static com.example.alina.tetris.views.PreviewArea.PREVIEW_AREA_WIDTH;
 
@@ -39,6 +40,8 @@ public class FigureFactory {
                 return new ZSecondFigure(widthSquare, scale, context);
             case L_FIGURE:
                 return new LFigure(widthSquare, scale, context);
+            case L_FOURTH_FIGURE:
+                return new LFourthFigure(widthSquare, scale, context);
             case L_SECOND_FIGURE:
                 return new LSecondFigure(widthSquare, scale, context);
             case L_THIRD_FIGURE:
@@ -85,6 +88,9 @@ public class FigureFactory {
             case L_FIGURE:
                 scale += 3 * widthSquare;
                 return new LFigure(widthSquare, scale, context, point);
+            case L_FOURTH_FIGURE:
+                scale += 3 * widthSquare;
+                return new LFourthFigure(widthSquare, scale, context, point);
             case L_SECOND_FIGURE:
                 scale += 2 * widthSquare;
                 return new LSecondFigure(widthSquare, scale, context, point);
@@ -140,6 +146,8 @@ public class FigureFactory {
                 return new ZSecondFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare));
             case L_FIGURE:
                 return new LFigure(widthSquare, context, new Point(center - widthSquare / 4, widthSquare));
+            case L_FOURTH_FIGURE:
+                return new LFourthFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare));
             case L_SECOND_FIGURE:
                 return new LSecondFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare + (widthSquare / 2)));
             case L_THIRD_FIGURE:

@@ -1,25 +1,30 @@
-package com.example.alina.tetris.figures;
-
+package com.example.alina.tetris.figures.figure_z;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Point;
 
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.enums.FigureType;
+import com.example.alina.tetris.figures.Figure;
 
-public class JSecondFigure extends Figure {
+/**
+ * Created by Alina on 02.04.2017.
+ */
 
-    public JSecondFigure(int squareWidth, int scale, Context context) {
+public class ZFigure extends Figure {
+
+    public ZFigure(int squareWidth, int scale, Context context) {
         super(squareWidth, scale, context);
         this.scale += squareWidth;
     }
 
-    public JSecondFigure(int widthSquare, Context context, Point point) {
+    public ZFigure(int widthSquare, Context context, Point point) {
         super(widthSquare, context, point);
     }
 
-    public JSecondFigure(int squareWidth, int scale, Context context, Point point) {
+    public ZFigure(int squareWidth, int scale, Context context, Point point) {
         super(squareWidth, scale, context, point);
     }
 
@@ -27,14 +32,14 @@ public class JSecondFigure extends Figure {
     public void initFigureMask() {
         super.initFigureMask();
         figureMask[0][0] = true;
-        figureMask[1][0] = true;
+        figureMask[0][1] = true;
         figureMask[1][1] = true;
         figureMask[1][2] = true;
     }
 
     @Override
     public FigureType getRotatedFigure() {
-        return FigureType.J_THIRD_FIGURE;
+        return FigureType.Z_SECOND_FIGURE;
     }
 
     @Override
@@ -51,17 +56,21 @@ public class JSecondFigure extends Figure {
     public Path getPath() {
         Path path = new Path();
         path.moveTo(point.x, point.y - scale);
-        path.lineTo(point.x, point.y + squareWidth * 2 - scale);
-        path.lineTo(point.x + squareWidth * 3, point.y + squareWidth * 2 - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y - scale);
+        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth - scale);
+        path.lineTo(point.x, point.y + squareWidth - scale);
+        path.lineTo(point.x, point.y - scale);
+        path.lineTo(point.x + squareWidth, point.y + squareWidth - scale);
+        path.lineTo(point.x + squareWidth, point.y + 2 * squareWidth - scale);
+        path.lineTo(point.x + squareWidth * 3, point.y + 2 * squareWidth - scale);
         path.lineTo(point.x + squareWidth * 3, point.y + squareWidth - scale);
         path.lineTo(point.x + squareWidth, point.y + squareWidth - scale);
-        path.lineTo(point.x + squareWidth, point.y - scale);
         path.close();
         return path;
     }
 
     @Override
     public int getColor() {
-        return this.context.getResources().getColor(R.color.jFigure);
+        return this.context.getResources().getColor(R.color.zFigure);
     }
 }

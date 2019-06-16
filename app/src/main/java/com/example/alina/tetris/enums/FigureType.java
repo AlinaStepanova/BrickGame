@@ -13,6 +13,7 @@ public enum FigureType {
     Z_FIGURE,
     L_THIRD_FIGURE,
     L_SECOND_FIGURE,
+    L_FOURTH_FIGURE,
     S_SECOND_FIGURE,
     Z_SECOND_FIGURE,
     T_SECOND_FIGURE,

@@ -1,4 +1,4 @@
-package com.example.alina.tetris.figures;
+package com.example.alina.tetris.figures.figure_long;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,6 +7,7 @@ import android.graphics.Point;
 
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.enums.FigureType;
+import com.example.alina.tetris.figures.Figure;
 
 /**
  * Created by Alina on 02.04.2017.
