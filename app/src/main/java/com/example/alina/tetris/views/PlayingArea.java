@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.alina.tetris.NetManager;
+import com.example.alina.tetris.Values;
 import com.example.alina.tetris.data.ScoreCounter;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.enums.FigureType;
@@ -26,6 +27,7 @@ import com.example.alina.tetris.listeners.OnNetChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
 import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
+import static com.example.alina.tetris.Values.GAME_OVER_DELAY_IN_MILLIS;
 import static com.example.alina.tetris.Values.GAME_OVER_TEXT;
 import static com.example.alina.tetris.Values.LINE_WIDTH;
 import static com.example.alina.tetris.Values.MILLIS_IN_FUTURE;
@@ -195,17 +197,17 @@ public class PlayingArea extends View implements OnNetChangedListener {
         figureList.add(figure);
         if (figure != null) {
             figure.initFigureMask();
-        }
-        if (netManager == null) {
-            netManager = new NetManager();
-            netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL);
-        }
-        if (!netManager.isVerticalLineTrue()) {
-            netManager.setOnNetChangedListener(this);
-            resetFiguresScale(netManager.checkBottomLine());
-            netManager.initFigure(figure);
-            netManager.printNet();
-            invalidate();
+            if (netManager == null) {
+                netManager = new NetManager();
+                netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL);
+            }
+            if (!netManager.isVerticalLineTrue()) {
+                netManager.setOnNetChangedListener(this);
+                resetFiguresScale(netManager.checkBottomLine());
+                netManager.initFigure(figure);
+                netManager.printNet();
+                invalidate();
+            }
         }
     }
 
@@ -235,7 +237,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
                         widthOfSquareSide, context));
                 createFigure();
             }
-        }, 1500);
+        }, Values.DELAY_IN_MILLIS);
     }
 
     @Override
@@ -289,6 +291,6 @@ public class PlayingArea extends View implements OnNetChangedListener {
             public void run() {
                 ((Activity) context).finish();
             }
-        }, 4000);
+        }, GAME_OVER_DELAY_IN_MILLIS);
     }
 }
