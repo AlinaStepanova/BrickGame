@@ -17,9 +17,9 @@ import static com.example.alina.tetris.Values.NOTIFICATION_ID;
 
 public class NotificationUtil {
 
-    private Context context;
+    private final Context context;
     private PendingIntent pendingIntent;
-    private int score;
+    private final int score;
 
     public NotificationUtil(Context context, int newScore) {
         this.context = context;

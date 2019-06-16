@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 
 import com.example.alina.tetris.NetManager;
 
+import static com.example.alina.tetris.Values.DEFAULT_VALUE;
 import static com.example.alina.tetris.Values.EXTRA_SCORE;
 import static com.example.alina.tetris.Values.FIGURE_STOPPED_SCORE;
 
@@ -32,7 +33,7 @@ public class ScoreArea extends AppCompatTextView {
     }
 
     public void setStartValue() {
-        setScore(0);
+        setScore(DEFAULT_VALUE);
     }
 
     public void sumScoreWhenFigureStopped() {

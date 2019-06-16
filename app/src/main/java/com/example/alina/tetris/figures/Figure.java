@@ -19,19 +19,19 @@ public abstract class Figure {
 
     private FigureState state;
 
-    protected Context context;
+    protected final Context context;
 
-    public int squareWidth;
+    protected final int squareWidth;
 
     public int scale;
 
-    public Point point;
+    public final Point point;
 
-    public Point coordinatesInNet;
+    public final Point coordinatesInNet;
 
     public boolean[][] figureMask;
 
-    public Figure(int squareWidth, int scale, Context context) {
+    protected Figure(int squareWidth, int scale, Context context) {
         this.squareWidth = squareWidth;
         this.point = initPoint();
         this.scale = scale;
@@ -40,7 +40,7 @@ public abstract class Figure {
         coordinatesInNet = new Point(getCoordinateInNet(squareWidth, point.x), EXTRA_ROWS - (getHeightInSquare()));
     }
 
-    public Figure(int squareWidth, int scale, Context context, Point point) {
+    protected Figure(int squareWidth, int scale, Context context, Point point) {
         this.squareWidth = squareWidth;
         this.point = point;
         this.scale = scale;
@@ -49,7 +49,7 @@ public abstract class Figure {
         coordinatesInNet = new Point(getCoordinateInNet(squareWidth, point.x), getCoordinateInNet(squareWidth, point.y));
     }
 
-    public Figure(int widthSquare, Context context, Point point) {
+    protected Figure(int widthSquare, Context context, Point point) {
         this.squareWidth = widthSquare / 2;
         this.point = new Point(point.x, point.y);
         this.scale = 0;

@@ -1,10 +1,8 @@
 package com.example.alina.tetris.figures;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Point;
-import android.util.Log;
 
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.enums.FigureType;

@@ -199,7 +199,7 @@ public class NetManager {
         return result;
     }
 
-    private int getMaxCountOfTrue(int values[][]) {
+    private int getMaxCountOfTrue(int[][] values) {
         int max = values[1][0];
         for (int[] value : values) {
             if (value[0] > max) {

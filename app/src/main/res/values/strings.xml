@@ -1,14 +1,10 @@
 <resources>
     <string name="app_name">Tetris</string>
-    <string name="left"><![CDATA[<]]></string>
-    <string name="right"><![CDATA[>]]></string>
     <string name="startScore">0</string>
     <string name="scoreText">SCORE</string>
-    <string name="menu">MENU</string>
     <string name="gameTitle">TETRIS</string>
     <string name="new_game">NEW GAME</string>
     <string name="scores_text">scores</string>
-    <string name="restart_game">RESTART GAME</string>
     <string name="scores">SCORES</string>
     <string name="initial_score">0</string>
     <string name="next">NEXT</string>

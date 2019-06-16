@@ -1,7 +1,6 @@
 package com.example.alina.tetris.figures.figure_l;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Point;
 

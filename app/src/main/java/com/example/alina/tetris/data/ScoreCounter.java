@@ -15,9 +15,9 @@ import static com.example.alina.tetris.Values.THIRD_VALUE_KEY;
 
 public class ScoreCounter {
 
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
-    private Context context;
+    private final SharedPreferences preferences;
+    private final SharedPreferences.Editor editor;
+    private final Context context;
     private int firstValue;
     private int secondValue;
     private int thirdValue;

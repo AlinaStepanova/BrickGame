@@ -85,6 +85,34 @@ public class PlayingArea extends View implements OnNetChangedListener {
         this.context = context;
     }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(LINE_WIDTH);
+        drawVerticalLines(canvas);
+        drawHorizontalLines(canvas);
+        for (Figure figure : figureList) {
+            if (figure != null) {
+                Path path = figure.getPath();
+                paint.setColor(figure.getColor());
+                canvas.drawPath(path, paint);
+                if (figure.getState() == FigureState.MOVING) {
+                    startMoveDown();
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_HORIZONTAL;
+        verticalSquareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
+        scale = widthOfSquareSide - (MeasureSpec.getSize(heightMeasureSpec) % widthOfSquareSide);
+        screenHeight = MeasureSpec.getSize(heightMeasureSpec);
+        screenWidth = MeasureSpec.getSize(widthMeasureSpec);
+    }
+
     public void cleanup() {
         scoreCounter.putNewScore(scoreArea.getScore());
         cancelTimer();
@@ -238,34 +266,6 @@ public class PlayingArea extends View implements OnNetChangedListener {
                 createFigure();
             }
         }, Values.DELAY_IN_MILLIS);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(LINE_WIDTH);
-        drawVerticalLines(canvas);
-        drawHorizontalLines(canvas);
-        for (Figure figure : figureList) {
-            if (figure != null) {
-                Path path = figure.getPath();
-                paint.setColor(figure.getColor());
-                canvas.drawPath(path, paint);
-                if (figure.getState() == FigureState.MOVING) {
-                    startMoveDown();
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_HORIZONTAL;
-        verticalSquareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
-        scale = widthOfSquareSide - (MeasureSpec.getSize(heightMeasureSpec) % widthOfSquareSide);
-        screenHeight = MeasureSpec.getSize(heightMeasureSpec);
-        screenWidth = MeasureSpec.getSize(widthMeasureSpec);
     }
 
     @Override
