@@ -37,6 +37,7 @@ public class NetManager {
     public boolean canRotate(Figure rotatedFigure) {
         boolean result = false;
         if (rotatedFigure.coordinatesInNet.x + rotatedFigure.getWidthInSquare() <= verticalSquareCount
+                && rotatedFigure.coordinatesInNet.y + rotatedFigure.getHeightInSquare() < horizontalSquareCount
                 && isNetFreeToMoveDown()) {
             result = true;
         }
