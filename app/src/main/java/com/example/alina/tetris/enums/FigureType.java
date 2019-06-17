@@ -9,6 +9,7 @@ public enum FigureType {
     J_FIGURE,
     J_SECOND_FIGURE,
     J_THIRD_FIGURE,
+    J_FOURTH_FIGURE,
     S_FIGURE,
     Z_FIGURE,
     L_THIRD_FIGURE,

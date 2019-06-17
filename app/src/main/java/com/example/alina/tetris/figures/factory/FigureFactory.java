@@ -6,6 +6,7 @@ import android.graphics.Point;
 import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.figure_j.JFigure;
+import com.example.alina.tetris.figures.figure_j.JFourthFigure;
 import com.example.alina.tetris.figures.figure_j.JSecondFigure;
 import com.example.alina.tetris.figures.figure_j.JThirdFigure;
 import com.example.alina.tetris.figures.figure_l.LFigure;
@@ -50,6 +51,8 @@ public class FigureFactory {
                 return new JFigure(widthSquare, scale, context);
             case J_SECOND_FIGURE:
                 return new JSecondFigure(widthSquare, scale, context);
+            case J_FOURTH_FIGURE:
+                return new JFourthFigure(widthSquare, scale, context);
             case J_THIRD_FIGURE:
                 return new JThirdFigure(widthSquare, scale, context);
             case SQUARE_FIGURE:
@@ -103,6 +106,9 @@ public class FigureFactory {
             case J_SECOND_FIGURE:
                 scale += 3 * widthSquare;
                 return new JSecondFigure(widthSquare, scale, context, point);
+            case J_FOURTH_FIGURE:
+                scale += 3 * widthSquare;
+                return new JFourthFigure(widthSquare, scale, context, point);
             case J_THIRD_FIGURE:
                 scale += 3 * widthSquare;
                 return new JThirdFigure(widthSquare, scale, context, point);
@@ -156,6 +162,8 @@ public class FigureFactory {
                 return new JFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare));
             case J_SECOND_FIGURE:
                 return new JSecondFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare));
+            case J_FOURTH_FIGURE:
+                return new JFourthFigure(widthSquare, context, new Point(center - widthSquare / 2 - widthSquare / 4, widthSquare));
             case J_THIRD_FIGURE:
                 return new JThirdFigure(widthSquare, context, new Point(center - widthSquare / 2, widthSquare));
             case SQUARE_FIGURE:
