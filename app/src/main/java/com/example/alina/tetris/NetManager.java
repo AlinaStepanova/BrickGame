@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.figures.Figure;
+import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.listeners.OnNetChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
@@ -186,7 +187,6 @@ public class NetManager {
         for (int i = 0; i < net.length; i++) {
             System.arraycopy(net[i], 0, tmpNet[i], 0, net[i].length);
         }
-        //setFalseNet(net);
         for (int i = 0; i <= net.length - level; i++) {
             for (int j = 0; j < net[0].length; j++) {
                 net[i][j] = false;
@@ -226,12 +226,7 @@ public class NetManager {
         for (int i = horizontalSquaresCount - 1; i >= 0; i--) {
             for (int j = verticalSquaresCount + EXTRA_ROWS - 1; j >= 0; j--) {
                 if (net[j][i]) {
-                    Path path = new Path();
-                    path.moveTo(i * squareWidth, j * squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale);
-                    path.lineTo(i * squareWidth, j * squareWidth - squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale);
-                    path.lineTo(i * squareWidth + squareWidth, j * squareWidth - squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale);
-                    path.lineTo(i * squareWidth  + squareWidth, j * squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale);
-                    path.close();
+                    Path path = FigureCreator.createSmallSquareFigure(i, j, squareWidth, scale);
                     paths.add(path);
                 }
             }
