@@ -181,14 +181,19 @@ public class NetManager {
         return result;
     }
 
-    private void levelDownNet(int level) {
+    private void levelDownNet(int level, int rowsCount) {
         boolean[][] tmpNet = new boolean[verticalSquaresCount + EXTRA_ROWS][horizontalSquaresCount];
         for (int i = 0; i < net.length; i++) {
             System.arraycopy(net[i], 0, tmpNet[i], 0, net[i].length);
         }
-        setFalseNet(net);
+        //setFalseNet(net);
+        for (int i = 0; i <= net.length - level; i++) {
+            for (int j = 0; j < net[0].length; j++) {
+                net[i][j] = false;
+            }
+        }
         for (int i = 0; i < net.length - level; i++) {
-            System.arraycopy(tmpNet[i], 0, net[i + level], 0, tmpNet[i].length);
+            System.arraycopy(tmpNet[i], 0, net[i + rowsCount], 0, tmpNet[i].length);
         }
     }
 
@@ -283,18 +288,20 @@ public class NetManager {
         }
     }
 
-    public int checkBottomLine() {
+    public void checkBottomLine() {
         int skippedRows = 0;
+        int rowsCount = 0;
         for (int i = verticalSquaresCount + EXTRA_ROWS - 1; i > 0; i--) {
-            if (isHorizontalLineTrue(net[i])
-                    && isHorizontalLineTrue(net[verticalSquaresCount + EXTRA_ROWS - 1])) {
+            if (isHorizontalLineTrue(net[i])) {
+                rowsCount++;
                 skippedRows = verticalSquaresCount + EXTRA_ROWS - i;
             }
         }
-        levelDownNet(skippedRows);
-        combo = skippedRows;
-        onNetChangedListener.onBottomLineIsTrue();
-        return skippedRows;
+        if (skippedRows != 0) {
+            levelDownNet(skippedRows, rowsCount);
+            combo = rowsCount;
+            onNetChangedListener.onBottomLineIsTrue();
+        }
     }
 
     public boolean isNetFreeToMoveDown() {
