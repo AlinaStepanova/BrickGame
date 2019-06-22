@@ -1,6 +1,7 @@
 package com.example.alina.tetris;
 
 
+import android.graphics.Path;
 import android.util.Log;
 
 import com.example.alina.tetris.enums.FigureState;
@@ -8,14 +9,16 @@ import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.listeners.OnNetChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
+import java.util.ArrayList;
+
 import static com.example.alina.tetris.Values.EXTRA_ROWS;
 import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
 
 public class NetManager {
 
-    private int horizontalSquareCount;
+    private int verticalSquaresCount;
 
-    private int verticalSquareCount;
+    private int horizontalSquaresCount;
 
     private Figure figure;
 
@@ -29,6 +32,9 @@ public class NetManager {
 
     private OnNetChangedListener onNetChangedListener;
 
+    private int squareWidth;
+    private int scale;
+
     public NetManager() {
         this.net = null;
         combo = 0;
@@ -36,8 +42,8 @@ public class NetManager {
 
     public boolean canRotate(Figure rotatedFigure) {
         boolean result = false;
-        if (rotatedFigure.coordinatesInNet.x + rotatedFigure.getWidthInSquare() <= verticalSquareCount
-                && rotatedFigure.coordinatesInNet.y + rotatedFigure.getHeightInSquare() < horizontalSquareCount
+        if (rotatedFigure.coordinatesInNet.x + rotatedFigure.getWidthInSquare() <= horizontalSquaresCount
+                && rotatedFigure.coordinatesInNet.y + rotatedFigure.getHeightInSquare() < verticalSquaresCount
                 && isNetFreeToMoveDown()) {
             result = true;
         }
@@ -176,7 +182,7 @@ public class NetManager {
     }
 
     private void levelDownNet(int level) {
-        boolean[][] tmpNet = new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount];
+        boolean[][] tmpNet = new boolean[verticalSquaresCount + EXTRA_ROWS][horizontalSquaresCount];
         for (int i = 0; i < net.length; i++) {
             System.arraycopy(net[i], 0, tmpNet[i], 0, net[i].length);
         }
@@ -189,7 +195,7 @@ public class NetManager {
     private boolean isHorizontalLineTrue(boolean[] booleans) {
         boolean result = false;
         int j = 0;
-        for (int i = 0; i < verticalSquareCount; i++) {
+        for (int i = 0; i < horizontalSquaresCount; i++) {
             if (booleans[i]) {
                 j++;
             }
@@ -210,17 +216,35 @@ public class NetManager {
         return max;
     }
 
+    public ArrayList<Path> getStoppedFiguresPaths() {
+        ArrayList<Path> paths = new ArrayList<>();
+        for (int i = horizontalSquaresCount - 1; i >= 0; i--) {
+            for (int j = verticalSquaresCount + EXTRA_ROWS - 1; j >= 0; j--) {
+                if (net[j][i]) {
+                    Path path = new Path();
+                    path.moveTo(i * squareWidth, j * squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale);
+                    path.lineTo(i * squareWidth, j * squareWidth - squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale);
+                    path.lineTo(i * squareWidth + squareWidth, j * squareWidth - squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale);
+                    path.lineTo(i * squareWidth  + squareWidth, j * squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale);
+                    path.close();
+                    paths.add(path);
+                }
+            }
+        }
+        return paths;
+    }
+
     public boolean isVerticalLineTrue() {
         boolean result = false;
-        int[][] values = new int[verticalSquareCount][1];
-        for (int i = 0; i < verticalSquareCount; i++) {
-            for (int j = EXTRA_ROWS - 1; j < horizontalSquareCount + EXTRA_ROWS; j++) {
+        int[][] values = new int[horizontalSquaresCount][1];
+        for (int i = 0; i < horizontalSquaresCount; i++) {
+            for (int j = EXTRA_ROWS - 1; j < verticalSquaresCount + EXTRA_ROWS; j++) {
                 if (net[j][i]) {
-                    values[i][0] = horizontalSquareCount + EXTRA_ROWS - j;
+                    values[i][0] = verticalSquaresCount + EXTRA_ROWS - j;
                     break;
                 }
             }
-            if (getMaxCountOfTrue(values) >= horizontalSquareCount + 1) {
+            if (getMaxCountOfTrue(values) >= verticalSquaresCount + 1) {
                 result = true;
                 figure.setState(FigureState.STOPPED);
                 onNetChangedListener.onTopLineHasTrue();
@@ -261,10 +285,10 @@ public class NetManager {
 
     public int checkBottomLine() {
         int skippedRows = 0;
-        for (int i = horizontalSquareCount + EXTRA_ROWS - 1; i > 0; i--) {
+        for (int i = verticalSquaresCount + EXTRA_ROWS - 1; i > 0; i--) {
             if (isHorizontalLineTrue(net[i])
-                    && isHorizontalLineTrue(net[horizontalSquareCount + EXTRA_ROWS - 1])) {
-                skippedRows = horizontalSquareCount + EXTRA_ROWS - i;
+                    && isHorizontalLineTrue(net[verticalSquaresCount + EXTRA_ROWS - 1])) {
+                skippedRows = verticalSquaresCount + EXTRA_ROWS - i;
             }
         }
         levelDownNet(skippedRows);
@@ -276,7 +300,7 @@ public class NetManager {
     public boolean isNetFreeToMoveDown() {
         boolean result = false;
         if (figure.coordinatesInNet.y + figure.getHeightInSquare()
-                != horizontalSquareCount + EXTRA_ROWS && !isFigureBelow()) {
+                != verticalSquaresCount + EXTRA_ROWS && !isFigureBelow()) {
             result = true;
         }
         return result;
@@ -292,7 +316,7 @@ public class NetManager {
 
     public boolean isNetFreeToMoveRight() {
         boolean result = false;
-        if (figure.coordinatesInNet.x + figure.getWidthInSquare() < verticalSquareCount
+        if (figure.coordinatesInNet.x + figure.getWidthInSquare() < horizontalSquaresCount
                 && isNetFreeToMoveDown() && !isFigureRight()) {
             result = true;
         }
@@ -343,10 +367,12 @@ public class NetManager {
         Log.d("logNet", str.toString());
     }
 
-    public void initNet(int horizontalSquareCount, int verticalSquareCount) {
-        setNet(new boolean[horizontalSquareCount + EXTRA_ROWS][verticalSquareCount]);
+    public void initNet(int verticalSquaresCount, int horizontalSquaresCount, int widthOfSquareSide, int scale) {
+        setNet(new boolean[verticalSquaresCount + EXTRA_ROWS][horizontalSquaresCount]);
         setFalseNet(net);
-        this.horizontalSquareCount = horizontalSquareCount; //20
-        this.verticalSquareCount = verticalSquareCount; //10
+        this.squareWidth = widthOfSquareSide;
+        this.scale = scale;
+        this.verticalSquaresCount = verticalSquaresCount; //20
+        this.horizontalSquaresCount = horizontalSquaresCount; //10
     }
 }

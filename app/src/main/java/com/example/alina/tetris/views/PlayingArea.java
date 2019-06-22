@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.alina.tetris.NetManager;
+import com.example.alina.tetris.R;
 import com.example.alina.tetris.Values;
 import com.example.alina.tetris.data.ScoreCounter;
 import com.example.alina.tetris.enums.FigureState;
@@ -92,13 +93,12 @@ public class PlayingArea extends View implements OnNetChangedListener {
         drawVerticalLines(canvas);
         drawHorizontalLines(canvas);
         for (Figure figure : figureList) {
-            if (figure != null) {
-                Path path = figure.getPath();
-                paint.setColor(figure.getColor());
-                canvas.drawPath(path, paint);
-                if (figure.getState() == FigureState.MOVING) {
-                    startMoveDown();
-                }
+            if (figure != null && figure.getState() == FigureState.MOVING) startMoveDown();
+        }
+        if (netManager != null && netManager.getStoppedFiguresPaths() != null) {
+            for (Path squarePath : netManager.getStoppedFiguresPaths()) {
+                paint.setColor(getResources().getColor(R.color.jFigure));
+                canvas.drawPath(squarePath, paint);
             }
         }
     }
@@ -205,15 +205,9 @@ public class PlayingArea extends View implements OnNetChangedListener {
             }
             if (netManager.canRotate(figure)) {
                 figureList.set(figureList.size() - 1, figure);
-                resetFiguresScale(netManager.checkBottomLine());
+                netManager.checkBottomLine();
                 netManager.initRotatedFigure(figure);
             }
-        }
-    }
-
-    private void resetFiguresScale(int count) {
-        for (int i = 0; i < figureList.size() - 1; i++) {
-            figureList.get(i).increaseScale(count * widthOfSquareSide);
         }
     }
 
@@ -227,11 +221,11 @@ public class PlayingArea extends View implements OnNetChangedListener {
             figure.initFigureMask();
             if (netManager == null) {
                 netManager = new NetManager();
-                netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL);
+                netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL, widthOfSquareSide, scale);
             }
             if (!netManager.isVerticalLineTrue()) {
                 netManager.setOnNetChangedListener(this);
-                resetFiguresScale(netManager.checkBottomLine());
+                netManager.checkBottomLine();
                 netManager.initFigure(figure);
                 netManager.printNet();
                 invalidate();
