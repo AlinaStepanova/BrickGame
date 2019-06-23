@@ -46,6 +46,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     private int screenWidth;
     private int scale;
 
+    //todo remove this, there is no need to keep lists
     private final CustomArrayList<FigureType> figureTypeList = new CustomArrayList<>();
     private final CustomArrayList<Figure> figureList = new CustomArrayList<>();
 
@@ -61,6 +62,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     private Context context;
 
+    //todo remove this
     public static int FIGURE_TYPE_LIST_SIZE = 0;
 
     public PlayingArea(@NonNull Context context) {
@@ -97,7 +99,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
         if (netManager != null && netManager.getStoppedFiguresPaths() != null) {
             for (Path squarePath : netManager.getStoppedFiguresPaths()) {
-                paint.setColor(getResources().getColor(R.color.jFigure));
+                paint.setColor(getResources().getColor(R.color.zFigure));
                 canvas.drawPath(squarePath, paint);
             }
         }

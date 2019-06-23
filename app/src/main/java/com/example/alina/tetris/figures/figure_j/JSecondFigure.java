@@ -60,9 +60,4 @@ public class JSecondFigure extends Figure {
         path.close();
         return path;
     }
-
-    @Override
-    public int getColor() {
-        return this.context.getResources().getColor(R.color.jFigure);
-    }
 }

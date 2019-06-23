@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Path;
 import android.graphics.Point;
 
+import com.example.alina.tetris.R;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.enums.FigureType;
 
@@ -69,10 +70,6 @@ public abstract class Figure {
         return coordinate / squareWidth;
     }
 
-    public void increaseScale(int scale) {
-        this.scale -= scale;
-    }
-
     public int getCurrentX() {
         return coordinatesInNet.x;
     }
@@ -116,6 +113,10 @@ public abstract class Figure {
         coordinatesInNet.set(coordinatesInNet.x, coordinatesInNet.y + 1);
     }
 
+    public final int getColor() {
+        return this.context.getResources().getColor(R.color.jFigure);
+    }
+
     public abstract FigureType getRotatedFigure();
 
     public abstract int getWidthInSquare();
@@ -123,6 +124,4 @@ public abstract class Figure {
     public abstract int getHeightInSquare();
 
     public abstract Path getPath();
-
-    public abstract int getColor();
 }

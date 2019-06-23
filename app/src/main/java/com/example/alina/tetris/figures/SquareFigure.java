@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Path;
 import android.graphics.Point;
 
-import com.example.alina.tetris.R;
 import com.example.alina.tetris.enums.FigureType;
 
 /**
@@ -55,10 +54,5 @@ public class SquareFigure extends Figure {
         path.lineTo(point.x, point.y + squareWidth * 2 - scale);
         path.close();
         return path;
-    }
-
-    @Override
-    public int getColor() {
-        return this.context.getResources().getColor(R.color.squareFigure);
     }
 }

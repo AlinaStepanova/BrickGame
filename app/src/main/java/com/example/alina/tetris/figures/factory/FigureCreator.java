@@ -30,6 +30,7 @@ public class FigureCreator {
 
     private FigureType selectFigure() {
         FigureType figureType;
+        //todo simplify this
         if (PlayingArea.FIGURE_TYPE_LIST_SIZE < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
             figureType = FigureType.values()[random.nextInt(ENUM_LENGTH)];
         } else {
