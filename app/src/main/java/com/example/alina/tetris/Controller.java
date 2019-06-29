@@ -10,6 +10,7 @@ import com.example.alina.tetris.listeners.OnPlayingAreaClick;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -55,5 +56,21 @@ public class Controller extends LinearLayout {
         if (onPlayingAreaClick != null) {
             onPlayingAreaClick.onRightButtonClick();
         }
+    }
+
+    @OnLongClick(R.id.bLeft)
+    boolean moveLeftFast() {
+        if (onPlayingAreaClick != null) {
+            onPlayingAreaClick.onLeftButtonLongClick();
+        }
+        return true;
+    }
+
+    @OnLongClick (R.id.bRight)
+    boolean moveRightFast() {
+        if (onPlayingAreaClick != null) {
+            onPlayingAreaClick.onRightButtonLongClick();
+        }
+        return true;
     }
 }

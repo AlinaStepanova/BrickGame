@@ -220,6 +220,30 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
     }
 
+    public void moveRightFast() {
+        if (figureList.size() > 0 && isTimerRunning) {
+            cancelTimer();
+            while (netManager.isNetFreeToMoveRight()) {
+                netManager.resetMaskBeforeMoveWithFalse();
+                figureList.getLast().moveRight();
+                netManager.moveRightInNet();
+            }
+            invalidate();
+        }
+    }
+
+    public void moveLeftFast() {
+        if (figureList.size() > 0 && isTimerRunning) {
+            cancelTimer();
+            while (netManager.isNetFreeToMoveLeft()) {
+                netManager.resetMaskBeforeMoveWithFalse();
+                figureList.getLast().moveLeft();
+                netManager.moveLeftInNet();
+            }
+            invalidate();
+        }
+    }
+
     //todo think about the restrictions
     public void rotate() {
         if (figureList.size() > 0 && figureList.getLast().getState() == FigureState.MOVING
@@ -261,6 +285,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     public void moveLeft() {
         if (netManager != null && netManager.isNetFreeToMoveLeft() && isTimerRunning) {
+            netManager.resetMaskBeforeMoveWithFalse();
             figureList.getLast().moveLeft();
             netManager.moveLeftInNet();
             netManager.printNet();
@@ -270,6 +295,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     public void moveRight() {
         if (netManager != null && netManager.isNetFreeToMoveRight() && isTimerRunning) {
+            netManager.resetMaskBeforeMoveWithFalse();
             figureList.getLast().moveRight();
             netManager.moveRightInNet();
             netManager.printNet();

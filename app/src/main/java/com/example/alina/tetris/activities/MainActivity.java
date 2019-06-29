@@ -95,4 +95,14 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
     public void onLeftButtonClick() {
         playingArea.moveLeft();
     }
+
+    @Override
+    public void onRightButtonLongClick() {
+        playingArea.moveRightFast();
+    }
+
+    @Override
+    public void onLeftButtonLongClick() {
+        playingArea.moveLeftFast();
+    }
 }
