@@ -25,6 +25,7 @@ import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.figures.factory.FigureFactory;
 import com.example.alina.tetris.listeners.OnNetChangedListener;
+import com.example.alina.tetris.listeners.OnTimerStateChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
 import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
@@ -45,6 +46,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     private int screenHeight;
     private int screenWidth;
     private int scale;
+    private boolean isTimerRunning;
 
     //todo remove this, there is no need to keep lists
     private final CustomArrayList<FigureType> figureTypeList = new CustomArrayList<>();
@@ -61,6 +63,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     private CountDownTimer timer;
 
     private Context context;
+    private OnTimerStateChangedListener onTimerStateChangedListener;
 
     //todo remove this
     public static int FIGURE_TYPE_LIST_SIZE = 0;
@@ -86,6 +89,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
         figureCreator = new FigureCreator();
         scoreCounter = new ScoreCounter(getContext());
         this.context = context;
+        this.isTimerRunning = true;
     }
 
     @Override
@@ -95,7 +99,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
         drawVerticalLines(canvas);
         drawHorizontalLines(canvas);
         for (Figure figure : figureList) {
-            if (figure != null && figure.getState() == FigureState.MOVING) startMoveDown();
+            if (figure != null && figure.getState() == FigureState.MOVING && isTimerRunning)
+                startMoveDown();
         }
         if (netManager != null && netManager.getStoppedFiguresPaths() != null) {
             for (Path squarePath : netManager.getStoppedFiguresPaths()) {
@@ -146,9 +151,33 @@ public class PlayingArea extends View implements OnNetChangedListener {
         }
     }
 
+    public void setOnTimerStateChanged(OnTimerStateChangedListener onTimerStateChangedListener) {
+        this.onTimerStateChangedListener = onTimerStateChangedListener;
+    }
+
+    public boolean getTimerState() {
+        return isTimerRunning;
+    }
+
+    public void handleTimerState() {
+        if (isTimerRunning) {
+            cancelTimer();
+        } else {
+            startTimer();
+        }
+        isTimerRunning = !isTimerRunning;
+        onTimerStateChangedListener.isTimerRunning(isTimerRunning);
+    }
+
     public void startTimer() {
         if (timer != null) {
             timer.start();
+        }
+    }
+
+    public void cancelTimer() {
+        if (timer != null) {
+            timer.cancel();
         }
     }
 
@@ -157,6 +186,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
         cancelTimer();
         timer = new CountDownTimer(MILLIS_IN_FUTURE, COUNT_DOWN_INTERVAL) {
             public void onTick(long millisUntilFinished) {
+                isTimerRunning = true;
             }
 
             public void onFinish() {
@@ -171,18 +201,12 @@ public class PlayingArea extends View implements OnNetChangedListener {
             netManager.changeFigureState();
             cancelTimer();
         } else {
-            timer.start();
-        }
-    }
-
-    public void cancelTimer() {
-        if (timer != null) {
-            timer.cancel();
+            startTimer();
         }
     }
 
     public void fastMoveDown() {
-        if (figureList.size() > 0) {
+        if (figureList.size() > 0 && isTimerRunning) {
             cancelTimer();
             while (figureList.getLast().getState() == FigureState.MOVING) {
                 if (!netManager.isNetFreeToMoveDown()) {
@@ -199,7 +223,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     //todo think about the restrictions
     public void rotate() {
         if (figureList.size() > 0 && figureList.getLast().getState() == FigureState.MOVING
-                && figureList.getLast().getRotatedFigure() != null) {
+                && figureList.getLast().getRotatedFigure() != null && isTimerRunning) {
             Figure figure = FigureFactory.getFigure(figureList.getLast().getRotatedFigure(),
                     widthOfSquareSide, scale, context, figureList.getLast().point);
             if (figure != null) {
@@ -236,7 +260,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     public void moveLeft() {
-        if (netManager != null && netManager.isNetFreeToMoveLeft()) {
+        if (netManager != null && netManager.isNetFreeToMoveLeft() && isTimerRunning) {
             figureList.getLast().moveLeft();
             netManager.moveLeftInNet();
             netManager.printNet();
@@ -245,7 +269,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     public void moveRight() {
-        if (netManager != null && netManager.isNetFreeToMoveRight()) {
+        if (netManager != null && netManager.isNetFreeToMoveRight() && isTimerRunning) {
             figureList.getLast().moveRight();
             netManager.moveRightInNet();
             netManager.printNet();

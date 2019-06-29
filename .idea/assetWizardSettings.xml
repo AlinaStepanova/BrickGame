@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_pause_circle_outline" />
-                            <entry key="sourceFile" value="C:\Users\Alina\Desktop\share.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_resume" />
+                            <entry key="sourceFile" value="C:\Users\Alina\Desktop\untitled (3).svg" />
                           </map>
                         </option>
                       </PersistentState>
