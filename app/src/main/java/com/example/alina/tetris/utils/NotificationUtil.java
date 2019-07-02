@@ -35,7 +35,7 @@ public class NotificationUtil {
 
     private Notification getNotificationBuilder() {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.notification_custom_view);
-        views.setTextViewText(R.id.tvAlarmReason, context.getString(R.string.congrats_sub_title)
+        views.setTextViewText(R.id.tvNewScoreResult, context.getString(R.string.congrats_sub_title)
                 + " - " + score + " " + context.getString(R.string.points_notification_text));
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_star)
