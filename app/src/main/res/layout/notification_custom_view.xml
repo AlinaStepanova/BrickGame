@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin8dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.Compat.Notification.Title"
@@ -37,7 +37,7 @@
             android:ellipsize="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/margin8dp"
             android:textAppearance="@style/TextAppearance.Compat.Notification.Info"
             android:textColor="@color/white"
             android:textSize="@dimen/textSize12" />

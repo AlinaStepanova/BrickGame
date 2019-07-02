@@ -15,6 +15,9 @@
     <dimen name="smallMargin">16dp</dimen>
     <dimen name="maxMargin">40dp</dimen>
     <dimen name="midMargin">36dp</dimen>
+    <dimen name="margin4dp">4dp</dimen>
+    <dimen name="margin8dp">8dp</dimen>
+    <dimen name="margin16dp">16dp</dimen>
 
     <dimen name="maxRadius">30dp</dimen>
     <dimen name="minRadius">2dp</dimen>
