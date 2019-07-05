@@ -45,12 +45,12 @@ public class StartActivity extends AppCompatActivity {
         openScoresButton.startAnimation(AnimationUtil.getSlideInRight(this));
     }
 
-    @OnClick (R.id.bStartGame)
+    @OnClick(R.id.bStartGame)
     void startGame() {
         this.startActivity(new Intent(this, MainActivity.class));
     }
 
-    @OnClick (R.id.bOpenScores)
+    @OnClick(R.id.bOpenScores)
     void openScores() {
         this.startActivity(new Intent(this, ScoreActivity.class));
     }

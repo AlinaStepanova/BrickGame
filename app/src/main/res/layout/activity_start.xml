@@ -2,31 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/llStart"
               style="@style/linear_layout_style">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivSettings"
+            android:layout_width="@dimen/dimen48dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/margin16dp"
+            android:layout_marginEnd="@dimen/margin8dp"
+            android:src="@drawable/ic_settings"/>
+
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tvGameTitle"
+                style="@style/text_view_style"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:text="@string/gameTitle"
                 android:textColor="@color/white"
-                android:textSize="@dimen/mainTextSize"
-                style="@style/text_view_style"/>
+                android:textSize="@dimen/mainTextSize"/>
+
             <Button
                 android:id="@+id/bStartGame"
-                android:text="@string/new_game"
+                style="@style/main_buttons_style"
                 android:fontFamily="sans-serif-condensed-light"
-                style="@style/main_buttons_style"/>
+                android:text="@string/new_game"/>
+
             <Button
                 android:id="@+id/bOpenScores"
-                android:text="@string/scores_text"
+                style="@style/main_buttons_style"
                 android:fontFamily="sans-serif-condensed-light"
-                style="@style/main_buttons_style"/>
+                android:text="@string/scores_text"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
