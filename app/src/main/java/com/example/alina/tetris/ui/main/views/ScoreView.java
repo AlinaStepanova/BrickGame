@@ -1,26 +1,26 @@
-package com.example.alina.tetris.views;
+package com.example.alina.tetris.ui.main.views;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
-import com.example.alina.tetris.NetManager;
+import com.example.alina.tetris.ui.main.NetManager;
 
 import static com.example.alina.tetris.Values.DEFAULT_VALUE;
 import static com.example.alina.tetris.Values.EXTRA_SCORE;
 import static com.example.alina.tetris.Values.FIGURE_STOPPED_SCORE;
 
-public class ScoreArea extends AppCompatTextView {
+public class ScoreView extends AppCompatTextView {
 
-    public ScoreArea(Context context) {
+    public ScoreView(Context context) {
         super(context);
     }
 
-    public ScoreArea(Context context, AttributeSet attrs) {
+    public ScoreView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ScoreArea(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ScoreView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

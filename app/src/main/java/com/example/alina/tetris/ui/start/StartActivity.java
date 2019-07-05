@@ -1,4 +1,4 @@
-package com.example.alina.tetris.activities;
+package com.example.alina.tetris.ui.start;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.ui.main.MainActivity;
+import com.example.alina.tetris.ui.score.ScoreActivity;
 import com.example.alina.tetris.utils.AnimationUtil;
 
 import butterknife.BindView;

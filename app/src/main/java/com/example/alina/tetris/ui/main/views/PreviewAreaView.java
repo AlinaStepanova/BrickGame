@@ -1,4 +1,4 @@
-package com.example.alina.tetris.views;
+package com.example.alina.tetris.ui.main.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,23 +11,23 @@ import android.view.View;
 import com.example.alina.tetris.figures.Figure;
 
 
-public class PreviewArea extends View {
+public class PreviewAreaView extends View {
 
     private Paint paint;
     private Figure figure;
     public static int PREVIEW_AREA_WIDTH;
 
-    public PreviewArea(Context context) {
+    public PreviewAreaView(Context context) {
         super(context);
         init();
     }
 
-    public PreviewArea(Context context, @Nullable AttributeSet attrs) {
+    public PreviewAreaView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public PreviewArea(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public PreviewAreaView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

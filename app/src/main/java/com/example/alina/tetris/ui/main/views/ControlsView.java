@@ -1,4 +1,4 @@
-package com.example.alina.tetris;
+package com.example.alina.tetris.ui.main.views;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.alina.tetris.R;
 import com.example.alina.tetris.listeners.OnPlayingAreaClick;
 
 import butterknife.ButterKnife;
@@ -16,21 +17,21 @@ import butterknife.OnLongClick;
  * Created by Alina on 18.03.2017.
  */
 
-public class Controller extends LinearLayout {
+public class ControlsView extends LinearLayout {
 
     private OnPlayingAreaClick onPlayingAreaClick;
 
-    public Controller(Context context) {
+    public ControlsView(Context context) {
         super(context);
         setLayout();
     }
 
-    public Controller(Context context, @Nullable AttributeSet attrs) {
+    public ControlsView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setLayout();
     }
 
-    public Controller(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ControlsView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setLayout();
     }

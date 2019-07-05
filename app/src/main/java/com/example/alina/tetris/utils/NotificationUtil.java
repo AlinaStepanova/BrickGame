@@ -10,7 +10,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.widget.RemoteViews;
 
 import com.example.alina.tetris.R;
-import com.example.alina.tetris.activities.ScoreActivity;
+import com.example.alina.tetris.ui.score.ScoreActivity;
 
 import static com.example.alina.tetris.Values.CHANNEL_ID;
 import static com.example.alina.tetris.Values.NOTIFICATION_ID;

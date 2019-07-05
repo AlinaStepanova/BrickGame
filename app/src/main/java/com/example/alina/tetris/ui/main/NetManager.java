@@ -1,4 +1,4 @@
-package com.example.alina.tetris;
+package com.example.alina.tetris.ui.main;
 
 
 import android.graphics.Path;

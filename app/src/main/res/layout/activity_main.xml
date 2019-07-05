@@ -15,19 +15,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.example.alina.tetris.views.PlayingArea
+        <com.example.alina.tetris.ui.main.views.PlayingAreaView
             android:id="@+id/pole"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white">
-        </com.example.alina.tetris.views.PlayingArea>
+        </com.example.alina.tetris.ui.main.views.PlayingAreaView>
 
-        <com.example.alina.tetris.Controller
+        <com.example.alina.tetris.ui.main.views.ControlsView
             android:id="@+id/controller"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transparent">
-        </com.example.alina.tetris.Controller>
+        </com.example.alina.tetris.ui.main.views.ControlsView>
 
     </FrameLayout>
 
@@ -64,7 +64,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread_inside"/>
 
-        <com.example.alina.tetris.views.ScoreArea
+        <com.example.alina.tetris.ui.main.views.ScoreView
             android:id="@+id/tvScore"
             style="@style/simpleStyle"
             android:layout_marginStart="@dimen/margin4dp"
@@ -80,7 +80,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvScoreTitle">
-        </com.example.alina.tetris.views.ScoreArea>
+        </com.example.alina.tetris.ui.main.views.ScoreView>
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
@@ -103,7 +103,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline"/>
 
-        <com.example.alina.tetris.views.PreviewArea
+        <com.example.alina.tetris.ui.main.views.PreviewAreaView
             android:id="@+id/tvNextFigure"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -112,7 +112,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNextFigureTitle">
-        </com.example.alina.tetris.views.PreviewArea>
+        </com.example.alina.tetris.ui.main.views.PreviewAreaView>
 
         <ImageView
             android:id="@+id/ivRotate"

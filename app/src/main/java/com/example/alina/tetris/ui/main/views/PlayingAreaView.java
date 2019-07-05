@@ -1,4 +1,4 @@
-package com.example.alina.tetris.views;
+package com.example.alina.tetris.ui.main.views;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,10 +15,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.alina.tetris.NetManager;
+import com.example.alina.tetris.ui.main.NetManager;
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.Values;
-import com.example.alina.tetris.data.ScoreCounter;
+import com.example.alina.tetris.ui.score.ScoreCounter;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.figures.Figure;
@@ -39,7 +39,7 @@ import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
  * Created by Alina on 18.03.2017.
  */
 
-public class PlayingArea extends View implements OnNetChangedListener {
+public class PlayingAreaView extends View implements OnNetChangedListener {
 
     private int widthOfSquareSide;
     private int verticalSquareCount;
@@ -54,8 +54,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     private NetManager netManager;
     private FigureCreator figureCreator;
-    private ScoreArea scoreArea;
-    private PreviewArea previewArea;
+    private ScoreView scoreView;
+    private PreviewAreaView previewAreaView;
     private ScoreCounter scoreCounter;
 
     private Paint paint;
@@ -68,18 +68,18 @@ public class PlayingArea extends View implements OnNetChangedListener {
     //todo remove this
     public static int FIGURE_TYPE_LIST_SIZE = 0;
 
-    public PlayingArea(@NonNull Context context) {
+    public PlayingAreaView(@NonNull Context context) {
         super(context);
         init(context);
     }
 
-    public PlayingArea(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public PlayingAreaView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public PlayingArea(@NonNull Context context, @Nullable AttributeSet attrs,
-                       @AttrRes int defStyleAttr) {
+    public PlayingAreaView(@NonNull Context context, @Nullable AttributeSet attrs,
+                           @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -121,20 +121,20 @@ public class PlayingArea extends View implements OnNetChangedListener {
     }
 
     public void cleanup() {
-        scoreCounter.putNewScore(scoreArea.getScore());
+        scoreCounter.putNewScore(scoreView.getScore());
         cancelTimer();
-        scoreArea.setStartValue();
+        scoreView.setStartValue();
         netManager = null;
         figureList.clear();
         figureTypeList.clear();
     }
 
-    public void setScoreArea(ScoreArea scoreArea) {
-        this.scoreArea = scoreArea;
+    public void setScoreView(ScoreView scoreView) {
+        this.scoreView = scoreView;
     }
 
-    public void setPreviewArea(PreviewArea previewArea) {
-        this.previewArea = previewArea;
+    public void setPreviewAreaView(PreviewAreaView previewAreaView) {
+        this.previewAreaView = previewAreaView;
     }
 
     private void drawHorizontalLines(Canvas canvas) {
@@ -307,7 +307,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                previewArea.drawNextFigure(FigureFactory.getFigure(figureCreator.getNextFigureType(),
+                previewAreaView.drawNextFigure(FigureFactory.getFigure(figureCreator.getNextFigureType(),
                         widthOfSquareSide, context));
                 createFigure();
             }
@@ -317,8 +317,8 @@ public class PlayingArea extends View implements OnNetChangedListener {
     @Override
     public void onFigureStoppedMove() {
         if (!netManager.isVerticalLineTrue()) {
-            scoreArea.sumScoreWhenFigureStopped();
-            previewArea.drawNextFigure(FigureFactory.getFigure(figureCreator.createNextFigure(),
+            scoreView.sumScoreWhenFigureStopped();
+            previewAreaView.drawNextFigure(FigureFactory.getFigure(figureCreator.createNextFigure(),
                     widthOfSquareSide, context));
             createFigure();
         }
@@ -326,7 +326,7 @@ public class PlayingArea extends View implements OnNetChangedListener {
 
     @Override
     public void onBottomLineIsTrue() {
-        scoreArea.sumScoreWhenBottomLineIsTrue();
+        scoreView.sumScoreWhenBottomLineIsTrue();
     }
 
     @Override

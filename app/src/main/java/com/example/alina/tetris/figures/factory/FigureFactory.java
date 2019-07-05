@@ -25,7 +25,7 @@ import com.example.alina.tetris.figures.figure_t.TThirdFigure;
 import com.example.alina.tetris.figures.figure_z.ZFigure;
 import com.example.alina.tetris.figures.figure_z.ZSecondFigure;
 
-import static com.example.alina.tetris.views.PreviewArea.PREVIEW_AREA_WIDTH;
+import static com.example.alina.tetris.ui.main.views.PreviewAreaView.PREVIEW_AREA_WIDTH;
 
 public class FigureFactory {
 

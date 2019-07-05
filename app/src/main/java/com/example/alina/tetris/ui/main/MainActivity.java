@@ -1,16 +1,16 @@
-package com.example.alina.tetris.activities;
+package com.example.alina.tetris.ui.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.example.alina.tetris.Controller;
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.listeners.OnPlayingAreaClick;
 import com.example.alina.tetris.listeners.OnTimerStateChangedListener;
-import com.example.alina.tetris.views.PlayingArea;
-import com.example.alina.tetris.views.PreviewArea;
-import com.example.alina.tetris.views.ScoreArea;
+import com.example.alina.tetris.ui.main.views.ControlsView;
+import com.example.alina.tetris.ui.main.views.PlayingAreaView;
+import com.example.alina.tetris.ui.main.views.PreviewAreaView;
+import com.example.alina.tetris.ui.main.views.ScoreView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,16 +19,16 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity implements OnPlayingAreaClick, OnTimerStateChangedListener {
 
     @BindView(R.id.pole)
-    PlayingArea playingArea;
+    PlayingAreaView playingAreaView;
 
     @BindView(R.id.tvScore)
-    ScoreArea scoreArea;
+    ScoreView scoreView;
 
     @BindView(R.id.controller)
-    Controller controller;
+    ControlsView controlsView;
 
     @BindView(R.id.tvNextFigure)
-    PreviewArea previewArea;
+    PreviewAreaView previewAreaView;
 
     @BindView(R.id.ivPausePlay)
     ImageView playPauseImage;
@@ -38,47 +38,47 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        playingArea.setScoreArea(scoreArea);
-        playingArea.setPreviewArea(previewArea);
-        playingArea.setOnTimerStateChanged(this);
-        controller.setOnPlayingAreaClick(this);
-        playingArea.cleanup();
-        playingArea.createFigureWithDelay();
+        playingAreaView.setScoreView(scoreView);
+        playingAreaView.setPreviewAreaView(previewAreaView);
+        playingAreaView.setOnTimerStateChanged(this);
+        controlsView.setOnPlayingAreaClick(this);
+        playingAreaView.cleanup();
+        playingAreaView.createFigureWithDelay();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (playingArea.getTimerState()) {
-            playingArea.startTimer();
+        if (playingAreaView.getTimerState()) {
+            playingAreaView.startTimer();
         }
     }
 
     @Override
     protected void onStop() {
-        playingArea.cancelTimer();
+        playingAreaView.cancelTimer();
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        playingArea.cleanup();
+        playingAreaView.cleanup();
         super.onDestroy();
     }
 
     @OnClick(R.id.ivMoveDown)
     void moveDown() {
-        playingArea.fastMoveDown();
+        playingAreaView.fastMoveDown();
     }
 
     @OnClick(R.id.ivRotate)
     void rotate() {
-        playingArea.rotate();
+        playingAreaView.rotate();
     }
 
     @OnClick(R.id.ivPausePlay)
     void pausePlay() {
-        playingArea.handleTimerState();
+        playingAreaView.handleTimerState();
     }
 
     @Override
@@ -88,21 +88,21 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
 
     @Override
     public void onRightButtonClick() {
-        playingArea.moveRight();
+        playingAreaView.moveRight();
     }
 
     @Override
     public void onLeftButtonClick() {
-        playingArea.moveLeft();
+        playingAreaView.moveLeft();
     }
 
     @Override
     public void onRightButtonLongClick() {
-        playingArea.moveRightFast();
+        playingAreaView.moveRightFast();
     }
 
     @Override
     public void onLeftButtonLongClick() {
-        playingArea.moveLeftFast();
+        playingAreaView.moveLeftFast();
     }
 }

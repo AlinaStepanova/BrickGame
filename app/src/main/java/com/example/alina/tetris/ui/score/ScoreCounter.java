@@ -1,4 +1,4 @@
-package com.example.alina.tetris.data;
+package com.example.alina.tetris.ui.score;
 
 
 import android.content.Context;
@@ -53,15 +53,15 @@ public class ScoreCounter {
         editor.commit();
     }
 
-    public String getFirstValue() {
+    String getFirstValue() {
         return String.valueOf(preferences.getInt(FIRST_VALUE_KEY, DEFAULT_VALUE));
     }
 
-    public String getSecondValue() {
+    String getSecondValue() {
         return String.valueOf(preferences.getInt(SECOND_VALUE_KEY, DEFAULT_VALUE));
     }
 
-    public String getThirdValue() {
+    String getThirdValue() {
         return String.valueOf(preferences.getInt(THIRD_VALUE_KEY, DEFAULT_VALUE));
     }
 }
