@@ -9,11 +9,13 @@
 
         <ImageView
             android:id="@+id/ivSettings"
-            android:layout_width="@dimen/dimen48dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/margin16dp"
-            android:layout_marginEnd="@dimen/margin8dp"
+            android:paddingStart="@dimen/margin8dp"
+            android:paddingTop="@dimen/margin16dp"
+            android:paddingEnd="@dimen/margin8dp"
+            android:paddingBottom="@dimen/margin8dp"
             android:src="@drawable/ic_settings"/>
 
         <LinearLayout
