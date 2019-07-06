@@ -39,16 +39,17 @@
         style="@style/ColorCircleStyle"
         android:backgroundTint="@color/longFigure"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/vJFigureColor"
+        app:layout_constraintEnd_toStartOf="@+id/vZFigureColor"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/vSquareFigureColor"
         app:layout_constraintTop_toTopOf="parent">
     </ImageView>
 
     <ImageView
-        android:id="@+id/vJFigureColor"
+        android:id="@+id/vZFigureColor"
         style="@style/ColorCircleStyle"
-        android:backgroundTint="@color/jFigure"
+        android:src="@drawable/ic_ok"
+        android:backgroundTint="@color/zFigure"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vTFigureColor"
         app:layout_constraintHorizontal_bias="0.5"
@@ -61,16 +62,16 @@
         style="@style/ColorCircleStyle"
         android:backgroundTint="@color/tFigure"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/vZFigureColor"
+        app:layout_constraintEnd_toStartOf="@+id/vJFigureColor"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/vJFigureColor"
+        app:layout_constraintStart_toEndOf="@+id/vZFigureColor"
         app:layout_constraintTop_toTopOf="parent">
     </ImageView>
 
     <ImageView
-        android:id="@+id/vZFigureColor"
+        android:id="@+id/vJFigureColor"
         style="@style/ColorCircleStyle"
-        android:backgroundTint="@color/zFigure"
+        android:backgroundTint="@color/jFigure"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
