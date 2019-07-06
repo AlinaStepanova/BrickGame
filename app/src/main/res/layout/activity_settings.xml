@@ -99,46 +99,73 @@
         android:textSize="@dimen/minTextSize"
         app:layout_constraintTop_toBottomOf="@+id/sbSpeed"/>
 
-    <TextView
-        android:id="@+id/tvFeedbackTitle"
+    <FrameLayout
+        android:id="@+id/flFeedback"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin8dp"
-        android:text="Feedback"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/minTextSize"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMorelTitle"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvMorelTitle">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/margin4dp"
+            android:src="@drawable/ic_arrow"/>
+
+        <TextView
+            android:id="@+id/tvFeedbackTitle"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin8dp"
+            android:text="Feedback"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/minTextSize"/>
+
+    </FrameLayout>
 
     <View
         android:id="@+id/vDivider4"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@+id/tvFeedbackTitle"/>
+        app:layout_constraintTop_toBottomOf="@+id/flFeedback"/>
 
-    <TextView
-        android:id="@+id/tvPrivacyPolicyTitle"
+    <FrameLayout
+        android:id="@+id/flPrivacyPolicy"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin8dp"
-        android:text="Privacy policy"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/minTextSize"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vDivider4"/>
+        app:layout_constraintTop_toBottomOf="@+id/vDivider4">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/margin4dp"
+            android:src="@drawable/ic_arrow"/>
+
+        <TextView
+            android:id="@+id/tvPrivacyPolicyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin8dp"
+            android:text="Privacy policy"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/minTextSize"/>
+    </FrameLayout>
 
     <View
         android:id="@+id/vDivider5"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrivacyPolicyTitle"/>
+        app:layout_constraintTop_toBottomOf="@+id/flPrivacyPolicy"/>
 
 </android.support.constraint.ConstraintLayout>

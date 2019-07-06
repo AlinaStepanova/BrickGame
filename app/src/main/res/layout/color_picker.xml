@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clColorPicker"
     android:layout_width="match_parent"
@@ -12,7 +12,7 @@
     app:layout_constraintTop_toBottomOf="@+id/vDivider1"
     tools:showIn="@layout/activity_settings">
 
-    <View
+    <ImageView
         android:id="@+id/vLFigureColor"
         style="@style/ColorCircleStyle"
         android:backgroundTint="@color/lFigure"
@@ -21,9 +21,9 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-    </View>
+    </ImageView>
 
-    <View
+    <ImageView
         android:id="@+id/vSquareFigureColor"
         style="@style/ColorCircleStyle"
         android:backgroundTint="@color/squareFigure"
@@ -32,9 +32,9 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/vLFigureColor"
         app:layout_constraintTop_toTopOf="parent">
-    </View>
+    </ImageView>
 
-    <View
+    <ImageView
         android:id="@+id/vLongFigureColor"
         style="@style/ColorCircleStyle"
         android:backgroundTint="@color/longFigure"
@@ -43,9 +43,9 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/vSquareFigureColor"
         app:layout_constraintTop_toTopOf="parent">
-    </View>
+    </ImageView>
 
-    <View
+    <ImageView
         android:id="@+id/vJFigureColor"
         style="@style/ColorCircleStyle"
         android:backgroundTint="@color/jFigure"
@@ -54,9 +54,9 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/vLongFigureColor"
         app:layout_constraintTop_toTopOf="parent">
-    </View>
+    </ImageView>
 
-    <View
+    <ImageView
         android:id="@+id/vTFigureColor"
         style="@style/ColorCircleStyle"
         android:backgroundTint="@color/tFigure"
@@ -65,9 +65,9 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/vJFigureColor"
         app:layout_constraintTop_toTopOf="parent">
-    </View>
+    </ImageView>
 
-    <View
+    <ImageView
         android:id="@+id/vZFigureColor"
         style="@style/ColorCircleStyle"
         android:backgroundTint="@color/zFigure"
@@ -76,6 +76,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/vTFigureColor"
         app:layout_constraintTop_toTopOf="parent">
-    </View>
+    </ImageView>
 
 </android.support.constraint.ConstraintLayout>
