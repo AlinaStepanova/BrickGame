@@ -68,4 +68,13 @@
         <item name="android:layout_height">0dp</item>
     </style>
 
+    <style name="ColorCircleStyle">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">@drawable/button_circle</item>
+        <item name="android:padding">@dimen/margin8dp</item>
+    </style>
+
 </resources>

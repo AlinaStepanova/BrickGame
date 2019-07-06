@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.settings.SettingsActivity">
+
+    <TextView
+        android:id="@+id/tvGeneralTitle"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:background="@drawable/gradient_shape"
+        android:backgroundTintMode="src_over"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin8dp"
+        android:text="General"
+        android:textColor="@color/white"
+        android:textSize="@dimen/minTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvPickFiguresColorTitle"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin8dp"
+        android:text="Pick figures colour"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/minTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGeneralTitle"/>
+
+    <View
+        android:id="@+id/vDivider1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@+id/tvPickFiguresColorTitle"/>
+
+    <include layout="@layout/color_picker"/>
+
+    <View
+        android:id="@+id/vDivider2"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/margin4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@+id/clColorPicker"/>
+
+    <TextView
+        android:id="@+id/tvSetSpeedTitle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin8dp"
+        android:text="Set figures speed"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/minTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vDivider2"/>
+
+    <SeekBar
+        android:id="@+id/sbSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin16dp"
+        android:layout_marginTop="@dimen/margin4dp"
+        android:layout_marginEnd="@dimen/margin16dp"
+        android:progressBackgroundTint="@color/colorPrimaryDark"
+        android:progressTint="@color/colorPrimary"
+        android:thumbTint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSetSpeedTitle"/>
+
+    <TextView
+        android:id="@+id/tvMorelTitle"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_marginTop="@dimen/margin8dp"
+        android:background="@drawable/gradient_shape"
+        android:backgroundTintMode="src_over"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin8dp"
+        android:text="More"
+        android:textColor="@color/white"
+        android:textSize="@dimen/minTextSize"
+        app:layout_constraintTop_toBottomOf="@+id/sbSpeed"/>
+
+    <TextView
+        android:id="@+id/tvFeedbackTitle"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin8dp"
+        android:text="Feedback"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/minTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMorelTitle"/>
+
+    <View
+        android:id="@+id/vDivider4"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@+id/tvFeedbackTitle"/>
+
+    <TextView
+        android:id="@+id/tvPrivacyPolicyTitle"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin8dp"
+        android:text="Privacy policy"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/minTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vDivider4"/>
+
+    <View
+        android:id="@+id/vDivider5"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrivacyPolicyTitle"/>
+
+</android.support.constraint.ConstraintLayout>

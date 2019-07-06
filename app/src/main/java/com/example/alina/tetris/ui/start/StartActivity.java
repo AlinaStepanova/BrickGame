@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.ui.main.MainActivity;
 import com.example.alina.tetris.ui.score.ScoreActivity;
+import com.example.alina.tetris.ui.settings.SettingsActivity;
 import com.example.alina.tetris.utils.AnimationUtil;
 
 import butterknife.BindView;
@@ -55,5 +56,10 @@ public class StartActivity extends AppCompatActivity {
     @OnClick(R.id.bOpenScores)
     void openScores() {
         this.startActivity(new Intent(this, ScoreActivity.class));
+    }
+
+    @OnClick(R.id.ivSettings)
+    void openSettings() {
+        this.startActivity(new Intent(this, SettingsActivity.class));
     }
 }
