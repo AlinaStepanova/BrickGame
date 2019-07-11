@@ -47,7 +47,7 @@
     <style name="linear_layout_style">
         <item name="android:orientation">vertical</item>
         <item name="android:layout_margin">5dp</item>
-        <item name="android:background">@drawable/start_activity_shape</item>
+        <item name="android:background">@drawable/shape_start_activity</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
