@@ -18,14 +18,14 @@ import android.widget.Toast;
 import com.example.alina.tetris.ui.main.NetManager;
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.Values;
-import com.example.alina.tetris.ui.score.ScoreCounter;
+import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.figures.factory.FigureFactory;
-import com.example.alina.tetris.listeners.OnNetChangedListener;
-import com.example.alina.tetris.listeners.OnTimerStateChangedListener;
+import com.example.alina.tetris.ui.main.listeners.OnNetChangedListener;
+import com.example.alina.tetris.ui.main.listeners.OnTimerStateChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
 import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
@@ -56,7 +56,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     private FigureCreator figureCreator;
     private ScoreView scoreView;
     private PreviewAreaView previewAreaView;
-    private ScoreCounter scoreCounter;
+    private SharedPreferencesManager sharedPreferencesManager;
 
     private Paint paint;
 
@@ -87,7 +87,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     private void init(Context context) {
         paint = new Paint();
         figureCreator = new FigureCreator();
-        scoreCounter = new ScoreCounter(getContext());
+        sharedPreferencesManager = new SharedPreferencesManager(getContext());
         this.context = context;
         this.isTimerRunning = true;
     }
@@ -121,7 +121,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     }
 
     public void cleanup() {
-        scoreCounter.putNewScore(scoreView.getScore());
+        sharedPreferencesManager.putNewScore(scoreView.getScore());
         cancelTimer();
         scoreView.setStartValue();
         netManager = null;

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.alina.tetris.R;
-import com.example.alina.tetris.listeners.OnPlayingAreaClick;
+import com.example.alina.tetris.ui.main.listeners.OnPlayingAreaClick;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

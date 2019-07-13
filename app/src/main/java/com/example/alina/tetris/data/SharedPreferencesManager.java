@@ -1,41 +1,37 @@
-package com.example.alina.tetris.ui.score;
+package com.example.alina.tetris.data;
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.alina.tetris.R;
 import com.example.alina.tetris.utils.NotificationUtil;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.alina.tetris.Values.DEFAULT_COLOR;
 import static com.example.alina.tetris.Values.DEFAULT_VALUE;
+import static com.example.alina.tetris.Values.FIGURE_COLOR_KEY;
 import static com.example.alina.tetris.Values.FIRST_VALUE_KEY;
 import static com.example.alina.tetris.Values.PREFERENCES_KEY;
 import static com.example.alina.tetris.Values.SECOND_VALUE_KEY;
 import static com.example.alina.tetris.Values.THIRD_VALUE_KEY;
 
-public class ScoreCounter {
+public class SharedPreferencesManager {
 
     private final SharedPreferences preferences;
-    private final SharedPreferences.Editor editor;
+    private SharedPreferences.Editor editor;
     private final Context context;
-    private int firstValue;
-    private int secondValue;
-    private int thirdValue;
 
-    public ScoreCounter(Context context) {
+    public SharedPreferencesManager(Context context) {
         this.context = context;
         this.preferences = context.getSharedPreferences(PREFERENCES_KEY, MODE_PRIVATE);
-        this.editor = preferences.edit();
-        initValues();
-    }
-
-    private void initValues() {
-        firstValue = preferences.getInt(FIRST_VALUE_KEY, DEFAULT_VALUE);
-        secondValue = preferences.getInt(SECOND_VALUE_KEY, DEFAULT_VALUE);
-        thirdValue = preferences.getInt(THIRD_VALUE_KEY, DEFAULT_VALUE);
     }
 
     public void putNewScore(int newScore) {
+        this.editor = preferences.edit();
+        int firstValue = preferences.getInt(FIRST_VALUE_KEY, DEFAULT_VALUE);
+        int secondValue = preferences.getInt(SECOND_VALUE_KEY, DEFAULT_VALUE);
+        int thirdValue = preferences.getInt(THIRD_VALUE_KEY, DEFAULT_VALUE);
         if (newScore > firstValue && newScore != DEFAULT_VALUE) {
             editor.putInt(FIRST_VALUE_KEY, newScore);
             editor.putInt(SECOND_VALUE_KEY, firstValue);
@@ -53,15 +49,26 @@ public class ScoreCounter {
         editor.commit();
     }
 
-    String getFirstValue() {
+    public void setFiguresColor(int color) {
+        this.editor = preferences.edit();
+        editor.putInt(FIGURE_COLOR_KEY, color);
+        editor.apply();
+        editor.commit();
+    }
+
+    public int getFiguresColor() {
+        return preferences.getInt(FIGURE_COLOR_KEY, DEFAULT_COLOR);
+    }
+
+    public String getFirstValue() {
         return String.valueOf(preferences.getInt(FIRST_VALUE_KEY, DEFAULT_VALUE));
     }
 
-    String getSecondValue() {
+    public String getSecondValue() {
         return String.valueOf(preferences.getInt(SECOND_VALUE_KEY, DEFAULT_VALUE));
     }
 
-    String getThirdValue() {
+    public String getThirdValue() {
         return String.valueOf(preferences.getInt(THIRD_VALUE_KEY, DEFAULT_VALUE));
     }
 }

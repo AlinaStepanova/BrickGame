@@ -18,10 +18,12 @@ public class Values {
 
     /*PREFERENCES*/
     public static final String PREFERENCES_KEY      = "com.example.alina.tetris.PREFERENCE_KEY";
-    public static final String FIRST_VALUE_KEY      = "first value";
-    public static final String SECOND_VALUE_KEY     = "second value";
-    public static final String THIRD_VALUE_KEY      = "third value";
+    public static final String FIRST_VALUE_KEY      = "first_value";
+    public static final String SECOND_VALUE_KEY     = "second_value";
+    public static final String THIRD_VALUE_KEY      = "third_value";
     public static final int DEFAULT_VALUE           = 0;
+    public static final String FIGURE_COLOR_KEY     = "default_color";
+    public static final int DEFAULT_COLOR           = R.color.zFigure;
 
     /*NOTIFICATIONS*/
     public static final int NOTIFICATION_ID         = 123;

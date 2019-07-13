@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.utils.AnimationUtil;
 
 import butterknife.BindView;
@@ -25,13 +26,13 @@ public class ScoreActivity extends AppCompatActivity {
     @BindView(R.id.llScores)
     LinearLayout scoresLayout;
 
-    private ScoreCounter scoreCounter;
+    private SharedPreferencesManager sharedPreferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-        scoreCounter = new ScoreCounter(getApplicationContext());
+        sharedPreferencesManager = new SharedPreferencesManager(getApplicationContext());
         ButterKnife.bind(this);
     }
 
@@ -39,8 +40,8 @@ public class ScoreActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         scoresLayout.startAnimation(AnimationUtil.getZoomIn(this));
-        firstScore.setText(scoreCounter.getFirstValue());
-        secondScore.setText(scoreCounter.getSecondValue());
-        thirdScore.setText(scoreCounter.getThirdValue());
+        firstScore.setText(sharedPreferencesManager.getFirstValue());
+        secondScore.setText(sharedPreferencesManager.getSecondValue());
+        thirdScore.setText(sharedPreferencesManager.getThirdValue());
     }
 }

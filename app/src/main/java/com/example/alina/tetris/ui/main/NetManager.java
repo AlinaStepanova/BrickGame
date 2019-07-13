@@ -7,7 +7,7 @@ import android.util.Log;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
-import com.example.alina.tetris.listeners.OnNetChangedListener;
+import com.example.alina.tetris.ui.main.listeners.OnNetChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
 
 import java.util.ArrayList;
@@ -267,6 +267,7 @@ public class NetManager {
         return result;
     }
 
+    // todo move this into constructor
     public void setOnNetChangedListener(OnNetChangedListener onNetChangedListener) {
         this.onNetChangedListener = onNetChangedListener;
     }

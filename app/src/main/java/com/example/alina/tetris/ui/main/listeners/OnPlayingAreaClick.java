@@ -1,4 +1,4 @@
-package com.example.alina.tetris.listeners;
+package com.example.alina.tetris.ui.main.listeners;
 
 /**
  * Created by Alina on 18.03.2017.

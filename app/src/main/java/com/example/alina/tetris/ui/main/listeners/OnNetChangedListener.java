@@ -1,4 +1,4 @@
-package com.example.alina.tetris.listeners;
+package com.example.alina.tetris.ui.main.listeners;
 
 
 public interface OnNetChangedListener {

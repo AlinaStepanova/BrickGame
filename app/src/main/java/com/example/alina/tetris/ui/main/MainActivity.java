@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.example.alina.tetris.R;
-import com.example.alina.tetris.listeners.OnPlayingAreaClick;
-import com.example.alina.tetris.listeners.OnTimerStateChangedListener;
+import com.example.alina.tetris.ui.main.listeners.OnPlayingAreaClick;
+import com.example.alina.tetris.ui.main.listeners.OnTimerStateChangedListener;
 import com.example.alina.tetris.ui.main.views.ControlsView;
 import com.example.alina.tetris.ui.main.views.PlayingAreaView;
 import com.example.alina.tetris.ui.main.views.PreviewAreaView;
