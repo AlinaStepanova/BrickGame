@@ -8,13 +8,14 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.annotation.AttrRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.alina.tetris.R;
 import com.example.alina.tetris.Values;
 import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.enums.FigureState;
@@ -27,7 +28,6 @@ import com.example.alina.tetris.ui.main.listeners.OnTimerStateChangedListener;
 
 import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
 import static com.example.alina.tetris.Values.GAME_OVER_DELAY_IN_MILLIS;
-import static com.example.alina.tetris.Values.GAME_OVER_TEXT;
 import static com.example.alina.tetris.Values.LINE_WIDTH;
 import static com.example.alina.tetris.Values.MILLIS_IN_FUTURE;
 import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
@@ -307,7 +307,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     @Override
     public void onTopLineHasTrue() {
-        Toast.makeText(context, GAME_OVER_TEXT, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, context.getString(R.string.game_over_text), Toast.LENGTH_LONG).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

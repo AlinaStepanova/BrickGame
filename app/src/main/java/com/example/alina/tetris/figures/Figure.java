@@ -38,7 +38,8 @@ public abstract class Figure {
         this.scale = scale;
         this.state = FigureState.MOVING;
         this.context = context;
-        pointInNet = new Point(getCoordinateInNet(squareWidth, pointOnScreen.x), EXTRA_ROWS - (getHeightInSquare()));
+        pointInNet = new Point(getCoordinateInNet(squareWidth, pointOnScreen.x),
+                EXTRA_ROWS - (getHeightInSquare()));
     }
 
     protected Figure(int squareWidth, int scale, Context context, Point pointOnScreen) {
@@ -47,7 +48,8 @@ public abstract class Figure {
         this.scale = scale;
         this.state = FigureState.MOVING;
         this.context = context;
-        pointInNet = new Point(getCoordinateInNet(squareWidth, pointOnScreen.x), getCoordinateInNet(squareWidth, pointOnScreen.y));
+        pointInNet = new Point(getCoordinateInNet(squareWidth, pointOnScreen.x),
+                getCoordinateInNet(squareWidth, pointOnScreen.y));
     }
 
     protected Figure(int widthSquare, Context context, Point pointOnScreen) {

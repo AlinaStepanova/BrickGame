@@ -1,6 +1,6 @@
 package com.example.alina.tetris.utils;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.example.alina.tetris.R;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -91,9 +91,13 @@
         android:layout_marginStart="@dimen/margin16dp"
         android:layout_marginTop="@dimen/margin4dp"
         android:layout_marginEnd="@dimen/margin16dp"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:progress="2"
+        android:max="4"
         android:progressBackgroundTint="@color/colorPrimaryDark"
         android:progressTint="@color/colorPrimary"
         android:thumbTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSetSpeedTitle"/>
@@ -181,5 +185,4 @@
         android:layout_height="1px"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintTop_toBottomOf="@+id/flPrivacyPolicy"/>
-
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

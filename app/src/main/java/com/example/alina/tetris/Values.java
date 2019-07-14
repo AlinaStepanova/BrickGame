@@ -12,7 +12,6 @@ public class Values {
     public static final long DELAY_IN_MILLIS                = 1500;
     public static final long GAME_OVER_DELAY_IN_MILLIS      = 4000;
     public static final float LINE_WIDTH                    = 1f;
-    public static final String GAME_OVER_TEXT               = "GAME OVER";
 
     /*PREFERENCES*/
     public static final String PREFERENCES_KEY      = "com.example.alina.tetris.PREFERENCE_KEY";

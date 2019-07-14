@@ -1,8 +1,8 @@
 package com.example.alina.tetris.ui.settings;
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.example.alina.tetris.R;
