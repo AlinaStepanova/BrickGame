@@ -41,10 +41,8 @@ import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
 
 public class PlayingAreaView extends View implements OnNetChangedListener {
 
-    private int widthOfSquareSide;
-    private int verticalSquareCount;
-    private int screenHeight;
-    private int screenWidth;
+    private int widthOfSquareSide, verticalSquareCount;
+    private int screenHeight, screenWidth;
     private int scale;
     private boolean isTimerRunning;
 
@@ -104,7 +102,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         }
         if (netManager != null && netManager.getStoppedFiguresPaths() != null) {
             for (Path squarePath : netManager.getStoppedFiguresPaths()) {
-                paint.setColor(getResources().getColor(R.color.zFigure));
+                paint.setColor(getResources().getColor(sharedPreferencesManager.getFiguresColor()));
                 canvas.drawPath(squarePath, paint);
             }
         }
@@ -270,11 +268,11 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         if (figure != null) {
             figure.initFigureMask();
             if (netManager == null) {
-                netManager = new NetManager();
+                netManager = new NetManager(this);
                 netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL, widthOfSquareSide, scale);
             }
             if (!netManager.isVerticalLineTrue()) {
-                netManager.setOnNetChangedListener(this);
+                //netManager.setOnNetChangedListener(this);
                 netManager.checkBottomLine();
                 netManager.initFigure(figure);
                 netManager.printNet();

@@ -17,15 +17,11 @@ import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
 
 public class NetManager {
 
-    private int verticalSquaresCount;
-
-    private int horizontalSquaresCount;
+    private int verticalSquaresCount, horizontalSquaresCount;
 
     private Figure figure;
 
-    private boolean[][] net;
-
-    private boolean[][] zeroNet;
+    private boolean[][] net, zeroNet;
 
     public static int combo;
 
@@ -33,12 +29,43 @@ public class NetManager {
 
     private OnNetChangedListener onNetChangedListener;
 
-    private int squareWidth;
-    private int scale;
+    private int squareWidth, scale;
 
-    public NetManager() {
+    public NetManager(OnNetChangedListener onNetChangedListener) {
+        this.onNetChangedListener = onNetChangedListener;
         this.net = null;
         combo = 0;
+    }
+
+    public void initNet(int verticalSquaresCount, int horizontalSquaresCount, int widthOfSquareSide, int scale) {
+        setNet(new boolean[verticalSquaresCount + EXTRA_ROWS][horizontalSquaresCount]);
+        setFalseNet(net);
+        this.squareWidth = widthOfSquareSide;
+        this.scale = scale;
+        this.verticalSquaresCount = verticalSquaresCount; //20
+        this.horizontalSquaresCount = horizontalSquaresCount; //10
+    }
+
+    private void setNet(boolean[][] net) {
+        this.net = net;
+    }
+
+    public void initRotatedFigure(Figure figure) {
+        this.figure.initMaskWithFalse();
+        copyMaskToNet();
+        figureListInNet.set(figureListInNet.size() - 1, figure);
+        initCurrentFigureInNet(figure);
+    }
+
+    public void initFigure(Figure figure) {
+        figureListInNet.add(figure);
+        initCurrentFigureInNet(figure);
+    }
+
+    private void initCurrentFigureInNet(Figure figure) {
+        this.figure = figureListInNet.getLast();
+        this.zeroNet = new boolean[figure.getHeightInSquare()][1];
+        copyMaskToNet();
     }
 
     public boolean canRotate(Figure rotatedFigure) {
@@ -49,10 +76,6 @@ public class NetManager {
             result = true;
         }
         return result;
-    }
-
-    private void setNet(boolean[][] net) {
-        this.net = net;
     }
 
     public void resetMaskBeforeMoveWithFalse() {
@@ -267,29 +290,6 @@ public class NetManager {
         return result;
     }
 
-    // todo move this into constructor
-    public void setOnNetChangedListener(OnNetChangedListener onNetChangedListener) {
-        this.onNetChangedListener = onNetChangedListener;
-    }
-
-    public void initRotatedFigure(Figure figure) {
-        this.figure.initMaskWithFalse();
-        copyMaskToNet();
-        figureListInNet.set(figureListInNet.size() - 1, figure);
-        initCurrentFigureInNet(figure);
-    }
-
-    public void initFigure(Figure figure) {
-        figureListInNet.add(figure);
-        initCurrentFigureInNet(figure);
-    }
-
-    private void initCurrentFigureInNet(Figure figure) {
-        this.figure = figureListInNet.getLast();
-        this.zeroNet = new boolean[figure.getHeightInSquare()][1];
-        copyMaskToNet();
-    }
-
     public void changeFigureState() {
         if (!isNetFreeToMoveDown()) {
             figure.setState(FigureState.STOPPED);
@@ -381,14 +381,5 @@ public class NetManager {
             str.append('\n');
         }
         Log.d("logNet", str.toString());
-    }
-
-    public void initNet(int verticalSquaresCount, int horizontalSquaresCount, int widthOfSquareSide, int scale) {
-        setNet(new boolean[verticalSquaresCount + EXTRA_ROWS][horizontalSquaresCount]);
-        setFalseNet(net);
-        this.squareWidth = widthOfSquareSide;
-        this.scale = scale;
-        this.verticalSquaresCount = verticalSquaresCount; //20
-        this.horizontalSquaresCount = horizontalSquaresCount; //10
     }
 }
