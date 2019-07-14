@@ -9,11 +9,9 @@ public class Values {
     public static final int EXTRA_SCORE                     = 100;
     public static final int COUNT_DOWN_INTERVAL             = 750;
     public static final int MILLIS_IN_FUTURE                = 1000;
-    public static final int ENUM_LENGTH                     = 6;
     public static final long DELAY_IN_MILLIS                = 1500;
     public static final long GAME_OVER_DELAY_IN_MILLIS      = 4000;
     public static final float LINE_WIDTH                    = 1f;
-    public static final int INITIAL_FIGURE_TYPE_LIST_LENGTH = 5;
     public static final String GAME_OVER_TEXT               = "GAME OVER";
 
     /*PREFERENCES*/

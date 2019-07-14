@@ -15,8 +15,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.alina.tetris.ui.main.NetManager;
-import com.example.alina.tetris.R;
 import com.example.alina.tetris.Values;
 import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.enums.FigureState;
@@ -24,6 +22,7 @@ import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.figures.factory.FigureFactory;
+import com.example.alina.tetris.ui.main.NetManager;
 import com.example.alina.tetris.ui.main.listeners.OnNetChangedListener;
 import com.example.alina.tetris.ui.main.listeners.OnTimerStateChangedListener;
 import com.example.alina.tetris.utils.CustomArrayList;
@@ -41,7 +40,7 @@ import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
 
 public class PlayingAreaView extends View implements OnNetChangedListener {
 
-    private int widthOfSquareSide, verticalSquareCount;
+    private int squareWidth, verticalSquareCount;
     private int screenHeight, screenWidth;
     private int scale;
     private boolean isTimerRunning;
@@ -62,9 +61,6 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     private Context context;
     private OnTimerStateChangedListener onTimerStateChangedListener;
-
-    //todo remove this
-    public static int FIGURE_TYPE_LIST_SIZE = 0;
 
     public PlayingAreaView(@NonNull Context context) {
         super(context);
@@ -111,9 +107,9 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthOfSquareSide = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_HORIZONTAL;
-        verticalSquareCount = MeasureSpec.getSize(heightMeasureSpec) / widthOfSquareSide;
-        scale = widthOfSquareSide - (MeasureSpec.getSize(heightMeasureSpec) % widthOfSquareSide);
+        squareWidth = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_HORIZONTAL;
+        verticalSquareCount = MeasureSpec.getSize(heightMeasureSpec) / squareWidth;
+        scale = squareWidth - (MeasureSpec.getSize(heightMeasureSpec) % squareWidth);
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
         screenWidth = MeasureSpec.getSize(widthMeasureSpec);
     }
@@ -127,33 +123,28 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         figureTypeList.clear();
     }
 
-    public void setScoreView(ScoreView scoreView) {
+    public void setDependencies(ScoreView scoreView, PreviewAreaView previewAreaView,
+                                OnTimerStateChangedListener onTimerStateChangedListener) {
         this.scoreView = scoreView;
-    }
-
-    public void setPreviewAreaView(PreviewAreaView previewAreaView) {
         this.previewAreaView = previewAreaView;
+        this.onTimerStateChangedListener = onTimerStateChangedListener;
     }
 
     private void drawHorizontalLines(Canvas canvas) {
         for (int i = 1; i <= verticalSquareCount; i++) {
-            canvas.drawLine(0, screenHeight - widthOfSquareSide * i, screenWidth,
-                    screenHeight - widthOfSquareSide * i, paint);
+            canvas.drawLine(0, screenHeight - squareWidth * i, screenWidth,
+                    screenHeight - squareWidth * i, paint);
         }
     }
 
     private void drawVerticalLines(Canvas canvas) {
         for (int i = 1; i <= SQUARE_COUNT_HORIZONTAL; i++) {
-            canvas.drawLine(i * widthOfSquareSide, 0, i * widthOfSquareSide,
+            canvas.drawLine(i * squareWidth, 0, i * squareWidth,
                     screenHeight, paint);
         }
     }
 
-    public void setOnTimerStateChanged(OnTimerStateChangedListener onTimerStateChangedListener) {
-        this.onTimerStateChangedListener = onTimerStateChangedListener;
-    }
-
-    public boolean getTimerState() {
+    public boolean isTimerRunning() {
         return isTimerRunning;
     }
 
@@ -247,7 +238,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         if (figureList.size() > 0 && figureList.getLast().getState() == FigureState.MOVING
                 && figureList.getLast().getRotatedFigure() != null && isTimerRunning) {
             Figure figure = FigureFactory.getFigure(figureList.getLast().getRotatedFigure(),
-                    widthOfSquareSide, scale, context, figureList.getLast().point);
+                    squareWidth, scale, context, figureList.getLast().pointOnScreen);
             if (figure != null) {
                 figure.initFigureMask();
             }
@@ -261,18 +252,15 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     private void createFigure() {
         figureTypeList.add(figureCreator.getCurrentFigureType());
-        FIGURE_TYPE_LIST_SIZE = figureTypeList.size();
-        Figure figure = FigureFactory.getFigure(figureTypeList.getLast(), widthOfSquareSide,
-                scale, context);
+        Figure figure = FigureFactory.getFigure(figureTypeList.getLast(), squareWidth, scale, context);
         figureList.add(figure);
         if (figure != null) {
             figure.initFigureMask();
             if (netManager == null) {
                 netManager = new NetManager(this);
-                netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL, widthOfSquareSide, scale);
+                netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL, squareWidth, scale);
             }
             if (!netManager.isVerticalLineTrue()) {
-                //netManager.setOnNetChangedListener(this);
                 netManager.checkBottomLine();
                 netManager.initFigure(figure);
                 netManager.printNet();
@@ -306,7 +294,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
             @Override
             public void run() {
                 previewAreaView.drawNextFigure(FigureFactory.getFigure(figureCreator.getNextFigureType(),
-                        widthOfSquareSide, context));
+                        squareWidth, context));
                 createFigure();
             }
         }, Values.DELAY_IN_MILLIS);
@@ -317,7 +305,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         if (!netManager.isVerticalLineTrue()) {
             scoreView.sumScoreWhenFigureStopped();
             previewAreaView.drawNextFigure(FigureFactory.getFigure(figureCreator.createNextFigure(),
-                    widthOfSquareSide, context));
+                    squareWidth, context));
             createFigure();
         }
     }

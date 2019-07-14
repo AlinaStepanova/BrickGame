@@ -54,10 +54,10 @@ public class LongFigure extends Figure {
     @Override
     public Path getPath() {
         Path path = new Path();
-        path.moveTo(point.x, point.y - scale);
-        path.lineTo(point.x + squareWidth, point.y - scale);
-        path.lineTo(point.x + squareWidth, point.y + squareWidth * 4 - scale);
-        path.lineTo(point.x, point.y + squareWidth * 4 - scale);
+        path.moveTo(pointOnScreen.x, pointOnScreen.y - scale);
+        path.lineTo(pointOnScreen.x + squareWidth, pointOnScreen.y - scale);
+        path.lineTo(pointOnScreen.x + squareWidth, pointOnScreen.y + squareWidth * 4 - scale);
+        path.lineTo(pointOnScreen.x, pointOnScreen.y + squareWidth * 4 - scale);
         path.close();
         return path;
     }

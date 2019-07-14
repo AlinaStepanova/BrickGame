@@ -49,12 +49,12 @@ public class LSecondFigure extends Figure {
     @Override
     public Path getPath() {
         Path path = new Path();
-        path.moveTo(point.x, point.y - scale);
-        path.lineTo(point.x, point.y + squareWidth - scale);
-        path.lineTo(point.x + squareWidth * 3, point.y + squareWidth - scale);
-        path.lineTo(point.x + squareWidth * 3, point.y - squareWidth - scale);
-        path.lineTo(point.x + squareWidth * 2, point.y - squareWidth - scale);
-        path.lineTo(point.x + squareWidth * 2, point.y - scale);
+        path.moveTo(pointOnScreen.x, pointOnScreen.y - scale);
+        path.lineTo(pointOnScreen.x, pointOnScreen.y + squareWidth - scale);
+        path.lineTo(pointOnScreen.x + squareWidth * 3, pointOnScreen.y + squareWidth - scale);
+        path.lineTo(pointOnScreen.x + squareWidth * 3, pointOnScreen.y - squareWidth - scale);
+        path.lineTo(pointOnScreen.x + squareWidth * 2, pointOnScreen.y - squareWidth - scale);
+        path.lineTo(pointOnScreen.x + squareWidth * 2, pointOnScreen.y - scale);
         path.close();
         return path;
     }

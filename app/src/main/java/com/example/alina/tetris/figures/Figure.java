@@ -4,12 +4,12 @@ import android.content.Context;
 import android.graphics.Path;
 import android.graphics.Point;
 
-import com.example.alina.tetris.R;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.enums.FigureType;
 
 import java.util.Random;
 
+import static com.example.alina.tetris.Values.DEFAULT_COLOR;
 import static com.example.alina.tetris.Values.EXTRA_ROWS;
 
 /**
@@ -26,37 +26,37 @@ public abstract class Figure {
 
     public int scale;
 
-    public final Point point;
+    public final Point pointOnScreen;
 
-    public final Point coordinatesInNet;
+    public final Point pointInNet;
 
     public boolean[][] figureMask;
 
     protected Figure(int squareWidth, int scale, Context context) {
         this.squareWidth = squareWidth;
-        this.point = initPoint();
+        this.pointOnScreen = initPoint();
         this.scale = scale;
         this.state = FigureState.MOVING;
         this.context = context;
-        coordinatesInNet = new Point(getCoordinateInNet(squareWidth, point.x), EXTRA_ROWS - (getHeightInSquare()));
+        pointInNet = new Point(getCoordinateInNet(squareWidth, pointOnScreen.x), EXTRA_ROWS - (getHeightInSquare()));
     }
 
-    protected Figure(int squareWidth, int scale, Context context, Point point) {
+    protected Figure(int squareWidth, int scale, Context context, Point pointOnScreen) {
         this.squareWidth = squareWidth;
-        this.point = point;
+        this.pointOnScreen = pointOnScreen;
         this.scale = scale;
         this.state = FigureState.MOVING;
         this.context = context;
-        coordinatesInNet = new Point(getCoordinateInNet(squareWidth, point.x), getCoordinateInNet(squareWidth, point.y));
+        pointInNet = new Point(getCoordinateInNet(squareWidth, pointOnScreen.x), getCoordinateInNet(squareWidth, pointOnScreen.y));
     }
 
-    protected Figure(int widthSquare, Context context, Point point) {
+    protected Figure(int widthSquare, Context context, Point pointOnScreen) {
         this.squareWidth = widthSquare / 2;
-        this.point = new Point(point.x, point.y);
+        this.pointOnScreen = new Point(pointOnScreen.x, pointOnScreen.y);
         this.scale = 0;
         this.state = FigureState.MOVING;
         this.context = context;
-        coordinatesInNet = new Point(point.x, point.y);
+        pointInNet = new Point(pointOnScreen.x, pointOnScreen.y);
     }
 
     private Point initPoint() {
@@ -71,11 +71,11 @@ public abstract class Figure {
     }
 
     public int getCurrentX() {
-        return coordinatesInNet.x;
+        return pointInNet.x;
     }
 
     public int getCurrentY() {
-        return coordinatesInNet.y;
+        return pointInNet.y;
     }
 
     public FigureState getState() {
@@ -99,22 +99,22 @@ public abstract class Figure {
     }
 
     public void moveLeft() {
-        point.set(point.x - squareWidth, point.y);
-        coordinatesInNet.set(coordinatesInNet.x - 1, coordinatesInNet.y);
+        pointOnScreen.set(pointOnScreen.x - squareWidth, pointOnScreen.y);
+        pointInNet.set(pointInNet.x - 1, pointInNet.y);
     }
 
     public void moveRight() {
-        point.set(point.x + squareWidth, point.y);
-        coordinatesInNet.set(coordinatesInNet.x + 1, coordinatesInNet.y);
+        pointOnScreen.set(pointOnScreen.x + squareWidth, pointOnScreen.y);
+        pointInNet.set(pointInNet.x + 1, pointInNet.y);
     }
 
     public void moveDown() {
-        point.set(point.x, point.y + squareWidth);
-        coordinatesInNet.set(coordinatesInNet.x, coordinatesInNet.y + 1);
+        pointOnScreen.set(pointOnScreen.x, pointOnScreen.y + squareWidth);
+        pointInNet.set(pointInNet.x, pointInNet.y + 1);
     }
 
     public final int getColor() {
-        return this.context.getResources().getColor(R.color.jFigure);
+        return this.context.getResources().getColor(DEFAULT_COLOR);
     }
 
     public abstract FigureType getRotatedFigure();

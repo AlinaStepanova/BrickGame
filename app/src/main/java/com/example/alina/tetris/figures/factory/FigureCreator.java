@@ -3,13 +3,10 @@ package com.example.alina.tetris.figures.factory;
 import android.graphics.Path;
 
 import com.example.alina.tetris.enums.FigureType;
-import com.example.alina.tetris.ui.main.views.PlayingAreaView;
 
 import java.util.Random;
 
-import static com.example.alina.tetris.Values.ENUM_LENGTH;
 import static com.example.alina.tetris.Values.EXTRA_ROWS;
-import static com.example.alina.tetris.Values.INITIAL_FIGURE_TYPE_LIST_LENGTH;
 
 public class FigureCreator {
 
@@ -29,14 +26,7 @@ public class FigureCreator {
     }
 
     private FigureType selectFigure() {
-        FigureType figureType;
-        //todo simplify this
-        if (PlayingAreaView.FIGURE_TYPE_LIST_SIZE < INITIAL_FIGURE_TYPE_LIST_LENGTH) {
-            figureType = FigureType.values()[random.nextInt(ENUM_LENGTH)];
-        } else {
-            figureType = FigureType.values()[random.nextInt(FigureType.values().length)];
-        }
-        return figureType;
+        return FigureType.values()[random.nextInt(FigureType.values().length)];
     }
 
     public FigureType getCurrentFigureType() {

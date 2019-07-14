@@ -48,10 +48,10 @@ public class SquareFigure extends Figure {
     @Override
     public Path getPath() {
         Path path = new Path();
-        path.moveTo(point.x, point.y - scale);
-        path.lineTo(point.x + squareWidth * 2, point.y - scale);
-        path.lineTo(point.x + squareWidth * 2, point.y + squareWidth * 2 - scale);
-        path.lineTo(point.x, point.y + squareWidth * 2 - scale);
+        path.moveTo(pointOnScreen.x, pointOnScreen.y - scale);
+        path.lineTo(pointOnScreen.x + squareWidth * 2, pointOnScreen.y - scale);
+        path.lineTo(pointOnScreen.x + squareWidth * 2, pointOnScreen.y + squareWidth * 2 - scale);
+        path.lineTo(pointOnScreen.x, pointOnScreen.y + squareWidth * 2 - scale);
         path.close();
         return path;
     }

@@ -38,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        playingAreaView.setScoreView(scoreView);
-        playingAreaView.setPreviewAreaView(previewAreaView);
-        playingAreaView.setOnTimerStateChanged(this);
+        playingAreaView.setDependencies(scoreView, previewAreaView, this);
         controlsView.setOnPlayingAreaClick(this);
         playingAreaView.cleanup();
         playingAreaView.createFigureWithDelay();
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
     @Override
     protected void onResume() {
         super.onResume();
-        if (playingAreaView.getTimerState()) {
+        if (playingAreaView.isTimerRunning()) {
             playingAreaView.startTimer();
         }
     }

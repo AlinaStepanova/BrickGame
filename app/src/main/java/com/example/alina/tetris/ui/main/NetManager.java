@@ -70,8 +70,8 @@ public class NetManager {
 
     public boolean canRotate(Figure rotatedFigure) {
         boolean result = false;
-        if (rotatedFigure.coordinatesInNet.x + rotatedFigure.getWidthInSquare() <= horizontalSquaresCount
-                && rotatedFigure.coordinatesInNet.y + rotatedFigure.getHeightInSquare() < verticalSquaresCount
+        if (rotatedFigure.pointInNet.x + rotatedFigure.getWidthInSquare() <= horizontalSquaresCount
+                && rotatedFigure.pointInNet.y + rotatedFigure.getHeightInSquare() < verticalSquaresCount
                 && isNetFreeToMoveDown()) {
             result = true;
         }
@@ -84,7 +84,7 @@ public class NetManager {
             int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i]);
             int endPosition = getEndHorizontalPosition(figure.figureMask[i]);
             System.arraycopy(falseFigureMast[i], startHorizontalPos,
-                    net[figure.coordinatesInNet.y + i], figure.coordinatesInNet.x + startHorizontalPos,
+                    net[figure.pointInNet.y + i], figure.pointInNet.x + startHorizontalPos,
                     endPosition);
         }
     }
@@ -105,7 +105,7 @@ public class NetManager {
     private void resetNetAfterMoving(int destinationPosition) {
         for (int i = 0; i < zeroNet.length; i++) {
             System.arraycopy(zeroNet[i], 0,
-                    net[figure.coordinatesInNet.y + i], destinationPosition, 1);
+                    net[figure.pointInNet.y + i], destinationPosition, 1);
         }
     }
 
@@ -114,8 +114,8 @@ public class NetManager {
             int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i]);
             int endPosition = getEndHorizontalPosition(figure.figureMask[i]);
             System.arraycopy(figure.figureMask[i], startHorizontalPos,
-                    net[figure.coordinatesInNet.y + i],
-                    figure.coordinatesInNet.x + startHorizontalPos, endPosition);
+                    net[figure.pointInNet.y + i],
+                    figure.pointInNet.x + startHorizontalPos, endPosition);
         }
     }
 
@@ -172,7 +172,7 @@ public class NetManager {
     //todo think of rotated figure
     private boolean isFigureBelow() {
         boolean result = false;
-        int coordinateX = figure.coordinatesInNet.x;
+        int coordinateX = figure.pointInNet.x;
         for (int i = figure.figureMask.length; i > 0; i--) {
             int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i - 1]);
             int endHorizontalPos = getEndHorizontalPosition(figure.figureMask[i - 1]);
@@ -180,7 +180,7 @@ public class NetManager {
                  j < coordinateX + endHorizontalPos + startHorizontalPos; j++) {
                 int startVerticalPos = getStartVerticalPosition(figure.figureMask, j - coordinateX);
                 int endVerticalPos = getEndVerticalPosition(figure.figureMask, j - coordinateX);
-                if (net[figure.coordinatesInNet.y + startVerticalPos + endVerticalPos][j]) {
+                if (net[figure.pointInNet.y + startVerticalPos + endVerticalPos][j]) {
                     result = true;
                     break;
                 }
@@ -191,8 +191,8 @@ public class NetManager {
 
     private boolean isFigureLeft() {
         boolean result = false;
-        int coordinateY = figure.coordinatesInNet.y;
-        int coordinateX = figure.coordinatesInNet.x;
+        int coordinateY = figure.pointInNet.y;
+        int coordinateX = figure.pointInNet.x;
         for (int i = 0; i < figure.getHeightInSquare(); i++) {
             int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i]);
             if (net[coordinateY + i][coordinateX + startHorizontalPos - 1]) {
@@ -205,8 +205,8 @@ public class NetManager {
 
     private boolean isFigureRight() {
         boolean result = false;
-        int coordinateY = figure.coordinatesInNet.y;
-        int coordinateX = figure.coordinatesInNet.x;
+        int coordinateY = figure.pointInNet.y;
+        int coordinateX = figure.pointInNet.x;
         for (int i = 0; i < figure.getHeightInSquare(); i++) {
             int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i]);
             int endHorizontalPos = getEndHorizontalPosition(figure.figureMask[i]);
@@ -315,7 +315,7 @@ public class NetManager {
 
     public boolean isNetFreeToMoveDown() {
         boolean result = false;
-        if (figure.coordinatesInNet.y + figure.getHeightInSquare()
+        if (figure.pointInNet.y + figure.getHeightInSquare()
                 != verticalSquaresCount + EXTRA_ROWS && !isFigureBelow()) {
             result = true;
         }
@@ -324,7 +324,7 @@ public class NetManager {
 
     public boolean isNetFreeToMoveLeft() {
         boolean result = false;
-        if (figure.coordinatesInNet.x != 0 && isNetFreeToMoveDown() && !isFigureLeft()) {
+        if (figure.pointInNet.x != 0 && isNetFreeToMoveDown() && !isFigureLeft()) {
             result = true;
         }
         return result;
@@ -332,7 +332,7 @@ public class NetManager {
 
     public boolean isNetFreeToMoveRight() {
         boolean result = false;
-        if (figure.coordinatesInNet.x + figure.getWidthInSquare() < horizontalSquaresCount
+        if (figure.pointInNet.x + figure.getWidthInSquare() < horizontalSquaresCount
                 && isNetFreeToMoveDown() && !isFigureRight()) {
             result = true;
         }
@@ -342,28 +342,28 @@ public class NetManager {
     public void moveRightInNet() {
         setFalseNet(zeroNet);
         moveFigure();
-        resetNetAfterMoving(figure.coordinatesInNet.x - 1);
+        resetNetAfterMoving(figure.pointInNet.x - 1);
     }
 
     public void moveLeftInNet() {
         setFalseNet(zeroNet);
         moveFigure();
-        resetNetAfterMoving(figure.coordinatesInNet.x
+        resetNetAfterMoving(figure.pointInNet.x
                 + figure.getWidthInSquare());
     }
 
     public void moveDownInNet() {
         boolean[][] zeroNet = new boolean[1][figure.getWidthInSquare()];
-        int coordinateY = figure.coordinatesInNet.y;
+        int coordinateY = figure.pointInNet.y;
         coordinateY--;
         for (int i = figure.figureMask.length; i > 0; i--) {
             int startPosition = getStartHorizontalPosition(figure.figureMask[i - 1]);
             int endPosition = getEndHorizontalPosition(figure.figureMask[i - 1]);
             System.arraycopy(figure.figureMask[i - 1], startPosition, net[coordinateY + i],
-                    figure.coordinatesInNet.x + startPosition, endPosition);
+                    figure.pointInNet.x + startPosition, endPosition);
             for (boolean[] zero : zeroNet) {
                 System.arraycopy(zero, startPosition, net[coordinateY + i - 1],
-                        figure.coordinatesInNet.x + startPosition, endPosition);
+                        figure.pointInNet.x + startPosition, endPosition);
             }
         }
     }
