@@ -18,14 +18,12 @@ import android.widget.Toast;
 import com.example.alina.tetris.Values;
 import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.enums.FigureState;
-import com.example.alina.tetris.enums.FigureType;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.figures.factory.FigureFactory;
 import com.example.alina.tetris.ui.main.NetManager;
 import com.example.alina.tetris.ui.main.listeners.OnNetChangedListener;
 import com.example.alina.tetris.ui.main.listeners.OnTimerStateChangedListener;
-import com.example.alina.tetris.utils.CustomArrayList;
 
 import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
 import static com.example.alina.tetris.Values.GAME_OVER_DELAY_IN_MILLIS;
@@ -45,9 +43,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     private int scale;
     private boolean isTimerRunning;
 
-    //todo remove this, there is no need to keep lists
-    private final CustomArrayList<FigureType> figureTypeList = new CustomArrayList<>();
-    private final CustomArrayList<Figure> figureList = new CustomArrayList<>();
+    private Figure currentFigure;
 
     private NetManager netManager;
     private FigureCreator figureCreator;
@@ -72,8 +68,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         init(context);
     }
 
-    public PlayingAreaView(@NonNull Context context, @Nullable AttributeSet attrs,
-                           @AttrRes int defStyleAttr) {
+    public PlayingAreaView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -92,10 +87,8 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         paint.setStrokeWidth(LINE_WIDTH);
         drawVerticalLines(canvas);
         drawHorizontalLines(canvas);
-        for (Figure figure : figureList) {
-            if (figure != null && figure.getState() == FigureState.MOVING && isTimerRunning)
-                startMoveDown();
-        }
+        if (currentFigure != null && currentFigure.getState() == FigureState.MOVING && isTimerRunning)
+            startMoveDown();
         if (netManager != null && netManager.getStoppedFiguresPaths() != null) {
             for (Path squarePath : netManager.getStoppedFiguresPaths()) {
                 paint.setColor(getResources().getColor(sharedPreferencesManager.getFiguresColor()));
@@ -119,8 +112,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         cancelTimer();
         scoreView.setStartValue();
         netManager = null;
-        figureList.clear();
-        figureTypeList.clear();
+        currentFigure = null;
     }
 
     public void setDependencies(ScoreView scoreView, PreviewAreaView previewAreaView,
@@ -139,8 +131,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     private void drawVerticalLines(Canvas canvas) {
         for (int i = 1; i <= SQUARE_COUNT_HORIZONTAL; i++) {
-            canvas.drawLine(i * squareWidth, 0, i * squareWidth,
-                    screenHeight, paint);
+            canvas.drawLine(i * squareWidth, 0, i * squareWidth, screenHeight, paint);
         }
     }
 
@@ -179,8 +170,8 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
             }
 
             public void onFinish() {
-                if (figureList.getLast().getState() == FigureState.MOVING) {
-                    figureList.getLast().moveDown();
+                if (currentFigure.getState() == FigureState.MOVING) {
+                    currentFigure.moveDown();
                     netManager.moveDownInNet();
                     invalidate();
                 }
@@ -195,14 +186,14 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     }
 
     public void fastMoveDown() {
-        if (figureList.size() > 0 && isTimerRunning) {
+        if (currentFigure != null && isTimerRunning) {
             cancelTimer();
-            while (figureList.getLast().getState() == FigureState.MOVING) {
+            while (currentFigure.getState() == FigureState.MOVING) {
                 if (!netManager.isNetFreeToMoveDown()) {
                     netManager.changeFigureState();
                     break;
                 }
-                figureList.getLast().moveDown();
+                currentFigure.moveDown();
                 netManager.moveDownInNet();
             }
             invalidate();
@@ -210,11 +201,11 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     }
 
     public void moveRightFast() {
-        if (figureList.size() > 0 && isTimerRunning) {
+        if (currentFigure != null && isTimerRunning) {
             cancelTimer();
             while (netManager.isNetFreeToMoveRight()) {
                 netManager.resetMaskBeforeMoveWithFalse();
-                figureList.getLast().moveRight();
+                currentFigure.moveRight();
                 netManager.moveRightInNet();
             }
             invalidate();
@@ -222,11 +213,11 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     }
 
     public void moveLeftFast() {
-        if (figureList.size() > 0 && isTimerRunning) {
+        if (currentFigure != null && isTimerRunning) {
             cancelTimer();
             while (netManager.isNetFreeToMoveLeft()) {
                 netManager.resetMaskBeforeMoveWithFalse();
-                figureList.getLast().moveLeft();
+                currentFigure.moveLeft();
                 netManager.moveLeftInNet();
             }
             invalidate();
@@ -235,15 +226,15 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     //todo think about the restrictions
     public void rotate() {
-        if (figureList.size() > 0 && figureList.getLast().getState() == FigureState.MOVING
-                && figureList.getLast().getRotatedFigure() != null && isTimerRunning) {
-            Figure figure = FigureFactory.getFigure(figureList.getLast().getRotatedFigure(),
-                    squareWidth, scale, context, figureList.getLast().pointOnScreen);
+        if (currentFigure != null && currentFigure.getState() == FigureState.MOVING
+                && currentFigure.getRotatedFigure() != null && isTimerRunning) {
+            Figure figure = FigureFactory.getFigure(currentFigure.getRotatedFigure(),
+                    squareWidth, scale, context, currentFigure.pointOnScreen);
             if (figure != null) {
                 figure.initFigureMask();
             }
             if (netManager.canRotate(figure)) {
-                figureList.set(figureList.size() - 1, figure);
+                currentFigure = figure;
                 netManager.checkBottomLine();
                 netManager.initRotatedFigure(figure);
             }
@@ -251,18 +242,17 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     }
 
     private void createFigure() {
-        figureTypeList.add(figureCreator.getCurrentFigureType());
-        Figure figure = FigureFactory.getFigure(figureTypeList.getLast(), squareWidth, scale, context);
-        figureList.add(figure);
+        Figure figure = FigureFactory.getFigure(figureCreator.getCurrentFigureType(), squareWidth, scale, context);
         if (figure != null) {
-            figure.initFigureMask();
+            currentFigure = figure;
+            currentFigure.initFigureMask();
             if (netManager == null) {
                 netManager = new NetManager(this);
                 netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL, squareWidth, scale);
             }
             if (!netManager.isVerticalLineTrue()) {
                 netManager.checkBottomLine();
-                netManager.initFigure(figure);
+                netManager.initFigure(currentFigure);
                 netManager.printNet();
                 invalidate();
             }
@@ -272,7 +262,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     public void moveLeft() {
         if (netManager != null && netManager.isNetFreeToMoveLeft() && isTimerRunning) {
             netManager.resetMaskBeforeMoveWithFalse();
-            figureList.getLast().moveLeft();
+            currentFigure.moveLeft();
             netManager.moveLeftInNet();
             netManager.printNet();
             invalidate();
@@ -282,7 +272,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     public void moveRight() {
         if (netManager != null && netManager.isNetFreeToMoveRight() && isTimerRunning) {
             netManager.resetMaskBeforeMoveWithFalse();
-            figureList.getLast().moveRight();
+            currentFigure.moveRight();
             netManager.moveRightInNet();
             netManager.printNet();
             invalidate();
