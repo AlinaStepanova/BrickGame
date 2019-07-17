@@ -3,6 +3,7 @@ package com.example.alina.tetris.utils;
 import androidx.annotation.NonNull;
 
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.enums.FigureSpeed;
 
 public class Utils {
 
@@ -31,5 +32,21 @@ public class Utils {
                 break;
         }
         return id;
+    }
+
+    public static int getSpeedByTime(int speed) {
+        int value = 3;
+        if (speed == FigureSpeed.VERY_SLOW.getFigureSpeed()) {
+            value = 1;
+        } else if (speed == FigureSpeed.SLOW.getFigureSpeed()) {
+            value = 2;
+        } else if (speed == FigureSpeed.DEFAULT.getFigureSpeed()) {
+            value = 3;
+        } else if (speed == FigureSpeed.FAST.getFigureSpeed()) {
+            value = 4;
+        } else if (speed == FigureSpeed.VERY_FAST.getFigureSpeed()) {
+            value = 5;
+        }
+        return value;
     }
 }

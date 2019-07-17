@@ -1,6 +1,8 @@
 package com.example.alina.tetris;
 
 
+import com.example.alina.tetris.enums.FigureSpeed;
+
 public class Values {
 
     public static final int EXTRA_ROWS                      = 4;
@@ -21,6 +23,8 @@ public class Values {
     public static final int DEFAULT_VALUE           = 0;
     public static final String FIGURE_COLOR_KEY     = "default_color";
     public static final int DEFAULT_COLOR           = R.color.zFigure;
+    public static final String FIGURE_SPEED_KEY     = "default_speed";
+    public static final int DEFAULT_SPEEED          = FigureSpeed.DEFAULT.getFigureSpeed();
 
     /*NOTIFICATIONS*/
     public static final int NOTIFICATION_ID         = 123;

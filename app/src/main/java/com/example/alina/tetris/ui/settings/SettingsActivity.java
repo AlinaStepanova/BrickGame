@@ -1,16 +1,17 @@
 package com.example.alina.tetris.ui.settings;
 
 import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.utils.Utils;
+import com.shawnlin.numberpicker.NumberPicker;
 
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -25,6 +26,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @BindView(R.id.clColorPicker)
     ConstraintLayout colorPicker;
 
+    @BindView(R.id.number_picker)
+    NumberPicker numberPicker;
+
     private SettingsPresenter settingsPresenter;
 
     @Override
@@ -34,12 +38,13 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
         ButterKnife.bind(this);
         settingsPresenter = new SettingsPresenter(this,
                 new SharedPreferencesManager(getApplicationContext()));
+        numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> settingsPresenter.setFigureSpeed(newVal));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (settingsPresenter != null) settingsPresenter.setColor();
+        if (settingsPresenter != null) settingsPresenter.setValues();
     }
 
     @Override
@@ -48,6 +53,11 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
         oldImageView.setImageDrawable(null);
         ImageView newImageView = findViewById(newItemId);
         newImageView.setImageDrawable(getDrawable(R.drawable.ic_ok));
+    }
+
+    @Override
+    public void setSpeed(int newValue) {
+        if (numberPicker != null) numberPicker.setValue(newValue);
     }
 
     @OnClick(R.id.vLFigureColor)

@@ -2,6 +2,7 @@ package com.example.alina.tetris.ui.settings;
 
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.data.SharedPreferencesManager;
+import com.example.alina.tetris.enums.FigureSpeed;
 import com.example.alina.tetris.utils.Utils;
 
 import static com.example.alina.tetris.Values.DEFAULT_COLOR;
@@ -16,8 +17,31 @@ class SettingsPresenter {
         this.sharedPreferencesManager = sharedPreferencesManager;
     }
 
-    void setColor() {
+    void setValues() {
         settingsView.markChosenColor(DEFAULT_COLOR, Utils.getViewIdByColor(sharedPreferencesManager.getFiguresColor()));
+        settingsView.setSpeed(Utils.getSpeedByTime(sharedPreferencesManager.getFiguresSpeed()));
+    }
+
+    void setFigureSpeed(int newValue) {
+        switch (newValue) {
+            case 1:
+                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.VERY_SLOW.getFigureSpeed());
+                break;
+            case 2:
+                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.SLOW.getFigureSpeed());
+                break;
+            case 3:
+                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.DEFAULT.getFigureSpeed());
+                break;
+            case 4:
+                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.FAST.getFigureSpeed());
+                break;
+            case 5:
+                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.VERY_FAST.getFigureSpeed());
+                break;
+            default:
+                break;
+        }
     }
 
     void getEvent(int id) {

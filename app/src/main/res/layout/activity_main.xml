@@ -121,7 +121,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="@dimen/margin4dp"
+            android:layout_marginBottom="8dp"
             android:adjustViewBounds="true"
             android:background="@drawable/button_circle"
             android:padding="18dp"
@@ -131,7 +131,7 @@
             app:layout_constraintEnd_toStartOf="@+id/ivMoveDown"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal"/>
+            />
 
         <ImageView
             android:id="@+id/ivMoveDown"
@@ -140,7 +140,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="14dp"
             android:layout_marginEnd="14dp"
-            android:layout_marginBottom="@dimen/margin4dp"
+            android:layout_marginBottom="8dp"
             android:adjustViewBounds="true"
             android:background="@drawable/button_circle"
             android:padding="14dp"
@@ -149,17 +149,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/ivRotate"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivRotate"/>
-
+            app:layout_constraintStart_toStartOf="parent"/>
+<!---->
         <ImageView
             android:id="@+id/ivPausePlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="14dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginBottom="@dimen/margin8dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:adjustViewBounds="true"
             android:background="@drawable/button_circle"
             android:src="@drawable/ic_pause"
@@ -168,14 +167,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/ivMoveDown"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivMoveDown"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.65"/>
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,13 +4,14 @@ package com.example.alina.tetris.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.alina.tetris.R;
 import com.example.alina.tetris.utils.NotificationUtil;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.alina.tetris.Values.DEFAULT_COLOR;
+import static com.example.alina.tetris.Values.DEFAULT_SPEEED;
 import static com.example.alina.tetris.Values.DEFAULT_VALUE;
 import static com.example.alina.tetris.Values.FIGURE_COLOR_KEY;
+import static com.example.alina.tetris.Values.FIGURE_SPEED_KEY;
 import static com.example.alina.tetris.Values.FIRST_VALUE_KEY;
 import static com.example.alina.tetris.Values.PREFERENCES_KEY;
 import static com.example.alina.tetris.Values.SECOND_VALUE_KEY;
@@ -58,6 +59,17 @@ public class SharedPreferencesManager {
 
     public int getFiguresColor() {
         return preferences.getInt(FIGURE_COLOR_KEY, DEFAULT_COLOR);
+    }
+
+    public void setFiguresSpeed(int speed) {
+        this.editor = preferences.edit();
+        editor.putInt(FIGURE_SPEED_KEY, speed);
+        editor.apply();
+        editor.commit();
+    }
+
+    public int getFiguresSpeed() {
+        return preferences.getInt(FIGURE_SPEED_KEY, DEFAULT_SPEEED);
     }
 
     public String getFirstValue() {
