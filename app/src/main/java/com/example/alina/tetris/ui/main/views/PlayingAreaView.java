@@ -9,7 +9,6 @@ import android.graphics.Path;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -132,14 +131,14 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     private void drawVerticalLines(Canvas canvas) {
         for (int i = 1; i <= SQUARE_COUNT_HORIZONTAL; i++) {
-            drawVerticalHints(i);
+            if (sharedPreferencesManager.isHintsEnabled()) drawVerticalHints(i);
             canvas.drawLine(i * squareWidth, 0, i * squareWidth, screenHeight, paint);
         }
     }
 
     private void drawVerticalHints(int line) {
-        if (currentFigure != null && sharedPreferencesManager.isHintsEnabled()) {
-            if (line == (currentFigure.getCurrentX()) || line == (currentFigure.getCurrentX() + currentFigure.getWidthInSquare())) {
+        if (currentFigure != null) {
+            if (line == currentFigure.getCurrentX() || line == currentFigure.getCurrentX() + currentFigure.getWidthInSquare()) {
                 paint.setColor(getResources().getColor(R.color.colorPrimaryTransparent));
                 paint.setStrokeWidth(LINE_WIDTH * 4);
             } else {
