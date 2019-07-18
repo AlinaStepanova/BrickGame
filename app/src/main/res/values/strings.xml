@@ -12,4 +12,13 @@
     <string name="congrats_sub_title">Congrats! You\'ve reached a new score</string>
     <string name="points_notification_text">points!</string>
     <string name="game_over_text">GAME OVER</string>
+
+    <!--settings-->
+    <string name="privacy_policy_title">Privacy policy</string>
+    <string name="feedback_title">Feedback</string>
+    <string name="more_title">More</string>
+    <string name="set_figures_speed_title">Set figures speed</string>
+    <string name="pick_figures_colour_title">Pick figures colour</string>
+    <string name="general_title">General</string>
+    <string name="settings_title">Settings</string>
 </resources>

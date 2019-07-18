@@ -27,4 +27,5 @@
 
     <dimen name="elevation">10dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
+    <dimen name="settings_height_44dp">44dp</dimen>
 </resources>
