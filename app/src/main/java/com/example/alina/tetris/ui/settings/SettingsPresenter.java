@@ -6,6 +6,7 @@ import com.example.alina.tetris.enums.FigureSpeed;
 import com.example.alina.tetris.utils.Utils;
 
 import static com.example.alina.tetris.Values.DEFAULT_COLOR;
+import static com.example.alina.tetris.enums.FigureSpeed.*;
 
 class SettingsPresenter {
 
@@ -19,25 +20,32 @@ class SettingsPresenter {
 
     void setValues() {
         settingsView.markChosenColor(DEFAULT_COLOR, Utils.getViewIdByColor(sharedPreferencesManager.getFiguresColor()));
-        settingsView.setSpeed(Utils.getSpeedByTime(sharedPreferencesManager.getFiguresSpeed()));
+        FigureSpeed figureSpeed = Utils.getFiguresSpeedByMillis(sharedPreferencesManager.getFiguresSpeed());
+        settingsView.setSpeed(figureSpeed.getSpeed());
+        settingsView.setSpeedTitle(figureSpeed.getFigureSpeedTitle());
     }
 
     void setFigureSpeed(int newValue) {
         switch (newValue) {
             case 1:
-                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.VERY_SLOW.getFigureSpeed());
+                sharedPreferencesManager.setFiguresSpeed(VERY_SLOW.getFigureSpeedInMillis());
+                settingsView.setSpeedTitle(VERY_SLOW.getFigureSpeedTitle());
                 break;
             case 2:
-                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.SLOW.getFigureSpeed());
+                sharedPreferencesManager.setFiguresSpeed(SLOW.getFigureSpeedInMillis());
+                settingsView.setSpeedTitle(SLOW.getFigureSpeedTitle());
                 break;
             case 3:
-                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.DEFAULT.getFigureSpeed());
+                sharedPreferencesManager.setFiguresSpeed(DEFAULT.getFigureSpeedInMillis());
+                settingsView.setSpeedTitle(DEFAULT.getFigureSpeedTitle());
                 break;
             case 4:
-                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.FAST.getFigureSpeed());
+                sharedPreferencesManager.setFiguresSpeed(FAST.getFigureSpeedInMillis());
+                settingsView.setSpeedTitle(FAST.getFigureSpeedTitle());
                 break;
             case 5:
-                sharedPreferencesManager.setFiguresSpeed(FigureSpeed.VERY_FAST.getFigureSpeed());
+                sharedPreferencesManager.setFiguresSpeed(VERY_FAST.getFigureSpeedInMillis());
+                settingsView.setSpeedTitle(VERY_FAST.getFigureSpeedTitle());
                 break;
             default:
                 break;

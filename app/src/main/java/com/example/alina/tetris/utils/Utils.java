@@ -1,9 +1,11 @@
 package com.example.alina.tetris.utils;
 
-import androidx.annotation.NonNull;
-
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.enums.FigureSpeed;
+
+import androidx.annotation.NonNull;
+
+import static com.example.alina.tetris.enums.FigureSpeed.*;
 
 public class Utils {
 
@@ -34,19 +36,19 @@ public class Utils {
         return id;
     }
 
-    public static int getSpeedByTime(int speed) {
-        int value = 3;
-        if (speed == FigureSpeed.VERY_SLOW.getFigureSpeed()) {
-            value = 1;
-        } else if (speed == FigureSpeed.SLOW.getFigureSpeed()) {
-            value = 2;
-        } else if (speed == FigureSpeed.DEFAULT.getFigureSpeed()) {
-            value = 3;
-        } else if (speed == FigureSpeed.FAST.getFigureSpeed()) {
-            value = 4;
-        } else if (speed == FigureSpeed.VERY_FAST.getFigureSpeed()) {
-            value = 5;
+    public static FigureSpeed getFiguresSpeedByMillis(long speedMillis) {
+        FigureSpeed speed;
+        if (speedMillis == VERY_FAST.getFigureSpeedInMillis()) {
+            speed = VERY_FAST;
+        } else if (speedMillis == FAST.getFigureSpeedInMillis()) {
+            speed = FAST;
+        } else if (speedMillis == DEFAULT.getFigureSpeedInMillis()) {
+            speed = DEFAULT;
+        } else if (speedMillis == SLOW.getFigureSpeedInMillis()) {
+            speed = SLOW;
+        } else {
+            speed = VERY_SLOW;
         }
-        return value;
+        return speed;
     }
 }

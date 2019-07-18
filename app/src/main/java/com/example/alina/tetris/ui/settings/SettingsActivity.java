@@ -2,32 +2,29 @@ package com.example.alina.tetris.ui.settings;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.utils.Utils;
 import com.shawnlin.numberpicker.NumberPicker;
 
-import java.util.List;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SettingsActivity extends AppCompatActivity implements SettingsView {
 
-    @BindViews({R.id.vLFigureColor, R.id.vSquareFigureColor, R.id.vLongFigureColor,
-            R.id.vZFigureColor, R.id.vTFigureColor, R.id.vJFigureColor})
-    List<ImageView> colors;
-
     @BindView(R.id.clColorPicker)
     ConstraintLayout colorPicker;
 
-    @BindView(R.id.number_picker)
+    @BindView(R.id.numberPicker)
     NumberPicker numberPicker;
+
+    @BindView(R.id.tvSpeedTitle)
+    TextView speedTitle;
 
     private SettingsPresenter settingsPresenter;
 
@@ -58,6 +55,11 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @Override
     public void setSpeed(int newValue) {
         if (numberPicker != null) numberPicker.setValue(newValue);
+    }
+
+    @Override
+    public void setSpeedTitle(String figureSpeedTitle) {
+        speedTitle.setText(figureSpeedTitle);
     }
 
     @OnClick(R.id.vLFigureColor)

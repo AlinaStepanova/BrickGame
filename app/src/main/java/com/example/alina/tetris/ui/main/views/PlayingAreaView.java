@@ -8,9 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import androidx.annotation.AttrRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
@@ -26,10 +23,13 @@ import com.example.alina.tetris.ui.main.NetManager;
 import com.example.alina.tetris.ui.main.listeners.OnNetChangedListener;
 import com.example.alina.tetris.ui.main.listeners.OnTimerStateChangedListener;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
 import static com.example.alina.tetris.Values.GAME_OVER_DELAY_IN_MILLIS;
 import static com.example.alina.tetris.Values.LINE_WIDTH;
-import static com.example.alina.tetris.Values.MILLIS_IN_FUTURE;
 import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
 
 /**
@@ -164,7 +164,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     private void startMoveDown() {
         netManager.printNet();
         cancelTimer();
-        timer = new CountDownTimer(MILLIS_IN_FUTURE, COUNT_DOWN_INTERVAL) {
+        timer = new CountDownTimer(sharedPreferencesManager.getFiguresSpeed(), COUNT_DOWN_INTERVAL) {
             public void onTick(long millisUntilFinished) {
                 isTimerRunning = true;
             }
@@ -280,13 +280,10 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     }
 
     public void createFigureWithDelay() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                previewAreaView.drawNextFigure(FigureFactory.getFigure(figureCreator.getNextFigureType(),
-                        squareWidth, context));
-                createFigure();
-            }
+        new Handler().postDelayed(() -> {
+            previewAreaView.drawNextFigure(FigureFactory.getFigure(figureCreator.getNextFigureType(),
+                    squareWidth, context));
+            createFigure();
         }, Values.DELAY_IN_MILLIS);
     }
 
@@ -308,11 +305,6 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     @Override
     public void onTopLineHasTrue() {
         Toast.makeText(context, context.getString(R.string.game_over_text), Toast.LENGTH_LONG).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ((Activity) context).finish();
-            }
-        }, GAME_OVER_DELAY_IN_MILLIS);
+        new Handler().postDelayed(() -> ((Activity) context).finish(), GAME_OVER_DELAY_IN_MILLIS);
     }
 }
