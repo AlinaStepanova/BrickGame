@@ -3,6 +3,7 @@ package com.example.alina.tetris.ui.main.views;
 import android.content.Context;
 import androidx.appcompat.widget.AppCompatTextView;
 import android.util.AttributeSet;
+import android.view.Gravity;
 
 import com.example.alina.tetris.ui.main.NetManager;
 
@@ -29,6 +30,8 @@ public class ScoreView extends AppCompatTextView {
     }
 
     private void setScore(int score) {
+        this.setText("");
+        this.setGravity(Gravity.CENTER_HORIZONTAL);
         this.setText(String.valueOf(score));
     }
 
