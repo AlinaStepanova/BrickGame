@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -85,8 +86,8 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     protected void onDraw(Canvas canvas) {
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(LINE_WIDTH);
-        drawVerticalLines(canvas);
         drawHorizontalLines(canvas);
+        drawVerticalLines(canvas);
         if (currentFigure != null && currentFigure.getState() == FigureState.MOVING && isTimerRunning)
             startMoveDown();
         if (netManager != null && netManager.getStoppedFiguresPaths() != null) {
@@ -131,7 +132,20 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     private void drawVerticalLines(Canvas canvas) {
         for (int i = 1; i <= SQUARE_COUNT_HORIZONTAL; i++) {
+            drawVerticalHints(i);
             canvas.drawLine(i * squareWidth, 0, i * squareWidth, screenHeight, paint);
+        }
+    }
+
+    private void drawVerticalHints(int line) {
+        if (currentFigure != null && sharedPreferencesManager.isHintsEnabled()) {
+            if (line == (currentFigure.getCurrentX()) || line == (currentFigure.getCurrentX() + currentFigure.getWidthInSquare())) {
+                paint.setColor(getResources().getColor(R.color.colorPrimaryTransparent));
+                paint.setStrokeWidth(LINE_WIDTH * 4);
+            } else {
+                paint.setColor(Color.BLACK);
+                paint.setStrokeWidth(LINE_WIDTH);
+            }
         }
     }
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flFeedback"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tvMorelTitle"
+    tools:showIn="@layout/activity_settings">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="@dimen/margin4dp"
+        android:src="@drawable/ic_arrow"/>
+
+    <TextView
+        android:id="@+id/tvFeedbackTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/settings_height_44dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin8dp"
+        android:text="@string/feedback_title"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/minTextSize"/>
+
+</FrameLayout>

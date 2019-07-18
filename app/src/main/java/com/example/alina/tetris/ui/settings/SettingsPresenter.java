@@ -23,6 +23,7 @@ class SettingsPresenter {
         FigureSpeed figureSpeed = Utils.getFiguresSpeedByMillis(sharedPreferencesManager.getFiguresSpeed());
         settingsView.setSpeed(figureSpeed.getSpeed());
         settingsView.setSpeedTitle(figureSpeed.getFigureSpeedTitle());
+        settingsView.setVerticalHintsChecked(sharedPreferencesManager.isHintsEnabled());
     }
 
     void setFigureSpeed(int newValue) {
@@ -71,6 +72,10 @@ class SettingsPresenter {
                 break;
             case R.id.vJFigureColor:
                 manageColorPicking(R.color.jFigure, id);
+                break;
+            case R.id.sEnableHints:
+                boolean isEnabled = sharedPreferencesManager.isHintsEnabled();
+                sharedPreferencesManager.setHintsEnabled(!isEnabled);
                 break;
             default:
                 break;

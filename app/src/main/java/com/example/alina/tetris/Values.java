@@ -24,6 +24,8 @@ public class Values {
     public static final int DEFAULT_COLOR           = R.color.zFigure;
     public static final String FIGURE_SPEED_KEY     = "default_speed";
     public static final long DEFAULT_SPEED          = FigureSpeed.DEFAULT.getFigureSpeedInMillis();
+    public static final String ENABLE_HINTS_KEY     = "enable_hints_key";
+    public static final boolean ENABLED_HINTS       = false;
 
     /*NOTIFICATIONS*/
     public static final int NOTIFICATION_ID         = 123;

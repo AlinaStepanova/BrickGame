@@ -2,6 +2,7 @@ package com.example.alina.tetris.ui.settings;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.alina.tetris.R;
@@ -25,6 +26,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
 
     @BindView(R.id.tvSpeedTitle)
     TextView speedTitle;
+
+    @BindView(R.id.sEnableHints)
+    Switch enableHintsSwitch;
 
     private SettingsPresenter settingsPresenter;
 
@@ -60,6 +64,16 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @Override
     public void setSpeedTitle(String figureSpeedTitle) {
         speedTitle.setText(figureSpeedTitle);
+    }
+
+    @Override
+    public void setVerticalHintsChecked(boolean hintsEnabled) {
+        enableHintsSwitch.setChecked(hintsEnabled);
+    }
+
+    @OnClick(R.id.sEnableHints)
+    void enableHints() {
+        settingsPresenter.getEvent(R.id.sEnableHints);
     }
 
     @OnClick(R.id.vLFigureColor)

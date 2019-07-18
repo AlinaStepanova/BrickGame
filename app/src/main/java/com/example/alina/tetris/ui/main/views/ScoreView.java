@@ -30,8 +30,6 @@ public class ScoreView extends AppCompatTextView {
     }
 
     private void setScore(int score) {
-        this.setText("");
-        this.setGravity(Gravity.CENTER_HORIZONTAL);
         this.setText(String.valueOf(score));
     }
 

@@ -7,4 +7,6 @@ public interface SettingsView {
     void setSpeed(int newValue);
 
     void setSpeedTitle(String figureSpeedTitle);
+
+    void setVerticalHintsChecked(boolean hintsEnabled);
 }

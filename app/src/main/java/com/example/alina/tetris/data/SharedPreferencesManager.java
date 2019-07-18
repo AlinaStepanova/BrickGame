@@ -10,6 +10,8 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.alina.tetris.Values.DEFAULT_COLOR;
 import static com.example.alina.tetris.Values.DEFAULT_SPEED;
 import static com.example.alina.tetris.Values.DEFAULT_VALUE;
+import static com.example.alina.tetris.Values.ENABLED_HINTS;
+import static com.example.alina.tetris.Values.ENABLE_HINTS_KEY;
 import static com.example.alina.tetris.Values.FIGURE_COLOR_KEY;
 import static com.example.alina.tetris.Values.FIGURE_SPEED_KEY;
 import static com.example.alina.tetris.Values.FIRST_VALUE_KEY;
@@ -64,6 +66,17 @@ public class SharedPreferencesManager {
     public void setFiguresSpeed(long speed) {
         this.editor = preferences.edit();
         editor.putLong(FIGURE_SPEED_KEY, speed);
+        editor.apply();
+        editor.commit();
+    }
+
+    public boolean isHintsEnabled() {
+        return preferences.getBoolean(ENABLE_HINTS_KEY, ENABLED_HINTS);
+    }
+
+    public void setHintsEnabled(boolean isEnabled) {
+        this.editor = preferences.edit();
+        editor.putBoolean(ENABLE_HINTS_KEY, isEnabled);
         editor.apply();
         editor.commit();
     }
