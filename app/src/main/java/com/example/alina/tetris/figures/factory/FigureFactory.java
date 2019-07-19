@@ -29,46 +29,46 @@ import static com.example.alina.tetris.ui.main.views.PreviewAreaView.PREVIEW_ARE
 
 public class FigureFactory {
 
-    public static Figure getFigure(FigureType figureType, int widthSquare, int scale, Context context) {
+    public static Figure getFigure(FigureType figureType, int widthSquare, int scale, int squaresCountInRow, Context context) {
         switch (figureType) {
             case S_FIGURE:
-                return new SFigure(widthSquare, scale, context);
+                return new SFigure(widthSquare, scale, squaresCountInRow, context);
             case Z_FIGURE:
-                return new ZFigure(widthSquare, scale, context);
+                return new ZFigure(widthSquare, scale, squaresCountInRow, context);
             case S_SECOND_FIGURE:
-                return new SSecondFigure(widthSquare, scale, context);
+                return new SSecondFigure(widthSquare, scale, squaresCountInRow, context);
             case Z_SECOND_FIGURE:
-                return new ZSecondFigure(widthSquare, scale, context);
+                return new ZSecondFigure(widthSquare, scale, squaresCountInRow, context);
             case L_FIGURE:
-                return new LFigure(widthSquare, scale, context);
+                return new LFigure(widthSquare, scale, squaresCountInRow, context);
             case L_FOURTH_FIGURE:
-                return new LFourthFigure(widthSquare, scale, context);
+                return new LFourthFigure(widthSquare, scale, squaresCountInRow, context);
             case L_SECOND_FIGURE:
-                return new LSecondFigure(widthSquare, scale, context);
+                return new LSecondFigure(widthSquare, scale, squaresCountInRow, context);
             case L_THIRD_FIGURE:
-                return new LThirdFigure(widthSquare, scale, context);
+                return new LThirdFigure(widthSquare, scale, squaresCountInRow, context);
             case J_FIGURE:
-                return new JFigure(widthSquare, scale, context);
+                return new JFigure(widthSquare, scale, squaresCountInRow, context);
             case J_SECOND_FIGURE:
-                return new JSecondFigure(widthSquare, scale, context);
+                return new JSecondFigure(widthSquare, scale, squaresCountInRow, context);
             case J_FOURTH_FIGURE:
-                return new JFourthFigure(widthSquare, scale, context);
+                return new JFourthFigure(widthSquare, scale, squaresCountInRow, context);
             case J_THIRD_FIGURE:
-                return new JThirdFigure(widthSquare, scale, context);
+                return new JThirdFigure(widthSquare, scale, squaresCountInRow, context);
             case SQUARE_FIGURE:
-                return new SquareFigure(widthSquare, scale, context);
+                return new SquareFigure(widthSquare, scale, squaresCountInRow, context);
             case LONG_SECOND_FIGURE:
-                return new LongSecondFigure(widthSquare, scale, context);
+                return new LongSecondFigure(widthSquare, scale, squaresCountInRow, context);
             case LONG_FIGURE:
-                return new LongFigure(widthSquare, scale, context);
+                return new LongFigure(widthSquare, scale, squaresCountInRow, context);
             case T_FIGURE:
-                return new TFigure(widthSquare, scale, context);
+                return new TFigure(widthSquare, scale, squaresCountInRow, context);
             case T_SECOND_FIGURE:
-                return new TSecondFigure(widthSquare, scale, context);
+                return new TSecondFigure(widthSquare, scale, squaresCountInRow, context);
             case T_THIRD_FIGURE:
-                return new TThirdFigure(widthSquare, scale, context);
+                return new TThirdFigure(widthSquare, scale, squaresCountInRow, context);
             case T_FOURTH_FIGURE:
-                return new TFourthFigure(widthSquare, scale, context);
+                return new TFourthFigure(widthSquare, scale, squaresCountInRow, context);
             default:
                 return null;
         }
@@ -113,7 +113,7 @@ public class FigureFactory {
                 scale += 3 * widthSquare;
                 return new JThirdFigure(widthSquare, scale, context, point);
             case SQUARE_FIGURE:
-                return new SquareFigure(widthSquare, scale, context);
+                return new SquareFigure(widthSquare, scale, context, point);
             case LONG_SECOND_FIGURE:
                 scale += 3 * widthSquare;
                 return new LongSecondFigure(widthSquare, scale, context, point);

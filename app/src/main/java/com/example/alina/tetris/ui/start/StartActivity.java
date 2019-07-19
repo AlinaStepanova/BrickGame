@@ -19,8 +19,10 @@ public class StartActivity extends AppCompatActivity {
 
     @BindView(R.id.tvGameTitle)
     TextView gameTitle;
+
     @BindView(R.id.bStartGame)
     TextView startGameButton;
+
     @BindView(R.id.bOpenScores)
     TextView openScoresButton;
 

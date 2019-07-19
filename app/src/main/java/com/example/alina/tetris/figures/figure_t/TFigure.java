@@ -13,8 +13,8 @@ import com.example.alina.tetris.figures.Figure;
 
 public class TFigure extends Figure {
 
-    public TFigure(int squareWidth, int scale, Context context) {
-        super(squareWidth, scale, context);
+    public TFigure(int squareWidth, int scale, int squaresCountInRow, Context context) {
+        super(squareWidth, scale, squaresCountInRow, context);
         this.scale -= squareWidth;
     }
 

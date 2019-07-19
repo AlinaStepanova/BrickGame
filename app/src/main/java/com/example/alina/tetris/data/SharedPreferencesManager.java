@@ -9,6 +9,7 @@ import com.example.alina.tetris.utils.NotificationUtil;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.alina.tetris.Values.DEFAULT_COLOR;
 import static com.example.alina.tetris.Values.DEFAULT_SPEED;
+import static com.example.alina.tetris.Values.DEFAULT_SQARES_COUNT_IN_ROW;
 import static com.example.alina.tetris.Values.DEFAULT_VALUE;
 import static com.example.alina.tetris.Values.ENABLED_HINTS;
 import static com.example.alina.tetris.Values.ENABLE_HINTS_KEY;
@@ -17,6 +18,7 @@ import static com.example.alina.tetris.Values.FIGURE_SPEED_KEY;
 import static com.example.alina.tetris.Values.FIRST_VALUE_KEY;
 import static com.example.alina.tetris.Values.PREFERENCES_KEY;
 import static com.example.alina.tetris.Values.SECOND_VALUE_KEY;
+import static com.example.alina.tetris.Values.SQARES_COUNT_IN_ROW_KEY;
 import static com.example.alina.tetris.Values.THIRD_VALUE_KEY;
 
 public class SharedPreferencesManager {
@@ -62,6 +64,18 @@ public class SharedPreferencesManager {
     public int getFiguresColor() {
         return preferences.getInt(FIGURE_COLOR_KEY, DEFAULT_COLOR);
     }
+
+    public void setSquaresCountInRow(int count) {
+        this.editor = preferences.edit();
+        editor.putInt(SQARES_COUNT_IN_ROW_KEY, count);
+        editor.apply();
+        editor.commit();
+    }
+
+    public int getSquaresCountInRow() {
+        return preferences.getInt(SQARES_COUNT_IN_ROW_KEY, DEFAULT_SQARES_COUNT_IN_ROW);
+    }
+
 
     public void setFiguresSpeed(long speed) {
         this.editor = preferences.edit();

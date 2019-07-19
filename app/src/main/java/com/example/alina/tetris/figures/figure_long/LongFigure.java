@@ -13,8 +13,8 @@ import com.example.alina.tetris.figures.Figure;
 
 public class LongFigure extends Figure {
 
-    public LongFigure(int squareWidth, int scale, Context context) {
-        super(squareWidth, scale, context);
+    public LongFigure(int squareWidth, int scale, int squaresCountInRow, Context context) {
+        super(squareWidth, scale, squaresCountInRow, context);
         int SCALE_HEIGHT = 3 * squareWidth;
         this.scale += SCALE_HEIGHT;
     }

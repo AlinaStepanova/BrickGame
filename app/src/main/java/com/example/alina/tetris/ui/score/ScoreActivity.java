@@ -1,7 +1,6 @@
 package com.example.alina.tetris.ui.score;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -9,6 +8,7 @@ import com.example.alina.tetris.R;
 import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.utils.AnimationUtil;
 
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

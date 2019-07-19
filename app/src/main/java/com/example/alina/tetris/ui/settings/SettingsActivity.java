@@ -24,8 +24,11 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @BindView(R.id.clColorPicker)
     ConstraintLayout colorPicker;
 
-    @BindView(R.id.numberPicker)
-    NumberPicker numberPicker;
+    @BindView(R.id.speedNumberPicker)
+    NumberPicker speedNumberPicker;
+
+    @BindView(R.id.squaresCountNumberPicker)
+    NumberPicker squaresNumberPicker;
 
     @BindView(R.id.tvSpeedTitle)
     TextView speedTitle;
@@ -42,7 +45,8 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
         ButterKnife.bind(this);
         settingsPresenter = new SettingsPresenter(this,
                 new SharedPreferencesManager(getApplicationContext()));
-        numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> settingsPresenter.setFigureSpeed(newVal));
+        speedNumberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> settingsPresenter.setFigureSpeed(newVal));
+        squaresNumberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> settingsPresenter.setSquareCountInRow(newVal));
     }
 
     @Override
@@ -61,7 +65,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
 
     @Override
     public void setSpeed(int newValue) {
-        if (numberPicker != null) numberPicker.setValue(newValue);
+        if (speedNumberPicker != null) speedNumberPicker.setValue(newValue);
     }
 
     @Override
@@ -72,6 +76,11 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @Override
     public void setVerticalHintsChecked(boolean hintsEnabled) {
         enableHintsSwitch.setChecked(hintsEnabled);
+    }
+
+    @Override
+    public void setSquaresCountInRow(int squaresCountInRow) {
+        if (squaresNumberPicker != null) squaresNumberPicker.setValue(squaresCountInRow);
     }
 
     @OnClick(R.id.sEnableHints)

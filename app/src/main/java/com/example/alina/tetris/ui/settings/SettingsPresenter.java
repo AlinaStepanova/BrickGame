@@ -6,7 +6,11 @@ import com.example.alina.tetris.enums.FigureSpeed;
 import com.example.alina.tetris.utils.Utils;
 
 import static com.example.alina.tetris.Values.DEFAULT_COLOR;
-import static com.example.alina.tetris.enums.FigureSpeed.*;
+import static com.example.alina.tetris.enums.FigureSpeed.DEFAULT;
+import static com.example.alina.tetris.enums.FigureSpeed.FAST;
+import static com.example.alina.tetris.enums.FigureSpeed.SLOW;
+import static com.example.alina.tetris.enums.FigureSpeed.VERY_FAST;
+import static com.example.alina.tetris.enums.FigureSpeed.VERY_SLOW;
 
 class SettingsPresenter {
 
@@ -19,11 +23,14 @@ class SettingsPresenter {
     }
 
     void setValues() {
-        settingsView.markChosenColor(DEFAULT_COLOR, Utils.getViewIdByColor(sharedPreferencesManager.getFiguresColor()));
         FigureSpeed figureSpeed = Utils.getFiguresSpeedByMillis(sharedPreferencesManager.getFiguresSpeed());
-        settingsView.setSpeed(figureSpeed.getSpeed());
-        settingsView.setSpeedTitle(figureSpeed.getFigureSpeedTitle());
-        settingsView.setVerticalHintsChecked(sharedPreferencesManager.isHintsEnabled());
+        if (settingsView != null) {
+            settingsView.markChosenColor(DEFAULT_COLOR, Utils.getViewIdByColor(sharedPreferencesManager.getFiguresColor()));
+            settingsView.setSpeed(figureSpeed.getSpeed());
+            settingsView.setSquaresCountInRow(sharedPreferencesManager.getSquaresCountInRow());
+            settingsView.setSpeedTitle(figureSpeed.getFigureSpeedTitle());
+            settingsView.setVerticalHintsChecked(sharedPreferencesManager.isHintsEnabled());
+        }
     }
 
     void setFigureSpeed(int newValue) {
@@ -51,6 +58,10 @@ class SettingsPresenter {
             default:
                 break;
         }
+    }
+
+    void setSquareCountInRow(int newValue) {
+        sharedPreferencesManager.setSquaresCountInRow(newValue);
     }
 
     void getEvent(int id) {

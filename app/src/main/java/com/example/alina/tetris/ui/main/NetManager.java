@@ -12,7 +12,6 @@ import com.example.alina.tetris.ui.main.listeners.OnNetChangedListener;
 import java.util.ArrayList;
 
 import static com.example.alina.tetris.Values.EXTRA_ROWS;
-import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
 
 public class NetManager {
 
@@ -227,7 +226,7 @@ public class NetManager {
                 j++;
             }
         }
-        if (j == SQUARE_COUNT_HORIZONTAL) {
+        if (j == horizontalSquaresCount) {
             result = true;
         }
         return result;

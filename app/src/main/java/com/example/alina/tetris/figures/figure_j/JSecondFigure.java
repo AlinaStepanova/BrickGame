@@ -10,8 +10,8 @@ import com.example.alina.tetris.figures.Figure;
 
 public class JSecondFigure extends Figure {
 
-    public JSecondFigure(int squareWidth, int scale, Context context) {
-        super(squareWidth, scale, context);
+    public JSecondFigure(int squareWidth, int scale, int squaresCountInRow, Context context) {
+        super(squareWidth, scale, squaresCountInRow, context);
         this.scale += squareWidth;
     }
 

@@ -9,4 +9,6 @@ public interface SettingsView {
     void setSpeedTitle(String figureSpeedTitle);
 
     void setVerticalHintsChecked(boolean hintsEnabled);
+
+    void setSquaresCountInRow(int squaresCountInRow);
 }

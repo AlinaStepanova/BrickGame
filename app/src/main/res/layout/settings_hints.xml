@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/vDivider6"
+    app:layout_constraintTop_toBottomOf="@+id/vDivider7"
     tools:showIn="@layout/activity_settings">
 
     <Switch

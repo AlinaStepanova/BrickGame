@@ -10,8 +10,8 @@ import com.example.alina.tetris.figures.Figure;
 
 public class JFourthFigure extends Figure {
 
-    public JFourthFigure(int squareWidth, int scale, Context context) {
-        super(squareWidth, scale, context);
+    public JFourthFigure(int squareWidth, int scale, int squaresCountInRow, Context context) {
+        super(squareWidth, scale, squaresCountInRow, context);
         this.scale += squareWidth;
     }
 

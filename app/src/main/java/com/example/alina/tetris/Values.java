@@ -17,17 +17,19 @@ public class Values {
     public static final String[] RECIPIENTS         = {"alina.stepanova.work@gmail.com"};
 
     /*PREFERENCES*/
-    public static final String PREFERENCES_KEY      = "com.example.alina.tetris.PREFERENCE_KEY";
-    public static final String FIRST_VALUE_KEY      = "first_value";
-    public static final String SECOND_VALUE_KEY     = "second_value";
-    public static final String THIRD_VALUE_KEY      = "third_value";
-    public static final int DEFAULT_VALUE           = 0;
-    public static final String FIGURE_COLOR_KEY     = "default_color";
-    public static final int DEFAULT_COLOR           = R.color.zFigure;
-    public static final String FIGURE_SPEED_KEY     = "default_speed";
-    public static final long DEFAULT_SPEED          = FigureSpeed.DEFAULT.getFigureSpeedInMillis();
-    public static final String ENABLE_HINTS_KEY     = "enable_hints_key";
-    public static final boolean ENABLED_HINTS       = false;
+    public static final String PREFERENCES_KEY          = "com.example.alina.tetris.PREFERENCE_KEY";
+    public static final String FIRST_VALUE_KEY          = "first_value";
+    public static final String SECOND_VALUE_KEY         = "second_value";
+    public static final String THIRD_VALUE_KEY          = "third_value";
+    public static final int DEFAULT_VALUE               = 0;
+    public static final String FIGURE_COLOR_KEY         = "default_color";
+    public static final int DEFAULT_COLOR               = R.color.zFigure;
+    public static final String FIGURE_SPEED_KEY         = "default_speed";
+    public static final long DEFAULT_SPEED              = FigureSpeed.DEFAULT.getFigureSpeedInMillis();
+    public static final String ENABLE_HINTS_KEY         = "enable_hints_key";
+    public static final boolean ENABLED_HINTS           = false;
+    public static final String SQARES_COUNT_IN_ROW_KEY  = "default_squares_in_row";
+    public static final int DEFAULT_SQARES_COUNT_IN_ROW = 10;
 
     /*NOTIFICATIONS*/
     public static final int NOTIFICATION_ID         = 123;

@@ -30,7 +30,6 @@ import androidx.annotation.Nullable;
 import static com.example.alina.tetris.Values.COUNT_DOWN_INTERVAL;
 import static com.example.alina.tetris.Values.GAME_OVER_DELAY_IN_MILLIS;
 import static com.example.alina.tetris.Values.LINE_WIDTH;
-import static com.example.alina.tetris.Values.SQUARE_COUNT_HORIZONTAL;
 
 /**
  * Created by Alina on 18.03.2017.
@@ -41,6 +40,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     private int squareWidth, verticalSquareCount;
     private int screenHeight, screenWidth;
     private int scale;
+    private int squaresInRowCount;
     private boolean isTimerRunning;
 
     private Figure currentFigure;
@@ -77,6 +77,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         paint = new Paint();
         figureCreator = new FigureCreator();
         sharedPreferencesManager = new SharedPreferencesManager(getContext());
+        this.squaresInRowCount = sharedPreferencesManager.getSquaresCountInRow();
         this.context = context;
         this.isTimerRunning = true;
     }
@@ -100,7 +101,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        squareWidth = MeasureSpec.getSize(widthMeasureSpec) / SQUARE_COUNT_HORIZONTAL;
+        squareWidth = MeasureSpec.getSize(widthMeasureSpec) / squaresInRowCount;
         verticalSquareCount = MeasureSpec.getSize(heightMeasureSpec) / squareWidth;
         scale = squareWidth - (MeasureSpec.getSize(heightMeasureSpec) % squareWidth);
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
@@ -130,7 +131,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     }
 
     private void drawVerticalLines(Canvas canvas) {
-        for (int i = 1; i <= SQUARE_COUNT_HORIZONTAL; i++) {
+        for (int i = 1; i <= squaresInRowCount; i++) {
             if (sharedPreferencesManager.isHintsEnabled()) drawVerticalHints(i);
             canvas.drawLine(i * squareWidth, 0, i * squareWidth, screenHeight, paint);
         }
@@ -255,13 +256,14 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     }
 
     private void createFigure() {
-        Figure figure = FigureFactory.getFigure(figureCreator.getCurrentFigureType(), squareWidth, scale, context);
+        Figure figure = FigureFactory.getFigure(figureCreator.getCurrentFigureType(),
+                squareWidth, scale, squaresInRowCount, context);
         if (figure != null) {
             currentFigure = figure;
             currentFigure.initFigureMask();
             if (netManager == null) {
                 netManager = new NetManager(this);
-                netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL, squareWidth, scale);
+                netManager.initNet(verticalSquareCount, squaresInRowCount, squareWidth, scale);
             }
             if (netManager.isVerticalLineComplete()) {
                 netManager.checkBottomLine();
@@ -295,7 +297,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     public void createFigureWithDelay() {
         new Handler().postDelayed(() -> {
             previewAreaView.drawNextFigure(FigureFactory.getFigure(figureCreator.getNextFigureType(),
-                    squareWidth, context));
+                    (squareWidth * squaresInRowCount) / Values.DEFAULT_SQARES_COUNT_IN_ROW, context));
             createFigure();
         }, Values.DELAY_IN_MILLIS);
     }
@@ -305,7 +307,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         if (netManager.isVerticalLineComplete()) {
             scoreView.sumScoreWhenFigureStopped();
             previewAreaView.drawNextFigure(FigureFactory.getFigure(figureCreator.createNextFigure(),
-                    squareWidth, context));
+                    (squareWidth * squaresInRowCount) / Values.DEFAULT_SQARES_COUNT_IN_ROW, context));
             createFigure();
         }
     }

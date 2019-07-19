@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Path;
 import android.graphics.Point;
 
+import com.example.alina.tetris.Values;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.enums.FigureType;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import static com.example.alina.tetris.Values.DEFAULT_COLOR;
@@ -32,9 +34,9 @@ public abstract class Figure {
 
     public boolean[][] figureMask;
 
-    protected Figure(int squareWidth, int scale, Context context) {
+    protected Figure(int squareWidth, int scale, int squaresCountInRow, Context context) {
         this.squareWidth = squareWidth;
-        this.pointOnScreen = initPoint();
+        this.pointOnScreen = initPoint(squaresCountInRow);
         this.scale = scale;
         this.state = FigureState.MOVING;
         this.context = context;
@@ -61,11 +63,13 @@ public abstract class Figure {
         pointInNet = new Point(pointOnScreen.x, pointOnScreen.y);
     }
 
-    private Point initPoint() {
-        int[] arrayOfPositions = new int[]{2 * squareWidth, 3 * squareWidth, 4 * squareWidth,
-                5 * squareWidth, 6 * squareWidth};
-        int position = new Random().nextInt(arrayOfPositions.length);
-        return new Point(arrayOfPositions[position], 0);
+    private Point initPoint(int squaresCountInRow) {
+        ArrayList<Integer> arrayOfPositions = new ArrayList<>();
+        for (int i = 2; i < squaresCountInRow - EXTRA_ROWS; i++) {
+            arrayOfPositions.add(i * squareWidth);
+        }
+        int position = new Random().nextInt(arrayOfPositions.size());
+        return new Point(arrayOfPositions.get(position), 0);
     }
 
     private int getCoordinateInNet(int squareWidth, int coordinate) {
