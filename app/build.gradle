@@ -34,4 +34,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     testImplementation 'junit:junit:4.13-beta-3'
     implementation 'com.shawnlin:number-picker:2.4.8'
+    implementation 'org.jetbrains:annotations:15.0'
 }

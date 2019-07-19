@@ -1,11 +1,14 @@
 package com.example.alina.tetris.ui.settings;
 
+import android.content.ActivityNotFoundException;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alina.tetris.R;
+import com.example.alina.tetris.Values;
 import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.utils.Utils;
 import com.shawnlin.numberpicker.NumberPicker;
@@ -74,6 +77,15 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @OnClick(R.id.sEnableHints)
     void enableHints() {
         settingsPresenter.getEvent(R.id.sEnableHints);
+    }
+
+    @OnClick(R.id.flFeedback)
+    void sendFeedback() {
+        try {
+            startActivity(Utils.openGmail(this, Values.RECIPIENTS, getResources().getString(R.string.app_name)));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, getResources().getString(R.string.canot_send_email_error_text), Toast.LENGTH_LONG).show();
+        }
     }
 
     @OnClick(R.id.vLFigureColor)

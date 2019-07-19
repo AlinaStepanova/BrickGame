@@ -1,15 +1,24 @@
 package com.example.alina.tetris.utils;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+
 import com.example.alina.tetris.R;
 import com.example.alina.tetris.enums.FigureSpeed;
 
-import androidx.annotation.NonNull;
+import java.util.List;
 
-import static com.example.alina.tetris.enums.FigureSpeed.*;
+import static com.example.alina.tetris.enums.FigureSpeed.DEFAULT;
+import static com.example.alina.tetris.enums.FigureSpeed.FAST;
+import static com.example.alina.tetris.enums.FigureSpeed.SLOW;
+import static com.example.alina.tetris.enums.FigureSpeed.VERY_FAST;
+import static com.example.alina.tetris.enums.FigureSpeed.VERY_SLOW;
 
 public class Utils {
 
-    public static int getViewIdByColor(@NonNull int color) {
+    public static int getViewIdByColor(int color) {
         int id = 0;
         switch (color) {
             case R.color.lFigure:
@@ -50,5 +59,21 @@ public class Utils {
             speed = VERY_SLOW;
         }
         return speed;
+    }
+
+    public static Intent openGmail(Activity activity, String[] email, String subject) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, email);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        emailIntent.setType("text/plain");
+        final PackageManager pm = activity.getPackageManager();
+        final List<ResolveInfo> matches = pm.queryIntentActivities(emailIntent, 0);
+        ResolveInfo best = null;
+        for (final ResolveInfo info : matches)
+            if (info.activityInfo.packageName.endsWith(".gm") || info.activityInfo.name.toLowerCase().contains("gmail"))
+                best = info;
+        if (best != null)
+            emailIntent.setClassName(best.activityInfo.packageName, best.activityInfo.name);
+        return emailIntent;
     }
 }

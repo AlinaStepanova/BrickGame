@@ -14,6 +14,8 @@ public class Values {
     public static final long GAME_OVER_DELAY_IN_MILLIS      = 4000;
     public static final float LINE_WIDTH                    = 1f;
 
+    public static final String[] RECIPIENTS         = {"alina.stepanova.work@gmail.com"};
+
     /*PREFERENCES*/
     public static final String PREFERENCES_KEY      = "com.example.alina.tetris.PREFERENCE_KEY";
     public static final String FIRST_VALUE_KEY      = "first_value";
