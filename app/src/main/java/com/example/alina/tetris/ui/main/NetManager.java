@@ -8,7 +8,6 @@ import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.figures.Figure;
 import com.example.alina.tetris.figures.factory.FigureCreator;
 import com.example.alina.tetris.ui.main.listeners.OnNetChangedListener;
-import com.example.alina.tetris.utils.CustomArrayList;
 
 import java.util.ArrayList;
 
@@ -25,8 +24,6 @@ public class NetManager {
 
     public static int combo;
 
-    private final CustomArrayList<Figure> figureListInNet = new CustomArrayList<>();
-
     private OnNetChangedListener onNetChangedListener;
 
     private int squareWidth, scale;
@@ -38,32 +35,22 @@ public class NetManager {
     }
 
     public void initNet(int verticalSquaresCount, int horizontalSquaresCount, int widthOfSquareSide, int scale) {
-        setNet(new boolean[verticalSquaresCount + EXTRA_ROWS][horizontalSquaresCount]);
+        this.net = new boolean[verticalSquaresCount + EXTRA_ROWS][horizontalSquaresCount];
         setFalseNet(net);
         this.squareWidth = widthOfSquareSide;
         this.scale = scale;
-        this.verticalSquaresCount = verticalSquaresCount; //20
-        this.horizontalSquaresCount = horizontalSquaresCount; //10
-    }
-
-    private void setNet(boolean[][] net) {
-        this.net = net;
+        this.verticalSquaresCount = verticalSquaresCount;
+        this.horizontalSquaresCount = horizontalSquaresCount;
     }
 
     public void initRotatedFigure(Figure figure) {
         this.figure.initMaskWithFalse();
         copyMaskToNet();
-        figureListInNet.set(figureListInNet.size() - 1, figure);
-        initCurrentFigureInNet(figure);
+        initFigure(figure);
     }
 
     public void initFigure(Figure figure) {
-        figureListInNet.add(figure);
-        initCurrentFigureInNet(figure);
-    }
-
-    private void initCurrentFigureInNet(Figure figure) {
-        this.figure = figureListInNet.getLast();
+        this.figure = figure;
         this.zeroNet = new boolean[figure.getHeightInSquare()][1];
         copyMaskToNet();
     }
@@ -83,9 +70,8 @@ public class NetManager {
         for (int i = 0; i < figure.figureMask.length; i++) {
             int startHorizontalPos = getStartHorizontalPosition(figure.figureMask[i]);
             int endPosition = getEndHorizontalPosition(figure.figureMask[i]);
-            System.arraycopy(falseFigureMast[i], startHorizontalPos,
-                    net[figure.pointInNet.y + i], figure.pointInNet.x + startHorizontalPos,
-                    endPosition);
+            System.arraycopy(falseFigureMast[i], startHorizontalPos, net[figure.pointInNet.y + i],
+                    figure.pointInNet.x + startHorizontalPos, endPosition);
         }
     }
 
@@ -270,7 +256,7 @@ public class NetManager {
         return paths;
     }
 
-    public boolean isVerticalLineTrue() {
+    public boolean isVerticalLineComplete() {
         boolean result = false;
         int[][] values = new int[horizontalSquaresCount][1];
         for (int i = 0; i < horizontalSquaresCount; i++) {
@@ -287,7 +273,7 @@ public class NetManager {
                 break;
             }
         }
-        return result;
+        return !result;
     }
 
     public void changeFigureState() {

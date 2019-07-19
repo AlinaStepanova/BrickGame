@@ -263,7 +263,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
                 netManager = new NetManager(this);
                 netManager.initNet(verticalSquareCount, SQUARE_COUNT_HORIZONTAL, squareWidth, scale);
             }
-            if (!netManager.isVerticalLineTrue()) {
+            if (netManager.isVerticalLineComplete()) {
                 netManager.checkBottomLine();
                 netManager.initFigure(currentFigure);
                 netManager.printNet();
@@ -302,7 +302,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     @Override
     public void onFigureStoppedMove() {
-        if (!netManager.isVerticalLineTrue()) {
+        if (netManager.isVerticalLineComplete()) {
             scoreView.sumScoreWhenFigureStopped();
             previewAreaView.drawNextFigure(FigureFactory.getFigure(figureCreator.createNextFigure(),
                     squareWidth, context));
