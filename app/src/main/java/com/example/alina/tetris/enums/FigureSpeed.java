@@ -1,30 +1,29 @@
 package com.example.alina.tetris.enums;
 
+import com.example.alina.tetris.R;
+
 public enum FigureSpeed {
 
-    VERY_FAST(5, 500, "Very fast"),
-    FAST(4, 750, "Fast"),
-    DEFAULT(3, 1000, "Default"),
-    SLOW(2, 1250, "Slow"),
-    VERY_SLOW(1, 1500, "Very slow");
+    VERY_FAST(R.id.tvVeryFast, 500),
+    FAST(R.id.tvFast, 750),
+    DEFAULT(R.id.tvDefault, 1000),
+    SLOW(R.id.tvSlow, 1250),
+    VERY_SLOW(R.id.tvVerySlow, 1500);
 
-    private int speed;
+    private int speedItemId;
     private long figureSpeedInMillis;
-    private String figureSpeedTitle;
 
-    FigureSpeed(int speed, long speedInMillis, String speedTitle) {
-        this.speed = speed;
+    FigureSpeed(int speedItemId, long speedInMillis) {
+        this.speedItemId = speedItemId;
         this.figureSpeedInMillis = speedInMillis;
-        this.figureSpeedTitle = speedTitle;
     }
 
-    public int getSpeed() { return speed; }
+    public int getSpeedItemId() {
+        return speedItemId;
+    }
 
     public long getFigureSpeedInMillis() {
         return figureSpeedInMillis;
     }
 
-    public String getFigureSpeedTitle() {
-        return figureSpeedTitle;
-    }
 }

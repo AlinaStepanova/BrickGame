@@ -4,9 +4,7 @@ public interface SettingsView {
 
     void markChosenColor(int oldColor, int newItemId);
 
-    void setSpeed(int newValue);
-
-    void setSpeedTitle(String figureSpeedTitle);
+    void setSpeedTitle(int oldItemId, int newItemId);
 
     void setVerticalHintsChecked(boolean hintsEnabled);
 

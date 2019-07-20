@@ -13,25 +13,25 @@ import com.example.alina.tetris.data.SharedPreferencesManager;
 import com.example.alina.tetris.utils.Utils;
 import com.shawnlin.numberpicker.NumberPicker;
 
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SettingsActivity extends AppCompatActivity implements SettingsView {
 
+    @BindViews({R.id.tvVeryFast, R.id.tvFast, R.id.tvDefault, R.id.tvSlow, R.id.tvVerySlow})
+    List<TextView> speedItems;
+
     @BindView(R.id.clColorPicker)
     ConstraintLayout colorPicker;
 
-    @BindView(R.id.speedNumberPicker)
-    NumberPicker speedNumberPicker;
-
     @BindView(R.id.squaresCountNumberPicker)
     NumberPicker squaresNumberPicker;
-
-    @BindView(R.id.tvSpeedTitle)
-    TextView speedTitle;
 
     @BindView(R.id.sEnableHints)
     Switch enableHintsSwitch;
@@ -45,7 +45,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
         ButterKnife.bind(this);
         settingsPresenter = new SettingsPresenter(this,
                 new SharedPreferencesManager(getApplicationContext()));
-        speedNumberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> settingsPresenter.setFigureSpeed(newVal));
         squaresNumberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> settingsPresenter.setSquareCountInRow(newVal));
     }
 
@@ -64,13 +63,14 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     }
 
     @Override
-    public void setSpeed(int newValue) {
-        if (speedNumberPicker != null) speedNumberPicker.setValue(newValue);
-    }
-
-    @Override
-    public void setSpeedTitle(String figureSpeedTitle) {
-        speedTitle.setText(figureSpeedTitle);
+    public void setSpeedTitle(int oldItemId, int newItemId) {
+        for (TextView item: speedItems) {
+            item.getBackground().setTint(getResources().getColor(R.color.white));
+            item.setTextColor(getResources().getColor(R.color.colorPrimary));
+        }
+        TextView newItem = findViewById(newItemId);
+        newItem.getBackground().setTint(getResources().getColor(R.color.colorPrimary));
+        newItem.setTextColor(getResources().getColor(R.color.white));
     }
 
     @Override
@@ -125,6 +125,31 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @OnClick(R.id.vJFigureColor)
     void chooseColorSixth() {
         settingsPresenter.getEvent(R.id.vJFigureColor);
+    }
+
+    @OnClick(R.id.tvVerySlow)
+    void chooseVerySlowSpeed() {
+        settingsPresenter.getEvent(R.id.tvVerySlow);
+    }
+
+    @OnClick(R.id.tvSlow)
+    void chooseSlowSpeed() {
+        settingsPresenter.getEvent(R.id.tvSlow);
+    }
+
+    @OnClick(R.id.tvDefault)
+    void chooseDefaultSpeed() {
+        settingsPresenter.getEvent(R.id.tvDefault);
+    }
+
+    @OnClick(R.id.tvFast)
+    void chooseFastSpeed() {
+        settingsPresenter.getEvent(R.id.tvFast);
+    }
+
+    @OnClick(R.id.tvVeryFast)
+    void chooseVeryFastSpeed() {
+        settingsPresenter.getEvent(R.id.tvVeryFast);
     }
 
 }

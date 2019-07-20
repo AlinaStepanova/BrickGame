@@ -26,37 +26,9 @@ class SettingsPresenter {
         FigureSpeed figureSpeed = Utils.getFiguresSpeedByMillis(sharedPreferencesManager.getFiguresSpeed());
         if (settingsView != null) {
             settingsView.markChosenColor(DEFAULT_COLOR, Utils.getViewIdByColor(sharedPreferencesManager.getFiguresColor()));
-            settingsView.setSpeed(figureSpeed.getSpeed());
             settingsView.setSquaresCountInRow(sharedPreferencesManager.getSquaresCountInRow());
-            settingsView.setSpeedTitle(figureSpeed.getFigureSpeedTitle());
+            settingsView.setSpeedTitle(FigureSpeed.DEFAULT.getSpeedItemId(), figureSpeed.getSpeedItemId());
             settingsView.setVerticalHintsChecked(sharedPreferencesManager.isHintsEnabled());
-        }
-    }
-
-    void setFigureSpeed(int newValue) {
-        switch (newValue) {
-            case 1:
-                sharedPreferencesManager.setFiguresSpeed(VERY_SLOW.getFigureSpeedInMillis());
-                settingsView.setSpeedTitle(VERY_SLOW.getFigureSpeedTitle());
-                break;
-            case 2:
-                sharedPreferencesManager.setFiguresSpeed(SLOW.getFigureSpeedInMillis());
-                settingsView.setSpeedTitle(SLOW.getFigureSpeedTitle());
-                break;
-            case 3:
-                sharedPreferencesManager.setFiguresSpeed(DEFAULT.getFigureSpeedInMillis());
-                settingsView.setSpeedTitle(DEFAULT.getFigureSpeedTitle());
-                break;
-            case 4:
-                sharedPreferencesManager.setFiguresSpeed(FAST.getFigureSpeedInMillis());
-                settingsView.setSpeedTitle(FAST.getFigureSpeedTitle());
-                break;
-            case 5:
-                sharedPreferencesManager.setFiguresSpeed(VERY_FAST.getFigureSpeedInMillis());
-                settingsView.setSpeedTitle(VERY_FAST.getFigureSpeedTitle());
-                break;
-            default:
-                break;
         }
     }
 
@@ -88,9 +60,31 @@ class SettingsPresenter {
                 boolean isEnabled = sharedPreferencesManager.isHintsEnabled();
                 sharedPreferencesManager.setHintsEnabled(!isEnabled);
                 break;
+            case R.id.tvVeryFast:
+                manageSpeedPicking(VERY_FAST.getFigureSpeedInMillis(), id);
+                break;
+            case R.id.tvFast:
+                manageSpeedPicking(FAST.getFigureSpeedInMillis(), id);
+                break;
+            case R.id.tvDefault:
+                manageSpeedPicking(DEFAULT.getFigureSpeedInMillis(), id);
+                break;
+            case R.id.tvSlow:
+                manageSpeedPicking(SLOW.getFigureSpeedInMillis(), id);
+                break;
+            case R.id.tvVerySlow:
+                manageSpeedPicking(VERY_SLOW.getFigureSpeedInMillis(), id);
+                break;
             default:
                 break;
         }
+    }
+
+    private void manageSpeedPicking(long newSpeed, int newItemId) {
+        int oldItemId = Utils.getFiguresSpeedByMillis(sharedPreferencesManager
+                        .getFiguresSpeed()).getSpeedItemId();
+        sharedPreferencesManager.setFiguresSpeed(newSpeed);
+        settingsView.setSpeedTitle(oldItemId, newItemId);
     }
 
     private void manageColorPicking(int newColor, int newItemId) {
