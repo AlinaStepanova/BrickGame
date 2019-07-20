@@ -6,7 +6,6 @@ import com.example.alina.tetris.enums.FigureSpeed;
 public class Values {
 
     public static final int EXTRA_ROWS                      = 4;
-    public static final int SQUARE_COUNT_HORIZONTAL         = 10;
     public static final int FIGURE_STOPPED_SCORE            = 10;
     public static final int EXTRA_SCORE                     = 100;
     public static final int COUNT_DOWN_INTERVAL             = 750;
@@ -28,8 +27,8 @@ public class Values {
     public static final long DEFAULT_SPEED              = FigureSpeed.DEFAULT.getFigureSpeedInMillis();
     public static final String ENABLE_HINTS_KEY         = "enable_hints_key";
     public static final boolean ENABLED_HINTS           = false;
-    public static final String SQARES_COUNT_IN_ROW_KEY  = "default_squares_in_row";
-    public static final int DEFAULT_SQARES_COUNT_IN_ROW = 10;
+    public static final String SQUARES_COUNT_IN_ROW_KEY = "default_squares_in_row";
+    public static final int SQUARES_COUNT_IN_ROW        = 10;
 
     /*NOTIFICATIONS*/
     public static final int NOTIFICATION_ID         = 123;

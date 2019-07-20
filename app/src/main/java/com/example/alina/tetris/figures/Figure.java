@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Path;
 import android.graphics.Point;
 
+import com.example.alina.tetris.R;
 import com.example.alina.tetris.Values;
 import com.example.alina.tetris.enums.FigureState;
 import com.example.alina.tetris.enums.FigureType;
@@ -120,7 +121,7 @@ public abstract class Figure {
     }
 
     public final int getColor() {
-        return this.context.getResources().getColor(DEFAULT_COLOR);
+        return this.context.getResources().getColor(R.color.colorPrimaryTransparent);
     }
 
     public abstract FigureType getRotatedFigure();

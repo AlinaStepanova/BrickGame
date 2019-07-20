@@ -93,7 +93,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
         try {
             startActivity(Utils.openGmail(this, Values.RECIPIENTS, getResources().getString(R.string.app_name)));
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, getResources().getString(R.string.canot_send_email_error_text), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.cannot_send_email_error_text), Toast.LENGTH_LONG).show();
         }
     }
 

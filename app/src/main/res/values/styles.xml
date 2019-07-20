@@ -67,4 +67,15 @@
         <item name="android:padding">@dimen/margin8dp</item>
     </style>
 
+    <style name="SpeedItemsStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_speed_shape</item>
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+        <item name="android:minWidth">@dimen/dimen56dp</item>
+        <item name="android:padding">@dimen/minPadding</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
 </resources>

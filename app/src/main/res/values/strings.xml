@@ -22,6 +22,10 @@
     <string name="general_title">General</string>
     <string name="settings_title">Settings</string>
     <string name="default_figure_speed_text">Default</string>
+    <string name="very_fast_figure_speed_text">Very fast</string>
+    <string name="fast_figure_speed_text">Fast</string>
+    <string name="slow_figure_speed_text">Slow</string>
+    <string name="very_slow_figure_speed_text">Very slow</string>
     <string name="show_vertical_hints_title">Show vertical hints</string>
-    <string name="canot_send_email_error_text">Cannot send email</string>
+    <string name="cannot_send_email_error_text">Cannot send email</string>
 </resources>
