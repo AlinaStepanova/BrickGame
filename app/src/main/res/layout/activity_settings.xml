@@ -1,202 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fadeScrollbars="true"
-    android:scrollbars="vertical"
-    tools:context=".ui.settings.SettingsActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvSettingsTitle"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/settings_height_44dp"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:text="@string/settings_title"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/textSize18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/tvGeneralTitle"
-        android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:background="@color/colorPrimary"
-        android:backgroundTintMode="src_over"
-        android:fontFamily="sans-serif-condensed-light"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin8dp"
-        android:text="@string/general_title"
-        android:textColor="@color/white"
-        android:textSize="@dimen/minTextSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSettingsTitle"/>
-
-    <TextView
-        android:id="@+id/tvPickFiguresColorTitle"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin8dp"
-        android:text="@string/pick_figures_colour_title"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/minTextSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGeneralTitle"/>
-
-    <include layout="@layout/color_picker"/>
-
-    <View
-        android:id="@+id/vDivider2"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="@dimen/margin4dp"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@+id/clColorPicker"/>
-
-    <TextView
-        android:id="@+id/tvSetSpeedTitle"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin8dp"
-        android:text="@string/set_figures_speed_title"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/minTextSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vDivider2"/>
-
-    <com.shawnlin.numberpicker.NumberPicker
-        android:id="@+id/speedNumberPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSetSpeedTitle"
-        app:np_dividerColor="@color/colorPrimaryTransparent"
-        app:np_height="56dp"
-        app:np_max="5"
-        app:np_min="1"
-        app:np_orientation="horizontal"
-        app:np_selectedTextColor="@color/colorPrimary"
-        app:np_selectedTextSize="@dimen/midTextSize"
-        app:np_textColor="@color/colorPrimaryTransparent"
-        app:np_textSize="@dimen/minTextSize"
-        app:np_typeface="sans-serif-condensed"
-        app:np_value="3"
-        app:np_width="180dp"/>
-
-    <TextView
-        android:id="@+id/tvSpeedTitle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:text="@string/default_figure_speed_text"
-        android:textColor="@color/colorPrimaryTransparent"
-        android:textSize="@dimen/textSize12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/speedNumberPicker"/>
+        android:background="@color/white"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical"
+        tools:context=".ui.settings.SettingsActivity">
 
-    <View
-        android:id="@+id/vDivider6"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="@dimen/margin8dp"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@+id/tvSpeedTitle"/>
+        <TextView
+            android:id="@+id/tvSettingsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settings_height_44dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="@string/settings_title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/textSize18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/tvSetSquaresCountTitle"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin8dp"
-        android:text="Set squares count in row"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/minTextSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vDivider6"/>
+        <TextView
+            android:id="@+id/tvGeneralTitle"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:background="@color/colorPrimary"
+            android:backgroundTintMode="src_over"
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin8dp"
+            android:text="@string/general_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/minTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSettingsTitle"/>
 
-    <com.shawnlin.numberpicker.NumberPicker
-        android:id="@+id/squaresCountNumberPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSetSquaresCountTitle"
-        app:np_dividerColor="@color/colorPrimaryTransparent"
-        app:np_height="56dp"
-        app:np_max="12"
-        app:np_min="8"
-        app:np_orientation="horizontal"
-        app:np_selectedTextColor="@color/colorPrimary"
-        app:np_selectedTextSize="@dimen/midTextSize"
-        app:np_textColor="@color/colorPrimaryTransparent"
-        app:np_textSize="@dimen/minTextSize"
-        app:np_typeface="sans-serif-condensed"
-        app:np_value="10"
-        app:np_width="180dp"/>
+        <TextView
+            android:id="@+id/tvPickFiguresColorTitle"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin8dp"
+            android:text="@string/pick_figures_colour_title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/minTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeneralTitle"/>
 
-    <View
-        android:id="@+id/vDivider7"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="@dimen/margin8dp"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@+id/squaresCountNumberPicker"/>
+        <include layout="@layout/color_picker"/>
 
-    <include layout="@layout/settings_hints"/>
+        <View
+            android:id="@+id/vDivider2"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="@dimen/margin4dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@+id/clColorPicker"/>
 
-    <TextView
-        android:id="@+id/tvMorelTitle"
-        android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:background="@color/colorPrimary"
-        android:backgroundTintMode="src_over"
-        android:fontFamily="sans-serif-condensed-light"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin8dp"
-        android:text="@string/more_title"
-        android:textColor="@color/white"
-        android:textSize="@dimen/minTextSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flShowHints"/>
+        <TextView
+            android:id="@+id/tvSetSpeedTitle"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin8dp"
+            android:text="@string/set_figures_speed_title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/minTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vDivider2"/>
 
-    <include layout="@layout/settings_feedback"/>
+        <include layout="@layout/speed_picker"/>
 
-    <View
-        android:id="@+id/vDivider4"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@+id/flFeedback"/>
+        <View
+            android:id="@+id/vDivider6"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="@dimen/margin8dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@+id/clSpeedPicker"/>
 
-    <include layout="@layout/settings_privacy_policy"/>
+        <TextView
+            android:id="@+id/tvSetSquaresCountTitle"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin8dp"
+            android:text="Set squares count in row"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/minTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vDivider6"/>
 
-    <View
-        android:id="@+id/vDivider5"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@+id/flPrivacyPolicy"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/squaresCountNumberPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSetSquaresCountTitle"
+            app:np_dividerColor="@color/colorPrimaryTransparent"
+            app:np_height="56dp"
+            app:np_max="12"
+            app:np_min="8"
+            app:np_orientation="horizontal"
+            app:np_selectedTextColor="@color/colorPrimary"
+            app:np_selectedTextSize="@dimen/midTextSize"
+            app:np_textColor="@color/colorPrimaryTransparent"
+            app:np_textSize="@dimen/minTextSize"
+            app:np_typeface="sans-serif-condensed"
+            app:np_value="10"
+            app:np_width="180dp"/>
+
+        <View
+            android:id="@+id/vDivider7"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="@dimen/margin8dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@+id/squaresCountNumberPicker"/>
+
+        <include layout="@layout/settings_hints"/>
+
+        <TextView
+            android:id="@+id/tvMorelTitle"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:background="@color/colorPrimary"
+            android:backgroundTintMode="src_over"
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin8dp"
+            android:text="@string/more_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/minTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flShowHints"/>
+
+        <include layout="@layout/settings_feedback"/>
+
+        <View
+            android:id="@+id/vDivider4"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@+id/flFeedback"/>
+
+        <include layout="@layout/settings_privacy_policy"/>
+
+        <View
+            android:id="@+id/vDivider5"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@+id/flPrivacyPolicy"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

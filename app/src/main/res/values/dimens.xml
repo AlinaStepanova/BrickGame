@@ -21,8 +21,10 @@
     <dimen name="margin16dp">16dp</dimen>
 
     <dimen name="dimen48dp">48dp</dimen>
+    <dimen name="dimen56dp">56dp</dimen>
 
     <dimen name="maxRadius">30dp</dimen>
+    <dimen name="midRadius">8dp</dimen>
     <dimen name="minRadius">2dp</dimen>
 
     <dimen name="elevation">10dp</dimen>
