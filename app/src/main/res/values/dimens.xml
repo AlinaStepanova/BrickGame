@@ -5,7 +5,7 @@
     <dimen name="maxTextSize">24sp</dimen>
     <dimen name="midTextSize">20sp</dimen>
     <dimen name="minTextSize">16sp</dimen>
-    <dimen name="textSize12">12sp</dimen>
+    <dimen name="textSize14">14sp</dimen>
     <dimen name="textSize22">22sp</dimen>
     <dimen name="textSize18">18sp</dimen>
 

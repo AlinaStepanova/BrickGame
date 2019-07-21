@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"
         android:layout_marginEnd="@dimen/margin4dp"
-        android:src="@drawable/ic_arrow"/>
+        app:srcCompat="@drawable/ic_arrow"/>
 
     <TextView
         android:id="@+id/tvFeedbackTitle"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/root"
               android:layout_width="match_parent"
               android:layout_height="64dp"
-              android:backgroundTintMode="src_over"
               android:background="@drawable/gradient_shape"
               android:orientation="horizontal">
 
@@ -12,7 +12,7 @@
         android:layout_height="@dimen/midMargin"
         android:layout_gravity="center_vertical"
         android:layout_margin="@dimen/smallMargin"
-        android:src="@drawable/ic_star" />
+        app:srcCompat="@drawable/ic_star" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
             android:layout_marginEnd="@dimen/margin8dp"
             android:textAppearance="@style/TextAppearance.Compat.Notification.Info"
             android:textColor="@color/white"
-            android:textSize="@dimen/textSize12" />
+            android:textSize="@dimen/textSize14" />
 
     </LinearLayout>
 </LinearLayout>

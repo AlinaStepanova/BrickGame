@@ -28,4 +28,5 @@
     <string name="very_slow_figure_speed_text">Very slow</string>
     <string name="show_vertical_hints_title">Show vertical hints</string>
     <string name="cannot_send_email_error_text">Cannot send email</string>
+    <string name="set_squares_count_in_row_title">Set squares count in row</string>
 </resources>
