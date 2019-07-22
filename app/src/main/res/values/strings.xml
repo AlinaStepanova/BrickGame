@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Tetris</string>
+    <string name="app_name">Brick Game</string>
     <string name="startScore">0</string>
     <string name="scoreText">SCORE</string>
-    <string name="gameTitle">TETRIS</string>
+    <string name="gameTitle">BRICK GAME</string>
     <string name="new_game">NEW GAME</string>
     <string name="scores_text">scores</string>
     <string name="scores">SCORES</string>

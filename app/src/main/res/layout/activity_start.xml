@@ -28,7 +28,7 @@
             <TextView
                 android:id="@+id/tvGameTitle"
                 style="@style/text_view_style"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:fontFamily="sans-serif-condensed"
                 android:text="@string/gameTitle"
                 android:textColor="@color/white"
                 android:textSize="@dimen/mainTextSize"/>

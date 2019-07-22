@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/root"
               android:layout_width="match_parent"
               android:layout_height="64dp"
@@ -10,9 +9,9 @@
     <ImageView
         android:layout_width="@dimen/midMargin"
         android:layout_height="@dimen/midMargin"
+        android:background="@drawable/ic_star"
         android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/smallMargin"
-        app:srcCompat="@drawable/ic_star" />
+        android:layout_margin="@dimen/smallMargin"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -23,11 +22,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin8dp"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:fontFamily="sans-serif-condensed"
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.Compat.Notification.Title"
             android:textColor="@color/white"
-            android:textSize="@dimen/textSize18" />
+            android:textSize="@dimen/minTextSize" />
 
         <TextView
             android:id="@+id/tvNewScoreResult"

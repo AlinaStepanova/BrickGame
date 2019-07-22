@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.alina.tetris">
+          package="com.avs.brick.game">
 
     <application
         android:allowBackup="true"
@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.settings.SettingsActivity"
+            android:name="com.avs.brick.game.ui.settings.SettingsActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.start.StartActivity"
+            android:name="com.avs.brick.game.ui.start.StartActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,11 +23,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="com.avs.brick.game.ui.main.MainActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.score.ScoreActivity"
+            android:name="com.avs.brick.game.ui.score.ScoreActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>
