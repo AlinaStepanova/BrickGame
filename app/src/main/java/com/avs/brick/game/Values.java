@@ -14,6 +14,7 @@ public class Values {
     public static final float LINE_WIDTH                    = 1f;
 
     public static final String[] RECIPIENTS         = {"alina.stepanova.work@gmail.com"};
+    public static final String PRIVACY_POLICY_URL   = "https://alinastepanova.github.io/BrickGame/";
 
     /*PREFERENCES*/
     public static final String PREFERENCES_KEY          = "com.example.alina.tetris.PREFERENCE_KEY";

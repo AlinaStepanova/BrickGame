@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.avs.brick.game">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_figure"
@@ -9,12 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_figure_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.settings.PrivacyPolicyActivity"
+                  android:screenOrientation="portrait">
+        </activity>
         <activity
-            android:name="com.avs.brick.game.ui.settings.SettingsActivity"
+            android:name=".ui.settings.SettingsActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.avs.brick.game.ui.start.StartActivity"
+            android:name=".ui.start.StartActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,11 +28,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.avs.brick.game.ui.main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.avs.brick.game.ui.score.ScoreActivity"
+            android:name=".ui.score.ScoreActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

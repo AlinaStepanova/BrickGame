@@ -1,6 +1,7 @@
 package com.avs.brick.game.ui.settings;
 
 import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -81,6 +82,11 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @Override
     public void setSquaresCountInRow(int squaresCountInRow) {
         if (squaresNumberPicker != null) squaresNumberPicker.setValue(squaresCountInRow);
+    }
+
+    @OnClick(R.id.flPrivacyPolicy)
+    void openPrivacPolicy() {
+        startActivity(new Intent(this, PrivacyPolicyActivity.class));
     }
 
     @OnClick(R.id.sEnableHints)
