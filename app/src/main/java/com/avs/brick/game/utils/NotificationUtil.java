@@ -1,6 +1,8 @@
 package com.avs.brick.game.utils;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +16,7 @@ import com.avs.brick.game.ui.score.ScoreActivity;
 
 import static com.avs.brick.game.Values.CHANNEL_ID;
 import static com.avs.brick.game.Values.NOTIFICATION_ID;
+import static com.avs.brick.game.Values.SCORE_CHANNEL;
 
 public class NotificationUtil {
 
@@ -37,7 +40,7 @@ public class NotificationUtil {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.notification_custom_view);
         views.setTextViewText(R.id.tvNewScoreResult, context.getString(R.string.congrats_sub_title)
                 + " - " + score + " " + context.getString(R.string.points_notification_text));
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, SCORE_CHANNEL)
                 .setSmallIcon(R.drawable.ic_star)
                 .setContentTitle(context.getString(R.string.new_score_notification_title))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -54,5 +57,17 @@ public class NotificationUtil {
     public void createNotification() {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(NOTIFICATION_ID, getNotificationBuilder());
+    }
+
+    public static void createChannel(NotificationManager nm, String id, String channelName, int importance) {
+        NotificationChannel channel;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            channel = nm.getNotificationChannel(id);
+            if (channel == null) {
+                channel = new NotificationChannel(id, channelName, importance);
+                channel.setSound(null, null);
+                nm.createNotificationChannel(channel);
+            }
+        }
     }
 }
