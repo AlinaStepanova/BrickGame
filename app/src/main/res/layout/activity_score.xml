@@ -1,45 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              style="@style/linear_layout_style">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:id="@+id/llScores"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:background="@drawable/shape_scores"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tvScoresTitle"
-                android:text="@string/scores"
-                android:textColor="@color/mainColor"
-                android:textSize="@dimen/textSize30sp"
-                android:fontFamily="sans-serif-condensed-medium"
-                style="@style/text_view_style"/>
-            <TextView
-                android:id="@+id/tvFirstScore"
-                android:text="@string/initial_score"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif-condensed-light"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/midTextSize"
-                style="@style/text_view_style"/>
-            <TextView
-                android:id="@+id/tvSecondScore"
-                android:text="@string/initial_score"
-                android:fontFamily="sans-serif-condensed-light"
-                android:textColor="@color/mainColor"
-                android:textSize="@dimen/midTextSize"
-                style="@style/text_view_style"/>
-            <TextView
-                android:id="@+id/tvThirdScore"
-                android:text="@string/initial_score"
-                android:fontFamily="sans-serif-condensed-light"
-                android:textColor="@color/mainColor"
-                android:textSize="@dimen/midTextSize"
-                style="@style/text_view_style"/>
-        </LinearLayout>
-    </RelativeLayout>
-</LinearLayout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/linear_layout_style">
+
+    <LinearLayout
+        android:id="@+id/llScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/shape_scores"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvScoresTitle"
+            style="@style/text_view_style"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="@string/scores"
+            android:textColor="@color/mainColor"
+            android:textSize="@dimen/textSize30sp" />
+
+        <TextView
+            android:id="@+id/tvFirstScore"
+            style="@style/text_view_style"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="@string/initial_score"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/midTextSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSecondScore"
+            style="@style/text_view_style"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="@string/initial_score"
+            android:textColor="@color/mainColor"
+            android:textSize="@dimen/midTextSize" />
+
+        <TextView
+            android:id="@+id/tvThirdScore"
+            style="@style/text_view_style"
+            android:fontFamily="sans-serif-condensed-light"
+            android:text="@string/initial_score"
+            android:textColor="@color/mainColor"
+            android:textSize="@dimen/midTextSize" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_circle"
+        android:padding="@dimen/margin16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llScores"
+        app:srcCompat="@drawable/ic_share" />
+</androidx.constraintlayout.widget.ConstraintLayout>
