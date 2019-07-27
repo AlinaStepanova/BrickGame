@@ -41,7 +41,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     private int screenHeight, screenWidth;
     private int scale;
     private int squaresInRowCount;
-    private boolean isTimerRunning;
+    private boolean isTimerRunning, isGameOver;
 
     private Figure currentFigure;
 
@@ -80,6 +80,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         this.squaresInRowCount = sharedPreferencesManager.getSquaresCountInRow();
         this.context = context;
         this.isTimerRunning = true;
+        this.isGameOver = false;
     }
 
     @Override
@@ -150,7 +151,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     }
 
     public boolean isTimerRunning() {
-        return isTimerRunning;
+        return isTimerRunning && !isGameOver;
     }
 
     public void handleTimerState() {
@@ -160,7 +161,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
             startTimer();
         }
         isTimerRunning = !isTimerRunning;
-        onTimerStateChangedListener.isTimerRunning(isTimerRunning);
+        if (!isGameOver) onTimerStateChangedListener.isTimerRunning(isTimerRunning);
     }
 
     public void startTimer() {
@@ -319,6 +320,9 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     @Override
     public void onTopLineHasTrue() {
+        isGameOver = true;
+        cancelTimer();
+        onTimerStateChangedListener.disableAllControls();
         Toast.makeText(context, context.getString(R.string.game_over_text), Toast.LENGTH_LONG).show();
         new Handler().postDelayed(() -> ((Activity) context).finish(), GAME_OVER_DELAY_IN_MILLIS);
     }
