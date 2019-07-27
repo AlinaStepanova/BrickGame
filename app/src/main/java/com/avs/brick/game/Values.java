@@ -5,6 +5,8 @@ import com.avs.brick.game.enums.FigureSpeed;
 
 public class Values {
 
+    public static final String NAMESPACE                    = "com.avs.brick.game";
+
     public static final int EXTRA_ROWS                      = 4;
     public static final int FIGURE_STOPPED_SCORE            = 10;
     public static final int EXTRA_SCORE                     = 100;
@@ -17,7 +19,7 @@ public class Values {
     public static final String PRIVACY_POLICY_URL   = "https://alinastepanova.github.io/BrickGame/";
 
     /*PREFERENCES*/
-    public static final String PREFERENCES_KEY          = "com.example.alina.tetris.PREFERENCE_KEY";
+    public static final String PREFERENCES_KEY          = NAMESPACE + "PREFERENCE_KEY";
     public static final String FIRST_VALUE_KEY          = "first_value";
     public static final String SECOND_VALUE_KEY         = "second_value";
     public static final String THIRD_VALUE_KEY          = "third_value";
@@ -32,6 +34,8 @@ public class Values {
     public static final int SQUARES_COUNT_IN_ROW        = 10;
 
     /*NOTIFICATIONS*/
-    public static final int NOTIFICATION_ID         = 123;
-    public static final String CHANNEL_ID           = "score_notification_channel";
+    public static final int NOTIFICATION_ID             = 123;
+    public static final String CHANNEL_ID               = "score_notification_channel";
+    public static final String CHANNEL_NAME             = "SCORES";
+    public static final String SCORE_CHANNEL            = NAMESPACE + ".scores";
 }
