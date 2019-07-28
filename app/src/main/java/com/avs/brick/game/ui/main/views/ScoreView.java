@@ -42,9 +42,9 @@ public class ScoreView extends AppCompatTextView {
         setScore(scoreValue);
     }
 
-    public void sumScoreWhenBottomLineIsTrue() {
+    public void sumScoreWhenBottomLineIsTrue(int squaresInRowCount) {
         int scoreValue = getScore();
-        scoreValue += EXTRA_SCORE * NetManager.combo;
+        scoreValue += squaresInRowCount * FIGURE_STOPPED_SCORE * NetManager.combo;
         setScore(scoreValue);
     }
 }

@@ -315,7 +315,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
 
     @Override
     public void onBottomLineIsTrue() {
-        scoreView.sumScoreWhenBottomLineIsTrue();
+        scoreView.sumScoreWhenBottomLineIsTrue(squaresInRowCount);
     }
 
     @Override
