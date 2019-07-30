@@ -7,9 +7,9 @@
     <application
         android:name=".BrickGameApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_figure"
+        android:icon="@mipmap/ic_launcher_1"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_figure_round"
+        android:roundIcon="@mipmap/ic_launcher_1_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.settings.PrivacyPolicyActivity"
