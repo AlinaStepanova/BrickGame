@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Brick Game</string>
+    <string name="cannot_send_email_error_text">Невозможно отправить сообщение</string>
+    <string name="congrats_sub_title">Поздравляем! Ваш новый рекорд</string>
+    <string name="default_figure_speed_text">Умеренно</string>
+    <string name="fast_figure_speed_text">Быстро</string>
+    <string name="feedback_title">Отзыв</string>
+    <string name="game_over_text">КОНЕЦ ИГРЫ</string>
+    <string name="general_title">Основное</string>
+    <string name="more_title">Больше</string>
+    <string name="new_game">НОВАЯ ИГРА</string>
+    <string name="new_score_notification_title">Новый рекорд</string>
+    <string name="next">Дальше</string>
+    <string name="pick_figures_colour_title">Цвет фигур</string>
+    <string name="points_notification_text">!</string>
+    <string name="privacy_policy_title">Политика конфиденциальности</string>
+    <string name="score_text">Счет</string>
+    <string name="scores">Рекорды</string>
+    <string name="scores_text">рекорды</string>
+    <string name="set_figures_speed_title">Скорость фигур</string>
+    <string name="set_squares_count_in_row_title">Количество квадратов в строке</string>
+    <string name="settings_title">Настройки</string>
+    <string name="show_vertical_hints_title">Вертикальные подсказки</string>
+    <string name="slow_figure_speed_text">Медленно</string>
+    <string name="very_slow_figure_speed_text">Очень медленно</string>
+    <string name="very_fast_figure_speed_text">Очень быстро</string>
+</resources>

@@ -29,7 +29,7 @@
                 android:id="@+id/tvGameTitle"
                 style="@style/text_view_style"
                 android:fontFamily="sans-serif-condensed"
-                android:text="@string/gameTitle"
+                android:text="@string/game_title"
                 android:textColor="@color/white"
                 android:textSize="@dimen/mainTextSize"/>
 

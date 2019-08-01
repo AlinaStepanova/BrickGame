@@ -1,12 +1,11 @@
 <resources>
     <string name="app_name">Brick Game</string>
-    <string name="startScore">0</string>
-    <string name="scoreText">SCORE</string>
-    <string name="gameTitle">BRICK GAME</string>
+    <string name="score_text">SCORE</string>
+    <string name="game_title" translatable="false">BRICK GAME</string>
     <string name="new_game">NEW GAME</string>
     <string name="scores_text">scores</string>
     <string name="scores">SCORES</string>
-    <string name="initial_score">0</string>
+    <string name="initial_score" translatable="false">0</string>
     <string name="next">NEXT</string>
     <string name="new_score_notification_title">New score</string>
     <string name="congrats_sub_title">Congrats! You\'ve reached a new score</string>
@@ -17,8 +16,8 @@
     <string name="privacy_policy_title">Privacy policy</string>
     <string name="feedback_title">Feedback</string>
     <string name="more_title">More</string>
-    <string name="set_figures_speed_title">Set figures\' speed</string>
-    <string name="pick_figures_colour_title">Pick figures\' color</string>
+    <string name="set_figures_speed_title">Bricks\' speed</string>
+    <string name="pick_figures_colour_title">Bricks\' color</string>
     <string name="general_title">General</string>
     <string name="settings_title">Settings</string>
     <string name="default_figure_speed_text">Default</string>
@@ -26,7 +25,7 @@
     <string name="fast_figure_speed_text">Fast</string>
     <string name="slow_figure_speed_text">Slow</string>
     <string name="very_slow_figure_speed_text">Very slow</string>
-    <string name="show_vertical_hints_title">Show vertical hints</string>
+    <string name="show_vertical_hints_title">Enable vertical hints</string>
     <string name="cannot_send_email_error_text">Cannot send email</string>
-    <string name="set_squares_count_in_row_title">Set squares count in a row</string>
+    <string name="set_squares_count_in_row_title">Squares count in a row</string>
 </resources>
