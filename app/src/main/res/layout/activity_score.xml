@@ -16,7 +16,7 @@
                 android:text="@string/scores"
                 android:textColor="@color/mainColor"
                 android:textSize="@dimen/textSize30sp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:fontFamily="sans-serif-condensed-light"
                 style="@style/text_view_style"/>
             <TextView
                 android:id="@+id/tvFirstScore"
