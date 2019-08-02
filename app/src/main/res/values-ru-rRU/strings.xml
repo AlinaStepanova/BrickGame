@@ -11,11 +11,11 @@
     <string name="more_title">Больше</string>
     <string name="new_game">НОВАЯ ИГРА</string>
     <string name="new_score_notification_title">Новый рекорд</string>
-    <string name="next">Дальше</string>
+    <string name="next">ДАЛЬШЕ</string>
     <string name="pick_figures_colour_title">Цвет фигур</string>
     <string name="points_notification_text">!</string>
     <string name="privacy_policy_title">Политика конфиденциальности</string>
-    <string name="score_text">Счет</string>
+    <string name="score_text">СЧЕТ</string>
     <string name="scores">Рекорды</string>
     <string name="scores_text">рекорды</string>
     <string name="set_figures_speed_title">Скорость фигур</string>
