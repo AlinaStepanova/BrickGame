@@ -5,6 +5,8 @@
     <color name="colorPrimaryDark">#00b0ff</color>
     <color name="colorAccent">#14DFDF</color>
 
+    <color name="colorGrey">#9DACAC</color>
+
     <color name="lFigure">#b4536dfe</color>
     <color name="jFigure">#b526c6da</color>
     <color name="longFigure">#b42979ff</color>

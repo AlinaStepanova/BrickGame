@@ -22,7 +22,7 @@
         android:id="@+id/tvPrivacyPolicyTitle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/settings_height_44dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="sans-serif-condensed-light"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/margin8dp"
         android:text="@string/privacy_policy_title"

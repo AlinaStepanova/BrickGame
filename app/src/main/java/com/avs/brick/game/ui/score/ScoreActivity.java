@@ -28,8 +28,8 @@ public class ScoreActivity extends AppCompatActivity {
     @BindView(R.id.llScores)
     LinearLayout scoresLayout;
 
-    @BindView(R.id.ivShare)
-    ImageView shareScore;
+    /*@BindView(R.id.ivShare)
+    ImageView shareScore;*/
 
     private SharedPreferencesManager sharedPreferencesManager;
 
@@ -45,7 +45,7 @@ public class ScoreActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         scoresLayout.startAnimation(AnimationUtil.getZoomIn(this));
-        shareScore.startAnimation(AnimationUtil.getZoomIn(this));
+        //shareScore.startAnimation(AnimationUtil.getZoomIn(this));
         firstScore.setText(sharedPreferencesManager.getFirstValue());
         secondScore.setText(sharedPreferencesManager.getSecondValue());
         thirdScore.setText(sharedPreferencesManager.getThirdValue());

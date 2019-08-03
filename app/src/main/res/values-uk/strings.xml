@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Brick Game</string>
+    <string name="privacy_policy_title">Політика конфіденційності</string>
+    <string name="score_text">РАХУНОК</string>
+    <string name="scores">Рекорди</string>
+    <string name="scores_text">рекорди</string>
+    <string name="next">ДАЛІ</string>
+    <string name="new_score_notification_title">Новий рекорд</string>
+    <string name="new_game">НОВА ГРА</string>
+    <string name="more_title">Більше</string>
+    <string name="feedback_title">Відгук</string>
+    <string name="game_over_text">КІНЕЦЬ ГРИ</string>
+    <string name="cannot_send_email_error_text">Неможливо надіслати повідомлення</string>
+    <string name="congrats_sub_title">Вітаємо! Ваш новий рекорд</string>
+    <string name="general_title">Основне</string>
+    <string name="pick_figures_colour_title">Колір фігур</string>
+    <string name="set_figures_speed_title">Швидкість фігур</string>
+    <string name="set_squares_count_in_row_title">Кількість квадратів у рядку</string>
+    <string name="settings_title">Налаштування</string>
+    <string name="show_vertical_hints_title">Вертикальні підказки</string>
+    <string name="default_figure_speed_text">Помірно</string>
+    <string name="fast_figure_speed_text">Швидко</string>
+    <string name="slow_figure_speed_text">Повільно</string>
+    <string name="very_fast_figure_speed_text">Дуже швидко</string>
+    <string name="very_slow_figure_speed_text">Дуже повільно</string>
+</resources>

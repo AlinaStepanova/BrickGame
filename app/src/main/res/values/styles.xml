@@ -36,11 +36,11 @@
 
     <style name="linear_layout_style">
         <item name="android:orientation">vertical</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_margin">3dp</item>
         <item name="android:background">@drawable/shape_start_activity</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 
     <style name="text_view_style">
@@ -76,6 +76,11 @@
         <item name="android:padding">@dimen/minPadding</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:minLines">1</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:maxWidth">68dp</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
 </resources>

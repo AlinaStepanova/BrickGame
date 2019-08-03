@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_pressed="true" >
-        <shape android:shape="rectangle"  >
-            <corners android:bottomRightRadius="@dimen/maxRadius"
-                     android:bottomLeftRadius="@dimen/maxRadius"
-                     android:topLeftRadius="@dimen/maxRadius"
-                     android:topRightRadius="@dimen/maxRadius"/>
-            <stroke android:width="1dip" android:color="@color/colorPrimary" />
-            <gradient android:angle="-90" android:startColor="@color/white"
-                      android:endColor="@color/colorPrimary"  />
-        </shape>
-    </item>
     <item >
         <shape android:shape="rectangle"  >
             <corners android:bottomRightRadius="@dimen/maxRadius"
