@@ -10,8 +10,8 @@ public enum FigureSpeed {
     SLOW(R.id.tvSlow, 1250),
     VERY_SLOW(R.id.tvVerySlow, 1500);
 
-    private int speedItemId;
-    private long figureSpeedInMillis;
+    private final int speedItemId;
+    private final long figureSpeedInMillis;
 
     FigureSpeed(int speedItemId, long speedInMillis) {
         this.speedItemId = speedItemId;

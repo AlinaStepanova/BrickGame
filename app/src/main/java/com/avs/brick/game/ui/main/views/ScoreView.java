@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import com.avs.brick.game.ui.main.NetManager;
 
 import static com.avs.brick.game.Values.DEFAULT_VALUE;
-import static com.avs.brick.game.Values.EXTRA_SCORE;
 import static com.avs.brick.game.Values.FIGURE_STOPPED_SCORE;
 
 public class ScoreView extends AppCompatTextView {

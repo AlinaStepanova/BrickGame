@@ -5,18 +5,23 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.avs.brick.game"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        resConfigs "en", "uk", "ru-rRU"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    aaptOptions {
+        cruncherEnabled = false
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

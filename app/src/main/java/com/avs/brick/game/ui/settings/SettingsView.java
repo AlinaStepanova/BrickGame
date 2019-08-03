@@ -1,10 +1,10 @@
 package com.avs.brick.game.ui.settings;
 
-public interface SettingsView {
+interface SettingsView {
 
     void markChosenColor(int oldColor, int newItemId);
 
-    void setSpeedTitle(int oldItemId, int newItemId);
+    void setSpeedTitle(int newItemId);
 
     void setVerticalHintsChecked(boolean hintsEnabled);
 

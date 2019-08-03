@@ -64,7 +64,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     }
 
     @Override
-    public void setSpeedTitle(int oldItemId, int newItemId) {
+    public void setSpeedTitle(int newItemId) {
         for (TextView item: speedItems) {
             item.getBackground().setTint(getResources().getColor(R.color.white));
             item.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -85,7 +85,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     }
 
     @OnClick(R.id.flPrivacyPolicy)
-    void openPrivacPolicy() {
+    void openPrivacyPolicy() {
         startActivity(new Intent(this, PrivacyPolicyActivity.class));
     }
 

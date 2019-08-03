@@ -14,7 +14,6 @@ import android.widget.RemoteViews;
 import com.avs.brick.game.R;
 import com.avs.brick.game.ui.score.ScoreActivity;
 
-import static com.avs.brick.game.Values.CHANNEL_ID;
 import static com.avs.brick.game.Values.NOTIFICATION_ID;
 import static com.avs.brick.game.Values.SCORE_CHANNEL;
 

@@ -2,7 +2,6 @@ package com.avs.brick.game.ui.main;
 
 
 import android.graphics.Path;
-import android.util.Log;
 
 import com.avs.brick.game.enums.FigureState;
 import com.avs.brick.game.figures.Figure;
@@ -23,7 +22,7 @@ public class NetManager {
 
     public static int combo;
 
-    private OnNetChangedListener onNetChangedListener;
+    private final OnNetChangedListener onNetChangedListener;
 
     private int squareWidth, scale;
 
@@ -365,6 +364,6 @@ public class NetManager {
             }
             str.append('\n');
         }
-        Log.d("logNet", str.toString());
+        /*Log.d("logNet", str.toString());*/
     }
 }

@@ -21,7 +21,7 @@ public abstract class Figure {
 
     private FigureState state;
 
-    protected final Context context;
+    private final Context context;
 
     protected final int squareWidth;
 

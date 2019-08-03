@@ -14,8 +14,8 @@ import static com.avs.brick.game.enums.FigureSpeed.VERY_SLOW;
 
 class SettingsPresenter {
 
-    private SharedPreferencesManager sharedPreferencesManager;
-    private SettingsView settingsView;
+    private final SharedPreferencesManager sharedPreferencesManager;
+    private final SettingsView settingsView;
 
     SettingsPresenter(SettingsView settingsView, SharedPreferencesManager sharedPreferencesManager) {
         this.settingsView = settingsView;
@@ -27,7 +27,7 @@ class SettingsPresenter {
         if (settingsView != null) {
             settingsView.markChosenColor(DEFAULT_COLOR, Utils.getViewIdByColor(sharedPreferencesManager.getFiguresColor()));
             settingsView.setSquaresCountInRow(sharedPreferencesManager.getSquaresCountInRow());
-            settingsView.setSpeedTitle(FigureSpeed.DEFAULT.getSpeedItemId(), figureSpeed.getSpeedItemId());
+            settingsView.setSpeedTitle(figureSpeed.getSpeedItemId());
             settingsView.setVerticalHintsChecked(sharedPreferencesManager.isHintsEnabled());
         }
     }
@@ -84,7 +84,7 @@ class SettingsPresenter {
         int oldItemId = Utils.getFiguresSpeedByMillis(sharedPreferencesManager
                         .getFiguresSpeed()).getSpeedItemId();
         sharedPreferencesManager.setFiguresSpeed(newSpeed);
-        settingsView.setSpeedTitle(oldItemId, newItemId);
+        settingsView.setSpeedTitle(newItemId);
     }
 
     private void manageColorPicking(int newColor, int newItemId) {
