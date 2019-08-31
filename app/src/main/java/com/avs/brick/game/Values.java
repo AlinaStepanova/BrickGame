@@ -17,6 +17,7 @@ public class Values {
 
     public static final String[] RECIPIENTS         = {"alina.stepanova.work@gmail.com"};
     public static final String PRIVACY_POLICY_URL   = "https://alinastepanova.github.io/BrickGame/";
+    public static final String PLAY_MARKET_URL      = "https://play.google.com/store/apps/details?id=com.avs.brick.game";
 
     /*PREFERENCES*/
     public static final String PREFERENCES_KEY          = NAMESPACE + "PREFERENCE_KEY";
