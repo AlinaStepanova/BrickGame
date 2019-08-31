@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +24,7 @@
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/scores"
             android:textColor="@color/mainColor"
-            android:textSize="@dimen/textSize30sp"/>
+            android:textSize="@dimen/textSize30sp" />
 
         <TextView
             android:id="@+id/tvFirstScore"
@@ -34,7 +33,7 @@
             android:text="@string/initial_score"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/midTextSize"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvSecondScore"
@@ -42,7 +41,7 @@
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/initial_score"
             android:textColor="@color/mainColor"
-            android:textSize="@dimen/midTextSize"/>
+            android:textSize="@dimen/midTextSize" />
 
         <TextView
             android:id="@+id/tvThirdScore"
@@ -50,19 +49,19 @@
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/initial_score"
             android:textColor="@color/mainColor"
-            android:textSize="@dimen/midTextSize"/>
+            android:textSize="@dimen/midTextSize" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/ivShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen48dp"
         android:background="@drawable/button_circle"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llScores"
-        app:srcCompat="@drawable/ic_share"/>
+        app:srcCompat="@drawable/ic_share" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

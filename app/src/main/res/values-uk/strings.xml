@@ -24,7 +24,7 @@
     <string name="slow_figure_speed_text">Повільно</string>
     <string name="very_fast_figure_speed_text">Дуже швидко</string>
     <string name="very_slow_figure_speed_text">Дуже повільно</string>
-    <string name="share_via_text">Завергити дію за допомогою</string>
+    <string name="share_via_text">Завершити дію за допомогою</string>
     <string name="share_body_part_one">"Побий мій найкращий рекорд - "</string>
     <string name="share_body_part_second">у грі Brick Game. Успіхів!</string>
 </resources>

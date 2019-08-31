@@ -42,16 +42,11 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
         sharedPreferencesManager = new SharedPreferencesManager(getApplicationContext());
         ButterKnife.bind(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         scoresLayout.startAnimation(AnimationUtil.getZoomIn(this));
-        shareScore.startAnimation(AnimationUtil.getZoomIn(this));
         firstScore.setText(sharedPreferencesManager.getFirstValue());
         secondScore.setText(sharedPreferencesManager.getSecondValue());
         thirdScore.setText(sharedPreferencesManager.getThirdValue());
+        shareScore.startAnimation(AnimationUtil.getZoomIn(this));
     }
 
     @OnClick(R.id.ivShare)
