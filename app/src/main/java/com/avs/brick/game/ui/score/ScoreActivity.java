@@ -57,10 +57,10 @@ public class ScoreActivity extends AppCompatActivity {
     @OnClick(R.id.ivShare)
     public void share() {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
+        sharingIntent.setType(Values.SHARE_INTENT_TYPE);
         String shareBody = getResources().getString(R.string.share_body_part_one)
                 + sharedPreferencesManager.getFirstValue()
-                + getResources().getString(R.string.share_body_part_second)
+                + " " + getResources().getString(R.string.share_body_part_second) + "\n\n"
                 + Values.PLAY_MARKET_URL;
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
