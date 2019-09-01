@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="rotate_icon_padding">26dp</dimen>
+    <dimen name="move_down_icon_padding">24dp</dimen>
+    <dimen name="pause_icon_padding">14dp</dimen>
+    <dimen name="scoresTextSize">16sp</dimen>
+</resources>

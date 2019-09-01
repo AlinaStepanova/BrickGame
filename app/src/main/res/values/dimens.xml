@@ -31,4 +31,9 @@
     <dimen name="elevation">10dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
     <dimen name="settings_height_44dp">44dp</dimen>
+    <dimen name="rotate_icon_padding">32dp</dimen>
+    <dimen name="margin">32dp</dimen>
+    <dimen name="move_down_icon_padding">32dp</dimen>
+    <dimen name="pause_icon_padding">16dp</dimen>
+    <dimen name="scoresTextSize">18sp</dimen>
 </resources>
