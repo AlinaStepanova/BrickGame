@@ -24,4 +24,7 @@
     <string name="slow_figure_speed_text">Медленно</string>
     <string name="very_slow_figure_speed_text">Очень медленно</string>
     <string name="very_fast_figure_speed_text">Очень быстро</string>
+    <string name="share_via_text">Завершить действие с помощью</string>
+    <string name="share_body_part_one">"Побей мой лучший рекорд - "</string>
+    <string name="share_body_part_second">в игре Brick Game. Удачи!</string>
 </resources>

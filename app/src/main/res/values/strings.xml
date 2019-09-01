@@ -27,4 +27,7 @@
     <string name="show_vertical_hints_title">Enable vertical hints</string>
     <string name="cannot_send_email_error_text">Cannot send email</string>
     <string name="set_squares_count_in_row_title">Squares count in a row</string>
+    <string name="share_via_text">Share via</string>
+    <string name="share_body_part_one">"I challenge you to beat my highest score - "</string>
+    <string name="share_body_part_second">in Brick Game. Cheers!</string>
 </resources>
