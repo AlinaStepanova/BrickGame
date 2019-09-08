@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="mainTextSize">36sp</dimen>
-    <dimen name="rotateIconPadding">28dp</dimen>
+    <dimen name="rotateIconPadding">26dp</dimen>
     <dimen name="moveDownIconPadding">24dp</dimen>
     <dimen name="pauseIconPadding">14dp</dimen>
     <dimen name="scoresTextSize">16sp</dimen>
     <dimen name="scoresTitleSize">30sp</dimen>
     <dimen name="scoresListSize">24sp</dimen>
     <dimen name="shareButtonPadding">10dp</dimen>
-    <dimen name="buttonsStartSize">24dp</dimen>
+    <dimen name="buttonsStartSize">22dp</dimen>
     <dimen name="settingsTextSize">16sp</dimen>
     <dimen name="colorPickerTextSize">14sp</dimen>
     <dimen name="ButtonsPadding">8dp</dimen>
