@@ -30,5 +30,17 @@
 
     <dimen name="elevation">10dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
-    <dimen name="settings_height_44dp">44dp</dimen>
+    <dimen name="settingsHeight44dp">44dp</dimen>
+    <dimen name="rotateIconPadding">32dp</dimen>
+    <dimen name="margin">32dp</dimen>
+    <dimen name="moveDownIconPadding">32dp</dimen>
+    <dimen name="pauseIconPadding">16dp</dimen>
+    <dimen name="scoresTextSize">18sp</dimen>
+    <dimen name="scoresTitleSize">30sp</dimen>
+    <dimen name="scoresListSize">22sp</dimen>
+    <dimen name="shareButtonPadding">8dp</dimen>
+    <dimen name="buttonsStartSize">20dp</dimen>
+    <dimen name="settingsTextSize">16sp</dimen>
+    <dimen name="colorPickerTextSize">12sp</dimen>
+    <dimen name="ButtonsPadding">4dp</dimen>
 </resources>

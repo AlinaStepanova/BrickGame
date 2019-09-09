@@ -27,11 +27,12 @@
         <item name="android:layout_marginEnd">@dimen/maxMargin</item>
         <item name="android:background">@drawable/button_shape</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textSize">@dimen/midTextSize</item>
+        <item name="android:textSize">@dimen/buttonsStartSize</item>
         <item name="android:layout_marginTop">@dimen/mainMargin</item>
         <item name="android:layout_marginBottom">@dimen/mainMargin</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/ButtonsPadding</item>
     </style>
 
     <style name="linear_layout_style">
