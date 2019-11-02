@@ -30,7 +30,7 @@
 
     <dimen name="elevation">10dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
-    <dimen name="settingsHeight44dp">44dp</dimen>
+    <dimen name="settingsHeight42dp">42dp</dimen>
     <dimen name="rotateIconPadding">32dp</dimen>
     <dimen name="margin">32dp</dimen>
     <dimen name="moveDownIconPadding">32dp</dimen>

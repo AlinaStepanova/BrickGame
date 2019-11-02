@@ -10,7 +10,7 @@
     android:paddingBottom="2dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/vDivider4"
+    app:layout_constraintTop_toBottomOf="@+id/vDivider5"
     tools:showIn="@layout/activity_settings">
 
     <ImageView
@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/tvPrivacyPolicyTitle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/settingsHeight44dp"
+        android:layout_height="@dimen/settingsHeight42dp"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/margin8dp"

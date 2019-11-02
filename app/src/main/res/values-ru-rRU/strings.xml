@@ -5,7 +5,7 @@
     <string name="congrats_sub_title">Поздравляем! Ваш новый рекорд</string>
     <string name="default_figure_speed_text">Умеренно</string>
     <string name="fast_figure_speed_text">Быстро</string>
-    <string name="feedback_title">Отзыв</string>
+    <string name="feedback_title">Письмо автору</string>
     <string name="game_over_text">КОНЕЦ ИГРЫ</string>
     <string name="general_title">Основное</string>
     <string name="more_title">Больше</string>
@@ -27,4 +27,6 @@
     <string name="share_via_text">Завершить действие с помощью</string>
     <string name="share_body_part_one">"Побей мой лучший рекорд - "</string>
     <string name="share_body_part_second">в игре Brick Game. Удачи!</string>
+    <string name="rate_title">Оценить в Google Play</string>
+    <string name="cannot_open_market_error_text">Невозможно открыть приложение Play Market</string>
 </resources>

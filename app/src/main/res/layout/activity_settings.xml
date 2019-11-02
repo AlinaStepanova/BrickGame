@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/tvSettingsTitle"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/settingsHeight44dp"
+            android:layout_height="@dimen/settingsHeight42dp"
             android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             android:text="@string/settings_title"
@@ -95,7 +95,7 @@
             android:id="@+id/vDivider6"
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_marginTop="@dimen/margin8dp"
+            android:layout_marginTop="@dimen/margin4dp"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintTop_toBottomOf="@+id/clSpeedPicker"/>
 
@@ -163,10 +163,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/flShowHints"/>
 
-        <include layout="@layout/settings_feedback"/>
+        <include layout="@layout/settings_rate"/>
 
         <View
             android:id="@+id/vDivider4"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@+id/flRate"/>
+
+        <include layout="@layout/settings_feedback"/>
+
+        <View
+            android:id="@+id/vDivider5"
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="@color/colorPrimaryDark"
@@ -175,10 +184,11 @@
         <include layout="@layout/settings_privacy_policy"/>
 
         <View
-            android:id="@+id/vDivider5"
+            android:id="@+id/vDivider"
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintTop_toBottomOf="@+id/flPrivacyPolicy"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

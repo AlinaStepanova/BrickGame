@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.net.Uri;
 
 import com.avs.brick.game.R;
 import com.avs.brick.game.enums.FigureSpeed;
@@ -75,5 +76,10 @@ public class Utils {
         if (best != null)
             emailIntent.setClassName(best.activityInfo.packageName, best.activityInfo.name);
         return emailIntent;
+    }
+
+    public static Intent openMarket(Activity activity) {
+        Uri uri = Uri.parse("market://details?id=" + activity.getPackageName());
+        return new Intent(Intent.ACTION_VIEW, uri);
     }
 }

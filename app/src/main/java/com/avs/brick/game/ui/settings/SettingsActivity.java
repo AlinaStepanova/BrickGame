@@ -103,6 +103,15 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
         }
     }
 
+    @OnClick(R.id.flRate)
+    void rateApp() {
+        try {
+            startActivity(Utils.openMarket(this));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, getResources().getString(R.string.cannot_open_market_error_text), Toast.LENGTH_LONG).show();
+        }
+    }
+
     @OnClick(R.id.vLFigureColor)
     void chooseColorFirst() {
         settingsPresenter.getEvent(R.id.vLFigureColor);
