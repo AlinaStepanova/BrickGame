@@ -1,6 +1,8 @@
 # BrickGame
 Brick Game is a free, lightweight puzzle game that is created for your leisure.
 
+Download from Play Market: https://play.google.com/store/apps/details?id=com.avs.brick.game&pageId=none
+
 How to play:
 
 - Tap on the screen left or right to move the brick.
