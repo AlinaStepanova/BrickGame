@@ -16,7 +16,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements OnTimerStateChangedListener {
 
-    @BindView(R.id.pole)
+    @BindView(R.id.playingArea)
     PlayingAreaView playingAreaView;
 
     @BindView(R.id.tvScore)

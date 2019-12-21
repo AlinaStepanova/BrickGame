@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.avs.brick.game.ui.main.views.PlayingAreaView
-            android:id="@+id/pole"
+            android:id="@+id/playingArea"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white">
