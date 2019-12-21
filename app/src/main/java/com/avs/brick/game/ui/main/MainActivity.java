@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.avs.brick.game.R;
-import com.avs.brick.game.ui.main.listeners.OnPlayingAreaClick;
 import com.avs.brick.game.ui.main.listeners.OnTimerStateChangedListener;
-import com.avs.brick.game.ui.main.views.ControlsView;
 import com.avs.brick.game.ui.main.views.PlayingAreaView;
 import com.avs.brick.game.ui.main.views.PreviewAreaView;
 import com.avs.brick.game.ui.main.views.ScoreView;
@@ -16,16 +14,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements OnPlayingAreaClick, OnTimerStateChangedListener {
+public class MainActivity extends AppCompatActivity implements OnTimerStateChangedListener {
 
     @BindView(R.id.pole)
     PlayingAreaView playingAreaView;
 
     @BindView(R.id.tvScore)
     ScoreView scoreView;
-
-    @BindView(R.id.controller)
-    ControlsView controlsView;
 
     @BindView(R.id.tvNextFigure)
     PreviewAreaView previewAreaView;
@@ -45,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         playingAreaView.setDependencies(scoreView, previewAreaView, this);
-        controlsView.setOnPlayingAreaClick(this);
         playingAreaView.cleanup();
         playingAreaView.createFigureWithDelay();
     }
@@ -101,25 +95,5 @@ public class MainActivity extends AppCompatActivity implements OnPlayingAreaClic
     public void disableAllControls() {
         playPauseImage.setEnabled(false);
         setControlsEnabled(false);
-    }
-
-    @Override
-    public void onRightButtonClick() {
-        playingAreaView.moveRight();
-    }
-
-    @Override
-    public void onLeftButtonClick() {
-        playingAreaView.moveLeft();
-    }
-
-    @Override
-    public void onRightButtonLongClick() {
-        playingAreaView.moveRightFast();
-    }
-
-    @Override
-    public void onLeftButtonLongClick() {
-        playingAreaView.moveLeftFast();
     }
 }

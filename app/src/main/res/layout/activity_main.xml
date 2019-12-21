@@ -21,13 +21,6 @@
             android:background="@color/white">
         </com.avs.brick.game.ui.main.views.PlayingAreaView>
 
-        <com.avs.brick.game.ui.main.views.ControlsView
-            android:id="@+id/controller"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/transparent">
-        </com.avs.brick.game.ui.main.views.ControlsView>
-
     </FrameLayout>
 
     <androidx.constraintlayout.widget.Guideline

@@ -21,6 +21,8 @@ import com.avs.brick.game.figures.factory.FigureCreator;
 import com.avs.brick.game.figures.factory.FigureFactory;
 import com.avs.brick.game.ui.main.NetManager;
 import com.avs.brick.game.ui.main.listeners.OnNetChangedListener;
+import com.avs.brick.game.ui.main.listeners.OnPlayingAreaTouch;
+import com.avs.brick.game.ui.main.listeners.OnViewTouchListener;
 import com.avs.brick.game.ui.main.listeners.OnTimerStateChangedListener;
 
 import androidx.annotation.AttrRes;
@@ -35,7 +37,7 @@ import static com.avs.brick.game.Values.LINE_WIDTH;
  * Created by Alina on 18.03.2017.
  */
 
-public class PlayingAreaView extends View implements OnNetChangedListener {
+public class PlayingAreaView extends View implements OnNetChangedListener, OnPlayingAreaTouch {
 
     private int squareWidth, verticalSquareCount;
     private int screenHeight, screenWidth;
@@ -50,6 +52,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
     private ScoreView scoreView;
     private PreviewAreaView previewAreaView;
     private SharedPreferencesManager sharedPreferencesManager;
+    private OnViewTouchListener onViewTouchListener;
 
     private Paint paint;
 
@@ -77,6 +80,8 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         paint = new Paint();
         figureCreator = new FigureCreator();
         sharedPreferencesManager = new SharedPreferencesManager(getContext());
+        onViewTouchListener = new OnViewTouchListener(context, this);
+        setOnTouchListener(onViewTouchListener);
         this.squaresInRowCount = sharedPreferencesManager.getSquaresCountInRow();
         this.context = context;
         this.isTimerRunning = true;
@@ -107,6 +112,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         scale = squareWidth - (MeasureSpec.getSize(heightMeasureSpec) % squareWidth);
         screenHeight = MeasureSpec.getSize(heightMeasureSpec);
         screenWidth = MeasureSpec.getSize(widthMeasureSpec);
+        if (onViewTouchListener != null) onViewTouchListener.setScreenWidth(screenWidth);
     }
 
     public void cleanup() {
@@ -247,11 +253,11 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
                     squareWidth, scale, context, currentFigure.pointOnScreen);
             if (figure != null) {
                 figure.initFigureMask();
-            }
-            if (netManager.canRotate(figure)) {
-                currentFigure = figure;
-                netManager.checkBottomLine();
-                netManager.initRotatedFigure(figure);
+                if (netManager.canRotate(figure)) {
+                    currentFigure = figure;
+                    netManager.checkBottomLine();
+                    netManager.initRotatedFigure(figure);
+                }
             }
         }
     }
@@ -325,5 +331,25 @@ public class PlayingAreaView extends View implements OnNetChangedListener {
         onTimerStateChangedListener.disableAllControls();
         Toast.makeText(context, context.getString(R.string.game_over_text), Toast.LENGTH_LONG).show();
         new Handler().postDelayed(() -> ((Activity) context).finish(), GAME_OVER_DELAY_IN_MILLIS);
+    }
+
+    @Override
+    public void onRightSwipe() {
+        moveRight();
+    }
+
+    @Override
+    public void onLeftSwipe() {
+        moveLeft();
+    }
+
+    @Override
+    public void onLongLeftClick() {
+        moveLeftFast();
+    }
+
+    @Override
+    public void onLongRightClick() {
+        moveRightFast();
     }
 }
