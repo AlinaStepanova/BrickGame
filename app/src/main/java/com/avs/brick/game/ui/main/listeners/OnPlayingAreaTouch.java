@@ -6,9 +6,9 @@ package com.avs.brick.game.ui.main.listeners;
 
 public interface OnPlayingAreaTouch {
 
-    void onRightSwipe();
+    void onRightMove();
 
-    void onLeftSwipe();
+    void onLeftMove();
 
     void onLongLeftClick();
 

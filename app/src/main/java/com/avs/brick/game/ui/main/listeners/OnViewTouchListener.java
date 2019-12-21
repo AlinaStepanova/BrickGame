@@ -52,9 +52,9 @@ public class OnViewTouchListener implements View.OnTouchListener {
         public boolean onSingleTapUp(MotionEvent e) {
             if (halfScreenWidth != 0 && onPlayingAreaTouch != null) {
                 if (e.getX() <= halfScreenWidth) {
-                    onPlayingAreaTouch.onLeftSwipe();
+                    onPlayingAreaTouch.onLeftMove();
                 } else if (e.getX() > halfScreenWidth) {
-                    onPlayingAreaTouch.onRightSwipe();
+                    onPlayingAreaTouch.onRightMove();
                 }
             }
             return super.onSingleTapUp(e);
@@ -66,9 +66,9 @@ public class OnViewTouchListener implements View.OnTouchListener {
             float distanceY = e2.getY() - e1.getY();
             if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > SWIPE_DISTANCE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                 if (distanceX > 0) {
-                    if (onPlayingAreaTouch != null) onPlayingAreaTouch.onRightSwipe();
+                    if (onPlayingAreaTouch != null) onPlayingAreaTouch.onRightMove();
                 } else {
-                    if (onPlayingAreaTouch != null) onPlayingAreaTouch.onLeftSwipe();
+                    if (onPlayingAreaTouch != null) onPlayingAreaTouch.onLeftMove();
                 }
                 return true;
             }

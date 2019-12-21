@@ -334,12 +334,12 @@ public class PlayingAreaView extends View implements OnNetChangedListener, OnPla
     }
 
     @Override
-    public void onRightSwipe() {
+    public void onRightMove() {
         moveRight();
     }
 
     @Override
-    public void onLeftSwipe() {
+    public void onLeftMove() {
         moveLeft();
     }
 
