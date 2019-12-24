@@ -269,8 +269,8 @@ public class PlayingAreaView extends View implements OnNetChangedListener, OnPla
             currentFigure = figure;
             currentFigure.initFigureMask();
             if (netManager == null) {
-                netManager = new NetManager(this);
-                netManager.initNet(verticalSquareCount, squaresInRowCount, squareWidth, scale);
+                netManager = new NetManager(this, verticalSquareCount,
+                        squaresInRowCount, squareWidth, scale);
             }
             if (netManager.isVerticalLineComplete()) {
                 netManager.checkBottomLine();

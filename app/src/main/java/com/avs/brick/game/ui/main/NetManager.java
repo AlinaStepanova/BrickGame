@@ -26,13 +26,15 @@ public class NetManager {
 
     private int squareWidth, scale;
 
-    public NetManager(OnNetChangedListener onNetChangedListener) {
+    public NetManager(OnNetChangedListener onNetChangedListener, int verticalSquaresCount,
+                      int horizontalSquaresCount, int widthOfSquareSide, int scale) {
         this.onNetChangedListener = onNetChangedListener;
         this.net = null;
         combo = 0;
+        initNet(verticalSquaresCount, horizontalSquaresCount, widthOfSquareSide, scale);
     }
 
-    public void initNet(int verticalSquaresCount, int horizontalSquaresCount, int widthOfSquareSide, int scale) {
+    private void initNet(int verticalSquaresCount, int horizontalSquaresCount, int widthOfSquareSide, int scale) {
         this.net = new boolean[verticalSquaresCount + EXTRA_ROWS][horizontalSquaresCount];
         setFalseNet(net);
         this.squareWidth = widthOfSquareSide;
