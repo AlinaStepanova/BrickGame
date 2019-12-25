@@ -267,7 +267,6 @@ public class PlayingAreaView extends View implements OnNetChangedListener, OnPla
                 squareWidth, scale, squaresInRowCount, context);
         if (figure != null) {
             currentFigure = figure;
-            currentFigure.initFigureMask();
             if (netManager == null) {
                 netManager = new NetManager(this, verticalSquareCount,
                         squaresInRowCount, squareWidth, scale);

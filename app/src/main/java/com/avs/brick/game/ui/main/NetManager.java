@@ -49,6 +49,22 @@ public class NetManager {
         initFigure(figure);
     }
 
+    public int getNetRowCount() {
+        return net.length;
+    }
+
+    public int getNetColumnCount() {
+        return net[0].length;
+    }
+
+    public boolean[][] getNetCopy() {
+        return net;
+    }
+
+    public boolean[][] getZeroCopy() {
+        return zeroNet;
+    }
+
     public void initFigure(Figure figure) {
         this.figure = figure;
         this.zeroNet = new boolean[figure.getHeightInSquare()][1];

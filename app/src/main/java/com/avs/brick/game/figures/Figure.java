@@ -41,6 +41,7 @@ public abstract class Figure {
         this.context = context;
         pointInNet = new Point(getCoordinateInNet(squareWidth, pointOnScreen.x),
                 EXTRA_ROWS - (getHeightInSquare()));
+        initFigureMask();
     }
 
     protected Figure(int squareWidth, int scale, Context context, Point pointOnScreen) {
