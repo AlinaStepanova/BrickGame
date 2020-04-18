@@ -43,4 +43,5 @@
     <dimen name="settingsTextSize">16sp</dimen>
     <dimen name="colorPickerTextSize">12sp</dimen>
     <dimen name="ButtonsPadding">4dp</dimen>
+    <dimen name="speedPickerTextSize">14sp</dimen>
 </resources>

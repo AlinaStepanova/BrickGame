@@ -10,7 +10,7 @@
     android:paddingBottom="2dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/vDivider5"
+    app:layout_constraintTop_toBottomOf="@+id/vDividerFeedback"
     tools:showIn="@layout/activity_settings">
 
     <ImageView

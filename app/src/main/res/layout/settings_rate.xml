@@ -10,7 +10,7 @@
     android:paddingBottom="2dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/tvMorelTitle"
+    app:layout_constraintTop_toBottomOf="@+id/tvOtherTitle"
     tools:showIn="@layout/activity_settings">
 
     <ImageView

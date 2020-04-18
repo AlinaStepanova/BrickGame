@@ -15,7 +15,7 @@
     <string name="privacy_policy_title">Privacy policy</string>
     <string name="feedback_title">Write to developer</string>
     <string name="rate_title">Rate on Google Play</string>
-    <string name="more_title">More</string>
+    <string name="other_title">Other</string>
     <string name="set_figures_speed_title">Bricks\' speed</string>
     <string name="pick_figures_colour_title">Bricks\' color</string>
     <string name="general_title">General</string>
@@ -35,4 +35,5 @@
     <string name="content_description_rotate" translatable="false">Rotate</string>
     <string name="content_description_move_down" translatable="false">Move down</string>
     <string name="content_description_pause_or_resume_game" translatable="false">Pause or resume game</string>
+    <string name="more_apps_title">More apps</string>
 </resources>

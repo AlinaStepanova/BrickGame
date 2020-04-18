@@ -106,6 +106,15 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
         if (squaresNumberPicker != null) squaresNumberPicker.setValue(squaresCountInRow);
     }
 
+    @OnClick(R.id.flMoreApps)
+    void showMoreApps() {
+        try {
+            startActivity(Utils.showMoreApps(this));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, getResources().getString(R.string.cannot_open_market_error_text), Toast.LENGTH_LONG).show();
+        }
+    }
+
     @OnClick(R.id.flPrivacyPolicy)
     void openPrivacyPolicy() {
         startActivity(new Intent(this, PrivacyPolicyActivity.class));

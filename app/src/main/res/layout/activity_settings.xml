@@ -66,12 +66,12 @@
         <include layout="@layout/color_picker"/>
 
         <View
-            android:id="@+id/vDivider2"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:id="@+id/vDividerColor"
             android:layout_marginTop="@dimen/margin4dp"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintTop_toBottomOf="@+id/clColorPicker"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clColorPicker"
+            style="@style/DividerStyle" />
 
         <TextView
             android:id="@+id/tvSetSpeedTitle"
@@ -87,17 +87,17 @@
             android:textSize="@dimen/settingsTextSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vDivider2"/>
+            app:layout_constraintTop_toBottomOf="@+id/vDividerColor"/>
 
         <include layout="@layout/speed_picker"/>
 
         <View
-            android:id="@+id/vDivider6"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:id="@+id/vDividerSpeed"
             android:layout_marginTop="@dimen/margin4dp"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintTop_toBottomOf="@+id/clSpeedPicker"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clSpeedPicker"
+            style="@style/DividerStyle" />
 
         <TextView
             android:id="@+id/tvSetSquaresCountTitle"
@@ -113,7 +113,7 @@
             android:textSize="@dimen/settingsTextSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vDivider6"/>
+            app:layout_constraintTop_toBottomOf="@+id/vDividerSpeed"/>
 
         <com.shawnlin.numberpicker.NumberPicker
             android:id="@+id/squaresCountNumberPicker"
@@ -137,17 +137,17 @@
             app:np_width="180dp"/>
 
         <View
-            android:id="@+id/vDivider7"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:id="@+id/vDividerPicker"
             android:layout_marginTop="@dimen/margin8dp"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintTop_toBottomOf="@+id/squaresCountNumberPicker"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/squaresCountNumberPicker"
+            style="@style/DividerStyle" />
 
         <include layout="@layout/settings_hints"/>
 
         <TextView
-            android:id="@+id/tvMorelTitle"
+            android:id="@+id/tvOtherTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="2dp"
@@ -156,7 +156,7 @@
             android:fontFamily="sans-serif-condensed"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/margin8dp"
-            android:text="@string/more_title"
+            android:text="@string/other_title"
             android:textColor="@color/white"
             android:textSize="@dimen/settingsTextSize"
             app:layout_constraintEnd_toEndOf="parent"
@@ -166,29 +166,38 @@
         <include layout="@layout/settings_rate"/>
 
         <View
-            android:id="@+id/vDivider4"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintTop_toBottomOf="@+id/flRate"/>
+            android:id="@+id/vDividerRate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flRate"
+            style="@style/DividerStyle" />
+
+        <include layout="@layout/settings_more_apps"/>
+
+        <View
+            android:id="@+id/vDividerMoreApps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flMoreApps"
+            style="@style/DividerStyle" />
 
         <include layout="@layout/settings_feedback"/>
 
         <View
-            android:id="@+id/vDivider5"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintTop_toBottomOf="@+id/flFeedback"/>
+            android:id="@+id/vDividerFeedback"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flFeedback"
+            style="@style/DividerStyle" />
 
         <include layout="@layout/settings_privacy_policy"/>
 
         <View
-            android:id="@+id/vDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/colorPrimaryDark"
-            app:layout_constraintTop_toBottomOf="@+id/flPrivacyPolicy"/>
+            android:id="@+id/vDividerPolicy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flPrivacyPolicy"
+            style="@style/DividerStyle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

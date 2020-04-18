@@ -11,6 +11,7 @@ import com.avs.brick.game.enums.FigureSpeed;
 
 import java.util.List;
 
+import static com.avs.brick.game.Values.DEV_NAME;
 import static com.avs.brick.game.enums.FigureSpeed.DEFAULT;
 import static com.avs.brick.game.enums.FigureSpeed.FAST;
 import static com.avs.brick.game.enums.FigureSpeed.SLOW;
@@ -80,6 +81,11 @@ public class Utils {
 
     public static Intent openMarket(Activity activity) {
         Uri uri = Uri.parse("market://details?id=" + activity.getPackageName());
+        return new Intent(Intent.ACTION_VIEW, uri);
+    }
+
+    public static Intent showMoreApps(Activity activity) {
+        Uri uri = Uri.parse("market://search?q=pub:" + DEV_NAME);
         return new Intent(Intent.ACTION_VIEW, uri);
     }
 }

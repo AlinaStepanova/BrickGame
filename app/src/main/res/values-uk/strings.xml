@@ -8,7 +8,7 @@
     <string name="next">ДАЛІ</string>
     <string name="new_score_notification_title">Новий рекорд</string>
     <string name="new_game">НОВА ГРА</string>
-    <string name="more_title">Більше</string>
+    <string name="other_title">Інше</string>
     <string name="feedback_title">Лист автору</string>
     <string name="game_over_text">КІНЕЦЬ ГРИ</string>
     <string name="cannot_send_email_error_text">Неможливо надіслати повідомлення</string>
@@ -29,4 +29,5 @@
     <string name="share_body_part_second">у грі Brick Game. Успіхів!</string>
     <string name="rate_title">Оцінити в Google Play</string>
     <string name="cannot_open_market_error_text">Неможливо відкрити додаток Play Market</string>
+    <string name="more_apps_title">Більше додатків</string>
 </resources>

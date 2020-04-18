@@ -55,7 +55,6 @@
     <style name="ImageViewStyle">
         <item name="android:layout_weight">0.15</item>
         <item name="android:layout_width">wrap_content</item>
-        <!--<item name="android:background">@color/white</item>-->
         <item name="android:layout_height">0dp</item>
     </style>
 
@@ -82,6 +81,7 @@
         <item name="android:maxWidth">68dp</item>
         <item name="android:singleLine">false</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/speedPickerTextSize</item>
     </style>
 
     <style name="ControlButtonStyle">
@@ -92,6 +92,12 @@
         <item name="android:background">@drawable/button_circle</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+    </style>
+
+    <style name="DividerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
 </resources>
