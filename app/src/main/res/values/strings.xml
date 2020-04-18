@@ -32,4 +32,7 @@
     <string name="share_via_text">Share via</string>
     <string name="share_body_part_one">"I challenge you to beat my highest score - "</string>
     <string name="share_body_part_second">in Brick Game. Cheers!</string>
+    <string name="content_description_rotate" translatable="false">Rotate</string>
+    <string name="content_description_move_down" translatable="false">Move down</string>
+    <string name="content_description_pause_or_resume_game" translatable="false">Pause or resume game</string>
 </resources>

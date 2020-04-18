@@ -13,10 +13,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:paddingStart="@dimen/margin8dp"
-            android:paddingTop="@dimen/margin16dp"
-            android:paddingEnd="@dimen/margin8dp"
-            android:paddingBottom="@dimen/margin8dp"
+            android:padding="@dimen/margin8dp"
+            android:layout_marginTop="@dimen/margin8dp"
             app:srcCompat="@drawable/ic_settings"/>
 
         <LinearLayout

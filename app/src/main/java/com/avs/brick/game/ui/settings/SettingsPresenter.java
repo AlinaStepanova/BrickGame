@@ -81,8 +81,6 @@ class SettingsPresenter {
     }
 
     private void manageSpeedPicking(long newSpeed, int newItemId) {
-        int oldItemId = Utils.getFiguresSpeedByMillis(sharedPreferencesManager
-                        .getFiguresSpeed()).getSpeedItemId();
         sharedPreferencesManager.setFiguresSpeed(newSpeed);
         settingsView.setSpeedTitle(newItemId);
     }

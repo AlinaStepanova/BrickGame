@@ -111,48 +111,39 @@
 
         <ImageView
             android:id="@+id/ivRotate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_margin="@dimen/margin4dp"
             android:layout_marginBottom="@dimen/margin"
-            android:adjustViewBounds="true"
-            android:background="@drawable/button_circle"
             android:padding="@dimen/rotateIconPadding"
             app:layout_constraintBottom_toTopOf="@+id/ivMoveDown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_rotate" />
+            app:srcCompat="@drawable/ic_rotate"
+            style="@style/ControlButtonStyle"
+            android:contentDescription="@string/content_description_rotate" />
 
         <ImageView
             android:id="@+id/ivMoveDown"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_margin="@dimen/margin4dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/button_circle"
             android:padding="@dimen/moveDownIconPadding"
             app:layout_constraintBottom_toTopOf="@+id/ivPausePlay"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivRotate"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_down" />
+            app:srcCompat="@drawable/ic_down"
+            style="@style/ControlButtonStyle"
+            android:contentDescription="@string/content_description_move_down" />
 
         <ImageView
             android:id="@+id/ivPausePlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_margin="@dimen/margin4dp"
             android:layout_marginBottom="@dimen/margin16dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/button_circle"
             android:padding="@dimen/pauseIconPadding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_pause" />
+            app:srcCompat="@drawable/ic_pause"
+            style="@style/ControlButtonStyle"
+            android:contentDescription="@string/content_description_pause_or_resume_game" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

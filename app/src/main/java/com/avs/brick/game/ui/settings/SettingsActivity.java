@@ -2,6 +2,8 @@ package com.avs.brick.game.ui.settings;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -18,6 +20,11 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+
+import org.jetbrains.annotations.NotNull;
+
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -58,20 +65,35 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @Override
     public void markChosenColor(int oldColor, int newItemId) {
         ImageView oldImageView = findViewById(Utils.getViewIdByColor(oldColor));
-        oldImageView.setImageDrawable(null);
+        if (oldImageView != null) {
+            oldImageView.setImageDrawable(null);
+        }
         ImageView newImageView = findViewById(newItemId);
-        newImageView.setImageDrawable(getDrawable(R.drawable.ic_ok));
+        if (newImageView != null) {
+            newImageView.setImageDrawable(getDrawable(R.drawable.ic_ok));
+        }
     }
 
     @Override
     public void setSpeedTitle(int newItemId) {
-        for (TextView item: speedItems) {
-            item.getBackground().setTint(getResources().getColor(R.color.white));
+        for (TextView item : speedItems) {
+            final Drawable wrappedDrawable = getDrawable(item, R.color.white);
+            item.setBackground(wrappedDrawable);
             item.setTextColor(getResources().getColor(R.color.colorPrimary));
         }
         TextView newItem = findViewById(newItemId);
-        newItem.getBackground().setTint(getResources().getColor(R.color.colorPrimary));
-        newItem.setTextColor(getResources().getColor(R.color.white));
+        if (newItem != null) {
+            final Drawable wrappedDrawable = getDrawable(newItem, R.color.colorPrimary);
+            newItem.setBackground(wrappedDrawable);
+            newItem.setTextColor(getResources().getColor(R.color.white));
+        }
+    }
+
+    @NotNull
+    private Drawable getDrawable(TextView item, int colorId) {
+        final Drawable wrappedDrawable = DrawableCompat.wrap(item.getBackground());
+        DrawableCompat.setTintList(wrappedDrawable, ColorStateList.valueOf(getResources().getColor(colorId)));
+        return wrappedDrawable;
     }
 
     @Override
@@ -138,9 +160,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     }
 
     @OnClick(R.id.vJFigureColor)
-    void chooseColorSixth() {
-        settingsPresenter.getEvent(R.id.vJFigureColor);
-    }
+    void chooseColorSixth() { settingsPresenter.getEvent(R.id.vJFigureColor); }
 
     @OnClick(R.id.tvVerySlow)
     void chooseVerySlowSpeed() {
