@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BrickGame.iml" filepath="$PROJECT_DIR$/BrickGame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/BrickGame-app.iml" filepath="$PROJECT_DIR$/app/BrickGame-app.iml" group="BrickGame/app" />
+      <module fileurl="file://$PROJECT_DIR$/StudioProjects-BrickGame.iml" filepath="$PROJECT_DIR$/StudioProjects-BrickGame.iml" group="BrickGame" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
