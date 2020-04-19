@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
+import com.avs.brick.game.BuildConfig;
 import com.avs.brick.game.R;
 import com.avs.brick.game.Values;
 import com.avs.brick.game.data.SharedPreferencesManager;
@@ -183,7 +184,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener, OnPla
     }
 
     private void startMoveDown() {
-        netManager.printNet();
+        if (BuildConfig.DEBUG) netManager.printNet();
         cancelTimer();
         timer = new CountDownTimer(sharedPreferencesManager.getFiguresSpeed(), COUNT_DOWN_INTERVAL) {
             public void onTick(long millisUntilFinished) {
@@ -274,7 +275,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener, OnPla
             if (netManager.isVerticalLineComplete()) {
                 netManager.checkBottomLine();
                 netManager.initFigure(currentFigure);
-                netManager.printNet();
+                if (BuildConfig.DEBUG) netManager.printNet();
                 invalidate();
             }
         }
@@ -285,7 +286,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener, OnPla
             netManager.resetMaskBeforeMoveWithFalse();
             currentFigure.moveLeft();
             netManager.moveLeftInNet();
-            netManager.printNet();
+            if (BuildConfig.DEBUG) netManager.printNet();
             invalidate();
         }
     }
@@ -295,7 +296,7 @@ public class PlayingAreaView extends View implements OnNetChangedListener, OnPla
             netManager.resetMaskBeforeMoveWithFalse();
             currentFigure.moveRight();
             netManager.moveRightInNet();
-            netManager.printNet();
+            if (BuildConfig.DEBUG) netManager.printNet();
             invalidate();
         }
     }

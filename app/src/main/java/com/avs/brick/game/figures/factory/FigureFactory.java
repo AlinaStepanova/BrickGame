@@ -16,14 +16,14 @@ import com.avs.brick.game.figures.figure_l.LThirdFigure;
 import com.avs.brick.game.figures.figure_long.LongFigure;
 import com.avs.brick.game.figures.figure_long.LongSecondFigure;
 import com.avs.brick.game.figures.figure_s.SFigure;
-import com.avs.brick.game.figures.figure_s.SSecondFigure;
+import com.avs.brick.game.figures.figure_z.ZSecondFigure;
 import com.avs.brick.game.figures.SquareFigure;
 import com.avs.brick.game.figures.figure_t.TFigure;
 import com.avs.brick.game.figures.figure_t.TFourthFigure;
 import com.avs.brick.game.figures.figure_t.TSecondFigure;
 import com.avs.brick.game.figures.figure_t.TThirdFigure;
 import com.avs.brick.game.figures.figure_z.ZFigure;
-import com.avs.brick.game.figures.figure_z.ZSecondFigure;
+import com.avs.brick.game.figures.figure_s.SSecondFigure;
 
 import static com.avs.brick.game.ui.main.views.PreviewAreaView.PREVIEW_AREA_WIDTH;
 

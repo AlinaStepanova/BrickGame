@@ -2,6 +2,7 @@ package com.avs.brick.game.ui.main;
 
 
 import android.graphics.Path;
+import android.util.Log;
 
 import com.avs.brick.game.enums.FigureState;
 import com.avs.brick.game.figures.Figure;
@@ -382,6 +383,6 @@ public class NetManager {
             }
             str.append('\n');
         }
-        /*Log.d("logNet", str.toString());*/
+        Log.d("logNet", str.toString());
     }
 }
