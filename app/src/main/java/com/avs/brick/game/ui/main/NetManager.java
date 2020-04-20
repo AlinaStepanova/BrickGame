@@ -265,7 +265,7 @@ public class NetManager {
         for (int i = horizontalSquaresCount - 1; i >= 0; i--) {
             for (int j = verticalSquaresCount + EXTRA_ROWS - 1; j >= 0; j--) {
                 if (net[j][i]) {
-                    Path path = FigureCreator.createSmallSquareFigure(i, j, squareWidth, scale);
+                    Path path = Figure.createSmallSquareFigure(i, j, squareWidth, scale);
                     paths.add(path);
                 }
             }

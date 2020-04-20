@@ -1,37 +1,32 @@
 package com.avs.brick.game.figures.factory;
 
-import android.graphics.Path;
-
 import com.avs.brick.game.enums.FigureType;
 
 import java.util.Random;
 
-import static com.avs.brick.game.Values.EXTRA_ROWS;
+import static com.avs.brick.game.enums.FigureType.*;
 
 public class FigureCreator {
 
     private final Random random;
     private FigureType currentFigureType;
     private FigureType nextFigureType;
+    private MainFigureType mainFigureType;
 
     public FigureCreator() {
         random = new Random();
         currentFigureType = null;
-        nextFigureType = selectFigure();
+        nextFigureType = getNewFigure();
     }
 
     private void initFigures() {
         currentFigureType = nextFigureType;
-        nextFigureType = selectFigure();
-    }
-
-    private FigureType selectFigure() {
-        return FigureType.values()[random.nextInt(FigureType.values().length)];
+        nextFigureType = getNewFigure();
     }
 
     public FigureType getCurrentFigureType() {
         if (currentFigureType == null) {
-            return selectFigure();
+            return getNewFigure();
         } else {
             return currentFigureType;
         }
@@ -46,14 +41,30 @@ public class FigureCreator {
         return getNextFigureType();
     }
 
-    public static Path createSmallSquareFigure(int i, int j, int squareWidth, int scale) {
-        Path path = new Path();
-        int delta = j * squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale;
-        path.moveTo(i * squareWidth, delta);
-        path.lineTo(i * squareWidth, delta - squareWidth);
-        path.lineTo(i * squareWidth + squareWidth, delta - squareWidth);
-        path.lineTo(i * squareWidth + squareWidth, delta);
-        path.close();
-        return path;
+    private FigureType getNewFigure() {
+        MainFigureType nextType = mainFigureType;
+        FigureType nextFigure = nextFigureType;
+        while(nextType == mainFigureType) {
+            mainFigureType = MainFigureType.values()[random.nextInt(MainFigureType.values().length)];
+            nextFigure = mainFigureType.types[random.nextInt(mainFigureType.types.length)];
+        }
+        return nextFigure;
+    }
+
+    private enum MainFigureType {
+
+        LONG_TYPE(LONG_FIGURE, LONG_SECOND_FIGURE),
+        SQUARE_TYPE(SQUARE_FIGURE),
+        L_TYPE(L_FIGURE, L_SECOND_FIGURE, L_THIRD_FIGURE, L_FOURTH_FIGURE),
+        T_TYPE(T_FIGURE, T_SECOND_FIGURE, T_THIRD_FIGURE, T_FOURTH_FIGURE),
+        J_TYPE(J_FIGURE, J_SECOND_FIGURE, J_THIRD_FIGURE, J_FOURTH_FIGURE),
+        S_TYPE(S_FIGURE, S_SECOND_FIGURE),
+        Z_TYPE(Z_FIGURE, Z_SECOND_FIGURE);
+
+        final FigureType[] types;
+
+        MainFigureType(FigureType...types) {
+            this.types = types;
+        }
     }
 }
