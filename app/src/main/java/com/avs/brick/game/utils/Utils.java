@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Path;
 import android.net.Uri;
 
 import com.avs.brick.game.R;
@@ -12,6 +13,7 @@ import com.avs.brick.game.enums.FigureSpeed;
 import java.util.List;
 
 import static com.avs.brick.game.Values.DEV_NAME;
+import static com.avs.brick.game.Values.EXTRA_ROWS;
 import static com.avs.brick.game.enums.FigureSpeed.DEFAULT;
 import static com.avs.brick.game.enums.FigureSpeed.FAST;
 import static com.avs.brick.game.enums.FigureSpeed.SLOW;
@@ -19,6 +21,17 @@ import static com.avs.brick.game.enums.FigureSpeed.VERY_FAST;
 import static com.avs.brick.game.enums.FigureSpeed.VERY_SLOW;
 
 public class Utils {
+
+    public static Path createSmallSquareFigure(int i, int j, int squareWidth, int scale) {
+        Path path = new Path();
+        int delta = j * squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale;
+        path.moveTo(i * squareWidth, delta);
+        path.lineTo(i * squareWidth, delta - squareWidth);
+        path.lineTo(i * squareWidth + squareWidth, delta - squareWidth);
+        path.lineTo(i * squareWidth + squareWidth, delta);
+        path.close();
+        return path;
+    }
 
     public static int getViewIdByColor(int color) {
         int id = 0;

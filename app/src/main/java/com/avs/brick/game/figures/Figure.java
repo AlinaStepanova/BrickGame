@@ -123,17 +123,6 @@ public abstract class Figure {
         return this.context.getResources().getColor(R.color.colorPrimaryTransparent);
     }
 
-    public static Path createSmallSquareFigure(int i, int j, int squareWidth, int scale) {
-        Path path = new Path();
-        int delta = j * squareWidth - (EXTRA_ROWS - 2) * squareWidth - scale;
-        path.moveTo(i * squareWidth, delta);
-        path.lineTo(i * squareWidth, delta - squareWidth);
-        path.lineTo(i * squareWidth + squareWidth, delta - squareWidth);
-        path.lineTo(i * squareWidth + squareWidth, delta);
-        path.close();
-        return path;
-    }
-
     public abstract FigureType getRotatedFigure();
 
     public abstract int getWidthInSquare();
