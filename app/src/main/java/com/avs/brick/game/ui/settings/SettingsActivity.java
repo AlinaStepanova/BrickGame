@@ -71,6 +71,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
         ImageView newImageView = findViewById(newItemId);
         if (newImageView != null) {
             newImageView.setImageDrawable(getDrawable(R.drawable.ic_ok));
+        } else {
+            newImageView = findViewById(R.id.vZFigureColor);
+            newImageView.setImageDrawable(getDrawable(R.drawable.ic_ok));
         }
     }
 

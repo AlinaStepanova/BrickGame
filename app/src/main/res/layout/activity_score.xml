@@ -23,7 +23,7 @@
             style="@style/text_view_style"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/scores"
-            android:textColor="@color/mainColor"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/scoresTitleSize" />
 
         <TextView
@@ -40,7 +40,7 @@
             style="@style/text_view_style"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/initial_score"
-            android:textColor="@color/mainColor"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/midTextSize" />
 
         <TextView
@@ -48,7 +48,7 @@
             style="@style/text_view_style"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/initial_score"
-            android:textColor="@color/mainColor"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/midTextSize" />
     </LinearLayout>
 

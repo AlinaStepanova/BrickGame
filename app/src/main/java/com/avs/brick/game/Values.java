@@ -5,7 +5,7 @@ import com.avs.brick.game.enums.FigureSpeed;
 
 public class Values {
 
-    public static final String NAMESPACE                    = "com.avs.brick.game";
+    private static final String NAMESPACE                   = "com.avs.brick.game";
 
     public static final int EXTRA_ROWS                      = 4;
     public static final int FIGURE_STOPPED_SCORE            = 10;
