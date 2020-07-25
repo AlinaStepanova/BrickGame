@@ -7,9 +7,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import android.widget.RemoteViews;
 
 import com.avs.brick.game.R;
 import com.avs.brick.game.ui.score.ScoreActivity;
@@ -36,15 +36,14 @@ public class NotificationUtil {
     }
 
     private Notification getNotificationBuilder() {
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.notification_custom_view);
-        views.setTextViewText(R.id.tvNewScoreResult, context.getString(R.string.congrats_sub_title)
-                + " - " + score + "!");
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, SCORE_CHANNEL)
                 .setSmallIcon(R.drawable.ic_star)
                 .setContentTitle(context.getString(R.string.new_score_notification_title))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
-                .setContent(views)
+                .setContentText(context.getString(R.string.congrats_sub_title)
+                        + " - " + score + "!")
+                .setColorized(true)
                 .setAutoCancel(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

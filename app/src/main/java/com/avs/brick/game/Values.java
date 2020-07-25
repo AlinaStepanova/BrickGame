@@ -11,7 +11,7 @@ public class Values {
     public static final int FIGURE_STOPPED_SCORE            = 10;
     public static final int COUNT_DOWN_INTERVAL             = 750;
     public static final long DELAY_IN_MILLIS                = 1500;
-    public static final long DEBOUNCE_DELAY_IN_MILLIS       = 250;
+    public static final long DEBOUNCE_DELAY_IN_MILLIS       = 300;
     public static final long GAME_OVER_DELAY_IN_MILLIS      = 4000;
     public static final float LINE_WIDTH                    = 1f;
 
@@ -32,7 +32,7 @@ public class Values {
     public static final String FIGURE_SPEED_KEY         = "default_speed";
     public static final long DEFAULT_SPEED              = FigureSpeed.DEFAULT.getFigureSpeedInMillis();
     public static final String ENABLE_HINTS_KEY         = "enable_hints_key";
-    public static final boolean ENABLED_HINTS           = false;
+    public static final boolean ENABLED_HINTS           = true;
     public static final String SQUARES_COUNT_IN_ROW_KEY = "default_squares_in_row";
     public static final int SQUARES_COUNT_IN_ROW        = 10;
 

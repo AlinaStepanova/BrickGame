@@ -17,6 +17,7 @@
         android:id="@+id/sEnableHints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="true"
         android:layout_gravity="end|center_vertical"
         android:layout_marginEnd="@dimen/margin8dp"/>
 
