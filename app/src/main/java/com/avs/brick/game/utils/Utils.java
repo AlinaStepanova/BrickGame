@@ -97,7 +97,7 @@ public class Utils {
         return new Intent(Intent.ACTION_VIEW, uri);
     }
 
-    public static Intent showMoreApps(Activity activity) {
+    public static Intent showMoreApps() {
         Uri uri = Uri.parse("market://search?q=pub:" + DEV_NAME);
         return new Intent(Intent.ACTION_VIEW, uri);
     }

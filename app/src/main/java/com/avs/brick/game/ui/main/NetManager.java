@@ -60,14 +60,6 @@ public class NetManager {
         return net[0].length;
     }
 
-    public boolean[][] getNetCopy() {
-        return net;
-    }
-
-    public boolean[][] getZeroCopy() {
-        return zeroNet;
-    }
-
     public void initFigure(Figure figure) {
         this.figure = figure;
         this.zeroNet = new boolean[figure.getHeightInSquare()][1];

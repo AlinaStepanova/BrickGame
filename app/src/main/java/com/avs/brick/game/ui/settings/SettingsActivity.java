@@ -69,12 +69,10 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
             oldImageView.setImageDrawable(null);
         }
         ImageView newImageView = findViewById(newItemId);
-        if (newImageView != null) {
-            newImageView.setImageDrawable(getDrawable(R.drawable.ic_ok));
-        } else {
+        if (newImageView == null) {
             newImageView = findViewById(R.id.vZFigureColor);
-            newImageView.setImageDrawable(getDrawable(R.drawable.ic_ok));
         }
+        newImageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_ok));
     }
 
     @Override
@@ -112,7 +110,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     @OnClick(R.id.flMoreApps)
     void showMoreApps() {
         try {
-            startActivity(Utils.showMoreApps(this));
+            startActivity(Utils.showMoreApps());
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, getResources().getString(R.string.cannot_open_market_error_text), Toast.LENGTH_LONG).show();
         }
@@ -172,7 +170,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView 
     }
 
     @OnClick(R.id.vJFigureColor)
-    void chooseColorSixth() { settingsPresenter.getEvent(R.id.vJFigureColor); }
+    void chooseColorSixth() {
+        settingsPresenter.getEvent(R.id.vJFigureColor);
+    }
 
     @OnClick(R.id.tvVerySlow)
     void chooseVerySlowSpeed() {

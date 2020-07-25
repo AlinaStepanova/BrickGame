@@ -1,15 +1,20 @@
 package com.avs.brick.game.ui.main;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.avs.brick.game.R;
+import com.avs.brick.game.Values;
 import com.avs.brick.game.ui.main.listeners.OnTimerStateChangedListener;
 import com.avs.brick.game.ui.main.views.PlayingAreaView;
 import com.avs.brick.game.ui.main.views.PreviewAreaView;
 import com.avs.brick.game.ui.main.views.ScoreView;
+import com.avs.brick.game.utils.DebouncedOnClickListener;
+import com.avs.brick.game.utils.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,9 +44,17 @@ public class MainActivity extends AppCompatActivity implements OnTimerStateChang
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         playingAreaView.setDependencies(scoreView, previewAreaView, this);
         playingAreaView.cleanup();
         playingAreaView.createFigureWithDelay();
+        ImageView rotate = findViewById(R.id.ivRotate);
+        rotate.setOnClickListener(new DebouncedOnClickListener(Values.DEBOUNCE_DELAY_IN_MILLIS) {
+            @Override
+            public void onDebouncedClick(View v) {
+                playingAreaView.rotate();
+            }
+        });
     }
 
     @Override
@@ -73,11 +86,6 @@ public class MainActivity extends AppCompatActivity implements OnTimerStateChang
     @OnClick(R.id.ivMoveDown)
     void moveDown() {
         playingAreaView.fastMoveDown();
-    }
-
-    @OnClick(R.id.ivRotate)
-    void rotate() {
-        playingAreaView.rotate();
     }
 
     @OnClick(R.id.ivPausePlay)
