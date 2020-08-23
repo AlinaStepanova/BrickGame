@@ -24,3 +24,9 @@ Features:
 - Receive notification with your new best score.
 - Share your best result with friends.
 - Modern design.
+
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/23102335/71322503-cd09f200-24d0-11ea-841d-061ce9b6cd8a.png" width="300">
+  <img src="https://user-images.githubusercontent.com/23102335/71322575-a9937700-24d1-11ea-8567-779e1b09f5e6.png" width="300">
+</p>
