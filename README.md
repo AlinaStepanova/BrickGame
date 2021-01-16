@@ -1,5 +1,5 @@
 # BrickGame
-Brick Game is an ad free, lightweight puzzle game that is created for your leisure.
+Brick Game, also known as Tetris, is an ad free, super lightweight puzzle game built with a help of Canvas 2D API.
 
 Download from Play Market: https://play.google.com/store/apps/details?id=com.avs.brick.game&pageId=none
 
@@ -16,6 +16,7 @@ Features:
 
 - No ads.
 - No in-app purchases. 
+- Play offline.
 - "Next brick" preview. 
 - Pick the color you like for bricks.
 - Choose bricks movement speed.
