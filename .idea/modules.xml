@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BrickGame.iml" filepath="$PROJECT_DIR$/BrickGame.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/BrickGame-app.iml" filepath="$PROJECT_DIR$/app/BrickGame-app.iml" group="BrickGame/app" />
-      <module fileurl="file://$PROJECT_DIR$/StudioProjects-BrickGame.iml" filepath="$PROJECT_DIR$/StudioProjects-BrickGame.iml" group="BrickGame" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BrickGame.iml" filepath="$PROJECT_DIR$/.idea/modules/BrickGame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BrickGame.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BrickGame.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BrickGame.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BrickGame.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BrickGame.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BrickGame.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BrickGame.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BrickGame.app.unitTest.iml" />
     </modules>
   </component>
 </project>

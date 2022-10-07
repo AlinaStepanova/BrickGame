@@ -23,14 +23,6 @@
 
     </FrameLayout>
 
-    <View
-        android:layout_width="1px"
-        android:background="@color/black"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical"
         android:layout_width="wrap_content"

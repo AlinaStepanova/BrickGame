@@ -16,14 +16,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:exported="false"
             android:name=".ui.settings.PrivacyPolicyActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:exported="false"
             android:name=".ui.settings.SettingsActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:exported="true"
             android:name=".ui.start.StartActivity"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -33,10 +36,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="false"
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:exported="false"
             android:name=".ui.score.ScoreActivity"
             android:screenOrientation="portrait">
         </activity>
