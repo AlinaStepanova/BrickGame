@@ -14,6 +14,7 @@ public class Values {
     public static final long DEBOUNCE_DELAY_IN_MILLIS       = 450;
     public static final long GAME_OVER_DELAY_IN_MILLIS      = 4000;
     public static final float LINE_WIDTH                    = 1f;
+    public static final int SCORE_FOR_REVIEW                = 100;
 
     public static final String[] RECIPIENTS         = {"alina.stepanova.work@gmail.com"};
     public static final String PRIVACY_POLICY_URL   = "https://alinastepanova.github.io/BrickGame/";

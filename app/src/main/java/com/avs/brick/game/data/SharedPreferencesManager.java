@@ -9,6 +9,7 @@ import com.avs.brick.game.utils.NotificationUtil;
 import static android.content.Context.MODE_PRIVATE;
 import static com.avs.brick.game.Values.DEFAULT_COLOR;
 import static com.avs.brick.game.Values.DEFAULT_SPEED;
+import static com.avs.brick.game.Values.SCORE_FOR_REVIEW;
 import static com.avs.brick.game.Values.SQUARES_COUNT_IN_ROW;
 import static com.avs.brick.game.Values.DEFAULT_VALUE;
 import static com.avs.brick.game.Values.ENABLED_HINTS;
@@ -30,6 +31,10 @@ public class SharedPreferencesManager {
     public SharedPreferencesManager(Context context) {
         this.context = context;
         this.preferences = context.getSharedPreferences(PREFERENCES_KEY, MODE_PRIVATE);
+    }
+
+    private int getIntFirstValue() {
+        return preferences.getInt(FIRST_VALUE_KEY, DEFAULT_VALUE);
     }
 
     public void putNewScore(int newScore) {
@@ -76,7 +81,6 @@ public class SharedPreferencesManager {
         return preferences.getInt(SQUARES_COUNT_IN_ROW_KEY, SQUARES_COUNT_IN_ROW);
     }
 
-
     public void setFiguresSpeed(long speed) {
         this.editor = preferences.edit();
         editor.putLong(FIGURE_SPEED_KEY, speed);
@@ -100,7 +104,11 @@ public class SharedPreferencesManager {
     }
 
     public String getFirstValue() {
-        return String.valueOf(preferences.getInt(FIRST_VALUE_KEY, DEFAULT_VALUE));
+        return String.valueOf(getIntFirstValue());
+    }
+
+    public boolean isGreatFirstScore() {
+        return (getIntFirstValue() >= SCORE_FOR_REVIEW);
     }
 
     public String getSecondValue() {

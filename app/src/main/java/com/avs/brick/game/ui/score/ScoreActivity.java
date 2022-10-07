@@ -2,6 +2,7 @@ package com.avs.brick.game.ui.score;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,6 +13,10 @@ import com.avs.brick.game.R;
 import com.avs.brick.game.Values;
 import com.avs.brick.game.data.SharedPreferencesManager;
 import com.avs.brick.game.utils.AnimationUtil;
+import com.google.android.gms.tasks.Task;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +54,14 @@ public class ScoreActivity extends AppCompatActivity {
         shareScore.startAnimation(AnimationUtil.getZoomIn(this));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (sharedPreferencesManager.isGreatFirstScore()) {
+            launchReviewFlow();
+        }
+    }
+
     @OnClick(R.id.ivShare)
     public void share() {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -60,5 +73,20 @@ public class ScoreActivity extends AppCompatActivity {
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.share_via_text)));
+    }
+
+    private void launchReviewFlow() {
+        if (getBaseContext() != null) {
+            ReviewManager manager = ReviewManagerFactory.create(getBaseContext());
+            Task<ReviewInfo> request = manager.requestReviewFlow();
+            request.addOnCompleteListener(task -> {
+                if (task.getResult() != null) {
+                    Task<Void> flow = manager.launchReviewFlow(this, task.getResult());
+                    flow.addOnCompleteListener(result -> {
+                        Log.d("Review", "Review flow completed");
+                    });
+                }
+            });
+        }
     }
 }
