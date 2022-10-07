@@ -7,7 +7,6 @@ import android.util.Log;
 import com.avs.brick.game.BuildConfig;
 import com.avs.brick.game.enums.FigureState;
 import com.avs.brick.game.figures.Figure;
-import com.avs.brick.game.figures.factory.FigureCreator;
 import com.avs.brick.game.ui.main.listeners.OnNetChangedListener;
 import com.avs.brick.game.utils.Utils;
 
@@ -67,12 +66,9 @@ public class NetManager {
     }
 
     public boolean canRotate(Figure rotatedFigure) {
-        boolean result = false;
-        if (rotatedFigure.pointInNet.x + rotatedFigure.getWidthInSquare() <= horizontalSquaresCount
+        boolean result = rotatedFigure.pointInNet.x + rotatedFigure.getWidthInSquare() <= horizontalSquaresCount
                 && rotatedFigure.pointInNet.y + rotatedFigure.getHeightInSquare() < verticalSquaresCount
-                && isNetFreeToMoveDown()) {
-            result = true;
-        }
+                && isNetFreeToMoveDown();
         return result;
     }
 
@@ -311,29 +307,17 @@ public class NetManager {
     }
 
     public boolean isNetFreeToMoveDown() {
-        boolean result = false;
-        if (figure.pointInNet.y + figure.getHeightInSquare()
-                != verticalSquaresCount + EXTRA_ROWS && !isFigureBelow()) {
-            result = true;
-        }
-        return result;
+        return figure.pointInNet.y + figure.getHeightInSquare()
+                != verticalSquaresCount + EXTRA_ROWS && !isFigureBelow();
     }
 
     public boolean isNetFreeToMoveLeft() {
-        boolean result = false;
-        if (figure.pointInNet.x != 0 && isNetFreeToMoveDown() && !isFigureLeft()) {
-            result = true;
-        }
-        return result;
+        return figure.pointInNet.x != 0 && isNetFreeToMoveDown() && !isFigureLeft();
     }
 
     public boolean isNetFreeToMoveRight() {
-        boolean result = false;
-        if (figure.pointInNet.x + figure.getWidthInSquare() < horizontalSquaresCount
-                && isNetFreeToMoveDown() && !isFigureRight()) {
-            result = true;
-        }
-        return result;
+        return figure.pointInNet.x + figure.getWidthInSquare() < horizontalSquaresCount
+                && isNetFreeToMoveDown() && !isFigureRight();
     }
 
     public void moveRightInNet() {

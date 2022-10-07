@@ -11,7 +11,6 @@ import com.avs.brick.game.ui.main.views.PlayingAreaView;
 import com.avs.brick.game.ui.main.views.PreviewAreaView;
 import com.avs.brick.game.ui.main.views.ScoreView;
 import com.avs.brick.game.utils.DebouncedOnClickListener;
-import com.avs.brick.game.utils.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
