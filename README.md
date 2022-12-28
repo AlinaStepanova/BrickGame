@@ -1,8 +1,6 @@
 # BrickGame
 Brick Game, also known as Tetris, is an ad free, super lightweight puzzle game built with a help of Canvas 2D API.
 
-Download from Play Market: https://play.google.com/store/apps/details?id=com.avs.brick.game&pageId=none
-
 How to play:
 
 - Tap or swipe on the screen left and right to move the brick.
